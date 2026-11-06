@@ -64,11 +64,26 @@ with sync_playwright() as p:
     d.select_option("#startSchool", label="Pima Community College"); d.wait_for_timeout(300)
     check("schools AZ: ADN start reaches a Psych NP program",
           "Psychiatric Mental Health" in d.inner_text("#route") and d.evaluate("()=>!!document.querySelector('#route .milestone')"))
-    # Regression: the 'not verified yet' gap must name the CURRENT state, not a hardcoded one.
+    # A job offered in no covered state is still honest: no made-up program, and it names coverage.
     d.goto(BASE + "/schools.html?job=nnp&state=AZ"); d.wait_for_timeout(300)
     txt = d.inner_text("#route")
-    check("schools AZ: gap message names Arizona (not Colorado)",
-          "in Arizona in our data" in txt and "Colorado" not in txt)
+    check("schools: unavailable job gives honest no-data gap naming both states",
+          "don't have a verified" in txt and "Colorado and Arizona" in txt)
+    # Cross-state: arriving in one state, you can still start at a school in another.
+    d.goto(BASE + "/schools.html?job=fnp&state=AZ"); d.wait_for_timeout(400)
+    az_only = d.evaluate("()=>document.querySelectorAll('#startSchool option').length")
+    check("schools: filter offers All states + CO + AZ",
+          d.evaluate("()=>{const v=[...document.querySelectorAll('#state option')].map(o=>o.value);return v.includes('ALL')&&v.includes('CO')&&v.includes('AZ')}"))
+    d.select_option("#state", "ALL"); d.wait_for_timeout(300)
+    all_count = d.evaluate("()=>document.querySelectorAll('#startSchool option').length")
+    check("schools: 'All states' lists more start schools than one state alone", all_count > az_only)
+    check("schools: start-school options are state-labeled under All states",
+          d.evaluate("()=>[...document.querySelectorAll('#startSchool option')].some(o=>/— Colorado$/.test(o.textContent))"))
+    # Switch the filter to Colorado (from an Arizona arrival) and get a real Colorado route.
+    d.select_option("#state", "CO"); d.wait_for_timeout(300)
+    check("schools: CO filter from AZ arrival builds a Colorado route with a state badge",
+          d.evaluate("()=>document.querySelectorAll('#route .step').length") >= 2 and "Colorado" in d.inner_text("#route"))
+    check("schools: program cards carry a state badge", d.evaluate("()=>!!document.querySelector('#route .pcard .pstate')"))
     m = b.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True); m.on("pageerror", lambda e: errs.append(str(e)))
     m.goto(BASE + "/index.html"); m.evaluate("()=>{localStorage.clear();localStorage.setItem('np-welcomed','1')}"); m.reload(); m.wait_for_timeout(500)
     m.locator('.rchip[data-id="fnp"]').scroll_into_view_if_needed(); y = m.evaluate("()=>scrollY")

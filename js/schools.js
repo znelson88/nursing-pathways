@@ -16,7 +16,16 @@
   const jobs = Object.values(byId).filter(n => n.g !== "hub" && !NOT_A_JOB.has(n.id)).sort((a, b) => a.label.localeCompare(b.label));
   jobSel.innerHTML = `<option value="rn">Registered Nurse (RN)</option>` + jobs.map(n => `<option value="${n.id}">${esc(n.label)}</option>`).join("");
   if (qs.get("job") && byId[qs.get("job")]) jobSel.value = qs.get("job");
-  if (["CO", "AZ", "CA"].includes(qs.get("state"))) stSel.value = qs.get("state");
+
+  // ---- "Show schools from" filter: All states, plus one option per loaded state ----
+  // This only narrows which START schools are listed. Routing always uses every state's data,
+  // so an online step (RN-to-BSN, graduate) can cross a state line while an in-person ADN/BSN
+  // start stays where the student actually is.
+  const LOADED = ["CO", "AZ", "CA"].filter(s => window.SCHOOLS && window.SCHOOLS[s]);
+  stSel.innerHTML = `<option value="ALL">All states</option>` +
+    LOADED.map(s => `<option value="${s}">${esc(fullState(s))}</option>`).join("");
+  // Arrive on the state the map linked from, but with every state now selectable.
+  if (LOADED.includes(qs.get("state"))) stSel.value = qs.get("state");
 
   const jobLabel = id => (!id || !byId[id] ? "Registered Nurse" : (byId[id].g === "hub" ? "Registered Nurse" : byId[id].label));
 
@@ -31,7 +40,20 @@
   const APRN = new Set(["fnp", "agpcnp", "agacnp", "pnp", "pmhnp", "whnp", "nnp", "enp", "cns", "cnm", "crna"]);
   // Education backbone the route may walk: every program credential plus the RN license.
   const EDU = new Set([...PROGRAM_CREDS, "rn"]);
-  const dataFor = st => (window.SCHOOLS && window.SCHOOLS[st]) || null;
+  // All loaded states merged into one dataset, each record tagged with its state (`_state`).
+  // Institution and program ids are unique across states, so the merge is safe. The route is
+  // always built against this combined set, which is what lets a path cross state lines.
+  function combinedData() {
+    const out = { institutions: [], programs: [], agreements: [], _states: LOADED.slice() };
+    LOADED.forEach(s => {
+      const d = (window.SCHOOLS && window.SCHOOLS[s]) || {};
+      (d.institutions || []).forEach(i => out.institutions.push(Object.assign({ _state: s }, i)));
+      (d.programs || []).forEach(p => out.programs.push(Object.assign({ _state: s }, p)));
+      (d.agreements || []).forEach(a => out.agreements.push(Object.assign({ _state: s }, a)));
+    });
+    return out;
+  }
+  const stateOf = (data, id) => { const i = data.institutions.find(x => x.id === id); return i ? i._state : null; };
 
   function startingSchools(data) {
     if (!data) return [];
@@ -91,6 +113,8 @@
   function buildRoute(data, schoolId, goal) {
     const startCred = entryCredential(data, schoolId);
     if (!startCred) return { steps: [], note: "nostart" };
+    const startState = stateOf(data, schoolId);        // the state the student is physically in
+    const sameState = p => (p._state === startState ? 1 : 0);
     const seq = sequence(startCred, goal);
     const progCreds = new Set(data.programs.map(p => p.credential));
     const steps = [];
@@ -120,7 +144,9 @@
         const linked = lastProgram ? away.filter(p => agreement(data, lastProgram.id, p.id)) : [];
         const pool = (linked.length ? linked : away.filter(p => p.open_entry)).slice();
         if (!pool.length) { missing = cred; return; }
-        pool.sort((a, b) => score(b) - score(a));
+        // Prefer a program in the student's own state; only cross a state line when there's no
+        // same-state option (and then only because the program is online / open to out-of-state).
+        pool.sort((a, b) => (sameState(b) - sameState(a)) || (score(b) - score(a)));
         primary = pool[0]; transfer = true;
         agr = lastProgram ? agreement(data, lastProgram.id, primary.id) : null;
       }
@@ -129,8 +155,10 @@
       const alternatives = (stepIndex === 0 && !lastProgram) ? [] :
         all.filter(p => p.id !== primary.id &&
           (p.open_entry || (lastProgram && agreement(data, lastProgram.id, p.id))))
-          .sort((a, b) => score(b) - score(a)).slice(0, 3);
-      steps.push({ kind: "program", primary, alternatives, transfer, agreement: agr, first: stepIndex === 0 });
+          .sort((a, b) => (sameState(b) - sameState(a)) || (score(b) - score(a))).slice(0, 3);
+      // Does this step send the student out of their home state? (only possible for an online step)
+      const crossState = transfer && startState && primary._state !== startState;
+      steps.push({ kind: "program", primary, alternatives, transfer, agreement: agr, crossState, startState, first: stepIndex === 0 });
       currentSchool = primary.institution;
       lastProgram = primary;
       stepIndex++;
@@ -138,7 +166,7 @@
 
     // Did we actually reach the goal? (goal may be a work role reached by experience, not a degree.)
     const reached = progCreds.has(goal) ? steps.some(s => s.kind === "program" && s.primary.credential === goal) : true;
-    return { steps, missing, reachedGoal: reached, goalIsProgram: PROGRAM_CREDS.has(goal) };
+    return { steps, missing, reachedGoal: reached, goalIsProgram: PROGRAM_CREDS.has(goal), startState };
   }
   function agreement(data, fromId, toId) {
     return (data.agreements || []).find(a => a.from_program === fromId && a.to_program === toId) || null;
@@ -200,7 +228,7 @@
     return `<article class="pcard${opts.alt ? " alt" : ""}">
       <div class="pchead">
         <h3>${esc(p.name)}</h3>
-        <p class="pinst">${esc(instName(data, p.institution))}</p>
+        <p class="pinst">${esc(instName(data, p.institution))}${p._state ? ` <span class="pstate">${esc(fullState(p._state))}</span>` : ""}</p>
       </div>
       ${field("Length", na(p.length))}
       ${field("Format", na(p.format))}
@@ -229,47 +257,55 @@
     if (step.first) return "";
     if (step.agreement) return agreementHTML(step.agreement);
     if (step.transfer) {
+      const crossNote = step.crossState
+        ? ` We don't have a verified ${esc(fullState(step.startState))} program in our data for this step,
+           so the closest confirmed option is in <b>${esc(fullState(step.primary._state))}</b>. It admits
+           qualified out-of-state nurses who hold the credential shown below, but check its <b>Format</b>
+           on the card — it may require attending in ${esc(fullState(step.primary._state))} — and confirm
+           with the school before you rely on it.`
+        : "";
       return `<div class="agr"><span class="agrtag">How you get in</span>
         <p>No special transfer agreement with your starting school is required. Programs like this admit
         nurses who hold the degree and license shown below from any accredited school — see the admission
-        details on the card.</p></div>`;
+        details on the card.${crossNote}</p></div>`;
     }
     return `<div class="agr"><span class="agrtag">Continue at the same school</span>
       <p>This next step is offered at the same school, so you stay put — see the admission details on the card.</p></div>`;
   }
 
   function render() {
-    const st = stSel.value, goal = jobSel.value, data = dataFor(st);
+    const scope = stSel.value || "ALL", goal = jobSel.value;
+    const data = combinedData();                 // route is always built against every loaded state
     const goalLabel = jobLabel(goal);
     document.getElementById("title").textContent = `Schools and programs: ${goalLabel}`;
     document.getElementById("lede").textContent =
-      `A common, verified route through real programs toward ${goalLabel}. Every fact shows its source and the date it was last checked.`;
+      `A common, verified route through real programs toward ${goalLabel}. Start at any school below; a route continues in another state only when no in-state program is in our data for a step. Every fact shows its source and the date it was last checked.`;
 
-    // start-school selector (depends on state's data). Preserve the current choice across re-renders,
-    // otherwise rebuilding the <option> list would reset it to the first school on every change.
-    const starts = startingSchools(data);
+    // Start-school selector. List every start school, narrowed by the "Show schools from" filter.
+    // Label each with its state so a cross-state choice is obvious. Preserve the current choice
+    // across re-renders, otherwise rebuilding the <option> list resets it to the first school.
+    const allStarts = startingSchools(data);
+    const starts = scope === "ALL" ? allStarts : allStarts.filter(s => s._state === scope);
     const prevStart = schoolSel.value;
     schoolSel.innerHTML = starts.length
-      ? starts.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join("")
-      : `<option value="">No schools loaded for this state yet</option>`;
+      ? starts.map(s => `<option value="${s.id}">${esc(s.name)}${scope === "ALL" ? ` — ${esc(fullState(s._state))}` : ""}</option>`).join("")
+      : `<option value="">No schools loaded yet</option>`;
     if (starts.some(s => s.id === prevStart)) schoolSel.value = prevStart;
     schoolSel.disabled = !starts.length;
-    // keep URL in sync
-    const p = new URLSearchParams({ job: goal, state: st }); if (qs.get("start")) p.set("start", qs.get("start"));
+    // keep URL in sync (state = the current filter scope)
+    const p = new URLSearchParams({ job: goal, state: scope }); if (qs.get("start")) p.set("start", qs.get("start"));
     history.replaceState(null, "", "?" + p);
 
-    if (!data || !starts.length) {
-      routeEl.innerHTML = buildingMsg(st, goalLabel);
-      return;
-    }
+    if (!starts.length) { routeEl.innerHTML = buildingMsg(data); return; }
     const schoolId = schoolSel.value || starts[0].id;
     const r = buildRoute(data, schoolId, goal);
     const startName = instName(data, schoolId);
+    const startState = stateOf(data, schoolId);
 
-    if (!r.steps.length) { routeEl.innerHTML = buildingMsg(st, goalLabel); return; }
+    if (!r.steps.length) { routeEl.innerHTML = buildingMsg(data); return; }
 
-    let html = `<p class="rintro">Starting at <b>${esc(startName)}</b>, here is a realistic route toward <b>${esc(goalLabel)}</b> in ${esc(fullState(st))}. ` +
-      `Where a step changes schools, the connection and its source are shown.</p>`;
+    let html = `<p class="rintro">Starting at <b>${esc(startName)}</b> in <b>${esc(fullState(startState))}</b>, here is a realistic route toward <b>${esc(goalLabel)}</b>. ` +
+      `Where a step changes schools — or continues in another state — the connection and its source are shown.</p>`;
 
     let n = 0;
     r.steps.forEach(step => {
@@ -293,10 +329,10 @@
     if (r.missing && (r.missing === "msn" || r.missing === "dnp")) {
       // A generic graduate degree isn't a standalone program here — it's earned through a specialty.
       html += `<div class="gap"><b>${esc(credLabel(r.missing))} here isn't a standalone program — it's earned through a specific advanced-practice track.</b>
-        <p>Choose a role like <b>Family NP</b>, <b>Psych-Mental Health NP</b> or <b>Nurse anesthetist</b> above to see the real ${esc(fullState(st))} programs (each is at the ${esc(credLabel(r.missing))} or doctoral level).</p></div>`;
+        <p>Choose a role like <b>Family NP</b>, <b>Psych-Mental Health NP</b> or <b>Nurse anesthetist</b> above to see the real programs (each is at the ${esc(credLabel(r.missing))} or doctoral level).</p></div>`;
     } else if (r.missing) {
-      html += `<div class="gap"><b>We don't have a verified ${esc(credLabel(r.missing))} program in ${esc(fullState(st))} in our data yet.</b>
-        <p>The route above is confirmed as far as we can source it. The remaining step is being added. Nothing here is guessed.</p></div>`;
+      html += `<div class="gap"><b>We don't have a verified ${esc(credLabel(r.missing))} program in our data yet.</b>
+        <p>We currently cover ${esc(coveredStates(data))}. The route above is confirmed as far as we can source it; the remaining step is being added, and nothing here is guessed.</p></div>`;
     } else if (!r.goalIsProgram) {
       html += `<div class="gap"><b>${esc(goalLabel)} is a role you move into as a nurse, not a separate degree program.</b>
         <p>Get the RN license (and, where needed, the experience shown on the career map). This page focuses on the school programs along the way.</p></div>`;
@@ -306,9 +342,14 @@
     routeEl.innerHTML = html;
   }
 
-  function buildingMsg(st, goalLabel) {
-    return `<div class="gap"><b>We're still building verified school data for ${esc(fullState(st))}.</b>
-      <p><b>Colorado</b> and <b>Arizona</b> are complete — switch the state above to either one to see full, verified routes through real programs. Every school fact shows its source and the date it was last checked, and nothing is made up.</p></div>`;
+  function buildingMsg(data) {
+    return `<div class="gap"><b>No start schools are listed for this filter yet.</b>
+      <p>We currently cover ${esc(coveredStates(data))}. Switch "Show schools from" back to <b>All states</b> to see every verified route through real programs. Every school fact shows its source and the date it was last checked, and nothing is made up.</p></div>`;
+  }
+  function coveredStates(data) {
+    const names = (data._states || []).map(fullState);
+    return names.length <= 1 ? (names[0] || "no states") :
+      names.slice(0, -1).join(", ") + " and " + names[names.length - 1];
   }
   function fullState(st) { return { CO: "Colorado", AZ: "Arizona", CA: "California" }[st] || st; }
   function credLabel(c) { return byId[c] ? byId[c].label : c; }

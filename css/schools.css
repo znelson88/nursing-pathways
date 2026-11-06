@@ -19,6 +19,7 @@
 .pchead{margin-bottom:8px}
 .pchead h3{margin:0;font-family:var(--display);font-size:17px;line-height:1.25}
 .pinst{margin:2px 0 0;font-size:13px;font-weight:600;color:var(--muted)}
+.pstate{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;background:var(--chip,rgba(127,127,127,.14));font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--muted);vertical-align:middle}
 .fld{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:13.5px;line-height:1.45}
 .fld:first-of-type{border-top:0}
 .fl{font-weight:600;color:var(--muted)}
