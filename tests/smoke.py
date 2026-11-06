@@ -67,8 +67,8 @@ with sync_playwright() as p:
     # A job offered in no covered state is still honest: no made-up program, and it names coverage.
     d.goto(BASE + "/schools.html?job=nnp&state=AZ"); d.wait_for_timeout(300)
     txt = d.inner_text("#route")
-    check("schools: unavailable job gives honest no-data gap naming both states",
-          "don't have a verified" in txt and "Colorado and Arizona" in txt)
+    check("schools: unavailable job gives honest no-data gap naming all covered states",
+          "don't have a verified" in txt and "Colorado, Arizona and California" in txt)
     # Start/finish state model: a starting state that cascades the school list, and a finishing state.
     d.goto(BASE + "/schools.html?job=fnp&state=AZ"); d.wait_for_timeout(400)
     check("schools: start and finish state selectors offer CO + AZ",
@@ -90,6 +90,19 @@ with sync_playwright() as p:
     check("schools: handoff cites the compact license carry-over", "Nurse Licensure Compact" in rt)
     check("schools: after the handoff a program lands in the finish state (Arizona)",
           d.evaluate("()=>[...document.querySelectorAll('#route .step .pcard .pstate')].some(b=>b.textContent.trim()==='Arizona')"))
+    # California dataset (wave 1): loads, lists start schools, and routes.
+    d.goto(BASE + "/schools.html?job=fnp&state=CA"); d.wait_for_timeout(400)
+    check("schools CA: dataset loaded with start schools",
+          d.evaluate("()=>document.querySelectorAll('#startSchool option').length") >= 8)
+    check("schools CA: route renders program steps and the RN-license milestone",
+          d.evaluate("()=>document.querySelectorAll('#route .step').length") >= 2 and d.evaluate("()=>!!document.querySelector('#route .milestone')"))
+    check("schools CA: program cards carry a California state badge",
+          d.evaluate("()=>[...document.querySelectorAll('#route .step .pcard .pstate')].some(b=>b.textContent.trim()==='California')"))
+    # California is NOT a compact state: a Colorado->California plan must flag licensure by endorsement.
+    d.goto(BASE + "/schools.html?job=fnp&state=CO&finish=CA"); d.wait_for_timeout(400)
+    ca_rt = d.inner_text("#route")
+    check("schools CA: non-compact hand-off flags licensure by endorsement",
+          d.evaluate("()=>!!document.querySelector('#route .agr.handoff')") and "endorsement" in ca_rt)
     m = b.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True); m.on("pageerror", lambda e: errs.append(str(e)))
     m.goto(BASE + "/index.html"); m.evaluate("()=>{localStorage.clear();localStorage.setItem('np-welcomed','1')}"); m.reload(); m.wait_for_timeout(500)
     m.locator('.rchip[data-id="fnp"]').scroll_into_view_if_needed(); y = m.evaluate("()=>scrollY")

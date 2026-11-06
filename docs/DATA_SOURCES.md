@@ -15,7 +15,7 @@ same sources with links.
 | Loan interest | Federal Direct loan rates for 2026–27 (undergraduate 6.52%, graduate 8.07%), 10-year standard repayment | `RATE`, `pmt` |
 | School costs | Ranges built from published tuition (CU Anschutz, Pikes Peak State College ADN estimate, CCD nurse aide, NAU, Fresno State, UCCS WUE) and labeled "Estimate" where they are ranges rather than one school's price | `COST`, `STEP`, `NPCOST` |
 | Job growth | BLS Employment Projections 2025–35 | `GROWTH` |
-| Practice rules (NP full practice, CRNA opt-out, Nurse Licensure Compact) | State boards / AANP / NCSBN, as of late 2026 | `NPFPA`, `CRNAOPT`, `NLC` in app.js |
+| Practice rules (NP full practice, CRNA opt-out, Nurse Licensure Compact) | State boards / AANP / NCSBN, as of late 2026 | `NPFPA`, `CRNAOPT` in app.js; `NLC` in data.js (shared with the schools page) |
 | Aid programs (NURSE Corps, PSLF, state repayment, military, VA) | HRSA, Federal Student Aid, state programs | `AID` in app.js |
 
 Fact-check history: four independent review passes corrected national medians, 2024 RPP values, several
@@ -128,3 +128,34 @@ entry tier and the LPN-to-RN / paramedic-to-RN bridges (noted on several ADN rec
 (several schools publish only a pass-rate goal, not an achieved rate; GCU/NAU don't state board program
 approval) are shown honestly. Re-verify before each academic year; retry the AZ Board list when it isn't
 Cloudflare-gated.
+
+# Data sources (schools page — California)
+
+California is **in progress — wave 1** (9 schools / 15 programs, verified 2026-11-06), in `data/schools/ca.js`.
+Each record carries its own `source_url` + `last_verified` (the authoritative per-fact log). Facts come from
+each institution's own website; **NCLEX pass rates are the California BRN's by-school first-time table.**
+
+**Master roster:** the California Board of Registered Nursing (BRN) approved prelicensure-program list at
+`rn.ca.gov/education/rnprograms.shtml` (ADN, BSN, Entry-Level Master's). **Board-verified NCLEX pass rates**
+come from `rn.ca.gov/education/passrates.shtml` (annual July 1–June 30 periods; source_url on each program).
+**ASSIST.org** governs community-college → CSU/UC course transfer.
+
+**Wave 1:** CSU pre-licensure BSN (CSU Long Beach, San Diego State, Sacramento State, SF State, CSU Fullerton),
+Fullerton Accelerated BSN, SF State Entry-Level Master's; community-college ADN (City College of SF —
+board-approval-only; San Diego City — ACEN; Pasadena — ACEN candidate, candidacy as published expired
+2026-03-18); and open-entry RN-to-BSN completions (CSULB online, SDSU, Sac State, CSU Dominguez Hills online,
+CSU Fullerton). Where a school's own page doesn't state BRN approval (CSULB, Sac State, SF State, CSUDH), the
+"approved by the California BRN" line is sourced to the BRN approved-program list.
+
+**California is NOT a Nurse Licensure Compact state** — a nurse moving to/from CA applies for licensure by
+endorsement (the Schools page hand-off states this). CA RN-to-BSN programs require a **California** RN license;
+several online ones (CSULB, CSUDH) admit **California residents only** — noted on each card.
+
+**Deliberately excluded (per SCHOOLS_SPEC scope):** private for-profit / unaccredited chains (West Coast
+University, Chamberlain, Carrington, Unitek, Stanbridge, Gurnick, Arizona College of Nursing, American Career
+College, etc.), University of Phoenix (not enrolling) and UMass Global (closing). SDSU's Accelerated
+2nd-Bachelor's (ASBSN) is omitted while it is **pending BRN approval and CCNE accreditation** (its own page).
+SF State's concurrent "ADN-BSN" collaborative (dual CC + SFSU, no RN license required) is not yet modeled.
+**Later waves:** UC campuses (UCLA, UCI, UCSF, UC Davis), private universities (Samuel Merritt, USF, USD,
+Azusa Pacific, Loma Linda, Point Loma, Mount Saint Mary's, Dominican, CBU, etc.), more community-college ADNs
+by region, and the APRN / CRNA / CNM specialties. Re-verify before each academic year.

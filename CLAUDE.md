@@ -95,5 +95,19 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   behind Cloudflare, so facts (incl. each school's own published pass rate) come from the schools' own
   sites. Excluded (private for-profit): Arizona College of Nursing, Chamberlain, West Coast University;
   GCU is included and labeled (its nonprofit status is contested). AZ uses many entrance exams (HESI, TEAS,
-  NLN, Kaplan). Next: California. See docs/DATA_SOURCES.md.
+  NLN, Kaplan). See docs/DATA_SOURCES.md.
+- California: **wave 1** built in `data/schools/ca.js` (attached to `window.SCHOOLS.CA`; loaded by schools.html).
+  9 schools / 15 programs (verified 2026-11-06): the CSU pre-licensure BSN backbone (CSU Long Beach, San Diego
+  State, Sacramento State, SF State, CSU Fullerton), Fullerton's Accelerated BSN and SF State's Entry-Level
+  Master's; three community-college ADNs (City College of SF, San Diego City, Pasadena); and five open-entry
+  RN-to-BSN completions (CSULB, SDSU, Sac State, Dominguez Hills, Fullerton). Built from the **California BRN
+  approved-program list** (rn.ca.gov/education/rnprograms.shtml) and the **BRN by-school NCLEX pass-rate table**
+  (rn.ca.gov/education/passrates.shtml); ASSIST.org for CC→CSU/UC transfer. **California is NOT an NLC state** —
+  the cross-state hand-off tells movers they need licensure by endorsement; CA RN-to-BSN programs require a CA
+  RN license and several online ones are CA-residents-only (noted on each card). Excluded (for-profit /
+  unaccredited chains, per scope): West Coast, Chamberlain, Carrington, Unitek, Stanbridge, Gurnick, Arizona
+  College of Nursing, etc.; SDSU's Accelerated 2nd-Bachelor's (pending BRN/CCNE approval) and SF State's
+  concurrent ADN-BSN are not yet included. `NLC` (compact member states) moved from app.js to data.js so the
+  schools page shares it. Later waves: UC + private universities, more community-college ADNs by region, and
+  APRN/CRNA/CNM specialties.
 - Hosting: planned online (see README.md). Not yet deployed.
