@@ -835,7 +835,7 @@ document.getElementById("wGo").onclick=()=>{
   if(seen)return;
   const vb=document.querySelector(".viewbar"); if(!vb)return;
   const tip=document.createElement("div"); tip.className="glosstip";
-  tip.innerHTML=`<span aria-hidden="true">💡</span><p>New to the lingo? Underlined words like <button type="button" class="term" data-t="BSN">BSN</button> have a plain-English definition — tap one.</p><button type="button" class="gtipx" aria-label="Dismiss this tip">×</button>`;
+  tip.innerHTML=`<span aria-hidden="true">💡</span><p>New to the lingo? Underlined words like <button type="button" class="term" data-t="BSN" aria-label="BSN: show definition">BSN</button> have a plain-English definition — tap one.</p><button type="button" class="gtipx" aria-label="Dismiss this tip">×</button>`;
   vb.insertAdjacentElement("afterend",tip);
   const close=()=>{try{localStorage.setItem("np-gloss-tip","1")}catch(e){} tip.remove();};
   tip.querySelector(".gtipx").onclick=close;

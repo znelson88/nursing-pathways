@@ -15,7 +15,9 @@
   const NOT_A_JOB = new Set(["diploma", "adn", "bsn", "absn", "demsn", "rnbsn", "msn", "pmc", "dnp", "phd"]);
   const jobs = Object.values(byId).filter(n => n.g !== "hub" && !NOT_A_JOB.has(n.id)).sort((a, b) => a.label.localeCompare(b.label));
   jobSel.innerHTML = `<option value="rn">Registered Nurse (RN)</option>` + jobs.map(n => `<option value="${n.id}">${esc(n.label)}</option>`).join("");
-  if (qs.get("job") && byId[qs.get("job")]) jobSel.value = qs.get("job");
+  // Only honour ?job= when it's an actual job in the dropdown; a degree id (bsn/adn/…) or junk
+  // falls back to the default (RN) so the URL stays tidy instead of going blank.
+  if (qs.get("job") && [...jobSel.options].some(o => o.value === qs.get("job"))) jobSel.value = qs.get("job");
 
   // ---- "Show schools from" filter: All states, plus one option per loaded state ----
   // This only narrows which START schools are listed. Routing always uses every state's data,
