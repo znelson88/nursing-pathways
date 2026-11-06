@@ -93,6 +93,10 @@ const N = [
 // ---------- Western US money data ----------
 // Pay: annual state medians, BLS OEWS 2025 (via AmericaByNumbers). nat = US median.
 const STATES = {AK:"Alaska",AZ:"Arizona",CA:"California",CO:"Colorado",HI:"Hawaii",ID:"Idaho",MT:"Montana",NV:"Nevada",NM:"New Mexico",OR:"Oregon",UT:"Utah",WA:"Washington",WY:"Wyoming"};
+// Nurse Licensure Compact member states. Shared by the map page (app.js) and the schools page
+// (schools.js), so a cross-state route can honestly say whether an RN license carries over.
+// California is NOT a member — a nurse moving there applies for licensure by endorsement.
+const NLC = new Set(["AZ","CO","ID","MO","MT","NM","UT","WA","WY"]);
 const PAY = {
   cna:{name:"Nursing assistants",nat:42260,st:{AK:46370,AZ:44780,CA:47630,CO:47380,HI:45350,ID:38650,MT:40900,NV:45490,NM:39390,OR:49830,UT:39840,WA:49180,WY:39160}},
   lpn:{name:"LPNs / LVNs",nat:64400,st:{AK:80800,AZ:77070,CA:79750,CO:73880,HI:71140,ID:63800,MT:62210,NV:76160,NM:59330,OR:80470,UT:63230,WA:83150,WY:63460}},

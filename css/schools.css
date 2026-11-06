@@ -46,6 +46,8 @@
 .agr{background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin:6px 0 6px 42px;font-size:13px;line-height:1.45}
 .agr p{margin:0 0 5px}
 .agrtag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:5px}
+.agr.handoff{border:1px solid var(--line);border-left:4px solid var(--ink);background:color-mix(in srgb,var(--ink) 6%,var(--panel))}
+.agr.handoff .agrtag{color:var(--ink)}
 .agrcond{color:var(--muted)}
 
 .alts{margin-top:10px}

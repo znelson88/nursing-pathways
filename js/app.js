@@ -177,7 +177,7 @@ function aidHTML(n){
 
 // ---- Where you can practice (late 2026)
 const PRACTICE_STATES={AK:"Alaska",AZ:"Arizona",CA:"California",CO:"Colorado",HI:"Hawaii",ID:"Idaho",MO:"Missouri",MT:"Montana",NV:"Nevada",NM:"New Mexico",OR:"Oregon",UT:"Utah",WA:"Washington",WY:"Wyoming"};
-const NLC = new Set(["AZ","CO","ID","MO","MT","NM","UT","WA","WY"]);
+// NLC (Nurse Licensure Compact members) now lives in data.js so the schools page can use it too.
 const NPFPA = {AK:"full",AZ:"full",CO:"full",HI:"full",ID:"full",MT:"full",NV:"full",NM:"full",OR:"full",UT:"full",WA:"full",WY:"full",CA:"restricted",MO:"restricted"};
 const CRNAOPT = {AK:"yes",AZ:"yes",CA:"yes",CO:"yes",ID:"yes",MT:"yes",NM:"yes",OR:"yes",WA:"yes",UT:"partial",WY:"partial",HI:"no",NV:"no",MO:"no"};
 const NPROLES=new Set(["fnp","agpcnp","agacnp","pnp","pmhnp","whnp","nnp","enp","entre"]);

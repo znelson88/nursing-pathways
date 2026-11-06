@@ -69,21 +69,27 @@ with sync_playwright() as p:
     txt = d.inner_text("#route")
     check("schools: unavailable job gives honest no-data gap naming both states",
           "don't have a verified" in txt and "Colorado and Arizona" in txt)
-    # Cross-state: arriving in one state, you can still start at a school in another.
+    # Start/finish state model: a starting state that cascades the school list, and a finishing state.
     d.goto(BASE + "/schools.html?job=fnp&state=AZ"); d.wait_for_timeout(400)
-    az_only = d.evaluate("()=>document.querySelectorAll('#startSchool option').length")
-    check("schools: filter offers All states + CO + AZ",
-          d.evaluate("()=>{const v=[...document.querySelectorAll('#state option')].map(o=>o.value);return v.includes('ALL')&&v.includes('CO')&&v.includes('AZ')}"))
-    d.select_option("#state", "ALL"); d.wait_for_timeout(300)
-    all_count = d.evaluate("()=>document.querySelectorAll('#startSchool option').length")
-    check("schools: 'All states' lists more start schools than one state alone", all_count > az_only)
-    check("schools: start-school options are state-labeled under All states",
-          d.evaluate("()=>[...document.querySelectorAll('#startSchool option')].some(o=>/— Colorado$/.test(o.textContent))"))
-    # Switch the filter to Colorado (from an Arizona arrival) and get a real Colorado route.
-    d.select_option("#state", "CO"); d.wait_for_timeout(300)
-    check("schools: CO filter from AZ arrival builds a Colorado route with a state badge",
+    check("schools: start and finish state selectors offer CO + AZ",
+          d.evaluate("()=>{const g=id=>[...document.querySelectorAll('#'+id+' option')].map(o=>o.value);const s=g('startState'),f=g('finishState');return s.includes('CO')&&s.includes('AZ')&&f.includes('CO')&&f.includes('AZ')}"))
+    az_starts = d.evaluate("()=>document.querySelectorAll('#startSchool option').length")
+    check("schools: starting-school list is limited to the starting state", az_starts >= 10)
+    # Change the starting state -> the school list cascades to the other state's schools.
+    d.select_option("#startState", "CO"); d.wait_for_timeout(300)
+    co_starts = d.evaluate("()=>document.querySelectorAll('#startSchool option').length")
+    check("schools: changing starting state cascades the school list", co_starts >= 2 and co_starts != az_starts)
+    check("schools: CO start builds a Colorado route with a state badge",
           d.evaluate("()=>document.querySelectorAll('#route .step').length") >= 2 and "Colorado" in d.inner_text("#route"))
     check("schools: program cards carry a state badge", d.evaluate("()=>!!document.querySelector('#route .pcard .pstate')"))
+    # Cross-state transfer: start in Colorado, finish in Arizona -> a handoff after the RN license.
+    d.goto(BASE + "/schools.html?job=fnp&state=CO&finish=AZ"); d.wait_for_timeout(400)
+    rt = d.inner_text("#route")
+    check("schools: cross-state plan shows a move-to-finish handoff",
+          d.evaluate("()=>!!document.querySelector('#route .agr.handoff')"))
+    check("schools: handoff cites the compact license carry-over", "Nurse Licensure Compact" in rt)
+    check("schools: after the handoff a program lands in the finish state (Arizona)",
+          d.evaluate("()=>[...document.querySelectorAll('#route .step .pcard .pstate')].some(b=>b.textContent.trim()==='Arizona')"))
     m = b.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True); m.on("pageerror", lambda e: errs.append(str(e)))
     m.goto(BASE + "/index.html"); m.evaluate("()=>{localStorage.clear();localStorage.setItem('np-welcomed','1')}"); m.reload(); m.wait_for_timeout(500)
     m.locator('.rchip[data-id="fnp"]').scroll_into_view_if_needed(); y = m.evaluate("()=>scrollY")
