@@ -64,6 +64,11 @@ with sync_playwright() as p:
     d.select_option("#startSchool", label="Pima Community College"); d.wait_for_timeout(300)
     check("schools AZ: ADN start reaches a Psych NP program",
           "Psychiatric Mental Health" in d.inner_text("#route") and d.evaluate("()=>!!document.querySelector('#route .milestone')"))
+    # Regression: the 'not verified yet' gap must name the CURRENT state, not a hardcoded one.
+    d.goto(BASE + "/schools.html?job=nnp&state=AZ"); d.wait_for_timeout(300)
+    txt = d.inner_text("#route")
+    check("schools AZ: gap message names Arizona (not Colorado)",
+          "in Arizona in our data" in txt and "Colorado" not in txt)
     m = b.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True); m.on("pageerror", lambda e: errs.append(str(e)))
     m.goto(BASE + "/index.html"); m.evaluate("()=>{localStorage.clear();localStorage.setItem('np-welcomed','1')}"); m.reload(); m.wait_for_timeout(500)
     m.locator('.rchip[data-id="fnp"]').scroll_into_view_if_needed(); y = m.evaluate("()=>scrollY")

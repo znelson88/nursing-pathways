@@ -290,7 +290,7 @@
     });
 
     if (r.missing) {
-      html += `<div class="gap"><b>We don't have a verified ${esc(credLabel(r.missing))} program in Colorado in our data yet.</b>
+      html += `<div class="gap"><b>We don't have a verified ${esc(credLabel(r.missing))} program in ${esc(fullState(st))} in our data yet.</b>
         <p>The route above is confirmed as far as we can source it. The remaining step is being added. Nothing here is guessed.</p></div>`;
     } else if (!r.goalIsProgram) {
       html += `<div class="gap"><b>${esc(goalLabel)} is a role you move into as a nurse, not a separate degree program.</b>
@@ -303,7 +303,7 @@
 
   function buildingMsg(st, goalLabel) {
     return `<div class="gap"><b>We're still building verified school data for ${esc(fullState(st))}.</b>
-      <p>Colorado is first, starting with routes to <b>Family NP</b> from <b>Trinidad State College</b>. Pick Colorado and Family NP to see a complete example. Every school fact will show its source and the date it was last checked — nothing is made up.</p></div>`;
+      <p><b>Colorado</b> and <b>Arizona</b> are complete — switch the state above to either one to see full, verified routes through real programs. Every school fact shows its source and the date it was last checked, and nothing is made up.</p></div>`;
   }
   function fullState(st) { return { CO: "Colorado", AZ: "Arizona", CA: "California" }[st] || st; }
   function credLabel(c) { return byId[c] ? byId[c].label : c; }
