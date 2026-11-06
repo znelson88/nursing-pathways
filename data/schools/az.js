@@ -200,7 +200,7 @@
         name: "Traditional Prelicensure BSN",
         length: "16-month (year-round) or 24-month (academic-year) schedule",
         format: "On campus at Downtown Phoenix, Polytechnic or West Valley",
-        prerequisites: [{ course: "Critical (prerequisite) courses — biology, chemistry, A&P, statistics, etc.", code: null, min_grade: "C" }],
+        prerequisites: [{ course: "Critical courses in biology, chemistry, A&P and statistics (ASU doesn't publish a specific course list — see its nursing information packet)", code: null, min_grade: "C" }],
         admission: {
           entrance_exam: "ATI TEAS",
           selection: "selective — based on Select GPA and TEAS score",
@@ -212,7 +212,7 @@
         nclex_pass_rate: { basis: "First-time NCLEX-RN pass rate (ASU Edson facts & figures)", by_campus: { "BSN": [{ year: 2024, rate: 0.95 }] }, source_url: "https://nursingandhealth.asu.edu/about/facts-and-figures" },
         accreditation: "Commission on Collegiate Nursing Education (CCNE); approved to operate by the Arizona State Board of Nursing",
         source_url: "https://nursingandhealth.asu.edu/programs/bsn/traditional",
-        last_verified: "2026-11-05", academic_year: "2026-27", notes: "" },
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
       {
         id: "asu-absn", institution: "asu", credential: "absn",
         name: "Accelerated BSN (post-baccalaureate)",
@@ -294,19 +294,27 @@
         name: "Bachelor of Science in Nursing (Traditional / Compressed)",
         length: "Traditional: ~2 years (4 semesters). A Compressed option runs 16 months (fall/spring/summer).",
         format: "Hybrid; Flagstaff and Yuma campuses (also a Compressed option at North Valley/Phoenix)",
-        prerequisites: [{ course: "30-32 units of prerequisites (biology, chemistry/labs, nutrition, psychology, statistics)", code: null, min_grade: null }],
+        prerequisites: [
+          { course: "General Biology I, or Fundamental Chemistry (+lab)", code: "BIO 181 / CHM 130+130L", min_grade: null },
+          { course: "Anatomy & Physiology I & II (+labs)", code: "BIO 201/201L, 202/202L", min_grade: null },
+          { course: "Microbiology (+lab)", code: "BIO 205/205L", min_grade: null },
+          { course: "Pathophysiology (or equivalent)", code: "BIO 320 / NUR 370", min_grade: null },
+          { course: "Human Nutrition", code: "NTS 135 (or an approved nutrition course)", min_grade: null },
+          { course: "Intro Psychology and Developmental Psychology", code: "PSY 101, PSY 240", min_grade: null },
+          { course: "Statistics", code: "STA 270 / PSY 230", min_grade: null }
+        ],
         admission: {
           entrance_exam: "HESI A2 (used to screen and rank applicants)",
           selection: "competitive (HESI + Select GPA ranking)",
           gpa: "3.0 or higher in nursing and prerequisite courses",
           deadline: "Spring apply Jul 1 - Sep 10; Fall apply Feb 1 - Mar 25 (Compressed summer: Oct 1 - Nov 8)",
-          notes: "Up to 5 in-progress prerequisites allowed at application."
+          notes: "30-32 prerequisite units total; up to 5 in-progress prerequisites allowed at application. Minimum prerequisite grade isn't stated on NAU's page — the overall 3.0 nursing/prerequisite GPA requirement applies."
         },
         cost: { amount: null, basis: "No nursing-specific undergraduate tuition figure is published; NAU directs to its Student Accounts semester-rate page.", year: null },
         nclex_pass_rate: { basis: "NAU states its NCLEX pass rates are 'consistently over 90%' but doesn't publish year-by-year numbers.", by_campus: null, source_url: "https://nau.edu/nursing/about/frequently-asked-questions/" },
         accreditation: "Commission on Collegiate Nursing Education (CCNE)",
         source_url: "https://in.nau.edu/college-nursing/undergraduate-degrees-programs/bs-nursing/",
-        last_verified: "2026-11-05", academic_year: "2026-27",
+        last_verified: "2026-11-06", academic_year: "2026-27",
         notes: "NAU also runs the Maricopa Concurrent Enrollment Program (see the connections) and a Global BSN." },
       {
         id: "nau-absn", institution: "nau", credential: "absn",

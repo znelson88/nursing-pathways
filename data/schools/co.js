@@ -337,11 +337,11 @@
         format: "Graduate program at the Anschutz Medical Campus, Aurora; delivery varies by specialty (confirm with CU).",
         prerequisites: [],
         admission: { entrance_exam: null, selection: "competitive", gpa: "3.0 degree GPA (GRE or graduate credits accepted if below 3.0)", deadline: null,
-          notes: "Requires a BSN and an active, unrestricted U.S. RN license (shared BS-to-DNP requirements). Confirm this track is currently admitting — a possible admissions pause was reported but not confirmed on an official page." },
+          notes: "Requires a BSN and an active, unrestricted U.S. RN license (shared BS-to-DNP requirements). Note: CU's admissions page currently lists this Adult-Gerontology CNS track as paused for both Fall 2027 and Spring 2027 (across the MS, BS-to-DNP and Post-Graduate Certificate options). Confirm with the College of Nursing whether and when it reopens before planning around it." },
         cost: { amount: null, basis: "Per-credit graduate tuition 2026-27: $820 resident/WRGP, $1,330 non-resident (tuition only). See CU's tuition page for a full estimate.", year: "2026-27" },
         nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
         accreditation: "Commission on Collegiate Nursing Education (CCNE)",
-        source_url: "https://nursing.cuanschutz.edu/degrees-programs/graduate-programs/bs-dnp/ag-cns", last_verified: "2026-11-05", academic_year: "2026-27", notes: "" },
+        source_url: "https://nursing.cuanschutz.edu/admissions", last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
       {
         id: "cu-anschutz-cnm", institution: "cu-anschutz", credential: "cnm", open_entry: true,
         name: "BSN-to-DNP — Nurse-Midwifery",
@@ -461,7 +461,14 @@
         length: "4-term continuous program including summer courses",
         format: "On campus, Denver.",
         prerequisites: [
-          { course: "Same 8 prerequisite courses as the Traditional option", code: null, min_grade: "C" }
+          { course: "Anatomy & Physiology I (w/ lab)", code: "BIO 2310", min_grade: "C" },
+          { course: "Anatomy & Physiology II (w/ lab)", code: "BIO 2320", min_grade: "C" },
+          { course: "Microbiology for Nursing (w/ lab)", code: "BIO 2000", min_grade: "C" },
+          { course: "Clinical Pathophysiology", code: "PUB 4600", min_grade: "C" },
+          { course: "Introduction to Nutrition", code: "NUT 2040", min_grade: "C" },
+          { course: "Psychology of Human Development", code: "PSY 2210", min_grade: "C" },
+          { course: "Introduction to Statistics", code: "MTH 1210", min_grade: "C" },
+          { course: "Principles of Chemistry with Lab", code: "CHE 1100/1150", min_grade: "C" }
         ],
         admission: {
           entrance_exam: "Casper Assessment ($70) — not TEAS or HESI",
@@ -514,32 +521,39 @@
           entrance_exam: "None stated",
           selection: null, gpa: null,
           deadline: "High-school applicants rolling (Early Action Oct 15, First-Year Jan 1); transfer (BSN major) opens Sept 15, deadline Feb 1, starts in June",
-          notes: "A private Jesuit university. High-school students can enter a pre-nursing track with a guaranteed BSN seat if guidelines are met by the end of sophomore year."
+          notes: "A private Jesuit university. High-school students can enter a pre-nursing track with a guaranteed BSN seat if guidelines are met by the end of sophomore year. Regis doesn't publish a specific prerequisite course list for the traditional BSN — pre-nursing requirements total 58 credit hours, completed before the nursing major; see Regis's BSN application-requirements page."
         },
         cost: { amount: 48490, basis: "$48,490 for the 2026-27 academic year ($24,245 per semester).", year: "2026-27" },
         nclex_pass_rate: { basis: "No current pass rate published on the program page (the nursing hub shows a 99.2% figure for accelerated students, 2018-19).", by_campus: null, source_url: null },
         accreditation: "Commission on Collegiate Nursing Education (CCNE)",
         source_url: "https://www.regis.edu/academics/majors-and-programs/undergraduate/nursing-bsn",
-        last_verified: "2026-11-05", academic_year: "2026-27",
+        last_verified: "2026-11-06", academic_year: "2026-27",
         notes: "A Colorado State Board of Nursing approval statement wasn't found on Regis's pages." },
       {
         id: "regis-absn", institution: "regis", credential: "absn",
         name: "Accelerated BSN (second-degree, pre-licensure)",
         length: "One year (12 months), three semesters",
         format: "On campus, Denver, Monday-Friday; clinicals across the Denver metro.",
-        prerequisites: [],
+        prerequisites: [
+          { course: "Human Anatomy (or A&P I) + lab", code: null, min_grade: "C-" },
+          { course: "Human Physiology (or A&P II) + lab", code: null, min_grade: "C-" },
+          { course: "Microbiology + lab", code: null, min_grade: "C-" },
+          { course: "Chemistry + lab", code: null, min_grade: "C-" },
+          { course: "Health Care Ethics (Regis HCE 430 or an approved transfer equivalent)", code: "HCE 430", min_grade: "C-" },
+          { course: "Religious Studies (from a religious-studies or philosophy department)", code: null, min_grade: "C-" }
+        ],
         admission: {
           entrance_exam: "None — standardized exams are not reviewed",
           selection: "application via NursingCAS",
           gpa: "Minimum 2.75 cumulative GPA",
           deadline: "January start: deadline June 15; May start: deadline Dec 1 (dates render inconsistently on the page — confirm)",
-          notes: "For students with a previous non-nursing bachelor's or higher degree. Science prerequisites (anatomy, physiology, microbiology, chemistry — all with lab) within the last 10 years."
+          notes: "For students with a previous non-nursing bachelor's or higher degree. All prerequisites must be C- or better; the four sciences carry labs and must be within the last 10 years, with 3 of the 4 done by the application deadline and all four before the program starts."
         },
         cost: { amount: null, basis: "$599 per credit (2026 and 2027). 120 total credits, 64 completed at Regis.", year: "2026" },
         nclex_pass_rate: { basis: "99.2% first-time pass rate for accelerated students (2018-19); more recent figures aren't published on the program page.", by_campus: null, source_url: "https://explore.regis.edu/nursing" },
         accreditation: "Commission on Collegiate Nursing Education (CCNE)",
         source_url: "https://www.regis.edu/academics/majors-and-programs/undergraduate/nursing-bsn-accelerated",
-        last_verified: "2026-11-05", academic_year: "2026",
+        last_verified: "2026-11-06", academic_year: "2026",
         notes: "A Colorado State Board of Nursing approval statement wasn't found on Regis's pages." },
 
       // ---- University pre-licensure BSN / Accelerated BSN / Direct-entry MSN (board-verified pass rates) ----
@@ -674,13 +688,13 @@
           selection: "competitive",
           gpa: "See the traditional BSN (not separately published here)",
           deadline: "Second-degree summer start: apply Nov-Jan",
-          notes: "For students who already hold a bachelor's degree."
+          notes: "For students who already hold a bachelor's degree. UNC doesn't publish a separate prerequisite course list for this second-degree track (it directs applicants to its Pre-Clinical Nursing page); see the traditional BSN above for UNC's nursing prerequisites and confirm with UNC which apply."
         },
         cost: { amount: null, basis: "Charged at UNC's undergraduate tuition plus nursing fees; a single program total isn't published. See the traditional BSN figures.", year: "2026-27" },
         nclex_pass_rate: { basis: "The Colorado Board lists UNC's BSN pass rate once (see the traditional BSN); a separate figure for the second-degree track isn't broken out.", by_campus: null, source_url: "https://dpo.colorado.gov/Nursing/Education" },
         accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the Colorado State Board of Nursing",
         source_url: "https://www.unco.edu/nhs/nursing/bachelor-science-nursing/",
-        last_verified: "2026-11-05", academic_year: "2026-27", notes: "Delivery format is stated inconsistently across UNC's pages — flagged rather than guessed." },
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "Delivery format is stated inconsistently across UNC's pages — flagged rather than guessed." },
       {
         id: "csu-pueblo-bsn", institution: "csu-pueblo", credential: "bsn",
         name: "Basic BSN (traditional pre-licensure)",

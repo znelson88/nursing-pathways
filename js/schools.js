@@ -195,7 +195,7 @@
   function na(v, fallback) { return (v == null || v === "") ? `<span class="muted">${fallback || "Not published — check with the school"}</span>` : esc(v); }
 
   function prereqHTML(list) {
-    if (!list || !list.length) return na(null, "None listed here");
+    if (!list || !list.length) return na(null, "Not published — check with the school");
     return `<ul class="prereq">` + list.map(c =>
       `<li>${esc(c.course)}${c.code ? ` <span class="code">${esc(c.code)}</span>` : ""}${c.min_grade ? ` · min grade ${esc(c.min_grade)}` : ""}</li>`).join("") + `</ul>`;
   }
@@ -234,7 +234,9 @@
       </div>
       ${field("Length", na(p.length))}
       ${field("Format", na(p.format))}
-      ${p.prerequisites ? field("Prerequisites", prereqHTML(p.prerequisites)) : ""}
+      ${p.open_entry
+        ? field("Prerequisites", `<span class="muted">No college-course prerequisites — you qualify by holding the degree and license shown under Admission.</span>`)
+        : field("Prerequisites", prereqHTML(p.prerequisites))}
       ${field("Admission", admissionHTML(p.admission))}
       ${field("Cost", costHTML(p.cost))}
       ${field("NCLEX-RN pass rate", passRateHTML(p.nclex_pass_rate))}
