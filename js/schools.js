@@ -11,8 +11,9 @@
   const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const pct = r => (r == null ? "—" : Math.round(r * 100) + "%");
 
-  // ---- Job dropdown (every real job, plus RN) ----
-  const jobs = Object.values(byId).filter(n => n.g !== "hub").sort((a, b) => a.label.localeCompare(b.label));
+  // ---- Job dropdown (real jobs/roles only; degrees like ADN/BSN/MSN/DNP are steps, not goals) ----
+  const NOT_A_JOB = new Set(["diploma", "adn", "bsn", "absn", "demsn", "rnbsn", "msn", "pmc", "dnp", "phd"]);
+  const jobs = Object.values(byId).filter(n => n.g !== "hub" && !NOT_A_JOB.has(n.id)).sort((a, b) => a.label.localeCompare(b.label));
   jobSel.innerHTML = `<option value="rn">Registered Nurse (RN)</option>` + jobs.map(n => `<option value="${n.id}">${esc(n.label)}</option>`).join("");
   if (qs.get("job") && byId[qs.get("job")]) jobSel.value = qs.get("job");
   if (["CO", "AZ", "CA"].includes(qs.get("state"))) stSel.value = qs.get("state");
