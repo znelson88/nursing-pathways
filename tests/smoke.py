@@ -18,7 +18,7 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path=exe) if exe else p.chromium.launch()
     errs = []
     d = b.new_page(viewport={"width": 1360, "height": 900}); d.on("pageerror", lambda e: errs.append(str(e)))
-    d.goto(BASE + "/index.html"); d.evaluate("()=>{localStorage.clear();localStorage.setItem('np-welcomed','1')}"); d.reload(); d.wait_for_timeout(500)
+    d.goto(BASE + "/index.html"); d.evaluate("()=>{localStorage.clear()}"); d.reload(); d.wait_for_timeout(500)
     check("map has 64 chips", d.evaluate("()=>document.querySelectorAll('#tiers .rchip').length") == 64)
     for q, want in [("nurse practicioner", "NP"), ("psychiatric nurse practitioner", "Psych"), ("loans", "Ways to pay"), ("colorado", "Colorado"), ("corpsman", "ADN")]:
         d.fill("#q", q); d.wait_for_timeout(40)
@@ -109,7 +109,7 @@ with sync_playwright() as p:
           d.evaluate("()=>{const b=[...document.querySelectorAll('#route .step .pcard .pstate')];return b.length && b[b.length-1].textContent.trim()==='California'}")
           and d.evaluate("()=>/Family Nurse Practitioner/.test(document.querySelector('#route').innerText)"))
     m = b.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True); m.on("pageerror", lambda e: errs.append(str(e)))
-    m.goto(BASE + "/index.html"); m.evaluate("()=>{localStorage.clear();localStorage.setItem('np-welcomed','1')}"); m.reload(); m.wait_for_timeout(500)
+    m.goto(BASE + "/index.html"); m.evaluate("()=>{localStorage.clear()}"); m.reload(); m.wait_for_timeout(500)
     m.locator('.rchip[data-id="fnp"]').scroll_into_view_if_needed(); y = m.evaluate("()=>scrollY")
     m.locator('.rchip[data-id="fnp"]').tap(); m.wait_for_timeout(400)
     check("phone: tap keeps place", abs(m.evaluate("()=>scrollY") - y) < 5)

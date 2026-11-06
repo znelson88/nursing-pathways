@@ -592,19 +592,17 @@ function backUp(){ const t=(lastFocus&&lastFocus.isConnected&&lastFocus!==docume
 
 // ---------- Question buttons ----------
 function runQuestion(k){
-  if(k==="sched"){openSched(); return;}
+  if(k==="sched"){
+    // "Fits my schedule" surfaces the existing schedule filters (on phones they live in the sheet).
+    if(smallMQ.matches)openSheet();
+    document.getElementById("filters").scrollIntoView({behavior:"smooth",block:"center"});
+    setTimeout(()=>{const b=fitEl.querySelector("button");if(b)b.focus({preventScroll:true});},300);
+    return;
+  }
   if(k==="pay"||k==="fast"||k==="cheap")sortKey=k;
   setView("list"); mapwrap.scrollIntoView({behavior:"smooth",block:"start"});
 }
 document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>runQuestion(b.dataset.q));
-const schedq=document.getElementById("schedq"), sqopts=document.getElementById("sqopts"), sqGo=document.getElementById("sqGo");
-let sqSel=new Set();
-function renderSched(){sqopts.innerHTML=FITS.map(f=>`<button type="button" data-k="${f.k}" aria-pressed="${sqSel.has(f.k)}">${f.n}</button>`).join("");
-  sqGo.disabled=!sqSel.size;
-  sqopts.querySelectorAll("button").forEach(b=>b.onclick=()=>{sqSel.has(b.dataset.k)?sqSel.delete(b.dataset.k):sqSel.add(b.dataset.k);renderSched();sqopts.querySelector(`[data-k="${b.dataset.k}"]`).focus();});}
-function openSched(){sqSel=new Set(fitOn);renderSched();schedq.hidden=false;schedq.scrollIntoView({behavior:"smooth",block:"center"});setTimeout(()=>{const f=sqopts.querySelector("button");if(f)f.focus({preventScroll:true});},300);}
-sqGo.onclick=()=>{fitOn.clear();sqSel.forEach(k=>fitOn.add(k));schedq.hidden=true;sortKey="pay";setView("list");applyFilters();mapwrap.scrollIntoView({behavior:"smooth",block:"start"});};
-document.getElementById("sqCancel").onclick=()=>{schedq.hidden=true;};
 
 // ---------- Search with everyday words ----------
 const SYN={
@@ -809,23 +807,6 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")tip.hidden=true;});
 document.getElementById("panel").addEventListener("scroll",()=>{tip.hidden=true;});
 let rz; window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{tip.hidden=true;drawLines();},120);});
 
-// ---------- First visit: two questions ----------
-const welcome=document.getElementById("welcome"), wStart=document.getElementById("wStart"), wState=document.getElementById("wState");
-wStart.innerHTML=Object.entries(STARTS).map(([k,v])=>`<option value="${k}">${k==="none"?"I'm just exploring":v.n}</option>`).join("");
-wState.innerHTML=`<option value="none">Another state (use US averages)</option>`+Object.entries(STATES).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
-wStart.value=startKey; wState.value=pickState;
-let welcomed=false; try{welcomed=localStorage.getItem("np-welcomed")==="1";}catch(e){}
-welcome.hidden=welcomed;
-function doneWelcome(){welcome.hidden=true; try{localStorage.setItem("np-welcomed","1")}catch(e){}}
-document.getElementById("wSkip").onclick=doneWelcome;
-document.getElementById("wGo").onclick=()=>{
-  startKey=wStart.value; startSel.value=startKey; pickState=wState.value; stSel.value=pickState;
-  try{localStorage.setItem("np-start",startKey);localStorage.setItem("np-state",pickState);}catch(e){}
-  doneWelcome();
-  if(startKey!=="none"){renderStart(true);} else {select(curId);}
-  renderActive(); if(view==="list")renderList();
-  (startKey!=="none"?document.getElementById("nextsteps"):mapwrap).scrollIntoView({behavior:"smooth",block:"start"});
-};
 
 // ---------- First visit: teach the glossary affordance ----------
 // First-timers don't realise underlined acronyms are tap-for-definition. Show one dismissible hint,
