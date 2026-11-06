@@ -277,7 +277,7 @@ startSel.addEventListener("change",()=>{startKey=startSel.value;try{localStorage
 // group color key
 const STAGES=["entry","degree","bedside","beyond","lead","aprn"];
 document.getElementById("key").innerHTML=STAGES.map(g=>`<span style="--c:${col(g)}"><i></i>${GROUPS[g].name}</span>`).join("");
-document.getElementById("count").textContent=`${all.length-1} roles · 6 steps · 1 license they share`;
+document.getElementById("count").textContent=`${all.length-1} nursing roles · 6 steps · all built on one RN license`;
 
 // panel
 const panel=document.getElementById("panel");
@@ -403,7 +403,7 @@ function glanceHTML(n){
   else if(n.time||(DEF[n.g]||{}).time){cells.push(["Typical time",n.time||DEF[n.g].time,""]);}
   const p=P[n.id]||(n.g!=="entry"&&n.g!=="degree"?["rn",""]:null); const d=p&&p[0]&&PAY[p[0]];
   if(d){const st=(pickState!=="none"&&d.st[pickState])?pickState:null; const g=st?d.st[st]:d.nat;
-        cells.push(["Typical take-home pay",`${money(st?val(st,g):net(null,g))}/yr`,(st?`${STATES[st]} median after taxes`:"US median, federal taxes only")+"; new grads start lower"]);}
+        cells.push(["Typical take-home pay",`≈ ${money(st?val(st,g):net(null,g))}/yr`,`<b>${st?`${STATES[st]} median, after taxes`:"US median, federal taxes only"}</b> — half earn more, half less; new grads start lower`]);}
   const v=VAL[n.id];
   if(v){const P1=PAY[v.pay],P0=PAY[v.base];const st=(pickState!=="none"&&P1.st[pickState]&&P0.st[pickState])?pickState:null;
         const r=net(st,st?P1.st[st]:P1.nat)-net(st,st?P0.st[st]:P0.nat);
@@ -826,6 +826,20 @@ document.getElementById("wGo").onclick=()=>{
   renderActive(); if(view==="list")renderList();
   (startKey!=="none"?document.getElementById("nextsteps"):mapwrap).scrollIntoView({behavior:"smooth",block:"start"});
 };
+
+// ---------- First visit: teach the glossary affordance ----------
+// First-timers don't realise underlined acronyms are tap-for-definition. Show one dismissible hint,
+// with a real term button as the example, so a single tap both defines a word and teaches the pattern.
+(function(){
+  let seen=false; try{seen=localStorage.getItem("np-gloss-tip")==="1";}catch(e){}
+  if(seen)return;
+  const vb=document.querySelector(".viewbar"); if(!vb)return;
+  const tip=document.createElement("div"); tip.className="glosstip";
+  tip.innerHTML=`<span aria-hidden="true">💡</span><p>New to the lingo? Underlined words like <button type="button" class="term" data-t="BSN">BSN</button> have a plain-English definition — tap one.</p><button type="button" class="gtipx" aria-label="Dismiss this tip">×</button>`;
+  vb.insertAdjacentElement("afterend",tip);
+  const close=()=>{try{localStorage.setItem("np-gloss-tip","1")}catch(e){} tip.remove();};
+  tip.querySelector(".gtipx").onclick=close;
+}());
 
 // start
 let start="rn"; try{const s=localStorage.getItem("np-sel"); if(s&&byId[s])start=s;}catch(e){}

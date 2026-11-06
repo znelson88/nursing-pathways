@@ -22,7 +22,7 @@
   // so an online step (RN-to-BSN, graduate) can cross a state line while an in-person ADN/BSN
   // start stays where the student actually is.
   const LOADED = ["CO", "AZ", "CA"].filter(s => window.SCHOOLS && window.SCHOOLS[s]);
-  stSel.innerHTML = `<option value="ALL">All states</option>` +
+  stSel.innerHTML = `<option value="ALL">All states (${esc(LOADED.join(" & "))})</option>` +
     LOADED.map(s => `<option value="${s}">${esc(fullState(s))}</option>`).join("");
   // Arrive on the state the map linked from, but with every state now selectable.
   if (LOADED.includes(qs.get("state"))) stSel.value = qs.get("state");
@@ -307,6 +307,13 @@
     let html = `<p class="rintro">Starting at <b>${esc(startName)}</b> in <b>${esc(fullState(startState))}</b>, here is a realistic route toward <b>${esc(goalLabel)}</b>. ` +
       `Where a step changes schools — or continues in another state — the connection and its source are shown.</p>`;
 
+    // When the goal is a role reached by experience (not its own degree), say so up front so the
+    // generic nursing-degree card below isn't mistaken for a wrong answer.
+    if (!r.goalIsProgram) {
+      html += `<div class="gap"><b>${esc(goalLabel)} is a role you grow into as a working nurse — there's no separate "${esc(goalLabel)}" degree.</b>
+        <p>The steps below get you to the RN license; from there it's the job you move into with experience (see the career map). This is the schooling that gets you there.</p></div>`;
+    }
+
     let n = 0;
     r.steps.forEach(step => {
       if (step.kind === "license") {
@@ -333,9 +340,6 @@
     } else if (r.missing) {
       html += `<div class="gap"><b>We don't have a verified ${esc(credLabel(r.missing))} program in our data yet.</b>
         <p>We currently cover ${esc(coveredStates(data))}. The route above is confirmed as far as we can source it; the remaining step is being added, and nothing here is guessed.</p></div>`;
-    } else if (!r.goalIsProgram) {
-      html += `<div class="gap"><b>${esc(goalLabel)} is a role you move into as a nurse, not a separate degree program.</b>
-        <p>Get the RN license (and, where needed, the experience shown on the career map). This page focuses on the school programs along the way.</p></div>`;
     }
 
     html += `<p class="disclaim">Programs, costs, prerequisites and pass rates change. Always confirm current details with each school before you rely on them.</p>`;

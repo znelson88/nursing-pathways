@@ -26,8 +26,13 @@ h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,44px);l
 button{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer}
 button:hover{border-color:var(--muted)}
 button:focus-visible,input:focus-visible,.chip:focus-visible{outline:2px solid var(--g-degree);outline-offset:2px}
-.howto{margin:0;font-size:13px;color:var(--muted);max-width:90ch}
+.howto{margin:0;font-size:13px;color:var(--ink);max-width:90ch;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.howto::before{content:"👆 ";}
 .howto b{color:var(--ink);font-weight:600}
+.glosstip{display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14px;margin:0 0 6px}
+.glosstip p{margin:0;flex:1}
+.glosstip .gtipx{flex:none;width:28px;height:28px;border-radius:8px;font-size:18px;line-height:1;color:var(--muted);border:1px solid var(--line);background:var(--panel)}
+.glosstip .gtipx:hover{color:var(--ink);border-color:var(--edge)}
 .plan{display:grid;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .planrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .plan select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;max-width:100%}
@@ -178,7 +183,8 @@ dd{margin:0}
 .seg button{border:0;background:transparent;padding:7px 12px;font-size:13px;border-radius:7px}
 .seg button[aria-checked="true"]{background:var(--ink);color:var(--panel)}
 /* ---- v13: question-first entry, tiered map, list view ---- */
-.welcome{background:var(--panel);border:2px solid var(--ink);border-radius:12px;padding:16px;display:grid;gap:10px}
+.welcome{background:var(--panel);border:1px solid var(--edge);border-radius:12px;padding:14px 16px;display:grid;gap:10px}
+.welcome .wtag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .welcome h2{margin:0;font-family:var(--display);font-size:22px}
 .wrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
 .wq{display:grid;gap:6px}
@@ -243,7 +249,7 @@ dd{margin:0}
 .tchips{display:flex;flex-wrap:wrap;gap:8px}
 .rchip{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:6px 13px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);font-size:14px;color:var(--ink);text-align:left;transition:opacity .15s,border-color .15s,background .15s}
 .rchip i{flex:none;width:9px;height:9px;border-radius:50%;background:var(--c)}
-.rchip:hover{border-color:var(--c)}
+.rchip:hover{border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,var(--panel))}
 .rchip.hub{display:grid;gap:2px;border-radius:12px;padding:10px 16px;background:var(--ink);color:var(--panel);border-color:var(--ink)}
 .rchip.hub b{font-size:16px}
 .rchip.hub small{font-size:12px;opacity:.85}
@@ -308,6 +314,11 @@ dd{margin:0}
 .rchip.route.cur{background:var(--ink)}
 .tmap.sel .rchip.route{color:var(--ink)}
 .tmap.sel .rchip.route.cur{color:var(--panel)}
+/* The RN hub's selected/anchor/current states paint a LIGHT (--ink) background, but the
+   `.rchip.route` rule above sets light text — same colour as the box, so the label vanishes.
+   Force dark (--panel) text on exactly those light-background hub states. (Plain route-through
+   keeps a dark background and the light text above, which is correct.) */
+.tmap.sel .rchip.hub.on,.tmap.sel .rchip.hub.anc,.tmap.sel .rchip.hub.cur{color:var(--panel)}
 .tmap.sel .rchip.route i{opacity:1}
 .tlines .lroute{stroke:var(--ink);stroke-width:3;opacity:.95}
 .tnote{color:var(--ink)!important;font-weight:600}
