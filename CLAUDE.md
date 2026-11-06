@@ -97,7 +97,7 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   GCU is included and labeled (its nonprofit status is contested). AZ uses many entrance exams (HESI, TEAS,
   NLN, Kaplan). See docs/DATA_SOURCES.md.
 - California: built in `data/schools/ca.js` (attached to `window.SCHOOLS.CA`; loaded by schools.html).
-  **23 schools / 58 programs** (verified 2026-11-06, in two waves) — larger than CO or AZ. Wave 1: the CSU
+  **24 schools / 61 programs** (verified 2026-11-06, in two waves plus later additions) — larger than CO or AZ. Wave 1: the CSU
   pre-licensure BSN backbone (Long Beach, San Diego State, Sacramento State, SF State, Fullerton) + Fullerton
   Accelerated BSN + SF State Entry-Level Master's; three community-college ADNs; five RN-to-BSN completions.
   Wave 2: UCLA, UC Irvine, UCSF, UC Davis, Samuel Merritt, Loma Linda, USF, USD, Azusa Pacific and five more
@@ -111,7 +111,11 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   RN license and several online ones are CA-residents-only (noted on each card). Excluded (for-profit /
   unaccredited chains, per scope): West Coast, Chamberlain, Carrington, Unitek, Stanbridge, Gurnick, Arizona
   College of Nursing, etc.; SDSU's Accelerated 2nd-Bachelor's (pending BRN/CCNE approval) and SF State's
-  concurrent ADN-BSN are not yet included. `NLC` (compact member states) moved from app.js to data.js so the
+  concurrent ADN-BSN are not yet included. **California State University, Fresno ("Fresno State")** was
+  added 2026-11-06 — pre-licensure BSN (impacted; BRN-approved, CCNE), RN-to-BSN, and the MSN Family NP
+  option. Its PMHNP and FNP post-master's certificates require an already-licensed NP, so they're add-on
+  certs, not entry routes, and were deliberately left out; Fresno City College (the community-college ADN)
+  was already a separate institution. `NLC` (compact member states) moved from app.js to data.js so the
   schools page shares it. Later waves: UC + private universities, more community-college ADNs by region, and
   APRN/CRNA/CNM specialties.
 - Hosting: planned online (see README.md). Not yet deployed.

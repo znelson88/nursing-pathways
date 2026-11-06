@@ -24,6 +24,8 @@
 //    San Diego City, Pasadena), one entry-level master's (SF State), and five RN-to-BSN completions
 //    (CSULB, SDSU, Sac State, Dominguez Hills, Fullerton). UC campuses, more community colleges, private
 //    universities and the APRN / CRNA / CNM specialties come in later waves.
+//  - Added 2026-11-06: California State University, Fresno ("Fresno State") — pre-licensure BSN, RN-to-BSN
+//    and the MSN Family NP option. (Fresno City College, the community-college ADN, was already included.)
 //
 // All facts verified 2026-11-06 from each institution's own website and the BRN. See docs/DATA_SOURCES.md.
 
@@ -57,7 +59,10 @@
       { id: "sacramento-city", name: "Sacramento City College", type: "community_college", city: "Sacramento", campuses: ["Sacramento"], url: "https://scc.losrios.edu/nursing", source_url: "https://scc.losrios.edu/academics/nursing-program-details/rn-program-details-and-application-requirements", last_verified: "2026-11-06" },
       { id: "fresno-city", name: "Fresno City College", type: "community_college", city: "Fresno", campuses: ["Fresno"], url: "https://www.fresnocitycollege.edu/academics/guided-pathways/healthcare-wellness/programs/nursing.html", source_url: "https://www.fresnocitycollege.edu/academics/divisions/apa-division/registered-nursing/rn-apply.html", last_verified: "2026-11-06" },
       { id: "mt-sac", name: "Mt. San Antonio College", type: "community_college", city: "Walnut", campuses: ["Walnut"], url: "https://www.mtsac.edu/nursing/adnprogram.html", source_url: "https://catalog.mtsac.edu/programs/programsaz/nursing/licensed-nursing-registered-nursing-rn-generic-option-degree/", last_verified: "2026-11-06" },
-      { id: "riverside-city", name: "Riverside City College", type: "community_college", city: "Riverside", campuses: ["Riverside"], url: "https://www.rcc.edu/programs/nursing.html", source_url: "https://www.rcc.edu/assets/documents/pathways/health-related-science/nursing/ADN%20InfoSheet.pdf", last_verified: "2026-11-06" }
+      { id: "riverside-city", name: "Riverside City College", type: "community_college", city: "Riverside", campuses: ["Riverside"], url: "https://www.rcc.edu/programs/nursing.html", source_url: "https://www.rcc.edu/assets/documents/pathways/health-related-science/nursing/ADN%20InfoSheet.pdf", last_verified: "2026-11-06" },
+
+      // ---- Added 2026-11-06: California State University, Fresno (Fresno State). Fresno City College (ADN) is a separate institution above. ----
+      { id: "csu-fresno", name: "California State University, Fresno (Fresno State)", type: "public_university", city: "Fresno", campuses: ["Fresno"], url: "https://chhs.fresnostate.edu/nursing/", source_url: "https://www.rn.ca.gov/education/rnprograms.shtml", last_verified: "2026-11-06" }
     ],
 
     programs: [
@@ -358,6 +363,39 @@
         source_url: "https://nursing.fullerton.edu/programs/acceleratedbsn/admissionreq.html",
         last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
       },
+      {
+        id: "csu-fresno-bsn", institution: "csu-fresno", credential: "bsn",
+        name: "Bachelor of Science in Nursing (pre-licensure)",
+        length: "Five-semester nursing sequence; the degree requires a minimum of 120 semester units",
+        format: null,
+        prerequisites: [
+          { course: "Oral Communication (GE A1)", code: "COMM 3, 7 or 8", min_grade: "C" },
+          { course: "English Composition (GE A2)", code: "ENGL 5B or 10", min_grade: "C" },
+          { course: "Critical Thinking (GE A3)", code: "SOC 3 preferred", min_grade: "C" },
+          { course: "Statistics (GE B4)", code: "MATH 11 or PH 92", min_grade: "C" },
+          { course: "Introduction to Chemistry (+lab)", code: "CHEM 3A", min_grade: "C" },
+          { course: "Microbiology (+lab)", code: "BIOL 20", min_grade: "C" },
+          { course: "Human Anatomy & Physiology I", code: "BIOL 67A", min_grade: "C" },
+          { course: "Human Anatomy & Physiology II", code: "BIOL 67B", min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "ATI TEAS (score 75% or higher)",
+          selection: "Impacted; admission is competitive and based on prerequisite GPA, with no waiting list. Preference is given to U.S. military veterans who meet the minimums",
+          gpa: "Minimum 3.0 across the eight prerequisite courses",
+          deadline: "Applies through Cal State Apply plus a NursingCAS supplemental; specific dates are not published on the program page",
+          notes: "Applicants must be an admitted transfer student or a current Fresno State Pre-Health student. Each prerequisite needs a grade of C or better (credit/no-credit not accepted)."
+        },
+        cost: { amount: null, basis: "No single program figure is published on the nursing pages; standard CSU tuition and fees apply (the California BRN's program directory lists CSU Fresno's BSN tuition and fees at about $28,493).", year: null },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate (California BRN school pass-rate table; listed as \"CSU Fresno\")",
+          by_campus: { "BSN": [{ year: "2024-25", rate: 0.9474 }, { year: "2023-24", rate: 0.9655 }, { year: "2022-23", rate: 0.8939 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); listed on the California BRN's approved prelicensure-program list (Baccalaureate, approved annual enrollment 140)",
+        source_url: "https://chhs.fresnostate.edu/nursing/degrees-programs/bsn.html",
+        last_verified: "2026-11-06", academic_year: "2026-27",
+        notes: "The program is on impacted status (applications exceed seats, no waiting list). Confirm the current application cycle with the School of Nursing."
+      },
 
       // ================= RN-to-BSN completions (open to any accredited ADN + California RN license) =================
       {
@@ -448,6 +486,26 @@
         source_url: "https://nursing.fullerton.edu/programs/rnbsn/admissionreq.html",
         last_verified: "2026-11-06", academic_year: "2026-27",
         notes: "Requires a California RN license (or licensure within the first semester)."
+      },
+      {
+        id: "csu-fresno-rnbsn", institution: "csu-fresno", credential: "rnbsn", open_entry: true,
+        name: "RN to BSN (for associate-degree RNs)",
+        length: "Nursing courses across three semesters (41 nursing units within the 120-unit degree)",
+        format: "Online, except one 90-hour community-health clinical course; clinical placements are limited to the Fresno State service area",
+        prerequisites: [],
+        admission: {
+          entrance_exam: null,
+          selection: "University admission plus graduation from a board-approved / accredited nursing program",
+          gpa: "Cumulative GPA of at least 2.75 across all courses taken",
+          deadline: "NursingCAS — Fall: Feb 1 – Mar 6; Spring: Jul 1 – Aug 7. University application — Fall: Jul 1 – Jan 15; Spring: Jul 1 – Aug 31",
+          notes: "Requires an active California RN license by the end of the first semester. Eight prerequisites (English composition, speech, critical thinking, statistics, general chemistry with lab, two anatomy & physiology courses with labs, and microbiology with lab) each need a grade of C or better and must be completed the semester before applying; credit/no-credit and international prerequisites are not accepted."
+        },
+        cost: { amount: null, basis: "No single program figure is published on the nursing pages; standard CSU tuition and fees apply (a $50 NursingCAS supplemental fee is noted).", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a bachelor's-completion program for licensed nurses.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE) — Fresno State's baccalaureate nursing program is CCNE-accredited",
+        source_url: "https://chhs.fresnostate.edu/nursing/degrees-programs/rn-bsn.html",
+        last_verified: "2026-11-06", academic_year: "2026-27",
+        notes: "Requires a California RN license (by the end of the first semester)."
       },
 
       // ============================= WAVE 2 =============================
@@ -1279,7 +1337,20 @@
         nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
         accreditation: "Commission on Collegiate Nursing Education (CCNE); the NP program is approved by the California Board of Registered Nursing",
         source_url: "https://www.apu.edu/programs/msn-np/",
-        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" }
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "csu-fresno-fnp", institution: "csu-fresno", credential: "fnp", open_entry: true,
+        name: "MSN — Nurse Practitioner, Primary Care (Family / FNP option)",
+        length: "Minimum 43 units; 750 FNP practicum hours", format: null, prerequisites: [],
+        admission: { entrance_exam: null, selection: "Faculty review of the complete file; admission to the NP program is not guaranteed", gpa: "Cumulative GPA 3.0",
+          deadline: "Application opens October 1 and closes May 1",
+          notes: "Requires a BSN from an NLN- or CCNE-accredited program and a current California RN license. Introductory statistics and research courses, a physical-assessment course (or validation), current CPR, malpractice insurance and three letters of recommendation are required. RNs with a non-nursing bachelor's are reviewed case by case." },
+        cost: { amount: null, basis: "No program tuition figure is published on the nursing pages; standard CSU graduate tuition and fees apply.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE), accredited through 2035; approved by the California Board of Registered Nursing",
+        source_url: "https://chhs.fresnostate.edu/nursing/degrees-programs/msn.html",
+        last_verified: "2026-11-06", academic_year: "2026-27",
+        notes: "Fresno State offers only the Family (FNP) nurse-practitioner option at the MSN level; its PMHNP and FNP post-master's certificates require an already-licensed nurse practitioner, so they are not entry routes. The Entry-Level Master's option is no longer offered." }
     ],
 
     // No same-school ADN -> RN-to-BSN steps: the community-college ADNs here are ADN-only, and the
