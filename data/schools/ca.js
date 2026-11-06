@@ -41,7 +41,23 @@
       { id: "csuf", name: "California State University, Fullerton", type: "public_university", city: "Fullerton", campuses: ["Fullerton"], url: "https://nursing.fullerton.edu/", source_url: "https://nursing.fullerton.edu/about/accreditation.html", last_verified: "2026-11-06" },
       { id: "ccsf", name: "City College of San Francisco", type: "community_college", city: "San Francisco", campuses: ["Ocean Campus (San Francisco)"], url: "https://www.ccsf.edu/degrees-certificates/registered-nursing", source_url: "https://www.ccsf.edu/academics/schools/allied-health-physical-education-social-services/registered-nursing-department/rn-program-admissions", last_verified: "2026-11-06" },
       { id: "sdcity", name: "San Diego City College", type: "community_college", city: "San Diego", campuses: ["San Diego"], url: "https://www.sdcity.edu/academics/schools-programs/math-sci-nurse/nursing/index.aspx", source_url: "https://www.sdcity.edu/academics/schools-programs/math-sci-nurse/nursing/index.aspx", last_verified: "2026-11-06" },
-      { id: "pasadena-cc", name: "Pasadena City College", type: "community_college", city: "Pasadena", campuses: ["Pasadena (Foothill Campus)"], url: "https://pasadena.edu/academics/divisions/health-sciences/nursing-programs/rn/", source_url: "https://pasadena.edu/academics/divisions/health-sciences/nursing-programs/rn/", last_verified: "2026-11-06" }
+      { id: "pasadena-cc", name: "Pasadena City College", type: "community_college", city: "Pasadena", campuses: ["Pasadena (Foothill Campus)"], url: "https://pasadena.edu/academics/divisions/health-sciences/nursing-programs/rn/", source_url: "https://pasadena.edu/academics/divisions/health-sciences/nursing-programs/rn/", last_verified: "2026-11-06" },
+
+      // ---- Wave 2 institutions (UC + private universities + more community colleges) ----
+      { id: "ucla", name: "University of California, Los Angeles (Joe C. Wen School of Nursing)", type: "public_university", city: "Los Angeles", campuses: ["Los Angeles (Westwood)"], url: "https://www.nursing.ucla.edu/", source_url: "https://nursing.ucla.edu/admissions-programs/academic-programs", last_verified: "2026-11-06" },
+      { id: "uci", name: "University of California, Irvine (Sue & Bill Gross School of Nursing)", type: "public_university", city: "Irvine", campuses: ["Irvine"], url: "https://nursing.uci.edu/", source_url: "https://nursing.uci.edu/degrees-and-programs/", last_verified: "2026-11-06" },
+      { id: "ucsf", name: "University of California, San Francisco (School of Nursing)", type: "public_university", city: "San Francisco", campuses: ["San Francisco (Mission Bay / Parnassus)"], url: "https://nursing.ucsf.edu/", source_url: "https://graduate.ucsf.edu/academics/professional-doctorates/dnp", last_verified: "2026-11-06" },
+      { id: "uc-davis", name: "University of California, Davis (Betty Irene Moore School of Nursing)", type: "public_university", city: "Sacramento", campuses: ["Sacramento"], url: "https://health.ucdavis.edu/nursing/", source_url: "https://health.ucdavis.edu/nursing/academics/Accreditation.html", last_verified: "2026-11-06" },
+      { id: "samuel-merritt", name: "Samuel Merritt University", type: "private_nonprofit", city: "Oakland", campuses: ["Oakland", "Sacramento", "San Francisco Peninsula (Foster City)", "Fresno", "Online"], url: "https://www.samuelmerritt.edu/colleges/college-nursing", source_url: "https://www.samuelmerritt.edu/college-nursing/bachelor-science-nursing", last_verified: "2026-11-06" },
+      { id: "loma-linda", name: "Loma Linda University (School of Nursing)", type: "private_nonprofit", city: "Loma Linda", campuses: ["Loma Linda", "Murrieta (Entry-Level MS)"], url: "https://nursing.llu.edu/", source_url: "https://nursing.llu.edu/programs", last_verified: "2026-11-06" },
+      { id: "usf", name: "University of San Francisco (School of Nursing and Health Professions)", type: "private_nonprofit", city: "San Francisco", campuses: ["San Francisco (Hilltop)", "Sacramento"], url: "https://www.usfca.edu/nursing", source_url: "https://www.usfca.edu/nursing/programs/undergraduate/nursing", last_verified: "2026-11-06" },
+      { id: "usd", name: "University of San Diego (Hahn School of Nursing and Health Science)", type: "private_nonprofit", city: "San Diego", campuses: ["San Diego"], url: "https://www.sandiego.edu/nursing/", source_url: "https://graduate.catalog.sandiego.edu/academics/collegeandschools/nursingandhealth", last_verified: "2026-11-06" },
+      { id: "azusa-pacific", name: "Azusa Pacific University (School of Nursing)", type: "private_nonprofit", city: "Azusa", campuses: ["Azusa", "Inland Empire", "San Diego", "Online"], url: "https://www.apu.edu/nursing/", source_url: "https://www.apu.edu/programs/bsn/", last_verified: "2026-11-06" },
+      { id: "santa-rosa-jc", name: "Santa Rosa Junior College", type: "community_college", city: "Santa Rosa", campuses: ["Santa Rosa"], url: "https://adn.santarosa.edu/", source_url: "https://adn.santarosa.edu/getting-started", last_verified: "2026-11-06" },
+      { id: "sacramento-city", name: "Sacramento City College", type: "community_college", city: "Sacramento", campuses: ["Sacramento"], url: "https://scc.losrios.edu/nursing", source_url: "https://scc.losrios.edu/academics/nursing-program-details/rn-program-details-and-application-requirements", last_verified: "2026-11-06" },
+      { id: "fresno-city", name: "Fresno City College", type: "community_college", city: "Fresno", campuses: ["Fresno"], url: "https://www.fresnocitycollege.edu/academics/guided-pathways/healthcare-wellness/programs/nursing.html", source_url: "https://www.fresnocitycollege.edu/academics/divisions/apa-division/registered-nursing/rn-apply.html", last_verified: "2026-11-06" },
+      { id: "mt-sac", name: "Mt. San Antonio College", type: "community_college", city: "Walnut", campuses: ["Walnut"], url: "https://www.mtsac.edu/nursing/adnprogram.html", source_url: "https://catalog.mtsac.edu/programs/programsaz/nursing/licensed-nursing-registered-nursing-rn-generic-option-degree/", last_verified: "2026-11-06" },
+      { id: "riverside-city", name: "Riverside City College", type: "community_college", city: "Riverside", campuses: ["Riverside"], url: "https://www.rcc.edu/programs/nursing.html", source_url: "https://www.rcc.edu/assets/documents/pathways/health-related-science/nursing/ADN%20InfoSheet.pdf", last_verified: "2026-11-06" }
     ],
 
     programs: [
@@ -432,11 +448,842 @@
         source_url: "https://nursing.fullerton.edu/programs/rnbsn/admissionreq.html",
         last_verified: "2026-11-06", academic_year: "2026-27",
         notes: "Requires a California RN license (or licensure within the first semester)."
-      }
+      },
+
+      // ============================= WAVE 2 =============================
+      // ---- University pre-licensure BSN / Accelerated BSN (start schools) ----
+      {
+        id: "ucla-bsn", institution: "ucla", credential: "bsn",
+        name: "Bachelor of Science (pre-licensure)",
+        length: "Four-year program, entered as a first-year student",
+        format: "In person, Los Angeles (Westwood)",
+        prerequisites: [
+          { course: "Chemistry sequence (general + organic)", code: "CHEM 20A/20B/30A (UCLA)", min_grade: null },
+          { course: "Life Sciences", code: "LS 7A/7C (UCLA)", min_grade: null },
+          { course: "Human Physiology", code: "Physiological Science 3 (UCLA)", min_grade: null },
+          { course: "Human Anatomy", code: "Physiological Science 13 (UCLA)", min_grade: null }
+        ],
+        admission: {
+          entrance_exam: "None stated",
+          selection: "Highly selective; freshman entry plus a limited number of junior-level transfers",
+          gpa: "Not published (a C average or better in science and math is required)",
+          deadline: "Freshmen apply via the UC Application plus the School of Nursing Supplemental Application",
+          notes: "UCLA lists BS transfer prerequisites inconsistently across its pages (two different course-number lists) — confirm with admissions. A 45-unit LVN option does not lead to the UCLA BS."
+        },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; no single program figure is published.", year: null },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate, baccalaureate (California BRN school pass-rate table)",
+          by_campus: { "BSN": [{ year: "2024-25", rate: 0.9216 }, { year: "2023-24", rate: 0.9362 }, { year: "2022-23", rate: 0.8889 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the University of California and the California Board of Registered Nursing",
+        source_url: "https://nursing.ucla.edu/programs-admissions/academic-programs/bachelor-of-science",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "uci-bsn", institution: "uci", credential: "bsn",
+        name: "Bachelor of Science in Nursing Science (pre-licensure)",
+        length: "About 4 years",
+        format: "In person, Irvine",
+        prerequisites: [
+          { course: "High-school biology and chemistry with labs (freshman entry; each lab course C or better)", code: null, min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "None mentioned",
+          selection: "Competitive and highly selective; small cohort limited by clinical placements. Admission decisions made by UC Irvine Undergraduate Admissions, not the school",
+          gpa: "Freshman: 3.0 high-school GPA or higher. Change-of-major (current UCI students): C or higher at UCI / B or higher elsewhere in prerequisites",
+          deadline: "Freshman/transfer via the UC Application by November 30; change-of-major by July 31",
+          notes: "A supplemental nursing application is no longer required for freshmen. Transfer prerequisites are handled by UCI Admissions (check ASSIST)."
+        },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; not published as a single program figure.", year: null },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate, baccalaureate (California BRN school pass-rate table)",
+          by_campus: { "BSN": [{ year: "2024-25", rate: 0.9130 }, { year: "2023-24", rate: 0.9583 }, { year: "2022-23", rate: 0.86 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Listed on the California BRN's approved prelicensure-program list. UCI's own pages don't state CCNE or ACEN accreditation (they link to CCNE and the BRN only) — confirm program accreditation with the school.",
+        source_url: "https://nursing.uci.edu/degrees-and-programs/undergraduate-nursing-science/",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "loma-linda-bsn", institution: "loma-linda", credential: "bsn",
+        name: "Bachelor of Science in Nursing (pre-licensure)",
+        length: "Quarter-based; four-year degree (advanced-placement plans for military)",
+        format: "In person, Loma Linda; classroom, lab and clinical",
+        prerequisites: [
+          { course: "Anatomy & Physiology I (+lab)", code: null, min_grade: "C" },
+          { course: "Anatomy & Physiology II (+lab)", code: null, min_grade: "C" },
+          { course: "General/Organic/Biochemistry (+lab)", code: null, min_grade: "C" },
+          { course: "Microbiology (+lab)", code: null, min_grade: "C" },
+          { course: "College Algebra or Statistics", code: null, min_grade: "C" },
+          { course: "English sequence, Public Speaking, Psychology, Sociology/Anthropology, Nutrition", code: null, min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "ATI TEAS and a Critical Thinking assessment",
+          selection: "Personal statement, three recommendation letters, transcripts; meeting minimums doesn't guarantee an interview",
+          gpa: "Minimum 3.0 cumulative and prerequisite",
+          deadline: "Feb 1 (Fall start), Jul 1 (Winter start), Oct 1 (Spring start)",
+          notes: "A prior degree isn't required. Transfer applicants must come from a BSN program (ADN graduates are not considered). A Seventh-day Adventist university; religion units are a graduation requirement, not an admission bar."
+        },
+        cost: { amount: null, basis: "No single program figure is published; see Loma Linda's expected cost of attendance.", year: null },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate (California BRN school pass-rate table; Loma Linda reports one combined figure)",
+          by_campus: { "BSN": [{ year: "2024-25", rate: 0.9139 }, { year: "2023-24", rate: 0.9507 }, { year: "2022-23", rate: 0.8882 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing (\"The California State Board has approved all programs offered at the Loma Linda University School of Nursing\")",
+        source_url: "https://nursing.llu.edu/programs/bs-nursing",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "samuel-merritt-bsn", institution: "samuel-merritt", credential: "bsn",
+        name: "Bachelor of Science in Nursing (pre-licensure)",
+        length: "2 years (4 semesters)",
+        format: "In person, Oakland; clinicals across Northern California",
+        prerequisites: [
+          { course: "Human Anatomy (+lab)", code: null, min_grade: "C" },
+          { course: "Human Physiology (+lab)", code: null, min_grade: "C" },
+          { course: "Chemistry (+lab)", code: null, min_grade: "C" },
+          { course: "Microbiology (+lab)", code: null, min_grade: "C" },
+          { course: "Statistics, Nutrition, Lifespan Development, English, Communication, Sociology/Anthropology and others (17 courses total)", code: null, min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "HESI A2 (75% each subject) or ATI TEAS (65% each subject; TEAS from Spring 2027)",
+          selection: "60+ transferable units with all prerequisites, at least one recent full-time term, and short-answer responses",
+          gpa: "3.0 recommended (on prerequisites and the four sciences)",
+          deadline: "Oct 1, 2026 for a Spring 2027 standard start",
+          notes: "A prior degree isn't required. Application via NursingCAS ($60 fee); $350 deposit."
+        },
+        cost: { amount: null, basis: "Samuel Merritt publishes an all-inclusive annual Tuition Guide rather than a single program total.", year: "2026-27" },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate, baccalaureate (California BRN school pass-rate table; the BRN reports SMU's BSN and Accelerated BSN together)",
+          by_campus: { "BSN": [{ year: "2024-25", rate: 0.7925 }, { year: "2023-24", rate: 0.8585 }, { year: "2022-23", rate: 0.8205 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); listed on the California BRN's approved prelicensure-program list",
+        source_url: "https://www.samuelmerritt.edu/college-nursing/bachelor-science-nursing",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "samuel-merritt-absn", institution: "samuel-merritt", credential: "absn",
+        name: "Accelerated BSN (pre-licensure)",
+        length: "12 months (3 semesters)",
+        format: "In person; Oakland, Sacramento, San Francisco Peninsula and Fresno (each intake at a subset of campuses)",
+        prerequisites: [
+          { course: "Human Anatomy (+lab)", code: null, min_grade: "C" },
+          { course: "Human Physiology (+lab)", code: null, min_grade: "C" },
+          { course: "Chemistry (+lab)", code: null, min_grade: "C" },
+          { course: "Microbiology (+lab)", code: null, min_grade: "C" },
+          { course: "Pharmacology + Pathophysiology, Statistics, Nutrition, Lifespan Development and general-education courses", code: null, min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "HESI A2 (75% each subject) or ATI TEAS (65% each subject)",
+          selection: "Criteria plus short-answer responses; 75+ transferable units required",
+          gpa: "3.0 recommended (last 60 units and six science prerequisites)",
+          deadline: "Nov 1, 2026 (Summer 2027 priority, all campuses); Apr 1, 2027 (Summer 2027 standard)",
+          notes: "A bachelor's degree is not required (75 semester units). Application via NursingCAS ($60 fee); $350 deposit."
+        },
+        cost: { amount: null, basis: "Samuel Merritt publishes an all-inclusive annual Tuition Guide rather than a single program total.", year: "2026-27" },
+        nclex_pass_rate: {
+          basis: "The California BRN reports Samuel Merritt's baccalaureate NCLEX figure as one number (see the BSN); a separate Accelerated-only rate isn't broken out.",
+          by_campus: null,
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); listed on the California BRN's approved prelicensure-program list",
+        source_url: "https://www.samuelmerritt.edu/college-nursing/accelerated-bachelor-science-nursing",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "usf-bsn", institution: "usf", credential: "bsn",
+        name: "Bachelor of Science in Nursing (pre-licensure)",
+        length: "First-year students: 8 semesters; transfers: 6-8 semesters",
+        format: "In person, San Francisco (Hilltop); transfers who finished clinical prerequisites may use the Sacramento campus",
+        prerequisites: [
+          { course: "Human Anatomy", code: null, min_grade: null },
+          { course: "Human Physiology", code: null, min_grade: null },
+          { course: "Microbiology", code: null, min_grade: null },
+          { course: "General Psychology", code: null, min_grade: null }
+        ],
+        admission: {
+          entrance_exam: "None published",
+          selection: "Selective holistic review (academic preparation plus a personal statement)",
+          gpa: "Not published (first-year applicants below a C average in science/math are not admitted)",
+          deadline: "First-year Fall: Early Action/ED I Nov 2, ED II & Regular Jan 15. Transfer: Fall Mar 1, Spring Nov 2",
+          notes: "A Jesuit Catholic university (faith isn't an admission requirement). Background check and 10-panel drug screen before clinical coursework."
+        },
+        cost: { amount: null, basis: "No single program figure is published; see USF's cost and financial-aid page.", year: null },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate, baccalaureate (California BRN school pass-rate table)",
+          by_campus: { "BSN": [{ year: "2024-25", rate: 0.8955 }, { year: "2023-24", rate: 0.94 }, { year: "2022-23", rate: 0.8654 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://www.usfca.edu/nursing/programs/undergraduate/nursing",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "azusa-pacific-bsn", institution: "azusa-pacific", credential: "bsn",
+        name: "Bachelor of Science in Nursing (traditional, pre-licensure)",
+        length: "4-4.5 years (cohort-based); 69-71 units",
+        format: "In person, Azusa (Main Campus); clinical each semester plus simulation",
+        prerequisites: [
+          { course: "High-school (or college) Chemistry", code: "CHEM 101", min_grade: "B" },
+          { course: "High-school (or college) Biology", code: "BIOL 101", min_grade: "B" },
+          { course: "Anatomy (+lab) — after acceptance, before nursing", code: null, min_grade: "C" },
+          { course: "Chemistry (+lab) — after acceptance, before nursing", code: null, min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "None published",
+          selection: "Reviewed by Undergraduate Admissions, then the School of Nursing Admissions Committee; decisions by March 1",
+          gpa: "Minimum cumulative 3.5",
+          deadline: "November 15",
+          notes: "An evangelical Christian university (faith isn't stated as an admission requirement). A professional recommendation, a one-page nursing-goals statement and a resume are required; $500 deposit by April 10."
+        },
+        cost: { amount: null, basis: "No single program figure is published; APU lists per-unit cost and a net-price calculator.", year: "2026-27" },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate, baccalaureate (California BRN school pass-rate table)",
+          by_campus: { "BSN": [{ year: "2024-25", rate: 0.8216 }, { year: "2023-24", rate: 0.8915 }, { year: "2022-23", rate: 0.80 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); the traditional baccalaureate program is approved by the California Board of Registered Nursing",
+        source_url: "https://www.apu.edu/programs/bsn/",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+
+      // ---- Direct-entry (entry-level) master's for non-nurses (start schools; demsn) ----
+      {
+        id: "ucla-demsn", institution: "ucla", credential: "demsn",
+        name: "Master's Entry Clinical Nursing (MECN) — MSN for non-nurses",
+        length: "2-year prelicensure program (includes a summer)",
+        format: "In person, Los Angeles; some science prerequisites offered online in summer",
+        prerequisites: [
+          { course: "Chemistry (inorganic, organic, biochemistry)", code: null, min_grade: "C" },
+          { course: "Human Anatomy", code: "Physiological Science 13 (UCLA)", min_grade: "C" },
+          { course: "Human Physiology", code: "Physiological Science 3 (UCLA)", min_grade: "C" },
+          { course: "Microbiology", code: null, min_grade: "C" },
+          { course: "Statistics, Nutrition, Epidemiology, Introductory & Lifespan Psychology, English and communication", code: null, min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "None stated",
+          selection: "Three letters of recommendation; competitive",
+          gpa: "Bachelor's degree with a B (3.0) average or better",
+          deadline: "Applications open after Oct 1, 2026; deadline Nov 1, 2026 (Fall 2027 entry)",
+          notes: "A direct-entry master's for applicants holding a bachelor's in another field. Graduates are eligible for the NCLEX-RN. One prerequisite may be met by an AP score of 4+."
+        },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; no single program figure is published.", year: null },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate, master's-entry (California BRN school pass-rate table, UCLA MSN row)",
+          by_campus: { "MECN/MSN": [{ year: "2024-25", rate: 0.8507 }, { year: "2023-24", rate: 1.00 }, { year: "2022-23", rate: 0.8529 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the University of California and the California Board of Registered Nursing",
+        source_url: "https://nursing.ucla.edu/programs-admissions/academic-programs/master-of-science-entry",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "uci-demsn", institution: "uci", credential: "demsn",
+        name: "Master's Entry Program in Nursing (MEPN) — MSN for non-nurses",
+        length: "Two-year, full-time program",
+        format: "In person, Irvine; concentration in Community and Population Health Nursing",
+        prerequisites: [],
+        admission: {
+          entrance_exam: "Not required (NursingCAS no longer required for MEPN from Fall 2026)",
+          selection: "Competitive", gpa: "Not published",
+          deadline: "UC Irvine Graduate Application opens Oct 1, 2026; deadline Nov 30, 2026 (Fall 2027 start)",
+          notes: "A direct-entry master's for applicants who already hold a non-nursing bachelor's degree. Graduates qualify for the NCLEX-RN and California public-health-nurse certification."
+        },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; not published as a single program figure.", year: null },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate, master's-entry (California BRN school pass-rate table, UCI MSN row)",
+          by_campus: { "MEPN/MSN": [{ year: "2024-25", rate: 1.00 }, { year: "2023-24", rate: 0.9444 }, { year: "2022-23", rate: 0.9474 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Listed on the California BRN's approved prelicensure-program list. UCI's own pages don't state CCNE/ACEN accreditation — confirm with the school.",
+        source_url: "https://nursing.uci.edu/degrees-and-programs/masters-entry-program-in-nursing/",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "uc-davis-demsn", institution: "uc-davis", credential: "demsn",
+        name: "Master's Entry Program in Nursing (MEPN) — MSN for non-nurses",
+        length: "18 months (six consecutive quarters including two summers), beginning in June",
+        format: "In person, Sacramento campus only (not offered part-time or online)",
+        prerequisites: [
+          { course: "Human Anatomy (+lab, within 5 years)", code: null, min_grade: "C" },
+          { course: "Human Physiology (+lab, within 5 years)", code: null, min_grade: "C" },
+          { course: "Chemistry (+lab)", code: null, min_grade: "C" },
+          { course: "Microbiology (+lab)", code: null, min_grade: "C" },
+          { course: "Statistics (or epidemiology), Psychology, Sociology/Anthropology, Lifespan Development, Communication", code: null, min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "None (no GRE, MCAT or TEAS required)",
+          selection: "NursingCAS screen, then an invited UC Davis Graduate Studies application; one cohort a year",
+          gpa: "Minimum 3.0 overall bachelor's GPA and 3.0 science-prerequisite GPA",
+          deadline: "Nov 1 via NursingCAS (Summer 2027 applications open Aug 6, 2026)",
+          notes: "A direct-entry master's requiring a non-nursing bachelor's degree. Graduates qualify for the NCLEX-RN and public-health-nurse certification."
+        },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; no single program figure is published.", year: null },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate, master's-entry (California BRN school pass-rate table, UC Davis row)",
+          by_campus: { "MEPN/MSN": [{ year: "2024-25", rate: 0.8913 }, { year: "2023-24", rate: 0.9268 }, { year: "2022-23", rate: 0.9302 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://health.ucdavis.edu/nursing/admissions/FAQ-MEPN.html",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "usd-demsn", institution: "usd", credential: "demsn",
+        name: "Master's Entry Program in Nursing (MEPN) — MSN for non-nurses",
+        length: "18 months (four full-time terms); 58 units",
+        format: "In person, San Diego; 960 clinical hours (full-time only)",
+        prerequisites: [
+          { course: "Anatomy (+lab)", code: null, min_grade: null },
+          { course: "Physiology (+lab)", code: null, min_grade: null },
+          { course: "Microbiology (+lab)", code: null, min_grade: null },
+          { course: "Psychology", code: null, min_grade: null },
+          { course: "Statistics", code: null, min_grade: null }
+        ],
+        admission: {
+          entrance_exam: "None published",
+          selection: "Transcripts, recommendations, personal statement; two cycles a year",
+          gpa: "Not published (minimum grades apply to prerequisites)",
+          deadline: "Not published on the program page",
+          notes: "A direct-entry master's requiring a non-nursing bachelor's degree. Prepares for the NCLEX-RN; it does not prepare students for nurse-practitioner licensure (USD's only pre-licensure route — USD has no undergraduate BSN)."
+        },
+        cost: { amount: 110200, basis: "Estimated tuition about $110,200 (58 units at $1,900/unit, 2026-27).", year: "2026-27" },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate (California BRN school pass-rate table, University of San Diego/Hahn row)",
+          by_campus: { "MEPN/MSN": [{ year: "2024-25", rate: 0.9643 }, { year: "2023-24", rate: 1.00 }, { year: "2022-23", rate: 0.88 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); the MEPN and NP programs have California Board of Registered Nursing approval",
+        source_url: "https://www.sandiego.edu/nursing/academic-programs/mepn/",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "usf-demsn", institution: "usf", credential: "demsn",
+        name: "Clinical Nurse Leader (ME) — MSN for non-nurses",
+        length: "2 years (68 units); NCLEX taken in the 5th semester",
+        format: "In person, San Francisco; 1,000+ clinical/internship hours",
+        prerequisites: [],
+        admission: {
+          entrance_exam: "Not published", selection: "Not published", gpa: "Not published",
+          deadline: "San Francisco: Spring admission Sep 1; Fall admission Feb 1",
+          notes: "A direct-entry master's requiring a bachelor's degree in a non-nursing field. (USF's Orange County campus applications are currently paused.)"
+        },
+        cost: { amount: null, basis: "Not published on the program page.", year: null },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate, master's-entry (California BRN school pass-rate table, USF MSN row)",
+          by_campus: { "ME/MSN": [{ year: "2024-25", rate: 0.8288 }, { year: "2023-24", rate: 0.9505 }, { year: "2022-23", rate: 0.8626 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://www.usfca.edu/nursing/programs/graduate/masters/msn/program-overview/me-msn",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "samuel-merritt-demsn", institution: "samuel-merritt", credential: "demsn",
+        name: "Entry-Level MSN (Family NP or Psych-Mental-Health NP track) — for non-nurses",
+        length: "39 months (NCLEX-RN eligible after the first 4 semesters)",
+        format: "In person; clinicals across Northern California",
+        prerequisites: [
+          { course: "Human Anatomy (+lab)", code: null, min_grade: "C" },
+          { course: "Human Physiology (+lab)", code: null, min_grade: "C" },
+          { course: "Chemistry (+lab)", code: null, min_grade: "C" },
+          { course: "Microbiology (+lab)", code: null, min_grade: "C" },
+          { course: "Statistics, Nutrition, Lifespan Development and general-education courses", code: null, min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "HESI A2 (75%) or ATI TEAS (65% each subject; recommended)",
+          selection: "Short-answer responses; second-language proficiency valued",
+          gpa: "3.0 recommended (recent 60 units and four sciences)",
+          deadline: "Dec 1, 2026 (Spring 2027 standard; classes begin Jan 2027)",
+          notes: "A direct-entry master's requiring a bachelor's in another field. Completes pre-licensure first (BSN-equivalency letter; no BSN degree awarded), then the FNP or PMHNP graduate phase."
+        },
+        cost: { amount: null, basis: "Samuel Merritt publishes an all-inclusive annual Tuition Guide rather than a single program total.", year: "2026-27" },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate, master's-entry (California BRN school pass-rate table, Samuel Merritt MSN row)",
+          by_campus: { "ELMSN/MSN": [{ year: "2024-25", rate: 0.85 }, { year: "2023-24", rate: 0.8767 }, { year: "2022-23", rate: 0.7835 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); listed on the California BRN's approved prelicensure-program list",
+        source_url: "https://www.samuelmerritt.edu/entry-level-master-science-nursing-family-nurse-practitioner",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "loma-linda-demsn", institution: "loma-linda", credential: "demsn",
+        name: "Entry-Level MS in Nursing (Population Health) — for non-nurses",
+        length: "24 months over 3 academic years (includes summers)",
+        format: "Accelerated; didactic and most clinicals at the Murrieta campus; peds/psych rotations at Loma Linda",
+        prerequisites: [
+          { course: "Anatomy & Physiology I & II (+labs)", code: null, min_grade: "C" },
+          { course: "General/Organic/Biochemistry (+lab)", code: null, min_grade: "C" },
+          { course: "Microbiology (+lab)", code: null, min_grade: "C" },
+          { course: "Statistics/Algebra, English, Public Speaking, Psychology, Sociology/Anthropology, Nutrition", code: null, min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "ATI TEAS and a Critical Thinking assessment",
+          selection: "Standardized interview with nursing faculty; personal essay, transcripts, three letters; healthcare experience preferred",
+          gpa: "Minimum 3.30 undergraduate",
+          deadline: "Jul 1 (all documents)",
+          notes: "A direct-entry master's requiring a non-nursing bachelor's degree (Year 1 is NCLEX-RN prelicensure content). A Seventh-day Adventist university."
+        },
+        cost: { amount: null, basis: "No single program figure is published; see Loma Linda's expected cost of attendance.", year: null },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate (California BRN school pass-rate table; Loma Linda reports one combined figure covering the BS and entry-level MS).",
+          by_campus: { "ELM/MS": [{ year: "2024-25", rate: 0.9139 }, { year: "2023-24", rate: 0.9507 }, { year: "2022-23", rate: 0.8882 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://nursing.llu.edu/programs/entry-level-masters-elm",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "azusa-pacific-demsn", institution: "azusa-pacific", credential: "demsn",
+        name: "Entry-Level MSN (ELM) — for non-nurses",
+        length: "Accelerated; prelicensure phase 18 months (earns a BSN, then the MSN)",
+        format: "Accelerated prelicensure (simulation + clinical); postlicensure MSN self-paced. Azusa, Inland Empire, San Diego, Online",
+        prerequisites: [
+          { course: "Human Anatomy (+lab)", code: null, min_grade: null },
+          { course: "Human Physiology (+lab)", code: null, min_grade: null },
+          { course: "Organic Chemistry (+lab) and Biochemistry", code: null, min_grade: null },
+          { course: "Microbiology (+lab)", code: null, min_grade: null },
+          { course: "Communication, Psychology, Human Development, Statistics, Research Methods", code: null, min_grade: null }
+        ],
+        admission: {
+          entrance_exam: "Not published",
+          selection: "Faculty/department-chair review; two recommendations, a personal statement and a resume",
+          gpa: "Minimum 3.0 cumulative (provisional admission possible below 3.0)",
+          deadline: "Spring Sep 15; Summer Jan 15; Fall May 15",
+          notes: "A direct-entry master's requiring a non-nursing bachelor's degree; feeds into APU's FNP, PNP, AGPCNP or PMHNP tracks. An evangelical Christian university."
+        },
+        cost: { amount: null, basis: "APU publishes a per-unit rate ($895/credit) and a cost range rather than a single total (roughly $95,000-$112,000 base for the full ELM).", year: "2026-27" },
+        nclex_pass_rate: {
+          basis: "The California BRN lists Azusa Pacific's baccalaureate NCLEX figure (see the BSN); a separate entry-level-master's rate isn't broken out here.",
+          by_campus: null,
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://www.apu.edu/programs/entry-level-masters-in-nursing/",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+
+      // ---- RN-to-BSN completion (open to any accredited ADN + RN license) ----
+      {
+        id: "samuel-merritt-rnbsn", institution: "samuel-merritt", credential: "rnbsn", open_entry: true,
+        name: "RN-to-BSN (bachelor's completion)",
+        length: "About 12 months",
+        format: "Online",
+        prerequisites: [],
+        admission: {
+          entrance_exam: null, selection: null, gpa: null, deadline: null,
+          notes: "For licensed registered nurses who hold an accredited associate degree in nursing. See Samuel Merritt's College of Nursing page for current admission details."
+        },
+        cost: { amount: null, basis: "Samuel Merritt publishes an all-inclusive annual Tuition Guide rather than a single program total.", year: "2026-27" },
+        nclex_pass_rate: { basis: "Not applicable — a bachelor's-completion program for licensed nurses.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE) — Samuel Merritt's baccalaureate nursing program is CCNE-accredited",
+        source_url: "https://www.samuelmerritt.edu/colleges/college-nursing",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+
+      // ---- More community-college ADN (start schools, by region) ----
+      {
+        id: "santa-rosa-jc-adn", institution: "santa-rosa-jc", credential: "adn",
+        name: "Associate Degree Nursing (AS in Nursing)",
+        length: "4 semesters (about 2 years) after prerequisites",
+        format: "In person, Santa Rosa; campus plus clinical",
+        prerequisites: [
+          { course: "Human Anatomy (+lab)", code: "Anatomy 1", min_grade: "C" },
+          { course: "Human Physiology (+lab)", code: "Physiology 1", min_grade: "C" },
+          { course: "Microbiology", code: "Microbiology 5 or 60", min_grade: "C" },
+          { course: "English (transferable reading/composition)", code: "English C1000", min_grade: "C" },
+          { course: "Food and Nutrition", code: "FDNT 62 or 10", min_grade: "C" },
+          { course: "Psychology", code: "Psychology C1000", min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "ATI TEAS 7 (minimum 62%)",
+          selection: "Chancellor's-office multi-criteria composite, then a randomized lottery for applicants scoring 80%+",
+          gpa: "No numeric minimum; prerequisites and English must be C or better",
+          deadline: "Once a year: Oct 2, 2026 - Feb 7, 2027 (entry Fall 2027/Spring 2028)",
+          notes: "A very impacted program with no waitlist (reapply yearly). Online science prerequisites taken after Summer 2022 are not accepted. Health clearances, immunizations, background check, drug screen and CPR before confirmation."
+        },
+        cost: { amount: null, basis: "California's community-college enrollment fee is $46/credit for residents; SRJC doesn't publish a single program total on its accessible pages.", year: "2026-27" },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate (California BRN school pass-rate table)",
+          by_campus: { "ADN": [{ year: "2024-25", rate: 0.9649 }, { year: "2023-24", rate: 0.989 }, { year: "2022-23", rate: 0.9082 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Approved by the California Board of Registered Nursing. SRJC's accessible ADN pages state only institutional (ACCJC) accreditation; program-level ACEN/CCNE isn't published there.",
+        source_url: "https://adn.santarosa.edu/getting-started",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "sacramento-city-adn", institution: "sacramento-city", credential: "adn",
+        name: "Registered Nursing (Associate in Science, AS)",
+        length: "2 years",
+        format: "In person, Sacramento; a portion of each course is online, with hospital/SNF/community clinicals",
+        prerequisites: [
+          { course: "Anatomy and Physiology", code: "BIOL 430", min_grade: "C" },
+          { course: "Anatomy and Physiology", code: "BIOL 431", min_grade: "C" },
+          { course: "General Microbiology", code: "BIOL 440", min_grade: "C" },
+          { course: "English", code: "ENGL C1000", min_grade: "C" },
+          { course: "Communication", code: "COMM C1000", min_grade: "C" },
+          { course: "Psychology / social-behavioral science", code: "PSYC C1000", min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "ATI TEAS 7 (overall 62% to apply)",
+          selection: "Multi-criteria criterion form (70-point minimum), then a random lottery; no waitlist",
+          gpa: "Minimum 3.0 in science courses and 2.5 in non-science courses",
+          deadline: "Feb 1 - Feb 28, 2027",
+          notes: "Post-acceptance: drug screen, background check, CPR and a health screening."
+        },
+        cost: { amount: null, basis: "California's community-college enrollment fee ($46/credit for residents) applies; no single program total is published.", year: "2026-27" },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate (California BRN school pass-rate table)",
+          by_campus: { "ADN": [{ year: "2024-25", rate: 0.96 }, { year: "2023-24", rate: 0.9778 }, { year: "2022-23", rate: 0.9483 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Accreditation Commission for Education in Nursing (ACEN); approved by the California Board of Registered Nursing",
+        source_url: "https://scc.losrios.edu/academics/nursing-program-details/rn-program-details-and-application-requirements",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "fresno-city-adn", institution: "fresno-city", credential: "adn",
+        name: "Registered Nursing (Associate in Science, ADN)",
+        length: "Four-semester nursing sequence (AS degree)",
+        format: "In person, Fresno; classroom plus hospital and simulation clinical",
+        prerequisites: [
+          { course: "Human Anatomy", code: "BIOL 20 (or 21A)", min_grade: "C" },
+          { course: "Human Physiology", code: "BIOL 22 (or 21B)", min_grade: "C" },
+          { course: "Microbiology", code: "BIOL 31", min_grade: "C" },
+          { course: "General Chemistry", code: "CHEM 3A (or equiv.)", min_grade: "C" },
+          { course: "English (reading & composition)", code: "ENGL C1000", min_grade: "C" },
+          { course: "Statistics", code: "STAT C1000", min_grade: "C" },
+          { course: "General Psychology", code: "PSYC C1000", min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "ATI TEAS (minimum 62% to be considered; scored up to 50 points)",
+          selection: "Multi-criteria screening rubric, then a lottery",
+          gpa: "Minimum 2.5 across the eight required prerequisites and the degree general-education courses",
+          deadline: "Jan 20 - Feb 9, 2027 (entry Fall 2027/Spring 2028); prerequisites complete by Dec 2026",
+          notes: "One of the largest community-college ADN programs in California. A separate LVN-to-RN track and military advanced placement exist. Background check and health requirements after acceptance."
+        },
+        cost: { amount: null, basis: "California's community-college enrollment fee ($46/credit for residents) applies; no single program total is published.", year: "2026-27" },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate (California BRN school pass-rate table)",
+          by_campus: { "ADN": [{ year: "2024-25", rate: 0.7817 }, { year: "2023-24", rate: 0.8927 }, { year: "2022-23", rate: 0.7426 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Approved by the California Board of Registered Nursing (continuing approval). ACEN candidate for initial accreditation (since July 2023).",
+        source_url: "https://www.fresnocitycollege.edu/academics/divisions/apa-division/registered-nursing/rn-apply.html",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "mt-sac-adn", institution: "mt-sac", credential: "adn",
+        name: "Registered Nursing (RN) Generic Option (AS)",
+        length: "2 years; 63-66 total units",
+        format: "In person, Walnut; clinical at local hospitals and health agencies",
+        prerequisites: [
+          { course: "Human Anatomy", code: "ANAT 10A or 35", min_grade: "C" },
+          { course: "Human Physiology", code: "ANAT 10B or 36", min_grade: "C" },
+          { course: "Microbiology", code: "MICR 1 or 22", min_grade: "C" },
+          { course: "English Composition", code: "ENGL C1000", min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "ATI TEAS (composite 70% or higher required; also adds merit points)",
+          selection: "Multi-criteria points-based ranking (100-point maximum); admitted twice a year",
+          gpa: "Minimum 2.5 in the science prerequisites (no grade below C) and 2.5 cumulative",
+          deadline: "Twice yearly (Fall and Spring); current cycle referenced is Spring 2027",
+          notes: "Online science labs are not accepted; sciences within 7 years (tightening to 5 years from June 2027). Also requires public speaking, introductory and developmental psychology and math eligibility. Background check, drug screen, physical and CPR before clinical."
+        },
+        cost: { amount: null, basis: "California's community-college enrollment fee ($46/credit for residents) applies; no single program total is published.", year: "2026-27" },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate (California BRN school pass-rate table)",
+          by_campus: { "ADN": [{ year: "2024-25", rate: 0.9292 }, { year: "2023-24", rate: 0.9649 }, { year: "2022-23", rate: 0.887 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Accreditation Commission for Education in Nursing (ACEN); fully approved by the California Board of Registered Nursing",
+        source_url: "https://catalog.mtsac.edu/programs/programsaz/nursing/licensed-nursing-registered-nursing-rn-generic-option-degree/",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+      {
+        id: "riverside-city-adn", institution: "riverside-city", credential: "adn",
+        name: "Associate Degree Nursing (Traditional RN, AS)",
+        length: "4 semesters plus an intersession (73-74-unit program)",
+        format: "In person, Riverside; campus plus clinical",
+        prerequisites: [
+          { course: "Human Anatomy", code: "Biology 50A", min_grade: "C" },
+          { course: "Human Physiology", code: "Biology 50B", min_grade: "C" },
+          { course: "Microbiology", code: "Biology 55", min_grade: "C" },
+          { course: "Developmental Psychology (Birth to Death)", code: "Psychology 9", min_grade: "C" },
+          { course: "Chemistry (AP score 3+ or one college course)", code: "Chemistry 2A/3", min_grade: "C" }
+        ],
+        admission: {
+          entrance_exam: "ATI TEAS 7 (minimum 62% to be eligible; also points-scored)",
+          selection: "Multi-criteria rank-order points plus random selection among equal ranks; no waitlist",
+          gpa: "Cumulative 2.0 or higher; minimum 2.5 in the three sciences and 2.5 in the degree general-education courses",
+          deadline: "Spring: early June - early July. Fall: early October - early November. May apply with prerequisites in progress",
+          notes: "Each term 44-90 traditional candidates are accepted. Also offers concurrent ADN/BSN and advanced-placement pathways. Health exam, immunizations, CPR, background check and drug screen before enrollment."
+        },
+        cost: { amount: null, basis: "Riverside publishes an itemized estimate of about $7,500 for the program (resident $46/credit enrollment fee plus books, testing, uniforms, background check and health requirements).", year: "2023-24" },
+        nclex_pass_rate: {
+          basis: "First-time NCLEX-RN pass rate (California BRN school pass-rate table)",
+          by_campus: { "ADN": [{ year: "2024-25", rate: 0.9657 }, { year: "2023-24", rate: 0.988 }, { year: "2022-23", rate: 0.9533 }] },
+          source_url: "https://www.rn.ca.gov/education/passrates.shtml"
+        },
+        accreditation: "Accreditation Commission for Education in Nursing (ACEN); approved by the California Board of Registered Nursing",
+        source_url: "https://www.rcc.edu/assets/documents/pathways/health-related-science/nursing/ADN%20InfoSheet.pdf",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: ""
+      },
+
+      // ---- Graduate advanced-practice programs (open to any accredited BSN + California RN license) ----
+      {
+        id: "ucla-fnp", institution: "ucla", credential: "fnp", open_entry: true,
+        name: "BSN-to-DNP — Family Nurse Practitioner",
+        length: null, format: "Doctor of Nursing Practice; Los Angeles.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive", gpa: "3.0 minimum", deadline: "Fall 2027: deadline Dec 1, 2026",
+          notes: "Requires a BSN (or entry-level master's in nursing) from an accredited program, an active California RN license (mandatory at application), and two years of RN experience. Required courses: statistics, nursing research, advanced physical assessment, human physiology." },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; no single program figure is published.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate (nurse practitioner) program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the University of California and the California Board of Registered Nursing",
+        source_url: "https://nursing.ucla.edu/programs-admissions/academic-programs/doctor-of-nursing-practice-0",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "ucla-agacnp", institution: "ucla", credential: "agacnp", open_entry: true,
+        name: "BSN-to-DNP — Adult-Gerontology Acute Care NP",
+        length: null, format: "Doctor of Nursing Practice; Los Angeles.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive", gpa: "3.0 minimum", deadline: "Fall 2027: deadline Dec 1, 2026",
+          notes: "Requires a BSN (or entry-level master's in nursing), an active California RN license, and two years of RN experience (shared BSN-to-DNP requirements)." },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; no single program figure is published.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://nursing.ucla.edu/programs-admissions/academic-programs/doctor-of-nursing-practice-0",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "ucla-agpcnp", institution: "ucla", credential: "agpcnp", open_entry: true,
+        name: "BSN-to-DNP — Adult-Gerontology Primary Care NP",
+        length: null, format: "Doctor of Nursing Practice; Los Angeles.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive", gpa: "3.0 minimum", deadline: "Fall 2027: deadline Dec 1, 2026",
+          notes: "Requires a BSN (or entry-level master's in nursing), an active California RN license, and two years of RN experience (shared BSN-to-DNP requirements)." },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; no single program figure is published.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://nursing.ucla.edu/programs-admissions/academic-programs/doctor-of-nursing-practice-0",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "ucla-pnp", institution: "ucla", credential: "pnp", open_entry: true,
+        name: "BSN-to-DNP — Pediatric NP (Dual Primary/Acute Care)",
+        length: null, format: "Doctor of Nursing Practice; Los Angeles.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive", gpa: "3.0 minimum", deadline: "Fall 2027: deadline Dec 1, 2026",
+          notes: "Requires a BSN (or entry-level master's in nursing), an active California RN license, and two years of RN experience (shared BSN-to-DNP requirements)." },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; no single program figure is published.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://nursing.ucla.edu/programs-admissions/academic-programs/doctor-of-nursing-practice-0",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "ucsf-cnm", institution: "ucsf", credential: "cnm", open_entry: true,
+        name: "BSN-Entry-to-DNP — Nurse-Midwifery",
+        length: "11-quarter hybrid program", format: "Hybrid (in-person + online), San Francisco Bay Area clinical sites.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive (no GRE)", gpa: "3.0 minimum", deadline: "Fall 2026: apply by Feb 15, 2026 (a later cycle referenced Feb 2027)",
+          notes: "Requires a BSN or MSN from an accredited program and an active California RN license. A statistics course within 5 years is required. UCSF's MEPN (direct entry) is paused and its MS is closed — this DNP is the active entry point." },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; see the UCSF Registrar.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate (nurse-midwifery) program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); the nurse-midwifery specialty has conditional accreditation from the Accreditation Commission for Midwifery Education (ACME). The BSN-Entry-to-DNP track is noted as under review by the California BRN.",
+        source_url: "https://nursing.ucsf.edu/bsn-entry-dnp-advanced-nursing-focus",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "ucsf-fnp", institution: "ucsf", credential: "fnp", open_entry: true,
+        name: "BSN-Entry-to-DNP — Family Nurse Practitioner",
+        length: "11-quarter hybrid program", format: "Hybrid (in-person + online), San Francisco Bay Area clinical sites.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive (no GRE)", gpa: "3.0 minimum", deadline: "Fall 2026: apply by Feb 15, 2026 (a later cycle referenced Feb 2027)",
+          notes: "Requires a BSN or MSN from an accredited program and an active California RN license. A statistics course within 5 years is required. (UCSF's MEPN is paused and its MS is closed.)" },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; see the UCSF Registrar.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE). The BSN-Entry-to-DNP track is noted as under review by the California BRN.",
+        source_url: "https://nursing.ucsf.edu/bsn-entry-dnp-advanced-nursing-focus",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "ucsf-agacnp", institution: "ucsf", credential: "agacnp", open_entry: true,
+        name: "BSN-Entry-to-DNP — Adult-Gerontology Acute Care NP",
+        length: "11-quarter hybrid program", format: "Hybrid (in-person + online), San Francisco Bay Area clinical sites.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive (no GRE)", gpa: "3.0 minimum", deadline: "Fall 2026: apply by Feb 15, 2026 (a later cycle referenced Feb 2027)",
+          notes: "Requires a BSN or MSN and an active California RN license, plus two years of inpatient RN practice for this acute-care specialty. A statistics course within 5 years is required." },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; see the UCSF Registrar.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE). The BSN-Entry-to-DNP track is noted as under review by the California BRN.",
+        source_url: "https://nursing.ucsf.edu/bsn-entry-dnp-advanced-nursing-focus",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "uc-davis-fnp", institution: "uc-davis", credential: "fnp", open_entry: true,
+        name: "DNP — Family Nurse Practitioner",
+        length: "3 years (12 quarters, year-round)", format: "Integrated hybrid (online + four in-person immersions at Sacramento); clinicals in California primary care.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive (no GRE/MCAT)", gpa: "3.0 bachelor's GPA and 3.0 prerequisite-science GPA", deadline: "Application period mid-September to January 5",
+          notes: "For working registered nurses who hold a bachelor's degree (any major) and an active RN license. Science prerequisites may be waived for applicants holding a BSN or entry-level prelicensure master's." },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; no single figure is published.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://health.ucdavis.edu/nursing/academics/programs/dnp-fnp.html",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "uc-davis-crna", institution: "uc-davis", credential: "crna", open_entry: true,
+        name: "DNP — Nurse Anesthesia",
+        length: "3 years (year-round)", format: "Integrated hybrid; on-campus simulation in Sacramento plus clinical rotations across UC Health.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "highly competitive", gpa: "3.0 minimum", deadline: "Application period mid-September to November 1",
+          notes: "Requires a BSN (or a bachelor's in another field plus an MSN), an active RN license, at least one year of full-time critical-care RN experience, and 8+ hours shadowing a CRNA or anesthesiologist. The UC system's first nurse-anesthesia program (first graduating class 2028)." },
+        cost: { amount: null, basis: "UC Regents-set tuition and fees; a DNP-NA loan program is available.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a doctoral nurse-anesthesia program.", by_campus: null, source_url: null },
+        accreditation: "Council on Accreditation of Nurse Anesthesia Educational Programs (COA), effective January 2025",
+        source_url: "https://health.ucdavis.edu/nursing/academics/programs/dnp-nurse-anesthesia.html",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "loma-linda-fnp", institution: "loma-linda", credential: "fnp", open_entry: true,
+        name: "BS-to-DNP — Family Nurse Practitioner",
+        length: "About 3 years 9 months (full-time); part-time available", format: "Hybrid; Loma Linda, clinicals within a 90-mile radius.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "Emotional Intelligence interview if granted", gpa: "3.0 minimum (cumulative and nursing)", deadline: "Apr 15 (Fall start), Oct 1 (Winter start)",
+          notes: "Requires a baccalaureate in nursing from an accredited program, a current unencumbered U.S. RN license (a California RN license before classes start), and one year of RN experience before clinical courses. A Seventh-day Adventist university." },
+        cost: { amount: null, basis: "No single program figure is published; see Loma Linda's expected cost of attendance.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://nursing.llu.edu/programs/family-nurse-practitioner-concentration",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "loma-linda-pmhnp", institution: "loma-linda", credential: "pmhnp", open_entry: true,
+        name: "BS-to-DNP — Psychiatric Mental Health NP",
+        length: null, format: "Hybrid; Loma Linda.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive", gpa: "3.0 minimum", deadline: "Apr 15 (Fall), Oct 1 (Winter)",
+          notes: "Requires a baccalaureate in nursing, a current unencumbered U.S. RN license (California RN before classes start), and one year of RN experience before clinical courses (shared BS-to-DNP requirements)." },
+        cost: { amount: null, basis: "No single program figure is published; see Loma Linda's expected cost of attendance.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://nursing.llu.edu/programs/psychiatric-mental-health-nurse-practitioner-concentration",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "loma-linda-agpcnp", institution: "loma-linda", credential: "agpcnp", open_entry: true,
+        name: "BS-to-DNP — Adult-Gerontology NP (Primary Care)",
+        length: null, format: "Hybrid; Loma Linda.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive", gpa: "3.0 minimum", deadline: "Apr 15 (Fall), Oct 1 (Winter)",
+          notes: "Requires a baccalaureate in nursing, a current unencumbered U.S. RN license (California RN before classes start), and one year of RN experience before clinical courses (shared BS-to-DNP requirements)." },
+        cost: { amount: null, basis: "No single program figure is published; see Loma Linda's expected cost of attendance.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://nursing.llu.edu/programs/adult-gerontology-nurse-practitioner-concentration",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "loma-linda-pnp", institution: "loma-linda", credential: "pnp", open_entry: true,
+        name: "BS-to-DNP — Pediatric NP (Primary Care)",
+        length: null, format: "Hybrid; Loma Linda.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive", gpa: "3.0 minimum", deadline: "Apr 15 (Fall), Oct 1 (Winter)",
+          notes: "Requires a baccalaureate in nursing, a current unencumbered U.S. RN license (California RN before classes start), and one year of RN experience before clinical courses (shared BS-to-DNP requirements). An Acute Care Pediatric NP track is also offered." },
+        cost: { amount: null, basis: "No single program figure is published; see Loma Linda's expected cost of attendance.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://nursing.llu.edu/programs/pediatric-nurse-practitioner-concentration",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "loma-linda-nnp", institution: "loma-linda", credential: "nnp", open_entry: true,
+        name: "BS-to-DNP — Neonatal NP",
+        length: null, format: "Hybrid; Loma Linda.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive", gpa: "3.0 minimum", deadline: "Apr 15 (Fall), Oct 1 (Winter)",
+          notes: "Requires a baccalaureate in nursing, a current unencumbered U.S. RN license (California RN before classes start), and RN experience before clinical courses (NICU experience is typically expected for this specialty — confirm with the school)." },
+        cost: { amount: null, basis: "No single program figure is published; see Loma Linda's expected cost of attendance.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://nursing.llu.edu/programs/neonatal-nurse-practitioner-nnp-concentration",
+        last_verified: "2026-11-06", academic_year: "2026-27",
+        notes: "One of the few verified neonatal-NP programs in our data." },
+      {
+        id: "loma-linda-cns", institution: "loma-linda", credential: "cns", open_entry: true,
+        name: "BS-to-DNP — Adult-Gerontology Clinical Nurse Specialist",
+        length: null, format: "Hybrid; Loma Linda.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "competitive", gpa: "3.0 minimum", deadline: "Apr 15 (Fall), Oct 1 (Winter)",
+          notes: "Requires a baccalaureate in nursing, a current unencumbered U.S. RN license (California RN before classes start), and one year of RN experience before clinical courses (shared BS-to-DNP requirements)." },
+        cost: { amount: null, basis: "No single program figure is published; see Loma Linda's expected cost of attendance.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://nursing.llu.edu/programs/cns-adult-gerontology",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "loma-linda-crna", institution: "loma-linda", credential: "crna", open_entry: true,
+        name: "DNP — Nurse Anesthesia",
+        length: "39 months, full-time", format: "Hybrid (classroom + distance education); Loma Linda.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "highly competitive", gpa: "3.0 minimum (cumulative, nursing and science)", deadline: "Application window May 1 - Jul 1 (documents due Aug 1)",
+          notes: "Requires a baccalaureate in nursing, a current unencumbered U.S. RN license (a California RN before classes start), and at least one year of full-time critical-care RN experience. CCRN preferred; BLS/ACLS/PALS before clinicals." },
+        cost: { amount: null, basis: "No single program figure is published; see Loma Linda's expected cost of attendance.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a doctoral nurse-anesthesia program.", by_campus: null, source_url: null },
+        accreditation: "Council on Accreditation of Nurse Anesthesia Educational Programs (COA); Loma Linda's programs are approved by the California Board of Registered Nursing",
+        source_url: "https://nursing.llu.edu/programs/certified-registered-nurse-anesthetist-crna",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "samuel-merritt-crna", institution: "samuel-merritt", credential: "crna", open_entry: true,
+        name: "Doctor of Nurse Anesthesia Practice (DNAP)",
+        length: "36 months (9 semesters; 24-month clinical residency)", format: "Hybrid; Oakland (partnership with Kaiser Permanente Northern California).", prerequisites: [],
+        admission: { entrance_exam: null, selection: "highly competitive, holistic", gpa: "3.25 minimum (cumulative, last 60 units and science)", deadline: "Via NursingCAS (deadline not published on the page)",
+          notes: "Requires a bachelor's, master's or doctoral degree in nursing, a current unencumbered California RN license (out-of-state applicants must hold a CA license at matriculation), the CCRN, and 24+ months and 4,160+ hours of critical-care RN experience within the last 5 years. 8+ hours of CRNA shadowing; no GRE." },
+        cost: { amount: null, basis: "Samuel Merritt publishes an all-inclusive annual Tuition Guide rather than a single program total.", year: "2026-27" },
+        nclex_pass_rate: { basis: "Not applicable — a doctoral nurse-anesthesia program.", by_campus: null, source_url: null },
+        accreditation: "Council on Accreditation of Nurse Anesthesia Educational Programs (COA), 10-year accreditation effective May 2024",
+        source_url: "https://www.samuelmerritt.edu/college-nursing/doctor-nurse-anesthesia-practice",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "usf-pmhnp", institution: "usf", credential: "pmhnp", open_entry: true,
+        name: "DNP — Psychiatric Mental Health NP",
+        length: null, format: "Hybrid (online + in-person); year-round; teaching weekends.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "holistic (no GRE)", gpa: "3.0 or higher recommended", deadline: "Not stated on the overview page",
+          notes: "Requires a BSN or a master's degree in any field from an accredited institution and documentation of an RN license (California / unencumbered per the program's certificate pages). Three letters of recommendation; international applications not currently accepted." },
+        cost: { amount: null, basis: "Not published on the program page.", year: null },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://www.usfca.edu/nursing/programs/graduate/psychiatric-mental-health-nurse-practitioner/program-overview",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "usd-fnp", institution: "usd", credential: "fnp", open_entry: true,
+        name: "MSN — Family Nurse Practitioner",
+        length: "53 units", format: "On campus, San Diego (graduate level).", prerequisites: [],
+        admission: { entrance_exam: null, selection: "qualified applicants are interviewed", gpa: "3.0 minimum", deadline: "Fall 2027 start: domestic June 30, 2027",
+          notes: "Requires a BSN from an accredited college/university and an active, unencumbered California RN license (out-of-state applicants must have California endorsement in progress at admission). A statistics course is required (may be in progress). Two letters, a statement of purpose and an interview." },
+        cost: { amount: 100700, basis: "Estimated tuition about $100,700 (53 units at $1,900/unit, 2026-27).", year: "2026-27" },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://graduate.catalog.sandiego.edu/programs/major-MSN-GR-M-NU-MSN-FNP2",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "usd-pmhnp", institution: "usd", credential: "pmhnp", open_entry: true,
+        name: "MSN — Psychiatric Mental Health NP",
+        length: "53 units", format: "On campus, San Diego (graduate level).", prerequisites: [],
+        admission: { entrance_exam: null, selection: "qualified applicants are interviewed", gpa: "3.0 minimum", deadline: "Fall 2027 start: domestic June 30, 2027",
+          notes: "Requires a BSN and an active, unencumbered California RN license (out-of-state applicants must have California endorsement in progress). A statistics course is required. Graduates are eligible for California NP certification and ANCC board certification." },
+        cost: { amount: 100700, basis: "Estimated tuition about $100,700 (53 units at $1,900/unit, 2026-27).", year: "2026-27" },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://graduate.catalog.sandiego.edu/programs/major-MSN-GR-M-NU-MSN-PMH",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "usd-cns", institution: "usd", credential: "cns", open_entry: true,
+        name: "MSN — Adult-Gerontology Clinical Nurse Specialist",
+        length: "45 units", format: "On campus, San Diego (graduate level).", prerequisites: [],
+        admission: { entrance_exam: null, selection: "qualified applicants are interviewed", gpa: "3.0 minimum", deadline: "Spring 2027: domestic Nov 1, 2026; Fall 2027: domestic Aug 1, 2027",
+          notes: "Requires a BSN and an active, unencumbered California RN license (out-of-state applicants must have California endorsement in progress). A statistics course is required." },
+        cost: { amount: 85500, basis: "Estimated tuition about $85,500 (45 units at $1,900/unit, 2026-27).", year: "2026-27" },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); approved by the California Board of Registered Nursing",
+        source_url: "https://graduate.catalog.sandiego.edu/academics/collegeandschools/nursingandhealth",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" },
+      {
+        id: "azusa-pacific-fnp", institution: "azusa-pacific", credential: "fnp", open_entry: true,
+        name: "MSN — Family Nurse Practitioner",
+        length: "44-56 units", format: "Azusa, Inland Empire or San Diego.", prerequisites: [],
+        admission: { entrance_exam: null, selection: "faculty review of the complete file", gpa: "3.0 cumulative (provisional possible below)", deadline: "Fall start: priority Apr 1, final Jun 15. Spring start: priority Oct 20",
+          notes: "Requires a BSN from an NLN- or CCNE-accredited program and a California RN license (verified via the Board's BreEZe system). Undergraduate health-assessment, pathophysiology, research, statistics and leadership courses are expected. FNP requires 540+ supervised direct-care hours. An evangelical Christian university." },
+        cost: { amount: null, basis: "APU lists a per-unit rate ($895/credit) and a cost range rather than a single total.", year: "2026-27" },
+        nclex_pass_rate: { basis: "Not applicable — a graduate program.", by_campus: null, source_url: null },
+        accreditation: "Commission on Collegiate Nursing Education (CCNE); the NP program is approved by the California Board of Registered Nursing",
+        source_url: "https://www.apu.edu/programs/msn-np/",
+        last_verified: "2026-11-06", academic_year: "2026-27", notes: "" }
     ],
 
-    // No same-school ADN -> RN-to-BSN steps in wave 1: the community-college ADNs here are ADN-only, and
-    // the universities' RN-to-BSN programs are open_entry completions the route reaches across schools.
+    // No same-school ADN -> RN-to-BSN steps: the community-college ADNs here are ADN-only, and the
+    // universities' RN-to-BSN and graduate programs are open_entry (reached across schools by credential).
     agreements: []
   };
 

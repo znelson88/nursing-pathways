@@ -31,8 +31,8 @@ with sync_playwright() as p:
     check("schools button links with job", "schools.html?job=crna" in href)
     d.click(".schoolsbtn"); d.wait_for_timeout(400)
     check("schools page opens for CRNA", "Nurse anesthetist" in d.inner_text("h1"))
-    # A job with no verified Colorado program (Neonatal NP isn't offered here) must say so honestly.
-    d.goto(BASE + "/schools.html?job=nnp&state=CO"); d.wait_for_timeout(400)
+    # A job with no verified program in any covered state (Emergency NP) must say so honestly.
+    d.goto(BASE + "/schools.html?job=enp&state=CO"); d.wait_for_timeout(400)
     check("schools: no-data job shows honest 'not verified yet' gap (no made-up program)",
           "don't have a verified" in d.inner_text("#route"))
     # Verified Colorado route view: Trinidad State -> Family NP
@@ -65,7 +65,7 @@ with sync_playwright() as p:
     check("schools AZ: ADN start reaches a Psych NP program",
           "Psychiatric Mental Health" in d.inner_text("#route") and d.evaluate("()=>!!document.querySelector('#route .milestone')"))
     # A job offered in no covered state is still honest: no made-up program, and it names coverage.
-    d.goto(BASE + "/schools.html?job=nnp&state=AZ"); d.wait_for_timeout(300)
+    d.goto(BASE + "/schools.html?job=enp&state=AZ"); d.wait_for_timeout(300)
     txt = d.inner_text("#route")
     check("schools: unavailable job gives honest no-data gap naming all covered states",
           "don't have a verified" in txt and "Colorado, Arizona and California" in txt)
@@ -103,6 +103,11 @@ with sync_playwright() as p:
     ca_rt = d.inner_text("#route")
     check("schools CA: non-compact hand-off flags licensure by endorsement",
           d.evaluate("()=>!!document.querySelector('#route .agr.handoff')") and "endorsement" in ca_rt)
+    # Wave 2: California now resolves NP goals in-state (last step lands in California, not out of state).
+    d.goto(BASE + "/schools.html?job=fnp&state=CA&finish=CA"); d.wait_for_timeout(400)
+    check("schools CA: FNP goal resolves to an in-state California program",
+          d.evaluate("()=>{const b=[...document.querySelectorAll('#route .step .pcard .pstate')];return b.length && b[b.length-1].textContent.trim()==='California'}")
+          and d.evaluate("()=>/Family Nurse Practitioner/.test(document.querySelector('#route').innerText)"))
     m = b.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True); m.on("pageerror", lambda e: errs.append(str(e)))
     m.goto(BASE + "/index.html"); m.evaluate("()=>{localStorage.clear();localStorage.setItem('np-welcomed','1')}"); m.reload(); m.wait_for_timeout(500)
     m.locator('.rchip[data-id="fnp"]').scroll_into_view_if_needed(); y = m.evaluate("()=>scrollY")

@@ -96,11 +96,15 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   sites. Excluded (private for-profit): Arizona College of Nursing, Chamberlain, West Coast University;
   GCU is included and labeled (its nonprofit status is contested). AZ uses many entrance exams (HESI, TEAS,
   NLN, Kaplan). See docs/DATA_SOURCES.md.
-- California: **wave 1** built in `data/schools/ca.js` (attached to `window.SCHOOLS.CA`; loaded by schools.html).
-  9 schools / 15 programs (verified 2026-11-06): the CSU pre-licensure BSN backbone (CSU Long Beach, San Diego
-  State, Sacramento State, SF State, CSU Fullerton), Fullerton's Accelerated BSN and SF State's Entry-Level
-  Master's; three community-college ADNs (City College of SF, San Diego City, Pasadena); and five open-entry
-  RN-to-BSN completions (CSULB, SDSU, Sac State, Dominguez Hills, Fullerton). Built from the **California BRN
+- California: built in `data/schools/ca.js` (attached to `window.SCHOOLS.CA`; loaded by schools.html).
+  **23 schools / 58 programs** (verified 2026-11-06, in two waves) — larger than CO or AZ. Wave 1: the CSU
+  pre-licensure BSN backbone (Long Beach, San Diego State, Sacramento State, SF State, Fullerton) + Fullerton
+  Accelerated BSN + SF State Entry-Level Master's; three community-college ADNs; five RN-to-BSN completions.
+  Wave 2: UCLA, UC Irvine, UCSF, UC Davis, Samuel Merritt, Loma Linda, USF, USD, Azusa Pacific and five more
+  community-college ADNs (Santa Rosa, Sacramento City, Fresno City, Mt. SAC, Riverside), adding the graduate
+  APRN layer — FNP, PMHNP, Adult-Gero primary/acute, Peds, Neonatal NP, CNS, Nurse-Midwifery (UCSF, ACME-
+  conditional) and CRNA (Samuel Merritt, Loma Linda, UC Davis). WHNP has no open California program yet (routes
+  fall back out of state, flagged). Paused/pending and excluded: UCSF MEPN (paused) and MS (closed), SDSU ASBSN. Built from the **California BRN
   approved-program list** (rn.ca.gov/education/rnprograms.shtml) and the **BRN by-school NCLEX pass-rate table**
   (rn.ca.gov/education/passrates.shtml); ASSIST.org for CC→CSU/UC transfer. **California is NOT an NLC state** —
   the cross-state hand-off tells movers they need licensure by endorsement; CA RN-to-BSN programs require a CA

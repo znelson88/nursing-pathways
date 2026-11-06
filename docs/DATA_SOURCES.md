@@ -131,7 +131,7 @@ Cloudflare-gated.
 
 # Data sources (schools page — California)
 
-California is **in progress — wave 1** (9 schools / 15 programs, verified 2026-11-06), in `data/schools/ca.js`.
+California is **in progress — waves 1-2** (23 schools / 58 programs, verified 2026-11-06), in `data/schools/ca.js`.
 Each record carries its own `source_url` + `last_verified` (the authoritative per-fact log). Facts come from
 each institution's own website; **NCLEX pass rates are the California BRN's by-school first-time table.**
 
@@ -156,6 +156,12 @@ University, Chamberlain, Carrington, Unitek, Stanbridge, Gurnick, Arizona Colleg
 College, etc.), University of Phoenix (not enrolling) and UMass Global (closing). SDSU's Accelerated
 2nd-Bachelor's (ASBSN) is omitted while it is **pending BRN approval and CCNE accreditation** (its own page).
 SF State's concurrent "ADN-BSN" collaborative (dual CC + SFSU, no RN license required) is not yet modeled.
-**Later waves:** UC campuses (UCLA, UCI, UCSF, UC Davis), private universities (Samuel Merritt, USF, USD,
-Azusa Pacific, Loma Linda, Point Loma, Mount Saint Mary's, Dominican, CBU, etc.), more community-college ADNs
-by region, and the APRN / CRNA / CNM specialties. Re-verify before each academic year.
+**Wave 2 (added 2026-11-06):** UCLA, UC Irvine, UCSF, UC Davis, Samuel Merritt, Loma Linda, USF, USD and Azusa
+Pacific, plus five more community-college ADNs (Santa Rosa, Sacramento City, Fresno City, Mt. SAC, Riverside).
+This added the graduate APRN layer so California resolves FNP, PMHNP, Adult-Gero (primary + acute), Pediatric,
+Neonatal NP, CNS, Nurse-Midwifery (UCSF, ACME-conditional) and CRNA (Samuel Merritt, Loma Linda, UC Davis)
+in-state. Graduate NP/CRNA programs are open_entry (BSN + an active **California** RN license; CRNA adds
+critical-care experience). Excluded as paused/pending: UCSF's MEPN (paused) and MS (closed), and SDSU's ASBSN.
+WHNP has no open California program yet (routes fall back out of state, honestly flagged). Still open for future
+waves: more private universities (Point Loma, Mount Saint Mary's, Dominican, CBU, Charles Drew) and more
+community-college ADNs by region. Re-verify before each academic year.
