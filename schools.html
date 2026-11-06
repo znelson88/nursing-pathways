@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Schools and Programs · Nursing Pathways</title>
+<meta name="description" content="Real schools, prerequisites and transfer routes toward a nursing job in Colorado, Arizona and California.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;500;600&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%2313222f%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/schools.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="index.html">← Back to the career map</a>
+    <span class="count">Schools and programs · Colorado, Arizona, California</span>
+    <h1 id="title">Schools and programs</h1>
+    <p class="lede" id="lede">Pick a job on the career map first, then come here to see real schools, prerequisites and transfer routes that lead to it.</p>
+  </header>
+
+  <section class="spick" aria-label="Your choices">
+    <label class="wq"><span>Goal job</span><select id="job"></select></label>
+    <label class="wq"><span>State</span><select id="state"><option value="CO">Colorado</option><option value="AZ">Arizona</option><option value="CA">California</option></select></label>
+    <label class="wq"><span>Where you're starting</span><select id="startSchool"></select></label>
+  </section>
+
+  <main id="route" aria-live="polite"></main>
+</div>
+<script src="js/data.js"></script>
+<script src="data/schools/co.js"></script>
+<script src="data/schools/az.js"></script>
+<script src="js/schools.js"></script>
+</body>
+</html>

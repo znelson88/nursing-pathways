@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nursing Pathways</title>
+<meta name="description" content="Every route in nursing, from CNA to doctorate, with take-home pay, school cost and time for the western US.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;500;600&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%2313222f%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="count" id="count"></span>
+    <h1>Nursing Pathways</h1>
+    <p class="sub">Every route in nursing, from a first job as a CNA to a doctorate. Start with a question below, search for a job, or read the map step by step.</p>
+  </header>
+
+  <section class="welcome" id="welcome" hidden aria-labelledby="wtitle">
+    <h2 id="wtitle">Two quick questions</h2>
+    <p class="sub">So pay, taxes and next steps match your situation. You can change these any time under <b>My situation</b>.</p>
+    <div class="wrow">
+      <label class="wq" for="wStart"><span class="slabel">Where are you starting?</span><select id="wStart"></select></label>
+      <label class="wq" for="wState"><span class="slabel">Which state will you work in?</span><select id="wState"></select></label>
+    </div>
+    <div class="wbtns"><button type="button" class="primary" id="wGo">Show my options</button><button type="button" id="wSkip">Skip for now</button></div>
+  </section>
+
+  <div class="ask" role="group" aria-label="Common questions">
+    <button type="button" data-q="pay">What pays most?<small>Jobs ranked by take-home pay</small></button>
+    <button type="button" data-q="fast">Fastest way to start earning<small>Shortest time from day one</small></button>
+    <button type="button" data-q="cheap">Cheapest way in<small>Lowest school cost</small></button>
+    <button type="button" data-q="sched">Fits my schedule<small>No nights, Mon–Fri, remote</small></button>
+  </div>
+
+  <section class="schedq" id="schedq" hidden aria-labelledby="sqh">
+    <h2 id="sqh">What matters to you?</h2>
+    <p class="note">Pick one or more, then we'll show only the jobs that fit.</p>
+    <div class="fit big" id="sqopts"></div>
+    <div class="wbtns"><button type="button" class="primary" id="sqGo" disabled>Show matching jobs</button><button type="button" id="sqCancel">Cancel</button></div>
+  </section>
+
+  <div class="tools">
+    <div class="search">
+      <input id="q" type="search" autocomplete="off" placeholder="Search jobs or questions, e.g. ER, loans, Colorado" aria-label="Search nursing jobs" aria-controls="qres" aria-expanded="false" aria-autocomplete="list">
+      <div class="qres" id="qres" role="listbox" aria-label="Search results" hidden></div>
+    </div>
+    <button type="button" id="pzbtn" class="pzbtn" aria-expanded="false" aria-controls="sheet">My situation<span class="pzn" id="pzn" hidden></span></button>
+  </div>
+  <div class="filters" id="filters"><span class="plabel">Show only jobs that are</span><div class="fit" id="fit"></div></div>
+  <div class="active" id="active"></div>
+  <div class="sheetback" id="sheetback" hidden></div>
+  <section class="sheet" id="sheet" hidden aria-label="My situation">
+    <div class="shead"><h2>My situation</h2><button type="button" id="sheetdone" class="primary">Done</button></div>
+    <div class="sgrid">
+      <div class="sblock">
+        <label for="startAt" class="slabel">I'm starting as</label>
+        <select id="startAt"></select>
+        <p class="shint">Highlights your realistic next steps.</p>
+      </div>
+      <div class="sblock">
+        <label for="st" class="slabel">State for pay, taxes and laws</label>
+        <select id="st"></select>
+        <label class="adjpick"><input type="checkbox" id="adj"> Adjust pay for cost of living</label>
+        <p class="shint">Shows what the pay buys compared with an average US state. It doesn't change your actual paycheck.</p>
+      </div>
+    </div>
+    <div class="sfoot"><button type="button" id="clearall">Clear filters and starting point</button></div>
+  </section>
+  <div class="nextsteps" id="nextsteps" aria-live="polite"></div>
+
+  <div class="viewbar">
+    <div class="seg" role="radiogroup" aria-label="View">
+      <button type="button" role="radio" data-view="map" aria-checked="true">Map</button>
+      <button type="button" role="radio" data-view="list" aria-checked="false">List</button>
+    </div>
+    <button type="button" class="resetmap" id="resetmap" hidden>↺ Reset map</button>
+    <p class="howto" id="howto">Read top to bottom: start, school, license, then jobs. Tap any job to draw its lines to where it comes from and where it leads. Lines show common next steps, not required ones; <b>dashed lines</b> need work experience first.</p>
+  </div>
+  <div class="key" id="key" aria-hidden="true"></div>
+  <div class="layout">
+    <div class="mapwrap" id="mapwrap">
+      <div class="tmap" id="map"><svg class="tlines" id="tlines" aria-hidden="true"></svg><div id="tiers"></div></div>
+      <div class="listv" id="list" hidden></div>
+    </div>
+    <aside id="panel" aria-live="polite"></aside>
+    <button type="button" class="nudge" id="nudge" hidden><span aria-hidden="true">↓</span> <span id="nudgetxt">See details below</span></button>
+  </div>
+
+  <footer>
+    <span><b>All pay is take-home pay.</b> Figures cover the 13 western states (Alaska, Arizona, California, Colorado, Hawaii, Idaho, Montana, Nevada, New Mexico, Oregon, Utah, Washington, Wyoming). Each starts from the state's median salary for the role (BLS 2025) and subtracts 2026 federal income tax, Social Security, Medicare and state income tax for a single filer taking the standard deduction. It leaves out city and county taxes, state disability and paid-leave payroll deductions (about 1% in California, Oregon and Washington), retirement contributions and health premiums, so real paychecks will be somewhat smaller. Half of workers in a state earn more than its median and half earn less. BLS doesn't split RNs by specialty, so specialty notes describe where a role usually falls, not a measured figure. Costs are tuition and required fees for the whole program, not living expenses; most are estimates built from published per-credit rates and typical public-school ranges.</span>
+    <span><b>Cost of living and value.</b> The cost-of-living adjustment uses the Bureau of Economic Analysis' 2024 Regional Price Parities (released February 2026), where an average US state is 100 (California 110.7, New Mexico 92.2). It's a statewide average; Denver costs more than Pueblo. The "raise covers school" figure divides the program cost by the after-tax raise over the job you'd have without the degree (nursing assistant pay for first nursing degrees, RN pay for graduate degrees), using the state you pick or US medians.</span>
+    <span><b>Practical details.</b> Schedule tags describe what's typical and vary a lot by employer. Experience requirements and competitiveness come from accreditors and program admissions pages; individual schools can ask for more. Licensure, NP practice authority and CRNA supervision rules are as of late 2026 and change through state legislation, so confirm with the state board before relying on them. Aid programs have limited funding, yearly deadlines and work commitments.</span>
+    <span>Practical sources: <a href="https://ncsbn.org/public-files/2025_NCLEXExamStats_Final.pdf" target="_blank" rel="noopener">NCSBN 2025 NCLEX pass rates</a> · <a href="https://www.ncsbn.org/public-files/fy25-nlc-annualreport.pdf" target="_blank" rel="noopener">Nurse Licensure Compact report</a> · <a href="https://www.beckersasc.com/asc-news/nurse-practitioner-scope-of-practice-by-state-2026-breakdown/" target="_blank" rel="noopener">NP practice authority by state (AANP data)</a> · <a href="https://www.aana.com/wp-content/uploads/2023/10/Fact-Sheet-Concerning-State-Opt-Outs-July-2026.pdf" target="_blank" rel="noopener">AANA CRNA opt-out states</a> · <a href="https://www.aacnnursing.org/news-data/all-news/schools-of-nursing-see-enrollment-increases-across-most-program-levels-signaling-strong-interest-in-nursing-careers-208" target="_blank" rel="noopener">AACN applicants turned away</a> · <a href="https://www.nsinursingsolutions.com/documents/library/nsi_national_health_care_retention_report.pdf" target="_blank" rel="noopener">NSI 2026 turnover report</a> · <a href="https://www.nursing.columbia.edu/academics/academic-programs/doctor-nursing-practice/nurse-anesthesia/faq-dnp-nurse-anesthesia-program" target="_blank" rel="noopener">CRNA ICU requirements</a> · <a href="https://www.bls.gov/ooh/healthcare/nurse-anesthetists-nurse-midwives-and-nurse-practitioners.htm" target="_blank" rel="noopener">BLS job outlook</a> · <a href="https://bhw.hrsa.gov/funding/apply-loan-repayment/nurse-corps" target="_blank" rel="noopener">HRSA NURSE Corps</a> · <a href="https://health.mo.gov/living/families/primarycare/loanrepayment/pdf/nlrp-fact-sheet.pdf" target="_blank" rel="noopener">Missouri Nurse Loan Repayment</a> · <a href="https://www.irs.gov/newsroom/updates-to-frequently-asked-questions-about-educational-assistance-programs" target="_blank" rel="noopener">IRS employer education assistance</a></span>
+    <span>Sources: <a href="https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/" target="_blank" rel="noopener">Tax Foundation 2026 state income tax rates</a> · <a href="https://www.cpapracticeadvisor.com/2025/10/09/irs-adjusts-tax-brackets-standard-deduction-for-2026/170661/" target="_blank" rel="noopener">IRS 2026 federal brackets</a> · <a href="https://www.bea.gov/sites/default/files/2026-02/rpp0226.pdf" target="_blank" rel="noopener">BEA Regional Price Parities 2024</a> · BLS OEWS 2025 state medians via AmericaByNumbers for <a href="https://americabynumbers.com/salary/registered-nurses/" target="_blank" rel="noopener">RNs</a>, <a href="https://americabynumbers.com/salary/nurse-practitioners/" target="_blank" rel="noopener">NPs</a>, <a href="https://americabynumbers.com/salary/nurse-anesthetists/" target="_blank" rel="noopener">CRNAs</a>, <a href="https://americabynumbers.com/salary/nurse-midwives/" target="_blank" rel="noopener">midwives</a>, <a href="https://americabynumbers.com/salary/licensed-practical-and-licensed-vocational-nurses/" target="_blank" rel="noopener">LPNs</a>, <a href="https://americabynumbers.com/salary/nursing-assistants/" target="_blank" rel="noopener">CNAs</a>, <a href="https://americabynumbers.com/salary/medical-and-health-services-managers/" target="_blank" rel="noopener">managers</a> and <a href="https://americabynumbers.com/salary/nursing-instructors-and-teachers-postsecondary/" target="_blank" rel="noopener">faculty</a> · <a href="https://www.cuanschutz.edu/student-finances/tuition-fees/college-of-nursing-2026-2027" target="_blank" rel="noopener">CU Anschutz tuition</a> · <a href="https://www.pikespeak.edu/programs/nursing/adn/ADN%20Cost%20Estimate%202025-2026.pdf" target="_blank" rel="noopener">Pikes Peak ADN cost</a> · <a href="https://www.ccd.edu/program/nurse-aide" target="_blank" rel="noopener">CCD nurse aide</a> · <a href="https://nau.edu/fees/upcoming-tuition/" target="_blank" rel="noopener">NAU tuition</a> · <a href="https://adminfinance.fresnostate.edu/accountingservices/students/tuitionfees.html" target="_blank" rel="noopener">Fresno State tuition</a> · <a href="https://www.uccs.edu/wue" target="_blank" rel="noopener">UCCS WUE</a></span>
+    <span>Times are typical full-time ranges and vary by school and state. Certifications usually require a set number of practice hours in the specialty before you can sit for the exam. Nurse practitioner scope depends on state law: Arizona and Colorado give NPs full practice authority, while many states require physician collaboration.</span>
+  </footer>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

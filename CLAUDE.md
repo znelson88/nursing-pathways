@@ -1,0 +1,99 @@
+# Nursing Pathways — notes for Claude Code
+
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page (in progress) will show real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona and California**.
+
+The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
+
+## Files
+
+```
+index.html          Career map page (markup only)
+schools.html        Schools and programs page (placeholder; the next big build)
+css/site.css        All styles for the map page; schools.css builds on its tokens
+css/schools.css
+js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), taxes (FED, STAX, net),
+                    cost of living (RPP), loan rates (RATE), costs (COST, STEP, ROUTES), value (VAL)
+js/app.js           Everything that touches the page: tiered map, list view, search, job details panel,
+                    filters, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
+                    LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
+js/schools.js       Schools page script
+data/schools/       Where school, program and transfer data will live (see docs/SCHOOLS_SPEC.md)
+docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
+tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
+```
+
+`data.js` and `app.js` are plain (non-module) scripts, so their top-level `const`s are shared and the
+site works from a double-clicked file as well as from a web server. Keep it that way unless there is a
+clear reason; `fetch()` of JSON needs a server, so the schools page should either serve over HTTP
+(fine once hosted) or load its data as `.js` files.
+
+## Run it
+
+- Quick look: open `index.html` in a browser.
+- Like the hosted site: `python3 -m http.server 8000` in this folder, then open http://localhost:8000
+- Test: `pip install playwright && python -m playwright install chromium && python tests/smoke.py`
+
+## Standing decisions (from the owner — keep these)
+
+1. **Facts come first.** Every number has a published source or is labeled "Estimate". Never invent a
+   figure, school, course, requirement or agreement. If something can't be confirmed, say so on the page.
+2. **All pay is take-home (after federal, FICA and state tax).** No gross/net toggle.
+3. **Cost of living** is an optional checkbox that adjusts what pay *buys*; it never changes the paycheck.
+4. **The map is a six-step tiered layout** (Start here → Nursing school → RN license → Work as an RN →
+   More school → Advanced roles). Lines appear only for the selected job, with its route drawn thicker.
+5. **Phones:** tapping a job keeps you on the map; a "↓ details below" pill appears and the details stay at
+   the bottom of the page. The owner rejected a pop-up bottom sheet and an inline summary card — don't
+   bring those back without asking.
+6. **Reset map** exists in two places (above the map, and in the job details on phones).
+7. **The old "route builder" with real schools was removed** because it confused people on the career map.
+   Real schools belong on `schools.html` only. The map page links there with one button per job.
+8. Plain language throughout, 12px minimum text, works at 200% zoom with no sideways scrolling,
+   light and dark mode, reduced-motion respected.
+
+## Data rules for the schools page
+
+- Every school fact carries `source_url` and `last_verified` (YYYY-MM-DD), and the page shows both.
+- Prefer primary sources: state boards of nursing, school catalogs and program pages, signed
+  articulation agreements, IPEDS/College Navigator. Secondary sources only to find primary ones.
+- Prerequisites, costs and pass rates change yearly — store the academic year they apply to.
+- When sources disagree or are unclear, record it in a `notes` field and show "Check with the school".
+
+## Current state
+
+- Map page: done and user-tested (3 rounds, see docs/QA_HISTORY.md). Published earlier as a Claude artifact.
+- Schools page: route view is built. It reads `?job=&state=&start=`, uses the career map's credential
+  graph (shared `to`/`byId` from data.js) to sequence credentials through the RN license, then renders a
+  numbered route of real programs with prerequisites, admission, cost, NCLEX pass rates, accreditation,
+  the connection to each next school, and a source link + "last checked" date on every record. Data lives
+  one file per state (`data/schools/co.js`, attached to `window.SCHOOLS`). **Colorado is complete** (verified
+  2026-11-05, 28 schools / 53 programs, ~27 start schools), built against the Colorado Board of Nursing's
+  authoritative approved-program lists (dpo.colorado.gov/Nursing/Education — RN Associate, RN Baccalaureate,
+  Direct-Entry MSN), which also supply the board-verified NCLEX pass rates stored on each program. It covers
+  every board-approved, accredited pre-licensure route: all ADN community colleges, every university
+  Traditional + Accelerated BSN (CU Anschutz, UCCS, UNC, CSU Pueblo, Colorado Mesa, MSU Denver, Adams State,
+  Regis, Colorado Christian, AdventHealth, Concordia-Denver, Colorado Mountain, Denver College of Nursing),
+  the one Direct-Entry MSN (CSU Pueblo 3+2), 8 RN-to-BSN completions, CU Anschutz's APRN specialties + UNC
+  FNP, and Rocky Vista's CRNA. New interim-approval programs (Red Rocks, Community College of Aurora) are
+  included and labeled. **Deliberately excluded** (private for-profit / unaccredited chains, per
+  SCHOOLS_SPEC scope): Arizona College of Nursing, Grand Canyon, Galen, Concorde, Casa Loma. Community
+  College of Denver is excluded too (no standalone ADN — only LPN + a transfer pathway). Not yet added: the
+  LPN/CNA entry tier and LPN-to-ADN bridges (a separate layer). `open_entry:true` marks a program that admits
+  anyone holding the prior credential (route offers it with no per-school agreement); same-school steps use
+  `agreements` (type "internal"); a `BSNEQ` (BSN/ABSN) start skips the RN-to-BSN step. The route walks only
+  the EDUCATION backbone (RN→BSN→grad), ignoring the career map's experience shortcuts, and shows "other
+  verified options" per step. Unconfirmed facts and source conflicts (e.g. FRCC/Lamar accreditation and GPA)
+  are shown honestly, never guessed. See docs/SCHOOLS_SPEC.md and docs/DATA_SOURCES.md.
+- Arizona: built in `data/schools/az.js` (same format; attached to `window.SCHOOLS.AZ`). 15 schools / 42
+  programs (verified 2026-11-05): all four universities' pre-licensure BSN + Accelerated BSN (ASU, UArizona,
+  NAU, GCU) with their APRN/NP specialties (FNP, PMHNP each at 4 schools; CRNA at ASU + UArizona; CNM at
+  UArizona; Adult-Gero, Peds, Women's Health) and two Direct-Entry MSNs (ASU MEPN, UArizona MEPN); the
+  MaricopaNursing consortium (shared AAS at 8 metro-Phoenix colleges) plus 8 more community-college ADNs
+  (Pima, Central Arizona, Eastern Arizona, Mohave, Yavapai, Arizona Western, Coconino, Cochise, Northland
+  Pioneer); RN-to-BSN completions (ASU, NAU, Yavapai); and Creighton's Phoenix ABSN. Arizona's signature
+  route is the **Concurrent Enrollment Program (CEP)** — earn a community-college ADN and a university BSN
+  at the same time (ASU/NAU/GCU) — noted on the Maricopa ADN. The AZ Board of Nursing list/NCLEX table sit
+  behind Cloudflare, so facts (incl. each school's own published pass rate) come from the schools' own
+  sites. Excluded (private for-profit): Arizona College of Nursing, Chamberlain, West Coast University;
+  GCU is included and labeled (its nonprofit status is contested). AZ uses many entrance exams (HESI, TEAS,
+  NLN, Kaplan). Next: California. See docs/DATA_SOURCES.md.
+- Hosting: planned online (see README.md). Not yet deployed.

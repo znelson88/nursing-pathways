@@ -1,0 +1,60 @@
+/* Schools page — builds on site.css tokens */
+.back{display:inline-block;margin-bottom:10px;color:var(--ink);font-weight:600}
+.spick{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.spick select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;width:100%}
+.spick span{font-size:13px;font-weight:600;color:var(--muted)}
+/* ---- Route view ---- */
+#route{margin-top:18px}
+.rintro{font-size:15px;line-height:1.5;color:var(--ink);margin:0 0 16px}
+.rintro b{color:var(--ink)}
+
+/* A numbered step = one program card (plus optional alternatives) */
+.step{display:grid;grid-template-columns:auto 1fr;gap:12px;margin:0 0 6px}
+.stepnum{width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:700;font-size:15px;font-family:var(--display)}
+.stepbody{min-width:0}
+.xfer{margin:0 0 8px;font-weight:600;color:var(--muted);font-size:13px}
+
+.pcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.pcard.alt{margin-top:10px;background:var(--bg)}
+.pchead{margin-bottom:8px}
+.pchead h3{margin:0;font-family:var(--display);font-size:17px;line-height:1.25}
+.pinst{margin:2px 0 0;font-size:13px;font-weight:600;color:var(--muted)}
+.fld{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:13.5px;line-height:1.45}
+.fld:first-of-type{border-top:0}
+.fl{font-weight:600;color:var(--muted)}
+.fv{min-width:0}
+.fv p{margin:0 0 5px}.fv p:last-child{margin:0}
+.prereq{margin:0;padding-left:18px;display:grid;gap:3px}
+.code{font-family:var(--mono,ui-monospace,monospace);font-size:12px;color:var(--muted)}
+.prrow{margin-bottom:3px}
+.camp{display:inline-block;min-width:118px;font-weight:600}
+.yr{display:inline-block;margin-right:8px}
+.prbasis{margin:4px 0 0;font-size:12px}
+.muted{color:var(--muted)}
+.pnote{margin:8px 0 0;font-size:12.5px;color:var(--muted);font-style:italic}
+.src{margin:10px 0 0;font-size:12px;color:var(--muted)}
+.src a{color:var(--ink);font-weight:600}
+.nosrc{color:#b4532a}
+
+/* RN-license milestone between steps */
+.milestone{display:flex;gap:10px;align-items:flex-start;margin:4px 0 4px 6px;padding:10px 12px;border-left:3px solid var(--line)}
+.milestone .mdot{color:#2e7d32;font-weight:700}
+.milestone p{margin:2px 0 0;font-size:12.5px}
+
+/* Connection between two steps (internal / open-admission / transfer) */
+.agr{background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin:6px 0 6px 42px;font-size:13px;line-height:1.45}
+.agr p{margin:0 0 5px}
+.agrtag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:5px}
+.agrcond{color:var(--muted)}
+
+.alts{margin-top:10px}
+.alts summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--ink)}
+
+.gap{background:var(--panel);border:1px solid var(--line);border-left:3px solid #c98a2b;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:14px;line-height:1.5}
+.gap p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.disclaim{margin:16px 0 0;font-size:12px;color:var(--muted);line-height:1.5}
+
+@media (max-width:560px){
+  .fld{grid-template-columns:1fr;gap:2px}
+  .agr{margin-left:0}
+}
