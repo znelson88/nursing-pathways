@@ -289,7 +289,11 @@
       html += `</div></section>`;
     });
 
-    if (r.missing) {
+    if (r.missing && (r.missing === "msn" || r.missing === "dnp")) {
+      // A generic graduate degree isn't a standalone program here — it's earned through a specialty.
+      html += `<div class="gap"><b>${esc(credLabel(r.missing))} here isn't a standalone program — it's earned through a specific advanced-practice track.</b>
+        <p>Choose a role like <b>Family NP</b>, <b>Psych-Mental Health NP</b> or <b>Nurse anesthetist</b> above to see the real ${esc(fullState(st))} programs (each is at the ${esc(credLabel(r.missing))} or doctoral level).</p></div>`;
+    } else if (r.missing) {
       html += `<div class="gap"><b>We don't have a verified ${esc(credLabel(r.missing))} program in ${esc(fullState(st))} in our data yet.</b>
         <p>The route above is confirmed as far as we can source it. The remaining step is being added. Nothing here is guessed.</p></div>`;
     } else if (!r.goalIsProgram) {
