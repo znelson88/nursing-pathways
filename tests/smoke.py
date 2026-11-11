@@ -69,15 +69,19 @@ with sync_playwright() as p:
           d.evaluate("()=>document.querySelectorAll('#route .tuit').length")==1)
     d.select_option("#startState", "AZ"); d.wait_for_timeout(300)
     check("schools: finish state follows the starting state", d.eval_on_selector("#finishState", "el=>el.value") == "AZ")
-    # "Report an error": hidden until the Google Form is configured, then pre-filled with the record and page.
+    # "Report an error": every program card links to the Google Form, pre-filled with the program and page.
     d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(300)
-    check("report link hidden while no form is configured", d.evaluate("()=>!document.querySelector('#route a.report')"))
-    d.evaluate("()=>{REPORT_FORM.url='https://docs.google.com/forms/d/e/TEST/viewform';REPORT_FORM.recordField='entry.111';REPORT_FORM.pageField='entry.222';document.getElementById('job').dispatchEvent(new Event('change'))}")
-    d.wait_for_timeout(200)
+    check("report link on every program card",
+          d.evaluate("()=>[...document.querySelectorAll('#route .pcard')].every(c=>!!c.querySelector('a.report'))"))
     href = d.evaluate("()=>{const a=document.querySelector('#route .pcard a.report');return a?a.href:''}")
+    import urllib.parse as _u
+    q = _u.parse_qs(_u.urlparse(href).query)
     check("report link pre-fills the program and the page link",
-          href.startswith("https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url") and "entry.111=" in href
-          and "Trinidad" in __import__("urllib.parse").parse.unquote_plus(href) and "entry.222=http" in href)
+          href.startswith("https://docs.google.com/forms/d/e/") and q.get("usp") == ["pp_url"]
+          and "Trinidad" in q.get("entry.1061208494", [""])[0]
+          and "schools.html" in q.get("entry.978238469", [""])[0])
+    d.goto(BASE + "/index.html"); d.wait_for_timeout(300)
+    check("career map footer has a report link", d.evaluate("()=>!document.getElementById('reportfoot').hidden && !!document.querySelector('#reportfoot a.report')"))
     # Verified Colorado route view: Trinidad State -> Family NP
     d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools route: three program steps", d.evaluate("()=>document.querySelectorAll('#route .step').length") == 3)

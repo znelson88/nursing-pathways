@@ -7,7 +7,11 @@ const narrow=()=>window.matchMedia("(max-width:860px)").matches;
 //   recordField = the entry.NNNN id of the "Which school / program / fact?" question
 //   pageField   = the entry.NNNN id of the "Page link" question
 // While url is empty, no "Report an error" links are shown anywhere.
-const REPORT_FORM = {url:"", recordField:"", pageField:""};
+const REPORT_FORM = {
+  url:"https://docs.google.com/forms/d/e/1FAIpQLScYasoSwzLK2p0QzEQ3SCkkUPwG-unLIrgRKUBv-FtAeGjQ8w/viewform",
+  recordField:"entry.1061208494",   // "Which school, program or fact?"
+  pageField:"entry.978238469"       // "Page link"
+};
 function reportURL(record){
   if(!REPORT_FORM.url) return "";
   const p=new URLSearchParams({usp:"pp_url"});
