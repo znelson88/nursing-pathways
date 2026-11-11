@@ -22,6 +22,11 @@ with sync_playwright() as p:
     d = b.new_page(viewport={"width": 1360, "height": 900}); d.on("pageerror", lambda e: errs.append(str(e)))
     d.goto(BASE + "/index.html"); d.evaluate("()=>{localStorage.clear()}"); d.reload(); d.wait_for_timeout(500)
     check("map has 64 chips", d.evaluate("()=>document.querySelectorAll('#tiers .rchip').length") == 64)
+    check("map footer is one line linking to How the numbers work", d.evaluate("()=>!!document.querySelector('footer a[href=\"how-it-works.html\"]') && document.querySelector('footer').innerText.length < 400"))
+    d.goto(BASE + "/how-it-works.html"); d.wait_for_timeout(300)
+    check("How the numbers work page loads with its sections and sources",
+          d.evaluate("()=>document.querySelectorAll('.doc h2').length>=5 && document.querySelectorAll('.doc a[href^=\"https\"]').length>=25 && document.documentElement.scrollWidth<=innerWidth"))
+    d.goto(BASE + "/index.html"); d.wait_for_timeout(300)
     check("map page has no search box, My situation or how-to bar", d.evaluate("()=>!document.getElementById('q') && !document.getElementById('pzbtn') && !document.querySelector('.viewbar')"))
     # Choices saved by earlier visits have no control any more, so they must not apply.
     d.evaluate("()=>{localStorage.setItem('np-state','CA');localStorage.setItem('np-start','adnrn');localStorage.setItem('np-adj','1')}"); d.reload(); d.wait_for_timeout(400)

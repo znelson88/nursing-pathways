@@ -82,9 +82,12 @@ for (const st of STATES.map(s => s.toUpperCase())) for (const a of (SCHOOLS[st] 
 }
 
 if (args.urls) {
-  // The career map's footer sources count too.
-  const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-  for (const m of html.matchAll(/<a\b[^>]*\bhref="(https:\/\/[^"]+)"/g)) cite(m[1].replace(/&amp;/g, "&"), "Career map footer");
+  // The site's own pages cite sources too (the career map's sources live on how-it-works.html).
+  for (const [file, label] of [["index.html", "Career map"], ["how-it-works.html", "How the numbers work page"]]) {
+    if (!fs.existsSync(path.join(ROOT, file))) continue;
+    const html = fs.readFileSync(path.join(ROOT, file), "utf8");
+    for (const m of html.matchAll(/<a\b[^>]*\bhref="(https:\/\/[^"]+)"/g)) cite(m[1].replace(/&amp;/g, "&"), label);
+  }
   console.log(JSON.stringify([...URLS].map(([url, where]) => ({ url, where })), null, 1));
   process.exit(0);
 }
