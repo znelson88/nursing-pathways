@@ -192,3 +192,17 @@ IPEDS id (`unitid`), `year`, `in_state`, `out_of_state`, `in_label`, `source_url
 - College Navigator (nces.ed.gov/collegenavigator) was used only to verify the year and in-district labels; it
   sometimes shows a high-traffic notice to automated requests, so the Scorecard API is the working source.
 - **Refresh:** re-pull each summer after Scorecard's annual update (its change log lists the June release).
+
+## Source fixes from the first monthly check (2026-11-11, issue #1)
+
+- **Missouri loan repayment:** the old Nurse Loan Repayment Program (NLRP) fact sheet and flyer are gone (404) and DHSS's
+  "Nurses can apply" post now redirects to a general page. DHSS's current program is the **Health Professional Loan
+  Repayment Program** (health.mo.gov/living/families/primarycare/loanrepayment/): Registered Nurse is eligible when
+  "Employed at a hospital or hospital-affiliated health care facility"; awards are $10,000 (associate's) or $35,000
+  (bachelor's or master's) for licensed providers, with a 2-year minimum full-time service obligation in an area of
+  defined need; nurse practitioners / APRNs are not listed. The map's "State loan repayment" text (shown on NP/MSN pages)
+  and footer link were updated to match. Application dates were "to be determined" on the page.
+- **AANA CRNA opt-out fact sheet:** returned 404 because **all of aana.com was showing a "technical outage" page** on
+  2026-11-11, not because the document moved. Kept the link and the `CRNAOPT` values unchanged; re-check once AANA is
+  back up. (Becker's ASC, the main secondary list, blocks automated readers, so it couldn't be used to cross-check.)
+
