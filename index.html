@@ -17,15 +17,8 @@
   <header>
     <span class="count" id="count"></span>
     <h1>Nursing Pathways</h1>
-    <p class="sub">Every route in nursing, from a first job as a CNA to a doctorate. Start with a question below, search for a job, or read the map step by step.</p>
+    <p class="sub">Every route in nursing, from a first job as a CNA to a doctorate. Search for a job, or read the map step by step.</p>
   </header>
-
-  <div class="ask" role="group" aria-label="Common questions">
-    <button type="button" data-q="pay">What pays most?<small>Jobs ranked by take-home pay</small></button>
-    <button type="button" data-q="fast">Fastest way to start earning<small>Shortest time from day one</small></button>
-    <button type="button" data-q="cheap">Cheapest way in<small>Lowest school cost</small></button>
-    <button type="button" data-q="sched">Fits my schedule<small>No nights, Mon–Fri, remote</small></button>
-  </div>
 
   <div class="tools">
     <div class="search">
@@ -34,7 +27,6 @@
     </div>
     <button type="button" id="pzbtn" class="pzbtn" aria-expanded="false" aria-controls="sheet">My situation<span class="pzn" id="pzn" hidden></span></button>
   </div>
-  <div class="filters" id="filters"><span class="plabel">Show only jobs that are</span><div class="fit" id="fit"></div></div>
   <div class="active" id="active"></div>
   <div class="sheetback" id="sheetback" hidden></div>
   <section class="sheet" id="sheet" hidden aria-label="My situation">
@@ -52,23 +44,18 @@
         <p class="shint">Shows what the pay buys compared with an average US state. It doesn't change your actual paycheck.</p>
       </div>
     </div>
-    <div class="sfoot"><button type="button" id="clearall">Clear filters and starting point</button></div>
+    <div class="sfoot"><button type="button" id="clearall">Clear starting point</button></div>
   </section>
   <div class="nextsteps" id="nextsteps" aria-live="polite"></div>
 
   <div class="viewbar">
-    <div class="seg" role="radiogroup" aria-label="View">
-      <button type="button" role="radio" data-view="map" aria-checked="true">Map</button>
-      <button type="button" role="radio" data-view="list" aria-checked="false">List</button>
-    </div>
-    <button type="button" class="resetmap" id="resetmap" hidden>↺ Reset map</button>
     <p class="howto" id="howto">Read top to bottom: start, school, license, then jobs. Tap any job to draw its lines to where it comes from and where it leads. Lines show common next steps, not required ones; <b>dashed lines</b> need work experience first.</p>
   </div>
   <div class="key" id="key" aria-hidden="true"></div>
   <div class="layout">
     <div class="mapwrap" id="mapwrap">
+      <button type="button" class="resetmap" id="resetmap" hidden>↺ Reset map</button>
       <div class="tmap" id="map"><svg class="tlines" id="tlines" aria-hidden="true"></svg><div id="tiers"></div></div>
-      <div class="listv" id="list" hidden></div>
     </div>
     <aside id="panel" aria-live="polite"></aside>
     <button type="button" class="nudge" id="nudge" hidden><span aria-hidden="true">↓</span> <span id="nudgetxt">See details below</span></button>

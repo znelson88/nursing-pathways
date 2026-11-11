@@ -220,26 +220,7 @@ const LIFE = {
   scientist:"mr"
 };
 const LT = {n:"Nights common", w:"Weekends & holidays", c:"On call", m:"Mostly Mon–Fri", r:"Remote possible", p:"Physically demanding"};
-const FITS = [
-  {k:"nonights", n:"No nights", ok:t=>!t.includes("n")},
-  {k:"mf", n:"Mostly Mon–Fri", ok:t=>t.includes("m")},
-  {k:"remote", n:"Remote possible", ok:t=>t.includes("r")},
-  {k:"easy", n:"Easier on the body", ok:t=>!t.includes("p")}
-];
-const fitOn = new Set();
-function applyFilters(){
-  const fits=[...fitOn].map(k=>FITS.find(f=>f.k===k));
-  all.forEach(n=>{
-    const t=LIFE[n.id];
-    const pass=n.g==="hub"||!fits.length||t===undefined||fits.every(f=>f.ok(t));
-    nodeEls[n.id].classList.toggle("fout",!pass); n._out=!pass;
-  });
-  fitEl.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",fitOn.has(b.dataset.k)));
-  renderActive(); if(typeof view!=="undefined"){if(view==="list")renderList(); else drawLines();}
-}
-const fitEl=document.getElementById("fit");
-FITS.forEach(f=>{const b=document.createElement("button");b.type="button";b.textContent=f.n;b.dataset.k=f.k;b.setAttribute("aria-pressed","false");
-  b.onclick=()=>{fitOn.has(f.k)?fitOn.delete(f.k):fitOn.add(f.k);applyFilters();};fitEl.appendChild(b);});
+function applyFilters(){ renderActive(); drawLines(); }
 function lifeHTML(n){
   const t=LIFE[n.id]; if(t===undefined||t==="")return "";
   const on=Object.keys(LT).filter(k=>t.includes(k));
@@ -472,7 +453,7 @@ pzbtn.onclick=()=>sheet.hidden?openSheet():closeSheet();
 document.getElementById("sheetdone").onclick=closeSheet;
 sheetback.onclick=closeSheet;
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!sheet.hidden)closeSheet();});
-function clearAll(){fitOn.clear();startKey="none";startSel.value="none";try{localStorage.setItem("np-start","none")}catch(e){}
+function clearAll(){startKey="none";startSel.value="none";try{localStorage.setItem("np-start","none")}catch(e){}
   renderStart(false);
 applyFilters();select("rn");unselect();drawLines();syncReset();}
 document.getElementById("clearall").onclick=clearAll;
@@ -481,11 +462,10 @@ function renderActive(){
   const items=[];
   if(startKey!=="none")items.push({t:`Starting as <b>${STARTS[startKey].n}</b>`,x:()=>{startKey="none";startSel.value="none";try{localStorage.setItem("np-start","none")}catch(e){}renderStart(false);renderActive();}});
   items.push({t:pickState!=="none"?`State: <b>${STATES[pickState]}</b>`:`State: <b>not set (US averages)</b>`});
-  if(adj)items.push({t:`Cost of living adjusted`,x:()=>{adj=false;adjBox.checked=false;try{localStorage.setItem("np-adj","0")}catch(e){}select(curId);renderActive();if(view==="list")renderList();}});
-  fitOn.forEach(k=>{const f=FITS.find(x=>x.k===k);items.push({t:f.n,x:()=>{fitOn.delete(k);applyFilters();}});});
-  const nf=fitOn.size+(startKey!=="none"?1:0);
+  if(adj)items.push({t:`Cost of living adjusted`,x:()=>{adj=false;adjBox.checked=false;try{localStorage.setItem("np-adj","0")}catch(e){}select(curId);renderActive();}});
+  const nf=startKey!=="none"?1:0;
   const pzn=document.getElementById("pzn"); pzn.hidden=!nf; pzn.textContent=nf;
-  el.innerHTML=items.map((it,i)=>`<span class="achip">${it.t}${it.x?`<button type="button" class="x" data-i="${i}" aria-label="Remove">×</button>`:`<button type="button" class="x" data-open aria-label="Change">✎</button>`}</span>`).join("")+(nf?`<button type="button" class="aclear">Clear filters</button>`:"")+(fitOn.size&&view==="map"?`<span class="fnote">Faded jobs don't match your filters.</span>`:"");
+  el.innerHTML=items.map((it,i)=>`<span class="achip">${it.t}${it.x?`<button type="button" class="x" data-i="${i}" aria-label="Remove">×</button>`:`<button type="button" class="x" data-open aria-label="Change">✎</button>`}</span>`).join("")+(nf?`<button type="button" class="aclear">Clear</button>`:"");
   el.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>items[+b.dataset.i].x());
   el.querySelectorAll("[data-open]").forEach(b=>b.onclick=openSheet);
   const c=el.querySelector(".aclear"); if(c)c.onclick=clearAll;
@@ -495,74 +475,17 @@ function renderActive(){
 const stSel=document.getElementById("st"); let curId="rn";
 stSel.innerHTML=`<option value="none">Not set (use US averages)</option>`+Object.entries(STATES).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
 stSel.value=pickState;
-stSel.addEventListener("change",()=>{pickState=stSel.value;try{localStorage.setItem("np-state",pickState)}catch(e){}select(curId);renderActive();if(view==="list")renderList();});
+stSel.addEventListener("change",()=>{pickState=stSel.value;try{localStorage.setItem("np-state",pickState)}catch(e){}select(curId);renderActive();});
 
 const adjBox=document.getElementById("adj"); adjBox.checked=adj;
-adjBox.addEventListener("change",()=>{adj=adjBox.checked;try{localStorage.setItem("np-adj",adj?"1":"0")}catch(e){}select(curId);renderActive();if(view==="list")renderList();});
+adjBox.addEventListener("change",()=>{adj=adjBox.checked;try{localStorage.setItem("np-adj",adj?"1":"0")}catch(e){}select(curId);renderActive();});
 
 // ---------- Map / List views ----------
-const map=document.getElementById("map"), listEl=document.getElementById("list"), mapwrap=document.getElementById("mapwrap");
-let view="map"; try{const v=localStorage.getItem("np-view"); if(v==="list"||v==="map")view=v;}catch(e){}
-let sortKey="pay";
+const map=document.getElementById("map"), mapwrap=document.getElementById("mapwrap");
+const view="map"; try{localStorage.removeItem("np-view")}catch(e){}
 function focusNode(id){ if(view!=="map")return; const e=nodeEls[id]; if(!e)return; const r=e.getBoundingClientRect();
   if(r.top<70||r.bottom>innerHeight-20) e.scrollIntoView({behavior:"smooth",block:"center"}); }
-function setView(v){
-  view=v; try{localStorage.setItem("np-view",v)}catch(e){}
-  map.hidden=v!=="map"; listEl.hidden=v!=="list"; if(typeof syncReset==="function")syncReset();
-  document.querySelectorAll("[data-view]").forEach(b=>b.setAttribute("aria-checked",b.dataset.view===v));
-  document.getElementById("howto").innerHTML=v==="map"
-    ?"Read top to bottom: start, school, license, then jobs. Tap any job to draw its lines to where it comes from and where it leads. Lines show common next steps, not required ones; <b>dashed lines</b> need work experience first."
-    :"Every nursing job in one list. Sort it, then tap a job for details. Switch to <b>Map</b> to see how the steps connect.";
-  document.getElementById("key").hidden=v!=="map";
-  if(v==="list")renderList(); else drawLines();
-}
-document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>setView(b.dataset.view));
-const CAREER=all.filter(n=>["bedside","beyond","lead","aprn"].includes(n.g)||["cna","lpn","rn","scientist"].includes(n.id));
-function roleStats(n){
-  const p=P[n.id]||((n.g==="bedside"||n.g==="beyond")?["rn",""]:null);
-  const key=p&&p[0], d=key&&PAY[key];
-  let pay=null;
-  if(d){const st=(pickState!=="none"&&d.st[pickState])?pickState:null; pay=st?val(st,d.st[st]):net(null,d.nat);}
-  const R=routesFor(n); let cheap=null,time=null;
-  if(R){const rs=R.map(r=>({n:r.n,lo:tot(r.steps,0),hi:tot(r.steps,1),yl:yrs(r.steps,0),yh:yrs(r.steps,1)}));
-    cheap=rs.reduce((a,b)=>(b.lo+b.hi<a.lo+a.hi?b:a));
-    time={yl:Math.min(...rs.map(r=>r.yl)),yh:Math.min(...rs.map(r=>r.yh))};}
-  return {pay,rnlike:key==="rn"&&n.id!=="rn",cheap,time};
-}
-function renderList(){
-  const fits=[...fitOn].map(k=>FITS.find(f=>f.k===k));
-  const big=1e12;
-  let rows=CAREER.map(n=>({n,s:roleStats(n)})).filter(({n})=>!fits.length||(LIFE[n.id]!==undefined&&fits.every(f=>f.ok(LIFE[n.id]))));
-  if(sortKey==="pay")rows.sort((a,b)=>((b.s.pay??-1)-(a.s.pay??-1))||a.n.label.localeCompare(b.n.label));
-  if(sortKey==="fast")rows.sort((a,b)=>((a.s.time?a.s.time.yl:big)-(b.s.time?b.s.time.yl:big))||((a.s.time?a.s.time.yh:big)-(b.s.time?b.s.time.yh:big)));
-  if(sortKey==="cheap")rows.sort((a,b)=>((a.s.cheap?a.s.cheap.lo:big)-(b.s.cheap?b.s.cheap.lo:big))||((a.s.cheap?a.s.cheap.hi:big)-(b.s.cheap?b.s.cheap.hi:big)));
-  const where=pickState!=="none"?`${STATES[pickState]}, after taxes`:"the US (federal taxes only; pick a state for state taxes)";
-  listEl.innerHTML=`<div class="lhead">
-      <div class="seg" role="radiogroup" aria-label="Sort jobs">${[["pay","Highest take-home pay"],["fast","Fastest to start"],["cheap","Cheapest school"]].map(([k,t])=>`<button type="button" role="radio" aria-checked="${k===sortKey}" data-sort="${k}">${t}</button>`).join("")}</div>
-      <span class="lcount">${rows.length} jobs${fits.length?" match your filters":""}</span></div>
-    <p class="note">Typical take-home pay in ${where}${adj?", adjusted for cost of living":""}; new graduates start lower. Jobs that BLS doesn't track separately are grouped under RN pay. Time and school cost are for the cheapest route from day one.</p>
-    ${listRows(rows)}`;
-  listEl.querySelectorAll("[data-sort]").forEach(b=>b.onclick=()=>{sortKey=b.dataset.sort;renderList();});
-  listEl.querySelectorAll(".lrow").forEach(b=>b.onclick=()=>{select(b.dataset.id);listEl.querySelectorAll(".lrow").forEach(r=>r.classList.toggle("cur",r===b));openPanel();});
-}
-function rowHTML(n,s,rank){return `<button type="button" class="lrow${n.id===curId?" cur":""}" role="listitem" data-id="${n.id}" style="--c:${col(n.g)}">
-      <span class="lrank">${rank}</span>
-      <span class="lname"><i aria-hidden="true"></i><b>${n.label}${(from[n.id]||[]).some(f=>GATES[f+">"+n.id])?` <span class="lgate" title="Needs work experience first" aria-label="needs work experience first">⏳</span>`:""}</b><small>${GROUPS[n.g].name}</small></span>
-      <span class="lcell"><small>Take-home</small>${s.pay!=null?`<b>${money(s.pay)}/yr</b>${s.rnlike?"<em>≈ RN pay</em>":""}`:"<b>Varies</b>"}</span>
-      <span class="lcell"><small>Time</small><b>${s.time?fyr(s.time.yl,s.time.yh):"Varies"}</b></span>
-      <span class="lcell"><small>School cost</small><b>${s.cheap?`${money(s.cheap.lo)}–${money(s.cheap.hi)}`:"Varies"}</b></span>
-      ${LIFE[n.id]?`<span class="lsched">${Object.keys(LT).filter(k=>LIFE[n.id].includes(k)).map(k=>LT[k]).join(" · ")}</span>`:""}
-    </button>`;}
-function listRows(rows){
-  if(sortKey!=="pay")return `<div class="lrows" role="list">${rows.map(({n,s},i)=>rowHTML(n,s,i+1)).join("")}</div>`;
-  const own=rows.filter(r=>!r.s.rnlike), tied=rows.filter(r=>r.s.rnlike).sort((a,b)=>a.n.label.localeCompare(b.n.label));
-  const rnRow=own.find(r=>r.n.id==="rn"), rnPay=rnRow?rnRow.s.pay:(tied[0]&&tied[0].s.pay);
-  let html=`<div class="lrows" role="list">`, k=0, placed=!tied.length;
-  const group=()=>`</div><details class="lgroup"><summary><span><b>${tied.length} more jobs paid like RNs</b><small>BLS doesn't track these specialties separately, so they share the RN figure of ${money(rnPay)}/yr. Tap to see them.</small></span></summary><div class="lrows" role="list">${tied.map(({n,s})=>rowHTML(n,s,"=")).join("")}</div></details><div class="lrows" role="list">`;
-  own.forEach(r=>{html+=rowHTML(r.n,r.s,++k); if(!placed&&r.n.id==="rn"){html+=group();placed=true;}});
-  if(!placed)html+=group();
-  return html+`</div>`;
-}
+function setView(){ syncReset(); drawLines(); }
 
 // ---------- Phone details sheet ----------
 let lastFocus=null;
@@ -581,28 +504,9 @@ function unselect(){svg.classList.remove("sel");all.forEach(m=>nodeEls[m.id].cla
 function resetMap(){select("rn");unselect();drawLines();nudge.hidden=true;try{localStorage.setItem("np-sel","rn")}catch(e){}
   syncReset(); mapwrap.scrollIntoView({behavior:smooth(),block:"start"}); }
 resetBtn.onclick=resetMap;
-const filtersEl=document.getElementById("filters"), filtersHome=document.createComment("filters"), sgridEl=document.querySelector("#sheet .sgrid");
-filtersEl.before(filtersHome);
-const smallMQ=matchMedia("(max-width:640px)");
-function placeFilters(){ if(smallMQ.matches){if(filtersEl.parentElement!==sgridEl){sgridEl.appendChild(filtersEl);filtersEl.classList.add("sblock");}}
-  else if(filtersEl.parentElement===sgridEl){filtersHome.after(filtersEl);filtersEl.classList.remove("sblock");} }
-placeFilters(); smallMQ.addEventListener?smallMQ.addEventListener("change",placeFilters):smallMQ.addListener(placeFilters);
-function backUp(){ const t=(lastFocus&&lastFocus.isConnected&&lastFocus!==document.body)?lastFocus:(view==="list"?listEl:mapwrap);
-  t.scrollIntoView({behavior:smooth(),block:t===mapwrap||t===listEl?"start":"center"}); if(t.focus)t.focus({preventScroll:true}); }
+function backUp(){ const t=(lastFocus&&lastFocus.isConnected&&lastFocus!==document.body)?lastFocus:mapwrap;
+  t.scrollIntoView({behavior:smooth(),block:t===mapwrap?"start":"center"}); if(t.focus)t.focus({preventScroll:true}); }
 
-// ---------- Question buttons ----------
-function runQuestion(k){
-  if(k==="sched"){
-    // "Fits my schedule" surfaces the existing schedule filters (on phones they live in the sheet).
-    if(smallMQ.matches)openSheet();
-    document.getElementById("filters").scrollIntoView({behavior:"smooth",block:"center"});
-    setTimeout(()=>{const b=fitEl.querySelector("button");if(b)b.focus({preventScroll:true});},300);
-    return;
-  }
-  if(k==="pay"||k==="fast"||k==="cheap")sortKey=k;
-  setView("list"); mapwrap.scrollIntoView({behavior:"smooth",block:"start"});
-}
-document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>runQuestion(b.dataset.q));
 
 // ---------- Search with everyday words ----------
 const SYN={
@@ -699,30 +603,25 @@ function runTopic(tp){
   else if(tp.k==="state"){closeRes();q.value="";const was=svg.classList.contains("sel");stSel.value=tp.code;stSel.dispatchEvent(new Event("change"));if(!was){unselect();drawLines();syncReset();}openSheet();}
   else if(tp.k==="nostate"){closeRes();q.value="";openSheet();}
 }
-const INTENT=[[/pay|money|salary|earn|make|income|wage|rich|highest|sueldo|salario|gana|ganan|cuanto/,"pay","See jobs ranked by take-home pay"],[/fast|quick|soon|short|fastest/,"fast","See the fastest ways to start earning"],
-  [/cheap|cost|afford|price|tuition|free/,"cheap","See the cheapest ways in"],[/night|schedule|weekend|hours|shift|day job|part.?time|prn|per.?diem|flexib/,"sched","Pick a schedule and see jobs that fit (most nursing jobs offer part-time or per-diem shifts)"]];
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const q=document.getElementById("q"), qres=document.getElementById("qres");
 function closeRes(){qres.hidden=true;q.setAttribute("aria-expanded","false");}
-function pickRole(id){closeRes();q.value="";select(id);if(view==="map")focusNode(id);else renderList();openPanel();}
+function pickRole(id){closeRes();q.value="";select(id);focusNode(id);openPanel();}
 function showRes(){
   const v=q.value, t=v.trim(); if(!t){closeRes();return;}
   const tps=topicsFor(t), note=tps.find(x=>x.k==="note");
   let items=searchRoles(v); if(note)items=[...note.ids.map(i=>byId[i]),...items.filter(n=>!note.ids.includes(n.id))].slice(0,8);
-  const intent=INTENT.find(([re])=>re.test(t.toLowerCase()));
   let html=tps.map((tp,i)=>tp.k==="note"?`<div class="qnone">${tp.t}</div>`:`<button type="button" role="option" class="qopt qintent" data-topic="${i}">${tp.t} →</button>`).join("");
-  if(intent)html+=`<button type="button" role="option" class="qopt qintent" data-intent="${intent[1]}">${intent[2]} →</button>`;
   html+=items.map(n=>`<button type="button" role="option" class="qopt" data-id="${n.id}" style="--c:${col(n.g)}"><i aria-hidden="true"></i><span>${n.label}</span><small>${GROUPS[n.g].name}</small></button>`).join("");
-  if(!items.length&&!intent&&!tps.length)html=`<div class="qnone">No match for “${esc(t)}”. Try a job like <b>nurse practitioner</b>, <b>ER</b> or <b>school nurse</b>, or <button type="button" class="linkbtn" data-intent="list">browse every job in the list</button>.</div>`;
+  if(!items.length&&!tps.length)html=`<div class="qnone">No match for “${esc(t)}”. Try a job like <b>nurse practitioner</b>, <b>ER</b> or <b>school nurse</b>, or tap any job on the map.</div>`;
   qres.innerHTML=html; qres.hidden=false; q.setAttribute("aria-expanded","true");
   qres.querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>pickRole(b.dataset.id));
   qres.querySelectorAll("[data-topic]").forEach(b=>b.onclick=()=>runTopic(tps[+b.dataset.topic]));
-  qres.querySelectorAll("[data-intent]").forEach(b=>b.onclick=()=>{closeRes();q.value="";runQuestion(b.dataset.intent);});
 }
 q.addEventListener("input",showRes);
 q.addEventListener("focus",()=>{if(q.value.trim())showRes();});
 q.addEventListener("keydown",e=>{
-  if(e.key==="Enter"){e.preventDefault();const f=qres.querySelector("[data-topic],[data-id],[data-intent]");if(f)f.click();}
+  if(e.key==="Enter"){e.preventDefault();const f=qres.querySelector("[data-topic],[data-id]");if(f)f.click();}
   else if(e.key==="ArrowDown"){const f=qres.querySelector("button");if(f){e.preventDefault();f.focus();}}
   else if(e.key==="Escape")closeRes();});
 qres.addEventListener("keydown",e=>{const bs=[...qres.querySelectorAll("button")],i=bs.indexOf(document.activeElement);
@@ -828,7 +727,7 @@ select(start);
 if(start==="rn"){unselect();}
 renderStart(false);
 applyFilters();
-setView(view);syncReset();
+setView();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>drawLines());
 
 // "Report an error" in the footer (shown only once REPORT_FORM in data.js has the form's address).

@@ -13,8 +13,8 @@ css/site.css        All styles for the map page; schools.css builds on its token
 css/schools.css
 js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), taxes (FED, STAX, net),
                     cost of living (RPP), loan rates (RATE), costs (COST, STEP, ROUTES), value (VAL)
-js/app.js           Everything that touches the page: tiered map, list view, search, job details panel,
-                    filters, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
+js/app.js           Everything that touches the page: tiered map, search, job details panel,
+                    "My situation" sheet, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
 data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js
@@ -56,11 +56,14 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
 5. **Phones:** tapping a job keeps you on the map; a "↓ details below" pill appears and the details stay at
    the bottom of the page. The owner rejected a pop-up bottom sheet and an inline summary card — don't
    bring those back without asking.
-6. **Reset map** exists in two places (above the map, and in the job details on phones).
+6. **Reset map** exists in two places (pinned to the map's top-right corner, and in the job details on phones).
 7. **The old "route builder" with real schools was removed** because it confused people on the career map.
    Real schools belong on `schools.html` only. The map page links there with one button per job.
 8. Plain language throughout, 12px minimum text, works at 200% zoom with no sideways scrolling,
    light and dark mode, reduced-motion respected.
+9. **The map is the focus.** The owner removed the four quick-question buttons ("What pays most?" etc.), the
+   "Show only jobs that are…" schedule filters and the Map/List toggle with the list view (2026-11-11). Don't bring
+   them back without asking. Each job's details still show its schedule tags and pay.
 
 ## Data rules for the schools page
 

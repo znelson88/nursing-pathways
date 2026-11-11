@@ -156,6 +156,8 @@ aside#panel{min-width:0;overflow-wrap:anywhere}aside#panel .ptop,aside#panel .ta
 @media (max-width:300px){.glance{grid-template-columns:minmax(0,1fr)}}
 .pbtns{display:inline-flex;gap:6px;flex:none}.preset{display:none;font-size:13px;padding:5px 10px;white-space:nowrap}@media (max-width:860px){.preset{display:inline-flex}}
 .resetmap{font-size:14px;padding:7px 12px;white-space:nowrap}
+/* Pinned to the map's top-right corner so showing/hiding it never moves the page */
+.mapwrap>.resetmap{position:absolute;top:10px;right:10px;z-index:3;margin:0}
 .nudge{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:40;display:inline-flex;align-items:center;gap:6px;max-width:calc(100vw - 32px);padding:11px 18px;border-radius:999px;background:var(--ink);color:var(--panel);border:0;font-size:15px;font-weight:600;box-shadow:0 6px 20px rgba(0,0,0,.28);animation:nudgein .25s ease-out}
 .nudge span:first-child{display:inline-block;animation:bob 1.2s ease-in-out infinite}
 .nudge #nudgetxt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

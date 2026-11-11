@@ -28,3 +28,8 @@ pill plus Reset map buttons.
 ## Ideas not done yet
 - Compare two jobs side by side (deferred by the owner in round 2).
 - Inline summary under a tapped job on phones (declined in round 3).
+
+## Owner simplification (2026-11-11)
+Removed the question buttons, the schedule filters and the list view (with its Map/List toggle) so the page leads
+with the map. Search no longer offers "see jobs ranked by…" links. Reset map moved onto the map's top-right corner
+so it can't shift the page when it appears.
