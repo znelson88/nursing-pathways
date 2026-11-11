@@ -35,8 +35,28 @@ with sync_playwright() as p:
     d.goto(BASE + "/schools.html?job=enp&state=CO"); d.wait_for_timeout(400)
     check("schools: no-data job shows honest 'not verified yet' gap (no made-up program)",
           "don't have a verified" in d.inner_text("#route"))
-    # Verified Colorado route view: Trinidad State -> Family NP
+    # No school picked yet -> "Help me choose" compares every starting school in the state.
     d.goto(BASE + "/schools.html?job=fnp&state=CO"); d.wait_for_timeout(400)
+    check("schools compare: opens on 'help me choose' with a card per Colorado start school",
+          d.eval_on_selector("#startSchool", "el=>el.value") == "" and d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 20)
+    check("schools compare: school list grouped by type", d.evaluate("()=>document.querySelectorAll('#startSchool optgroup').length") >= 2)
+    check("schools compare: no broken numbers", not any(x in d.inner_text("#route") for x in ["NaN", "Infinity", "undefined"]))
+    check("schools compare: sorted by pass rate, highest first",
+          d.evaluate("()=>{const v=[...document.querySelectorAll('#route .ccard')].map(c=>{const m=(c.querySelector('.cstats div:nth-child(3) dd').innerText.match(/\d+(?=%)/g)||[]).map(Number);return m.length?m.reduce((a,b)=>a+b)/m.length:-1});return v.every((x,i)=>i===0||x<=v[i-1])}"))
+    d.select_option('[data-cmp="type"]', "cc"); d.wait_for_timeout(200)
+    check("schools compare: 'Community colleges' filter shows only community colleges",
+          d.evaluate("()=>[...document.querySelectorAll('#route .ccard .pinst')].every(p=>/Community college/.test(p.textContent))"))
+    d.select_option('[data-cmp="type"]', "all"); d.wait_for_timeout(200)
+    d.click('#route [data-pick="trinidad-state"]'); d.wait_for_timeout(300)
+    check("schools compare: 'See this route' picks the school", d.eval_on_selector("#startSchool", "el=>el.value") == "trinidad-state")
+    check("schools route: at-a-glance summary links to every step",
+          d.evaluate("()=>document.querySelectorAll('#route .glance a').length===document.querySelectorAll('#route .step').length && document.querySelectorAll('#route .step').length>0"))
+    d.click("#route .tocmp"); d.wait_for_timeout(300)
+    check("schools route: 'Compare all' returns to the comparison", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 20)
+    d.goto(BASE + "/schools.html?job=rn&state=CO&school=pikes-peak"); d.wait_for_timeout(300)
+    check("schools: a full-program cost isn't labeled per credit", "$19,733/credit" not in d.inner_text("#route"))
+    # Verified Colorado route view: Trinidad State -> Family NP
+    d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools route: three program steps", d.evaluate("()=>document.querySelectorAll('#route .step').length") == 3)
     check("schools route: starts at Trinidad ADN", "Associate Degree Nursing" in d.inner_text("#route"))
     check("schools route: RN-license milestone shown", d.evaluate("()=>!!document.querySelector('#route .milestone')"))
@@ -45,11 +65,11 @@ with sync_playwright() as p:
     check("schools route: every program card cites a source",
           d.evaluate("()=>[...document.querySelectorAll('#route .pcard')].every(c=>!!c.querySelector('.src a'))"))
     # CRNA now reaches a real, verified program (Rocky Vista), not the 'not verified' gap.
-    d.goto(BASE + "/schools.html?job=crna&state=CO"); d.wait_for_timeout(400)
+    d.goto(BASE + "/schools.html?job=crna&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools route: CRNA reaches the Rocky Vista program", "Nurse Anesthesia Practice" in d.inner_text("#route"))
     # Starting at a 4-year BSN school keeps the selection and skips the RN-to-BSN step.
     d.goto(BASE + "/schools.html?job=fnp&state=CO"); d.wait_for_timeout(300)
-    d.select_option("#startSchool", label="Colorado Mesa University"); d.wait_for_timeout(300)
+    d.select_option("#startSchool", "colorado-mesa"); d.wait_for_timeout(300)
     check("schools route: BSN start keeps its dropdown selection",
           d.eval_on_selector("#startSchool", "el=>el.value") == "colorado-mesa")
     check("schools route: BSN start skips the RN-to-BSN step",
@@ -71,19 +91,19 @@ with sync_playwright() as p:
     d.goto(BASE + "/schools.html?job=icu&state=CO&start=adnrn"); d.wait_for_timeout(400)
     check("schools start=adnrn + ICU goal: says no more school needed", "No more school needed" in d.inner_text("#route"))
     d.goto(BASE + "/schools.html?job=fnp&state=CO&start=bach"); d.wait_for_timeout(400)
-    check("schools start=bach: route begins with an accelerated or direct-entry program",
-          d.evaluate("()=>/Accelerated|Direct|Entry|Master/i.test(document.querySelector('#route .step .pchead h3').textContent)"))
+    check("schools start=bach: only schools with an accelerated or direct-entry start are compared",
+          d.evaluate("()=>{const c=[...document.querySelectorAll('#route .ccard')];return c.length>0 && c.every(x=>/Accelerated BSN|Direct-entry MSN/.test(x.innerText))}"))
     d.goto(BASE + "/schools.html?job=fnp&state=CO&start=lpn"); d.wait_for_timeout(400)
     check("schools start=lpn: honest note about bridge programs", "LPN-to-RN bridge" in d.inner_text("#route"))
     check("schools header names all covered states", "California" in (d.text_content("#covered") or ""))
     # Arizona dataset loads and routes (separate per-state file)
-    d.goto(BASE + "/schools.html?job=fnp&state=AZ"); d.wait_for_timeout(400)
+    d.goto(BASE + "/schools.html?job=fnp&state=AZ&school=asu"); d.wait_for_timeout(400)
     check("schools AZ: dataset loaded with many start schools",
           d.evaluate("()=>document.querySelectorAll('#startSchool option').length") >= 10)
     check("schools AZ: route renders program steps", d.evaluate("()=>document.querySelectorAll('#route .step').length") >= 2)
     check("schools AZ: reaches an FNP program", "Family Nurse Practitioner" in d.inner_text("#route"))
     d.goto(BASE + "/schools.html?job=pmhnp&state=AZ"); d.wait_for_timeout(300)
-    d.select_option("#startSchool", label="Pima Community College"); d.wait_for_timeout(300)
+    d.select_option("#startSchool", "pima"); d.wait_for_timeout(300)
     check("schools AZ: ADN start reaches a Psych NP program",
           "Psychiatric Mental Health" in d.inner_text("#route") and d.evaluate("()=>!!document.querySelector('#route .milestone')"))
     # A job offered in no covered state is still honest: no made-up program, and it names coverage.
@@ -101,11 +121,12 @@ with sync_playwright() as p:
     d.select_option("#startState", "CO"); d.wait_for_timeout(300)
     co_starts = d.evaluate("()=>document.querySelectorAll('#startSchool option').length")
     check("schools: changing starting state cascades the school list", co_starts >= 2 and co_starts != az_starts)
+    d.select_option("#startSchool", "trinidad-state"); d.wait_for_timeout(300)
     check("schools: CO start builds a Colorado route with a state badge",
           d.evaluate("()=>document.querySelectorAll('#route .step').length") >= 2 and "Colorado" in d.inner_text("#route"))
     check("schools: program cards carry a state badge", d.evaluate("()=>!!document.querySelector('#route .pcard .pstate')"))
     # Cross-state transfer: start in Colorado, finish in Arizona -> a handoff after the RN license.
-    d.goto(BASE + "/schools.html?job=fnp&state=CO&finish=AZ"); d.wait_for_timeout(400)
+    d.goto(BASE + "/schools.html?job=fnp&state=CO&finish=AZ&school=trinidad-state"); d.wait_for_timeout(400)
     rt = d.inner_text("#route")
     check("schools: cross-state plan shows a move-to-finish handoff",
           d.evaluate("()=>!!document.querySelector('#route .agr.handoff')"))
@@ -113,7 +134,7 @@ with sync_playwright() as p:
     check("schools: after the handoff a program lands in the finish state (Arizona)",
           d.evaluate("()=>[...document.querySelectorAll('#route .step .pcard .pstate')].some(b=>b.textContent.trim()==='Arizona')"))
     # California dataset (wave 1): loads, lists start schools, and routes.
-    d.goto(BASE + "/schools.html?job=fnp&state=CA"); d.wait_for_timeout(400)
+    d.goto(BASE + "/schools.html?job=fnp&state=CA&school=csulb"); d.wait_for_timeout(400)
     check("schools CA: dataset loaded with start schools",
           d.evaluate("()=>document.querySelectorAll('#startSchool option').length") >= 8)
     check("schools CA: route renders program steps and the RN-license milestone",
@@ -121,12 +142,12 @@ with sync_playwright() as p:
     check("schools CA: program cards carry a California state badge",
           d.evaluate("()=>[...document.querySelectorAll('#route .step .pcard .pstate')].some(b=>b.textContent.trim()==='California')"))
     # California is NOT a compact state: a Colorado->California plan must flag licensure by endorsement.
-    d.goto(BASE + "/schools.html?job=fnp&state=CO&finish=CA"); d.wait_for_timeout(400)
+    d.goto(BASE + "/schools.html?job=fnp&state=CO&finish=CA&school=trinidad-state"); d.wait_for_timeout(400)
     ca_rt = d.inner_text("#route")
     check("schools CA: non-compact hand-off flags licensure by endorsement",
           d.evaluate("()=>!!document.querySelector('#route .agr.handoff')") and "endorsement" in ca_rt)
     # Wave 2: California now resolves NP goals in-state (last step lands in California, not out of state).
-    d.goto(BASE + "/schools.html?job=fnp&state=CA&finish=CA"); d.wait_for_timeout(400)
+    d.goto(BASE + "/schools.html?job=fnp&state=CA&finish=CA&school=csulb"); d.wait_for_timeout(400)
     check("schools CA: FNP goal resolves to an in-state California program",
           d.evaluate("()=>{const b=[...document.querySelectorAll('#route .step .pcard .pstate')];return b.length && b[b.length-1].textContent.trim()==='California'}")
           and d.evaluate("()=>/Family Nurse Practitioner/.test(document.querySelector('#route').innerText)"))

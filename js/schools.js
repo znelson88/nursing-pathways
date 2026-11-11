@@ -53,6 +53,16 @@
     bsn: new Set(["cna", "lpn", "diploma", "adn", "rn", "bsn", "absn", "demsn", "rnbsn"]),
     msn: new Set(["cna", "lpn", "diploma", "adn", "rn", "bsn", "absn", "demsn", "rnbsn", "msn"])
   };
+  // School-dropdown groups (institution.type), in display order.
+  const SCHOOL_GROUPS = [
+    ["community_college", "Community colleges"],
+    ["public_university", "Public universities"],
+    ["private_nonprofit", "Private nonprofit colleges and universities"],
+    ["other", "Other schools"]
+  ];
+  const TYPE_LABEL = { community_college: "Community college", public_university: "Public university", private_nonprofit: "Private nonprofit" };
+  let rendered = false;            // first render honours ?school=; later renders keep the user's pick
+  let cmpSort = "pass", cmpType = "all";   // "Help me choose" sort and filter
   const startAsSel = document.getElementById("startAs");
   startAsSel.innerHTML = Object.entries(STARTS).map(([k, v]) => `<option value="${k}">${esc(v.n)}</option>`).join("");
   startAsSel.value = STARTS[qs.get("start")] ? qs.get("start") : "none";
@@ -263,9 +273,19 @@
     return `<ul class="prereq">` + list.map(c =>
       `<li>${esc(c.course)}${c.code ? ` <span class="code">${esc(c.code)}</span>` : ""}${c.min_grade ? ` · min grade ${esc(c.min_grade)}` : ""}</li>`).join("") + `</ul>`;
   }
+  // What a cost.amount is measured in. Totals often mention a per-credit rate in their description
+  // ("$19,733 for the 56.5-credit program at $370.40/credit"), so a mention of "credit" alone isn't
+  // enough: a per-credit amount is a small number AND described per credit.
+  function costUnit(c) {
+    const b = (c && c.basis) || "";
+    if (c && c.amount != null && c.amount < 2500 && /credit|unit/i.test(b)) return "credit";
+    if (/academic year|per year|a year/i.test(b) && !/program|all semesters/i.test(b)) return "year";
+    return "program";
+  }
   function costHTML(cost) {
     if (!cost) return na(null);
-    const amt = cost.amount != null ? `<b>$${Number(cost.amount).toLocaleString()}</b>${/credit/i.test(cost.basis || "") ? "/credit" : ""}` : "";
+    const u = costUnit(cost);
+    const amt = cost.amount != null ? `<b>$${Number(cost.amount).toLocaleString()}</b>${u === "credit" ? "/credit" : u === "year" ? "/year" : ""}` : "";
     return `${amt ? amt + " — " : ""}${cost.basis ? esc(cost.basis) : na(null)}${cost.year ? ` <span class="muted">(${esc(cost.year)})</span>` : ""}`;
   }
   function admissionHTML(a) {
@@ -375,13 +395,22 @@
     let starts = held ? [] : startingSchools(data, entry).filter(s => s._state === startStateV);
     if (!held && entry && !starts.length) { entry = null; starts = startingSchools(data).filter(s => s._state === startStateV); }
     const prevStart = schoolSel.value;
+    // First option = "help me choose" (value ""), which shows the comparison instead of one route.
+    // Schools are grouped by type and sorted A–Z so people can find theirs.
     schoolSel.innerHTML = held
       ? `<option value="">Not needed: you're already an RN</option>`
       : starts.length
-        ? starts.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join("")
+        ? `<option value="">Not sure yet: help me choose</option>` + SCHOOL_GROUPS.map(([type, label]) => {
+            const g = starts.filter(s => (SCHOOL_GROUPS.some(x => x[0] === s.type) ? s.type : "other") === type)
+              .sort((a, b) => a.name.localeCompare(b.name));
+            return g.length ? `<optgroup label="${esc(label)}">` + g.map(s =>
+              `<option value="${s.id}">${esc(s.name)}${s.city ? ` (${esc(s.city)})` : ""}</option>`).join("") + `</optgroup>` : "";
+          }).join("")
         : `<option value="">No schools in our data yet</option>`;
     if (starts.some(s => s.id === prevStart)) schoolSel.value = prevStart;
-    else if (starts.some(s => s.id === qs.get("school"))) schoolSel.value = qs.get("school");
+    else if (!rendered && starts.some(s => s.id === qs.get("school"))) schoolSel.value = qs.get("school");
+    else schoolSel.value = "";
+    rendered = true;
     schoolSel.disabled = held || !starts.length;
     // keep URL in sync
     const p = new URLSearchParams({ job: goal, state: startStateV, finish: finishStateV });
@@ -390,7 +419,11 @@
     history.replaceState(null, "", "?" + p);
 
     if (!held && !starts.length) { routeEl.innerHTML = buildingMsg(data); return; }
-    const schoolId = held ? null : (schoolSel.value || starts[0].id);
+    if (!held && !schoolSel.value) {
+      routeEl.innerHTML = compareHTML(data, starts, goal, goalLabel, startStateV, finishStateV, entry, startKey);
+      return;
+    }
+    const schoolId = held ? null : schoolSel.value;
     const r = buildRoute(data, schoolId, goal, finishStateV, { held, entry, startState: startStateV });
     const startState = held ? startStateV : stateOf(data, schoolId);
     const crossing = finishStateV !== startState;
@@ -410,10 +443,12 @@
         `your route starts after the license you already hold. Here is a realistic route toward <b>${esc(goalLabel)}</b>.</p>`;
     } else {
       if (!r.steps.length) { routeEl.innerHTML = buildingMsg(data); return; }
-      html = `<p class="rintro">Starting at <b>${esc(instName(data, schoolId))}</b> in <b>${esc(fullState(startState))}</b>${finishBit}` +
+      html = `<button type="button" class="tocmp" data-pick="">← Compare all starting schools</button>` +
+        `<p class="rintro" tabindex="-1">Starting at <b>${esc(instName(data, schoolId))}</b> in <b>${esc(fullState(startState))}</b>${finishBit}` +
         `, here is a realistic route toward <b>${esc(goalLabel)}</b>. ` +
         `Where a step changes schools — or states — the connection and its source are shown.</p>`;
     }
+    html += glanceHTML(data, r.steps);
 
     if (startKey === "lpn") {
       html += `<div class="gap"><b>We don't list LPN-to-RN bridge programs yet.</b>
@@ -441,7 +476,7 @@
       }
       n++;
       html += connectionHTML(step);
-      html += `<section class="step"><div class="stepnum" aria-hidden="true">${n}</div><div class="stepbody">`;
+      html += `<section class="step" id="step-${n}"><div class="stepnum" aria-hidden="true">${n}</div><div class="stepbody">`;
       if (step.transfer && !(step.heldStart && !step.crossedInto)) html += `<p class="xfer">↪ Move to ${step.crossedInto ? esc(fullState(step.crossedInto)) : "a new school"}</p>`;
       html += programCard(data, step.primary);
       const alts = step.alternatives || [];
@@ -465,6 +500,132 @@
     routeEl.innerHTML = html;
   }
 
+  // ---------- Route at a glance: the whole plan in one line before the detailed cards ----------
+  function glanceHTML(data, steps) {
+    const progs = steps.filter(s => s.kind === "program");
+    if (!progs.length) return "";
+    let n = 0;
+    const items = steps.map(s => {
+      if (s.kind === "license") return `<li class="glic"><span class="mdot" aria-hidden="true">✓</span> RN license</li>`;
+      n++;
+      const cred = s.primary.credential;
+      return `<li><a href="#step-${n}"><span class="gnum">${n}</span><span><b>${esc(byId[cred] ? byId[cred].label : cred)}</b>
+        <small>${esc(instName(data, s.primary.institution).replace(/\s*\(.*\)$/, ""))}</small></span></a></li>`;
+    }).join("");
+    const nSchools = new Set(progs.map(s => s.primary.institution)).size;
+    const states = [...new Set(progs.map(s => s.primary._state))];
+    const tail = states.length > 1 ? ` across ${states.length} states` : "";
+    return `<nav class="glance" aria-label="Your route at a glance"><p class="gh">Your route at a glance:
+      <b>${progs.length}</b> program${progs.length === 1 ? "" : "s"} at <b>${nSchools}</b> school${nSchools === 1 ? "" : "s"}${tail}</p>
+      <ol>${items}</ol></nav>`;
+  }
+
+  // ---------- "Help me choose": compare every starting school in the state ----------
+  // Most recent first-time pass rate across campuses: { year, lo, hi } or null if not published.
+  // Years come as 2025, "Spring 2025", "Fall 2024", "2024-25", "Q2 2026" or "recent"; turn them into
+  // a sortable number (later = bigger) while keeping the original label for display.
+  function yearKey(y) {
+    if (typeof y === "number") return y;
+    const s = String(y || ""), m = s.match(/(\d{4})(?:-(\d{2}))?/);
+    if (!m) return 0;
+    let k = +m[1];
+    if (m[2]) k += 0.9;                       // academic year 2024-25 ends in 2025
+    else if (/fall/i.test(s)) k += 0.7;
+    else if (/q(\d)/i.test(s)) k += (+s.match(/q(\d)/i)[1]) * 0.2;
+    else if (/spring/i.test(s)) k += 0.3;
+    return k;
+  }
+  function latestPass(p) {
+    const pr = p && p.nclex_pass_rate;
+    if (!pr || !pr.by_campus) return null;
+    const latest = Object.values(pr.by_campus).filter(s => Array.isArray(s) && s.length).map(series =>
+      series.reduce((a, b) => (yearKey(b.year) > yearKey(a.year) ? b : a), series[0])).filter(x => x && x.rate != null);
+    if (!latest.length) return null;
+    const top = Math.max(...latest.map(x => yearKey(x.year)));
+    const same = latest.filter(x => yearKey(x.year) === top);
+    const rates = same.map(x => x.rate);
+    return { year: same[0].year, lo: Math.min(...rates), hi: Math.max(...rates), campuses: latest.length };
+  }
+  function passShort(lp) {
+    if (!lp) return `<span class="muted">Not published</span>`;
+    const r = lp.lo === lp.hi ? pct(lp.lo) : `${pct(lp.lo)}–${pct(lp.hi)}`;
+    const yl = String(lp.year).replace(/^(\d+)-qtr$/, "last $1 quarters");
+    return `<b>${r}</b> <span class="muted">(${esc(yl)}${lp.lo !== lp.hi ? ", by campus" : ""})</span>`;
+  }
+  // Short cost for the comparison. The full basis is on the program card in the route.
+  function costShort(c) {
+    if (!c || c.amount == null) return `<span class="muted">Not published</span>`;
+    const u = costUnit(c);
+    return `<b>$${Number(c.amount).toLocaleString()}</b>${u === "credit" ? " per credit" : u === "year" ? " per year" : " for the program"}`;
+  }
+  const firstClause = s => String(s || "").split(/;\s|\.\s/)[0];
+
+  function compareHTML(data, starts, goal, goalLabel, startState, finishState, entry, startKey) {
+    let rows = starts.map(s => {
+      const cred = entryCredential(data, s.id, entry);
+      const prog = data.programs.find(p => p.institution === s.id && p.credential === cred);
+      const r = buildRoute(data, s.id, goal, finishState, { entry });
+      const progSteps = r.steps.filter(x => x.kind === "program");
+      return {
+        s, cred, prog, lp: latestPass(prog), reached: !r.missing, missing: r.missing,
+        nProg: progSteps.length, nSchools: new Set(progSteps.map(x => x.primary.institution)).size
+      };
+    });
+    const total = rows.length;
+    const noneReach = rows.length && rows.every(x => !x.reached) ? rows[0].missing : null;
+    if (cmpType === "cc") rows = rows.filter(x => x.s.type === "community_college");
+    if (cmpType === "uni") rows = rows.filter(x => x.s.type !== "community_college");
+    const passKey = x => (x.lp ? (x.lp.lo + x.lp.hi) / 2 : -1);
+    const byName = (a, b) => a.s.name.localeCompare(b.s.name);
+    rows.sort(cmpSort === "steps" ? (a, b) => (a.nProg - b.nProg) || (passKey(b) - passKey(a)) || byName(a, b)
+      : cmpSort === "az" ? byName
+      : (a, b) => (passKey(b) - passKey(a)) || byName(a, b));
+
+    const sel = (name, val, opts) => `<select data-cmp="${name}">` + opts.map(([v, l]) =>
+      `<option value="${v}"${v === val ? " selected" : ""}>${esc(l)}</option>`).join("") + `</select>`;
+    let html = `<p class="rintro">You haven't picked a school yet. There ${total === 1 ? "is" : "are"} <b>${total}</b>
+      school${total === 1 ? "" : "s"} in <b>${esc(fullState(startState))}</b> where you can start toward
+      <b>${esc(goalLabel)}</b>${startKey === "bach" ? " with an accelerated or direct-entry program for people who already have a bachelor's" : ""}.
+      Compare them, then pick one to see its full route.</p>`;
+    if (noneReach && noneReach !== "msn" && noneReach !== "dnp") {
+      html += `<div class="gap"><b>We don't have a verified ${esc(credLabel(noneReach))} program in our data yet.</b>
+        <p>We currently cover ${esc(coveredStates(data))}. Each route below is confirmed as far as we can source it; the last step is being added, and nothing here is guessed.</p></div>`;
+    }
+    if (startKey === "lpn") {
+      html += `<div class="gap"><b>We don't list LPN-to-RN bridge programs yet.</b>
+        <p>The schools below show their standard entry. Many give LPNs advanced placement or a shorter bridge, so ask what your LPN license counts for.</p></div>`;
+    }
+    html += `<div class="cmpbar">
+      <label><span>Sort by</span>${sel("sort", cmpSort, [["pass", "Highest NCLEX pass rate"], ["steps", "Fewest programs to the goal"], ["az", "Name (A–Z)"]])}</label>
+      <label><span>Show</span>${sel("type", cmpType, [["all", "All schools"], ["cc", "Community colleges"], ["uni", "Universities and 4-year colleges"]])}</label>
+    </div>`;
+    if (!rows.length) {
+      html += `<div class="gap"><b>No schools of that type here in our data.</b><p>Choose <b>All schools</b> above.</p></div>`;
+      return html;
+    }
+    html += `<div class="cgrid">` + rows.map(x => {
+      const p = x.prog;
+      const credName = byId[x.cred] ? byId[x.cred].label : x.cred;
+      const routeLine = x.reached
+        ? `<b>${x.nProg}</b> program${x.nProg === 1 ? "" : "s"} at <b>${x.nSchools}</b> school${x.nSchools === 1 ? "" : "s"}`
+        : `<span class="muted">Not complete in our data yet</span>`;
+      return `<article class="ccard">
+        <h3>${esc(x.s.name)}</h3>
+        <p class="pinst">${esc([x.s.city, TYPE_LABEL[x.s.type]].filter(Boolean).join(" · "))}</p>
+        <dl class="cstats">
+          <div><dt>Starts with</dt><dd>${esc(credName)}: ${esc(p ? p.name : "")}</dd></div>
+          <div><dt>Length</dt><dd>${p && p.length ? esc(firstClause(p.length)) : `<span class="muted">Not published</span>`}</dd></div>
+          <div><dt>NCLEX-RN pass rate</dt><dd>${passShort(x.lp)}</dd></div>
+          <div><dt>Cost</dt><dd>${costShort(p && p.cost)}</dd></div>
+          <div><dt>Route to ${esc(goalLabel)}</dt><dd>${routeLine}</dd></div>
+        </dl>
+        <button type="button" class="cpick" data-pick="${esc(x.s.id)}">See this route <span aria-hidden="true">→</span></button>
+      </article>`;
+    }).join("") + `</div>`;
+    html += `<p class="disclaim">Pass rates are for first-time NCLEX-RN takers, as reported by the state board of nursing or the school; the most recent year differs by school. Costs are shown only where the school publishes a figure, and the full details, prerequisites and sources are on each route. Always confirm with the school.</p>`;
+    return html;
+  }
+
   function buildingMsg(data) {
     return `<div class="gap"><b>No starting schools in our data for this state yet.</b>
       <p>We currently cover ${esc(coveredStates(data))}. Choose a different <b>Starting state</b> to see every verified route through real programs. Every school fact shows its source and the date it was last checked, and nothing is made up.</p></div>`;
@@ -478,5 +639,23 @@
   function credLabel(c) { return byId[c] ? byId[c].label : c; }
 
   jobSel.onchange = startAsSel.onchange = startStateSel.onchange = finishStateSel.onchange = schoolSel.onchange = render;
+  // Comparison controls and "See this route" / "Compare all" buttons live inside the route area.
+  routeEl.addEventListener("change", e => {
+    const k = e.target.dataset && e.target.dataset.cmp;
+    if (!k) return;
+    if (k === "sort") cmpSort = e.target.value; else cmpType = e.target.value;
+    render();
+    const again = routeEl.querySelector(`[data-cmp="${k}"]`); if (again) again.focus();
+  });
+  routeEl.addEventListener("click", e => {
+    const b = e.target.closest("[data-pick]");
+    if (!b) return;
+    schoolSel.value = b.dataset.pick;
+    render();
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    routeEl.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    const target = b.dataset.pick ? routeEl.querySelector(".rintro") : routeEl.querySelector("[data-pick]");
+    if (target) target.focus({ preventScroll: true });
+  });
   render();
 })();

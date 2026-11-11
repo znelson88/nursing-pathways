@@ -61,3 +61,42 @@
   .fld{grid-template-columns:1fr;gap:2px}
   .agr{margin-left:0}
 }
+
+/* ---- Route at a glance (summary above the step cards) ---- */
+.glance{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 16px}
+.glance .gh{margin:0 0 10px;font-size:13.5px;color:var(--muted)}
+.glance .gh b{color:var(--ink)}
+.glance ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 6px;align-items:center}
+.glance li{display:flex;align-items:center;gap:6px;font-size:13px}
+.glance li+li::before{content:"→";color:var(--muted);margin-right:2px}
+.glance a{display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);text-decoration:none;line-height:1.25}
+.glance a:hover{border-color:var(--ink)}
+.glance a small{display:block;font-size:12px;color:var(--muted)}
+.gnum{width:22px;height:22px;flex:none;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:700;font-size:12px}
+.glic{font-weight:600}
+.glic .mdot{color:#2e7d32}
+.step{scroll-margin-top:12px}
+@media (max-width:560px){
+  .glance ol{flex-direction:column;align-items:stretch;gap:2px}
+  .glance li{display:block}
+  .glance li+li::before{content:"↓";display:block;margin:0 0 2px 16px}
+  .glic{padding-left:6px}
+}
+
+/* ---- "Help me choose": compare starting schools ---- */
+.tocmp{font:inherit;font-size:13.5px;font-weight:600;color:var(--ink);background:none;border:0;padding:0;margin:0 0 10px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.cmpbar{display:flex;flex-wrap:wrap;gap:10px 16px;margin:0 0 14px}
+.cmpbar label{display:flex;flex-direction:column;gap:4px;flex:1 1 220px;min-width:0}
+.cmpbar span{font-size:13px;font-weight:600;color:var(--muted)}
+.cmpbar select{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px;width:100%}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.ccard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column}
+.ccard h3{margin:0;font-family:var(--display);font-size:17px;line-height:1.25}
+.cstats{margin:10px 0 12px;display:grid;gap:0}
+.cstats div{display:grid;grid-template-columns:120px 1fr;gap:8px;padding:6px 0;border-top:1px solid var(--line);font-size:13px;line-height:1.4}
+.cstats dt{font-weight:600;color:var(--muted);text-transform:none;letter-spacing:0;font-size:13px;font-family:var(--body)}
+.cstats dd{margin:0;min-width:0}
+.cpick{margin-top:auto;align-self:flex-start;font:inherit;font-size:14px;font-weight:600;color:var(--bg);background:var(--ink);border:0;border-radius:8px;padding:9px 14px;cursor:pointer}
+.cpick:hover{opacity:.9}
+.rintro:focus{outline:none}
+@media (max-width:400px){ .cstats div{grid-template-columns:1fr;gap:1px} }

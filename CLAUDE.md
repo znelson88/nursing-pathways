@@ -64,7 +64,12 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
 - Schools page: route view is built. It reads `?job=&state=&finish=&school=&start=`. `start` is the map's
   "I'm starting as" key (shown as a picker on the page too): RN holders (`adnrn`/`bsnrn`/`msnap`) get no
   starting school and a route that begins after the credentials they hold; `bach` lists schools with an
-  ABSN/direct-entry program; `lpn` shows a note that LPN bridges aren't listed yet. It uses the career map's credential
+  ABSN/direct-entry program; `lpn` shows a note that LPN bridges aren't listed yet. With no `school`, the
+  page opens on **"Help me choose"**: a card per starting school in the state (entry program, length, latest
+  NCLEX pass rate, published cost, programs-to-goal) with sort/filter, each with "See this route". The school
+  dropdown is grouped by institution type. Every route starts with a **"Your route at a glance"** strip
+  linking to each step card. `costUnit()` decides whether a cost.amount is per credit / per year / whole
+  program (a basis that merely mentions "credit" is not enough). It uses the career map's credential
   graph (shared `to`/`byId` from data.js) to sequence credentials through the RN license, then renders a
   numbered route of real programs with prerequisites, admission, cost, NCLEX pass rates, accreditation,
   the connection to each next school, and a source link + "last checked" date on every record. Data lives
