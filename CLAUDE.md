@@ -20,6 +20,9 @@ js/schools.js       Schools page script
 data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
+tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
+tools/state-build/  Adding a state: BRIEF.md (research rules), build_state.py, add_tuition.py (not published)
+docs/ADD_A_STATE.md Standard procedure for adding a state; docs/STATE_QUEUE.md = order (west to east) and status
 ```
 
 `data.js` and `app.js` are plain (non-module) scripts, so their top-level `const`s are shared and the
@@ -143,5 +146,8 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   Introduces `bridge_from` on LPN/paramedic bridge programs (shown only to "LPN / LVN" starters). Missouri is an NLC
   state. Exclusions and gaps are in docs/DATA_SOURCES.md. Missouri tuition (`MO.tuition`) still to add. The career
   map's pay-state list has no Missouri (no BLS pay data there yet), so map links don't preselect Missouri.
+- **Adding states:** a scheduled task ("Add next state", 6am and 6pm) follows docs/ADD_A_STATE.md and opens one
+  pull request per state for the owner to review and merge; it never merges or pushes to main. The state list lives
+  in `SCHOOL_STATES` (js/data.js) plus one `<script>` tag in schools.html.
 - Hosting: live at https://nursingpaths.com (GitHub Pages, repo znelson88/nursing-pathways, published by the
   `Test and deploy` workflow after each push to `main` passes its checks). See README.md.

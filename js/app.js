@@ -415,7 +415,7 @@ function glanceHTML(n){
   if(!cells.length&&!tags&&!warn)return "";
   return `<div class="glance">${cells.map(c=>`<div class="gcell"><small>${c[0]}</small><b>${c[1]}</b>${c[2]?`<span>${c[2]}</span>`:""}</div>`).join("")}${tags?`<div class="gcell gwide"><small>Schedule</small><span style="color:var(--ink)">${tags}</span></div>`:""}</div>${warn}`;
 }
-function schoolsLink(id){const p=new URLSearchParams({job:id});if(["CO","AZ","CA","MO"].includes(pickState))p.set("state",pickState);if(startKey&&startKey!=="none")p.set("start",startKey);return "schools.html?"+p;}
+function schoolsLink(id){const p=new URLSearchParams({job:id});if(SCHOOL_STATES.includes(pickState))p.set("state",pickState);if(startKey&&startKey!=="none")p.set("start",startKey);return "schools.html?"+p;}
 function select(id){
   curId=id; const n=byId[id];
   all.forEach(m=>nodeEls[m.id].classList.remove("on","cur","anc","route"));

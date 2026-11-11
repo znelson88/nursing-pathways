@@ -24,7 +24,7 @@
   // You pick the state you're starting in (which fills the starting-school list below), and the state
   // you want to FINISH in. When they match it's an ordinary in-state route; when they differ the route
   // hands off from the start state to the finish state after the RN license (see buildRoute).
-  const LOADED = ["CO", "AZ", "CA", "MO"].filter(s => window.SCHOOLS && window.SCHOOLS[s]);
+  const LOADED = SCHOOL_STATES.filter(s => window.SCHOOLS && window.SCHOOLS[s]);
   const stateOpts = LOADED.map(s => `<option value="${s}">${esc(fullState(s))}</option>`).join("");
   startStateSel.innerHTML = stateOpts;
   finishStateSel.innerHTML = stateOpts;
@@ -678,7 +678,7 @@
     return names.length <= 1 ? (names[0] || "no states") :
       names.slice(0, -1).join(", ") + " and " + names[names.length - 1];
   }
-  function fullState(st) { return { CO: "Colorado", AZ: "Arizona", CA: "California", MO: "Missouri" }[st] || st; }
+  function fullState(st) { return US_STATE_NAMES[st] || st; }
   function credLabel(c) { return byId[c] ? byId[c].label : c; }
 
   jobSel.onchange = startAsSel.onchange = finishStateSel.onchange = schoolSel.onchange = render;

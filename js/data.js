@@ -117,6 +117,10 @@ const STATES = {AK:"Alaska",AZ:"Arizona",CA:"California",CO:"Colorado",HI:"Hawai
 // Nurse Licensure Compact member states. Shared by the map page (app.js) and the schools page
 // (schools.js), so a cross-state route can honestly say whether an RN license carries over.
 // California is NOT a member — a nurse moving there applies for licensure by endorsement.
+// States with school data on schools.html, in the order shown in its menus. Adding a state = add its code here,
+// add data/schools/xx.js plus its <script> tag in schools.html, and check NLC below. (docs/ADD_A_STATE.md)
+const SCHOOL_STATES = ["CO","AZ","CA","MO"];
+const US_STATE_NAMES = {AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DE:"Delaware",DC:"District of Columbia",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"};
 const NLC = new Set(["AZ","CO","ID","MO","MT","NM","UT","WA","WY"]);
 const PAY = {
   cna:{name:"Nursing assistants",nat:42260,st:{AK:46370,AZ:44780,CA:47630,CO:47380,HI:45350,ID:38650,MT:40900,NV:45490,NM:39390,OR:49830,UT:39840,WA:49180,WY:39160}},

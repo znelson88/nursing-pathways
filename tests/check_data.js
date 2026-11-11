@@ -6,7 +6,8 @@
 "use strict";
 const fs = require("fs"), path = require("path"), vm = require("vm");
 const ROOT = path.resolve(__dirname, "..");
-const STATES = ["co", "az", "ca", "mo"];
+// Every state file in data/schools (two-letter name), so a new state is checked automatically.
+const STATES = fs.readdirSync(path.join(ROOT, "data/schools")).filter(f => /^[a-z]{2}\.js$/.test(f)).map(f => f.slice(0, 2)).sort();
 const args = Object.fromEntries(process.argv.slice(2).map(a => a.replace(/^--/, "").split("=")).map(([k, v]) => [k, v ?? true]));
 
 // Load the same plain scripts the browser loads, in a sandbox with just enough of `window`.

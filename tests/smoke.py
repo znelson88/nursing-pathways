@@ -136,7 +136,7 @@ with sync_playwright() as p:
           d.evaluate("()=>{const c=[...document.querySelectorAll('#route .ccard')];return c.length>0 && c.every(x=>/Accelerated BSN|Direct-entry MSN/.test(x.innerText))}"))
     d.goto(BASE + "/schools.html?job=fnp&state=CO&start=lpn"); d.wait_for_timeout(400)
     check("schools start=lpn: honest note about bridge programs", "LPN-to-RN bridge" in d.inner_text("#route"))
-    check("schools header names all covered states", "California" in (d.text_content("#covered") or ""))
+    check("schools header names all covered states", all(n in (d.text_content("#covered") or "") for n in d.evaluate("()=>SCHOOL_STATES.map(s=>US_STATE_NAMES[s])")))
     # Arizona dataset loads and routes (separate per-state file)
     d.goto(BASE + "/schools.html?job=fnp&state=AZ&school=asu"); d.wait_for_timeout(400)
     check("schools AZ: dataset loaded with many start schools",
@@ -151,7 +151,7 @@ with sync_playwright() as p:
     d.goto(BASE + "/schools.html?job=enp&state=AZ"); d.wait_for_timeout(300)
     txt = d.inner_text("#route")
     check("schools: unavailable job gives honest no-data gap naming all covered states",
-          "don't have a verified" in txt and "Colorado, Arizona, California and Missouri" in txt)
+          "don't have a verified" in txt and all(n in txt for n in d.evaluate("()=>SCHOOL_STATES.map(s=>US_STATE_NAMES[s])")))
     # Start/finish state model: a starting state that cascades the school list, and a finishing state.
     d.goto(BASE + "/schools.html?job=fnp&state=AZ"); d.wait_for_timeout(400)
     check("schools: start and finish state selectors offer CO + AZ",
