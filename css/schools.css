@@ -100,3 +100,5 @@
 .cpick:hover{opacity:.9}
 .rintro:focus{outline:none}
 @media (max-width:400px){ .cstats div{grid-template-columns:1fr;gap:1px} }
+.tuit{margin:6px 0 0;font-size:13px;line-height:1.45}
+.tuit a{color:var(--ink);font-weight:600}

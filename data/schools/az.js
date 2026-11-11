@@ -698,6 +698,34 @@
     ]
   };
 
+  // ---- School-wide tuition (added 2026-11-11) ----
+  // Tuition and required fees for ONE academic year, full-time first-time undergraduates, from the U.S.
+  // Department of Education's College Scorecard API (IPEDS data). Scorecard's year key 2025 = academic
+  // year 2025-26: its key 2024 matches College Navigator's 2024-25 column exactly (checked on Trinidad
+  // State and Aims). For community colleges the resident figure is the IN-DISTRICT rate (Scorecard
+  // documents TUITIONFEE_IN as in-district; Aims' figure matches College Navigator's in-district row).
+  // Labeled "in-district" only where a district rate exists (Aims, Colorado Mountain College, Arizona's
+  // county community colleges); Colorado state-system and California community colleges charge every
+  // state resident the same rate, so they're labeled "in-state".
+  // This is the school's general rate, NOT a nursing program price: nursing courses often add fees.
+  // Branch campuses of out-of-state universities are left out (a home-campus rate would mislead).
+  AZ.tuition = {
+    "asu": {"unitid": 104151, "federal_name": "Arizona State University Campus Immersion", "year": "2025-26", "in_state": 12975, "out_of_state": 35167, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?104151", "last_verified": "2026-11-11"},
+    "u-arizona": {"unitid": 104179, "federal_name": "University of Arizona", "year": "2025-26", "in_state": 13906, "out_of_state": 43068, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?104179", "last_verified": "2026-11-11"},
+    "nau": {"unitid": 105330, "federal_name": "Northern Arizona University", "year": "2025-26", "in_state": 13439, "out_of_state": 30911, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?105330", "last_verified": "2026-11-11"},
+    "gcu": {"unitid": 104717, "federal_name": "Grand Canyon University", "year": "2025-26", "in_state": 17900, "out_of_state": 17900, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?104717", "last_verified": "2026-11-11"},
+    "maricopa": {"unitid": 105428, "federal_name": "Phoenix College", "year": "2025-26", "in_state": 2358, "out_of_state": 8958, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?105428", "last_verified": "2026-11-11", "notes": "Same rate at every Maricopa community college (figure shown is Phoenix College's)."},
+    "pima": {"unitid": 105525, "federal_name": "Pima Community College", "year": "2025-26", "in_state": 2442, "out_of_state": 7758, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?105525", "last_verified": "2026-11-11"},
+    "central-arizona": {"unitid": 104346, "federal_name": "Central Arizona College", "year": "2025-26", "in_state": 2250, "out_of_state": 4500, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?104346", "last_verified": "2026-11-11"},
+    "eastern-arizona": {"unitid": 104577, "federal_name": "Eastern Arizona College", "year": "2025-26", "in_state": 2352, "out_of_state": 9552, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?104577", "last_verified": "2026-11-11"},
+    "mohave": {"unitid": 105206, "federal_name": "Mohave Community College", "year": "2025-26", "in_state": 2280, "out_of_state": 8208, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?105206", "last_verified": "2026-11-11"},
+    "yavapai": {"unitid": 106148, "federal_name": "Yavapai College", "year": "2025-26", "in_state": 3104, "out_of_state": 9670, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?106148", "last_verified": "2026-11-11"},
+    "arizona-western": {"unitid": 104160, "federal_name": "Arizona Western College", "year": "2025-26", "in_state": 3150, "out_of_state": 9450, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?104160", "last_verified": "2026-11-11"},
+    "coconino": {"unitid": 404426, "federal_name": "Coconino Community College", "year": "2025-26", "in_state": 2979, "out_of_state": 10419, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?404426", "last_verified": "2026-11-11"},
+    "cochise": {"unitid": 104425, "federal_name": "Cochise County Community College District", "year": "2025-26", "in_state": 2304, "out_of_state": 6192, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?104425", "last_verified": "2026-11-11"},
+    "northland-pioneer": {"unitid": 105349, "federal_name": "Northland Pioneer College", "year": "2025-26", "in_state": 2280, "out_of_state": 10320, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?105349", "last_verified": "2026-11-11"}
+  };
+
   window.SCHOOLS = window.SCHOOLS || {};
   window.SCHOOLS.AZ = AZ;
 })();

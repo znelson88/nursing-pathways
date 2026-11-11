@@ -55,6 +55,20 @@ with sync_playwright() as p:
     check("schools route: 'Compare all' returns to the comparison", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 20)
     d.goto(BASE + "/schools.html?job=rn&state=CO&school=pikes-peak"); d.wait_for_timeout(300)
     check("schools: a full-program cost isn't labeled per credit", "$19,733/credit" not in d.inner_text("#route"))
+    # School-wide tuition (College Scorecard) fills the cost gap, labeled and sourced.
+    d.goto(BASE + "/schools.html?job=fnp&state=CA"); d.wait_for_timeout(400)
+    check("schools tuition: nearly every California start school shows a cost",
+          d.evaluate("()=>[...document.querySelectorAll('#route .ccard')].filter(c=>/Not published/.test(c.querySelector('.cstats div:nth-child(4) dd').innerText)).length") <= 2)
+    d.select_option('[data-cmp="sort"]', "tuition"); d.wait_for_timeout(200)
+    check("schools tuition: 'Lowest yearly tuition' puts a community college first",
+          "Community college" in d.inner_text("#route .ccard .pinst"))
+    d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
+    check("schools tuition: entry card shows school-wide tuition with a Scorecard source",
+          d.evaluate("()=>{const t=document.querySelector('#route .tuit');return !!t && /\$4,618/.test(t.innerText) && !!t.querySelector('a[href*=\"collegescorecard.ed.gov\"]')}"))
+    check("schools tuition: not shown on graduate program cards",
+          d.evaluate("()=>document.querySelectorAll('#route .tuit').length")==1)
+    d.select_option("#startState", "AZ"); d.wait_for_timeout(300)
+    check("schools: finish state follows the starting state", d.eval_on_selector("#finishState", "el=>el.value") == "AZ")
     # Verified Colorado route view: Trinidad State -> Family NP
     d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools route: three program steps", d.evaluate("()=>document.querySelectorAll('#route .step').length") == 3)

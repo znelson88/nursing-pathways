@@ -1184,6 +1184,44 @@
     ]
   };
 
+  // ---- School-wide tuition (added 2026-11-11) ----
+  // Tuition and required fees for ONE academic year, full-time first-time undergraduates, from the U.S.
+  // Department of Education's College Scorecard API (IPEDS data). Scorecard's year key 2025 = academic
+  // year 2025-26: its key 2024 matches College Navigator's 2024-25 column exactly (checked on Trinidad
+  // State and Aims). For community colleges the resident figure is the IN-DISTRICT rate (Scorecard
+  // documents TUITIONFEE_IN as in-district; Aims' figure matches College Navigator's in-district row).
+  // Labeled "in-district" only where a district rate exists (Aims, Colorado Mountain College, Arizona's
+  // county community colleges); Colorado state-system and California community colleges charge every
+  // state resident the same rate, so they're labeled "in-state".
+  // This is the school's general rate, NOT a nursing program price: nursing courses often add fees.
+  // Branch campuses of out-of-state universities are left out (a home-campus rate would mislead).
+  CO.tuition = {
+    "trinidad-state": {"unitid": 128258, "federal_name": "Trinidad State College", "year": "2025-26", "in_state": 4618, "out_of_state": 7564, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?128258", "last_verified": "2026-11-11"},
+    "pikes-peak": {"unitid": 127820, "federal_name": "Pikes Peak State College", "year": "2025-26", "in_state": 4662, "out_of_state": 17702, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127820", "last_verified": "2026-11-11"},
+    "pueblo-cc": {"unitid": 127884, "federal_name": "Pueblo Community College", "year": "2025-26", "in_state": 5214, "out_of_state": 18254, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127884", "last_verified": "2026-11-11"},
+    "front-range": {"unitid": 127200, "federal_name": "Front Range Community College", "year": "2025-26", "in_state": 4668, "out_of_state": 17708, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127200", "last_verified": "2026-11-11"},
+    "cu-anschutz": {"unitid": 126562, "federal_name": "University of Colorado Denver/Anschutz Medical Campus", "year": "2025-26", "in_state": 10835, "out_of_state": 30179, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?126562", "last_verified": "2026-11-11", "notes": "University-wide undergraduate figure for CU Denver | Anschutz."},
+    "unco": {"unitid": 127741, "federal_name": "University of Northern Colorado", "year": "2025-26", "in_state": 12882, "out_of_state": 28370, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127741", "last_verified": "2026-11-11"},
+    "csu-pueblo": {"unitid": 128106, "federal_name": "Colorado State University Pueblo", "year": "2025-26", "in_state": 10099, "out_of_state": 18610, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?128106", "last_verified": "2026-11-11"},
+    "uccs": {"unitid": 126580, "federal_name": "University of Colorado Colorado Springs", "year": "2025-26", "in_state": 10345, "out_of_state": 24771, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?126580", "last_verified": "2026-11-11"},
+    "msu-denver": {"unitid": 127565, "federal_name": "Metropolitan State University of Denver", "year": "2025-26", "in_state": 11540, "out_of_state": 31784, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127565", "last_verified": "2026-11-11"},
+    "arapahoe": {"unitid": 126289, "federal_name": "Arapahoe Community College", "year": "2025-26", "in_state": 4626, "out_of_state": 17666, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?126289", "last_verified": "2026-11-11"},
+    "colorado-mesa": {"unitid": 127556, "federal_name": "Colorado Mesa University", "year": "2025-26", "in_state": 10257, "out_of_state": 25986, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127556", "last_verified": "2026-11-11"},
+    "regis": {"unitid": 127918, "federal_name": "Regis University", "year": "2025-26", "in_state": 47840, "out_of_state": 47840, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127918", "last_verified": "2026-11-11"},
+    "adams-state": {"unitid": 126182, "federal_name": "Adams State University", "year": "2025-26", "in_state": 9968, "out_of_state": 22400, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?126182", "last_verified": "2026-11-11"},
+    "colorado-christian": {"unitid": 126669, "federal_name": "Colorado Christian University", "year": "2025-26", "in_state": 42758, "out_of_state": 42758, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?126669", "last_verified": "2026-11-11"},
+    "aims": {"unitid": 126207, "federal_name": "Aims Community College", "year": "2025-26", "in_state": 2426, "out_of_state": 12266, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?126207", "last_verified": "2026-11-11"},
+    "cncc": {"unitid": 126748, "federal_name": "Colorado Northwestern Community College", "year": "2025-26", "in_state": 4747, "out_of_state": 7551, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?126748", "last_verified": "2026-11-11"},
+    "lamar": {"unitid": 127389, "federal_name": "Lamar Community College", "year": "2025-26", "in_state": 4700, "out_of_state": 7504, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127389", "last_verified": "2026-11-11"},
+    "morgan": {"unitid": 127617, "federal_name": "Morgan Community College", "year": "2025-26", "in_state": 4398, "out_of_state": 17438, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127617", "last_verified": "2026-11-11"},
+    "northeastern-jc": {"unitid": 127732, "federal_name": "Northeastern Junior College", "year": "2025-26", "in_state": 5923, "out_of_state": 8548, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127732", "last_verified": "2026-11-11"},
+    "otero": {"unitid": 127778, "federal_name": "Otero College", "year": "2025-26", "in_state": 4745, "out_of_state": 7549, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127778", "last_verified": "2026-11-11"},
+    "colorado-mesa-montrose": {"unitid": 127556, "federal_name": "Colorado Mesa University", "year": "2025-26", "in_state": 10257, "out_of_state": 25986, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127556", "last_verified": "2026-11-11", "notes": "School-wide figure for Colorado Mesa University; the Montrose program is part of CMU."},
+    "red-rocks": {"unitid": 127909, "federal_name": "Red Rocks Community College", "year": "2025-26", "in_state": 5016, "out_of_state": 18056, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?127909", "last_verified": "2026-11-11"},
+    "cca": {"unitid": 126863, "federal_name": "Community College of Aurora", "year": "2025-26", "in_state": 4622, "out_of_state": 17662, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?126863", "last_verified": "2026-11-11"},
+    "colorado-mountain": {"unitid": 126711, "federal_name": "Colorado Mountain College", "year": "2025-26", "in_state": 2688, "out_of_state": 13200, "in_label": "in-district", "source_url": "https://collegescorecard.ed.gov/school/?126711", "last_verified": "2026-11-11"}
+  };
+
   window.SCHOOLS = window.SCHOOLS || {};
   window.SCHOOLS.CO = CO;
 })();

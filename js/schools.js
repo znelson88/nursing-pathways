@@ -84,9 +84,10 @@
   // Institution and program ids are unique across states, so the merge is safe. The route is
   // always built against this combined set, which is what lets a path cross state lines.
   function combinedData() {
-    const out = { institutions: [], programs: [], agreements: [], _states: LOADED.slice() };
+    const out = { institutions: [], programs: [], agreements: [], tuition: {}, _states: LOADED.slice() };
     LOADED.forEach(s => {
       const d = (window.SCHOOLS && window.SCHOOLS[s]) || {};
+      Object.assign(out.tuition, d.tuition || {});
       (d.institutions || []).forEach(i => out.institutions.push(Object.assign({ _state: s }, i)));
       (d.programs || []).forEach(p => out.programs.push(Object.assign({ _state: s }, p)));
       (d.agreements || []).forEach(a => out.agreements.push(Object.assign({ _state: s }, a)));
@@ -282,6 +283,23 @@
     if (/academic year|per year|a year/i.test(b) && !/program|all semesters/i.test(b)) return "year";
     return "program";
   }
+  // School-wide yearly tuition (College Scorecard), e.g. "$4,618 a year in-state, $7,564 out-of-state".
+  function tuitionText(t) {
+    const yr = `<b>$${Number(t.in_state).toLocaleString()}</b> a year`;
+    if (t.out_of_state == null || t.out_of_state === t.in_state) return `${yr}${t.out_of_state === t.in_state ? " for every student" : ` ${esc(t.in_label)}`}`;
+    return `${yr} ${esc(t.in_label)}, $${Number(t.out_of_state).toLocaleString()} out-of-state`;
+  }
+  // Only for pre-licensure (entry) programs without their own published price: a school's undergraduate
+  // rate says little about graduate or RN-to-BSN pricing, and nothing when the program has a real figure.
+  function schoolTuition(data, p) {
+    if (!p || !ENTRY.includes(p.credential) || (p.cost && p.cost.amount != null)) return null;
+    return (data.tuition && data.tuition[p.institution]) || null;
+  }
+  function tuitionHTML(t) {
+    return `<p class="tuit">School-wide tuition and fees: ${tuitionText(t)} <span class="muted">(${esc(t.year)})</span>.
+      <span class="muted">This is the school's general rate for full-time undergraduates. Nursing programs often charge extra course and clinical fees, so expect the total to be higher.${t.notes ? " " + esc(t.notes) : ""}
+      <a href="${esc(t.source_url)}" target="_blank" rel="noopener">Source: College Scorecard</a> · Last checked ${esc(t.last_verified)}</span></p>`;
+  }
   function costHTML(cost) {
     if (!cost) return na(null);
     const u = costUnit(cost);
@@ -322,7 +340,7 @@
         ? field("Prerequisites", `<span class="muted">No college-course prerequisites — you qualify by holding the degree and license shown under Admission.</span>`)
         : field("Prerequisites", prereqHTML(p.prerequisites))}
       ${field("Admission", admissionHTML(p.admission))}
-      ${field("Cost", costHTML(p.cost))}
+      ${field("Cost", costHTML(p.cost) + (schoolTuition(data, p) ? tuitionHTML(schoolTuition(data, p)) : ""))}
       ${field("NCLEX-RN pass rate", passRateHTML(p.nclex_pass_rate))}
       ${field("Accreditation", na(p.accreditation))}
       ${p.notes ? `<p class="pnote">${esc(p.notes)}</p>` : ""}
@@ -553,10 +571,11 @@
     return `<b>${r}</b> <span class="muted">(${esc(yl)}${lp.lo !== lp.hi ? ", by campus" : ""})</span>`;
   }
   // Short cost for the comparison. The full basis is on the program card in the route.
-  function costShort(c) {
-    if (!c || c.amount == null) return `<span class="muted">Not published</span>`;
+  function costShort(c, t) {
+    if (!c || c.amount == null) return t ? `${tuitionText(t)} <span class="muted">(school-wide, ${esc(t.year)})</span>` : `<span class="muted">Not published</span>`;
     const u = costUnit(c);
-    return `<b>$${Number(c.amount).toLocaleString()}</b>${u === "credit" ? " per credit" : u === "year" ? " per year" : " for the program"}`;
+    const own = `<b>$${Number(c.amount).toLocaleString()}</b>${u === "credit" ? " per credit" : u === "year" ? " per year" : " for the program"}`;
+    return t ? `${own}<br><span class="muted">School-wide (${esc(t.year)}):</span> ${tuitionText(t)}` : own;
   }
   const firstClause = s => String(s || "").split(/;\s|\.\s/)[0];
 
@@ -568,6 +587,7 @@
       const progSteps = r.steps.filter(x => x.kind === "program");
       return {
         s, cred, prog, lp: latestPass(prog), reached: !r.missing, missing: r.missing,
+        tu: (data.tuition && data.tuition[s.id]) || null,
         nProg: progSteps.length, nSchools: new Set(progSteps.map(x => x.primary.institution)).size
       };
     });
@@ -577,8 +597,10 @@
     if (cmpType === "uni") rows = rows.filter(x => x.s.type !== "community_college");
     const passKey = x => (x.lp ? (x.lp.lo + x.lp.hi) / 2 : -1);
     const byName = (a, b) => a.s.name.localeCompare(b.s.name);
+    const tuitKey = x => (x.tu ? x.tu.in_state : Infinity);
     rows.sort(cmpSort === "steps" ? (a, b) => (a.nProg - b.nProg) || (passKey(b) - passKey(a)) || byName(a, b)
       : cmpSort === "az" ? byName
+      : cmpSort === "tuition" ? (a, b) => (tuitKey(a) - tuitKey(b)) || byName(a, b)
       : (a, b) => (passKey(b) - passKey(a)) || byName(a, b));
 
     const sel = (name, val, opts) => `<select data-cmp="${name}">` + opts.map(([v, l]) =>
@@ -596,7 +618,7 @@
         <p>The schools below show their standard entry. Many give LPNs advanced placement or a shorter bridge, so ask what your LPN license counts for.</p></div>`;
     }
     html += `<div class="cmpbar">
-      <label><span>Sort by</span>${sel("sort", cmpSort, [["pass", "Highest NCLEX pass rate"], ["steps", "Fewest programs to the goal"], ["az", "Name (A–Z)"]])}</label>
+      <label><span>Sort by</span>${sel("sort", cmpSort, [["pass", "Highest NCLEX pass rate"], ["tuition", "Lowest yearly tuition"], ["steps", "Fewest programs to the goal"], ["az", "Name (A–Z)"]])}</label>
       <label><span>Show</span>${sel("type", cmpType, [["all", "All schools"], ["cc", "Community colleges"], ["uni", "Universities and 4-year colleges"]])}</label>
     </div>`;
     if (!rows.length) {
@@ -616,13 +638,13 @@
           <div><dt>Starts with</dt><dd>${esc(credName)}: ${esc(p ? p.name : "")}</dd></div>
           <div><dt>Length</dt><dd>${p && p.length ? esc(firstClause(p.length)) : `<span class="muted">Not published</span>`}</dd></div>
           <div><dt>NCLEX-RN pass rate</dt><dd>${passShort(x.lp)}</dd></div>
-          <div><dt>Cost</dt><dd>${costShort(p && p.cost)}</dd></div>
+          <div><dt>Cost</dt><dd>${costShort(p && p.cost, x.tu)}</dd></div>
           <div><dt>Route to ${esc(goalLabel)}</dt><dd>${routeLine}</dd></div>
         </dl>
         <button type="button" class="cpick" data-pick="${esc(x.s.id)}">See this route <span aria-hidden="true">→</span></button>
       </article>`;
     }).join("") + `</div>`;
-    html += `<p class="disclaim">Pass rates are for first-time NCLEX-RN takers, as reported by the state board of nursing or the school; the most recent year differs by school. Costs are shown only where the school publishes a figure, and the full details, prerequisites and sources are on each route. Always confirm with the school.</p>`;
+    html += `<p class="disclaim">Pass rates are for first-time NCLEX-RN takers, as reported by the state board of nursing or the school; the most recent year differs by school. Cost is the nursing program's own price where the school publishes one; otherwise it's the school-wide yearly tuition and fees for full-time undergraduates from the U.S. Department of Education's College Scorecard, which leaves out extra nursing fees, books and living costs. "Lowest yearly tuition" sorts by that school-wide figure. Full details, prerequisites and sources are on each route. Always confirm with the school.</p>`;
     return html;
   }
 
@@ -638,7 +660,14 @@
   function fullState(st) { return { CO: "Colorado", AZ: "Arizona", CA: "California" }[st] || st; }
   function credLabel(c) { return byId[c] ? byId[c].label : c; }
 
-  jobSel.onchange = startAsSel.onchange = startStateSel.onchange = finishStateSel.onchange = schoolSel.onchange = render;
+  jobSel.onchange = startAsSel.onchange = finishStateSel.onchange = schoolSel.onchange = render;
+  // The finish state follows the starting state unless the person chose a different finish on purpose.
+  let lastStart = startStateSel.value;
+  startStateSel.onchange = () => {
+    if (finishStateSel.value === lastStart) finishStateSel.value = startStateSel.value;
+    lastStart = startStateSel.value;
+    render();
+  };
   // Comparison controls and "See this route" / "Compare all" buttons live inside the route area.
   routeEl.addEventListener("change", e => {
     const k = e.target.dataset && e.target.dataset.cmp;

@@ -165,3 +165,30 @@ critical-care experience). Excluded as paused/pending: UCSF's MEPN (paused) and 
 WHNP has no open California program yet (routes fall back out of state, honestly flagged). Still open for future
 waves: more private universities (Point Loma, Mount Saint Mary's, Dominican, CBU, Charles Drew) and more
 community-college ADNs by region. Re-verify before each academic year.
+
+## School-wide tuition (all three states, added 2026-11-11)
+
+Stored as `XX.tuition` at the end of each `data/schools/xx.js`, keyed by institution id, with the federal
+IPEDS id (`unitid`), `year`, `in_state`, `out_of_state`, `in_label`, `source_url` and `last_verified`.
+
+- **Source:** U.S. Department of Education **College Scorecard API** (`api.data.gov/ed/collegescorecard/v1/schools`,
+  fields `<year>.cost.tuition.in_state` / `.out_of_state`), which republishes IPEDS tuition and required fees for
+  one academic year, full-time first-time undergraduates. Each record links to the school's Scorecard page.
+- **Year:** Scorecard's year key `2025` = academic year **2025-26**. Checked by matching key `2024` against College
+  Navigator's 2024-25 column exactly (Trinidad State $4,608; Aims $2,258). Where 2025 is missing, 2024 (2024-25) is used.
+- **In-district vs in-state:** Scorecard's resident figure is the **in-district** rate (verified on Aims: $2,258 =
+  College Navigator in-district, not its $3,410 in-state). Labeled "in-district" only where a district rate exists
+  (Aims, Colorado Mountain College, Arizona's county community colleges). Colorado state-system and California
+  community colleges charge every state resident the same, so they're labeled "in-state".
+- **Matching:** 57 institutions matched by exact name; overrides: CU Anschutz → 126562 (CU Denver | Anschutz,
+  university-wide undergraduate rate), CMU Montrose → 127556 (Colorado Mesa University), ASU → 104151 (Campus
+  Immersion), UArizona → 104179, MaricopaNursing → 105428 (Phoenix College; all 10 Maricopa colleges report the
+  same $2,358 / $8,958), Cochise → 104425.
+- **Left out:** branch campuses of out-of-state universities (AdventHealth Denver, Concordia St. Paul–Denver,
+  Creighton Phoenix), where a home-campus rate would mislead; their nursing programs already carry published
+  program prices. No undergraduate tuition reported: Rocky Vista, Denver College of Nursing, UCSF, Samuel Merritt.
+- **How it's shown:** only for pre-licensure (entry) programs without their own published price, always labeled
+  "school-wide" with a note that nursing fees make the total higher. Never used for graduate or RN-to-BSN programs.
+- College Navigator (nces.ed.gov/collegenavigator) was used only to verify the year and in-district labels; it
+  sometimes shows a high-traffic notice to automated requests, so the Scorecard API is the working source.
+- **Refresh:** re-pull each summer after Scorecard's annual update (its change log lists the June release).

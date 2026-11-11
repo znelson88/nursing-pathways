@@ -1358,6 +1358,42 @@
     agreements: []
   };
 
+  // ---- School-wide tuition (added 2026-11-11) ----
+  // Tuition and required fees for ONE academic year, full-time first-time undergraduates, from the U.S.
+  // Department of Education's College Scorecard API (IPEDS data). Scorecard's year key 2025 = academic
+  // year 2025-26: its key 2024 matches College Navigator's 2024-25 column exactly (checked on Trinidad
+  // State and Aims). For community colleges the resident figure is the IN-DISTRICT rate (Scorecard
+  // documents TUITIONFEE_IN as in-district; Aims' figure matches College Navigator's in-district row).
+  // Labeled "in-district" only where a district rate exists (Aims, Colorado Mountain College, Arizona's
+  // county community colleges); Colorado state-system and California community colleges charge every
+  // state resident the same rate, so they're labeled "in-state".
+  // This is the school's general rate, NOT a nursing program price: nursing courses often add fees.
+  // Branch campuses of out-of-state universities are left out (a home-campus rate would mislead).
+  CA.tuition = {
+    "csulb": {"unitid": 110583, "federal_name": "California State University-Long Beach", "year": "2025-26", "in_state": 8338, "out_of_state": 21658, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?110583", "last_verified": "2026-11-11"},
+    "sdsu": {"unitid": 122409, "federal_name": "San Diego State University", "year": "2025-26", "in_state": 9180, "out_of_state": 25500, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?122409", "last_verified": "2026-11-11"},
+    "csus": {"unitid": 110617, "federal_name": "California State University-Sacramento", "year": "2025-26", "in_state": 9014, "out_of_state": 22334, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?110617", "last_verified": "2026-11-11"},
+    "csudh": {"unitid": 110547, "federal_name": "California State University-Dominguez Hills", "year": "2025-26", "in_state": 7853, "out_of_state": 21173, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?110547", "last_verified": "2026-11-11"},
+    "sfsu": {"unitid": 122597, "federal_name": "San Francisco State University", "year": "2025-26", "in_state": 8324, "out_of_state": 21644, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?122597", "last_verified": "2026-11-11"},
+    "csuf": {"unitid": 110565, "federal_name": "California State University-Fullerton", "year": "2025-26", "in_state": 7952, "out_of_state": 21272, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?110565", "last_verified": "2026-11-11"},
+    "ccsf": {"unitid": 112190, "federal_name": "City College of San Francisco", "year": "2025-26", "in_state": 1696, "out_of_state": 16096, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?112190", "last_verified": "2026-11-11"},
+    "sdcity": {"unitid": 122339, "federal_name": "San Diego City College", "year": "2025-26", "in_state": 1154, "out_of_state": 10010, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?122339", "last_verified": "2026-11-11"},
+    "pasadena-cc": {"unitid": 121044, "federal_name": "Pasadena City College", "year": "2025-26", "in_state": 1180, "out_of_state": 11380, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?121044", "last_verified": "2026-11-11"},
+    "ucla": {"unitid": 110662, "federal_name": "University of California-Los Angeles", "year": "2025-26", "in_state": 15729, "out_of_state": 53331, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?110662", "last_verified": "2026-11-11"},
+    "uci": {"unitid": 110653, "federal_name": "University of California-Irvine", "year": "2025-26", "in_state": 16235, "out_of_state": 53837, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?110653", "last_verified": "2026-11-11"},
+    "uc-davis": {"unitid": 110644, "federal_name": "University of California-Davis", "year": "2025-26", "in_state": 17346, "out_of_state": 54948, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?110644", "last_verified": "2026-11-11"},
+    "loma-linda": {"unitid": 117636, "federal_name": "Loma Linda University", "year": "2025-26", "in_state": 21032, "out_of_state": 21032, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?117636", "last_verified": "2026-11-11"},
+    "usf": {"unitid": 122612, "federal_name": "University of San Francisco", "year": "2025-26", "in_state": 62462, "out_of_state": 62462, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?122612", "last_verified": "2026-11-11"},
+    "usd": {"unitid": 122436, "federal_name": "University of San Diego", "year": "2025-26", "in_state": 62420, "out_of_state": 62420, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?122436", "last_verified": "2026-11-11"},
+    "azusa-pacific": {"unitid": 109785, "federal_name": "Azusa Pacific University", "year": "2025-26", "in_state": 45340, "out_of_state": 45340, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?109785", "last_verified": "2026-11-11"},
+    "santa-rosa-jc": {"unitid": 123013, "federal_name": "Santa Rosa Junior College", "year": "2025-26", "in_state": 1318, "out_of_state": 10930, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?123013", "last_verified": "2026-11-11"},
+    "sacramento-city": {"unitid": 122180, "federal_name": "Sacramento City College", "year": "2025-26", "in_state": 1288, "out_of_state": 12472, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?122180", "last_verified": "2026-11-11"},
+    "fresno-city": {"unitid": 114789, "federal_name": "Fresno City College", "year": "2025-26", "in_state": 1334, "out_of_state": 10714, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?114789", "last_verified": "2026-11-11"},
+    "mt-sac": {"unitid": 119164, "federal_name": "Mt San Antonio College", "year": "2025-26", "in_state": 1364, "out_of_state": 11136, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?119164", "last_verified": "2026-11-11"},
+    "riverside-city": {"unitid": 121901, "federal_name": "Riverside City College", "year": "2025-26", "in_state": 1428, "out_of_state": 12498, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?121901", "last_verified": "2026-11-11"},
+    "csu-fresno": {"unitid": 110556, "federal_name": "California State University-Fresno", "year": "2025-26", "in_state": 8224, "out_of_state": 21544, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?110556", "last_verified": "2026-11-11"}
+  };
+
   window.SCHOOLS = window.SCHOOLS || {};
   window.SCHOOLS.CA = CA;
 })();
