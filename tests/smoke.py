@@ -54,6 +54,28 @@ with sync_playwright() as p:
           d.eval_on_selector("#startSchool", "el=>el.value") == "colorado-mesa")
     check("schools route: BSN start skips the RN-to-BSN step",
           d.evaluate("()=>{const h=[...document.querySelectorAll('#route .step .pchead h3')].map(x=>x.textContent);return h[0].includes('Traditional BSN') && !h.some(t=>/RN-to-BSN|RN-BSN/.test(t))}"))
+    # "I'm starting as" (?start= from the map) changes where the route begins.
+    d.goto(BASE + "/index.html"); d.wait_for_timeout(300)
+    d.evaluate("()=>{localStorage.setItem('np-start','adnrn')}"); d.reload(); d.wait_for_timeout(400)
+    d.click('.rchip[data-id="fnp"]'); d.wait_for_timeout(200)
+    check("map passes starting point to schools page", "start=adnrn" in (d.get_attribute(".schoolsbtn", "href") or ""))
+    d.evaluate("()=>{localStorage.clear()}")
+    d.goto(BASE + "/schools.html?job=fnp&state=CO&start=adnrn"); d.wait_for_timeout(400)
+    check("schools start=adnrn: picker shows ADN RN, school picker disabled",
+          d.eval_on_selector("#startAs", "el=>el.value") == "adnrn" and d.eval_on_selector("#startSchool", "el=>el.disabled"))
+    check("schools start=adnrn: route begins at RN-to-BSN, no NCLEX milestone",
+          d.evaluate("()=>{const h=[...document.querySelectorAll('#route .step .pchead h3')].map(x=>x.textContent);return /RN-to-BSN/.test(h[0]) && !document.querySelector('#route .milestone')}"))
+    d.goto(BASE + "/schools.html?job=fnp&state=CO&start=bsnrn"); d.wait_for_timeout(400)
+    check("schools start=bsnrn: one step, straight to an FNP program",
+          d.evaluate("()=>document.querySelectorAll('#route .step').length") == 1 and "Family Nurse Practitioner" in d.inner_text("#route"))
+    d.goto(BASE + "/schools.html?job=icu&state=CO&start=adnrn"); d.wait_for_timeout(400)
+    check("schools start=adnrn + ICU goal: says no more school needed", "No more school needed" in d.inner_text("#route"))
+    d.goto(BASE + "/schools.html?job=fnp&state=CO&start=bach"); d.wait_for_timeout(400)
+    check("schools start=bach: route begins with an accelerated or direct-entry program",
+          d.evaluate("()=>/Accelerated|Direct|Entry|Master/i.test(document.querySelector('#route .step .pchead h3').textContent)"))
+    d.goto(BASE + "/schools.html?job=fnp&state=CO&start=lpn"); d.wait_for_timeout(400)
+    check("schools start=lpn: honest note about bridge programs", "LPN-to-RN bridge" in d.inner_text("#route"))
+    check("schools header names all covered states", "California" in (d.text_content("#covered") or ""))
     # Arizona dataset loads and routes (separate per-state file)
     d.goto(BASE + "/schools.html?job=fnp&state=AZ"); d.wait_for_timeout(400)
     check("schools AZ: dataset loaded with many start schools",

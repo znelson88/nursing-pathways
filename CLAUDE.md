@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page (in progress) will show real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona and California**.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona and California**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -8,7 +8,7 @@ The owner is not a developer. Explain choices in plain language, show results (s
 
 ```
 index.html          Career map page (markup only)
-schools.html        Schools and programs page (placeholder; the next big build)
+schools.html        Schools and programs page (route through real programs toward a job)
 css/site.css        All styles for the map page; schools.css builds on its tokens
 css/schools.css
 js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), taxes (FED, STAX, net),
@@ -17,7 +17,7 @@ js/app.js           Everything that touches the page: tiered map, list view, sea
                     filters, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       Where school, program and transfer data will live (see docs/SCHOOLS_SPEC.md)
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 ```
@@ -61,7 +61,10 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
 ## Current state
 
 - Map page: done and user-tested (3 rounds, see docs/QA_HISTORY.md). Published earlier as a Claude artifact.
-- Schools page: route view is built. It reads `?job=&state=&start=`, uses the career map's credential
+- Schools page: route view is built. It reads `?job=&state=&finish=&school=&start=`. `start` is the map's
+  "I'm starting as" key (shown as a picker on the page too): RN holders (`adnrn`/`bsnrn`/`msnap`) get no
+  starting school and a route that begins after the credentials they hold; `bach` lists schools with an
+  ABSN/direct-entry program; `lpn` shows a note that LPN bridges aren't listed yet. It uses the career map's credential
   graph (shared `to`/`byId` from data.js) to sequence credentials through the RN license, then renders a
   numbered route of real programs with prerequisites, admission, cost, NCLEX pass rates, accreditation,
   the connection to each next school, and a source link + "last checked" date on every record. Data lives
@@ -118,4 +121,5 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   was already a separate institution. `NLC` (compact member states) moved from app.js to data.js so the
   schools page shares it. Later waves: UC + private universities, more community-college ADNs by region, and
   APRN/CRNA/CNM specialties.
-- Hosting: planned online (see README.md). Not yet deployed.
+- Hosting: live at https://nursingpaths.com (GitHub Pages, repo znelson88/nursing-pathways, auto-deploys on
+  every push to `main`). See README.md.
