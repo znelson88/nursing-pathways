@@ -32,6 +32,15 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
 - Quick look: open `index.html` in a browser.
 - Like the hosted site: `python3 -m http.server 8000` in this folder, then open http://localhost:8000
 - Test: `pip install playwright && python -m playwright install chromium && python tests/smoke.py`
+- Data rules: `node tests/check_data.js` (sources, dates, ids, links between records; `--stale-days=270` lists
+  records due for re-checking). Source links: `python tests/check_links.py` (honest user agent; 403s are "couldn't
+  check", not broken).
+- **Publishing:** GitHub Pages builds from the `Test and deploy` workflow (.github/workflows/deploy.yml): every push
+  to `main` runs the data rules + smoke test and only publishes if both pass (only site files are published, not
+  tests/docs). `Monthly data check` (1st of each month) opens a GitHub issue listing broken source links and
+  records older than 270 days.
+- **Report an error:** `REPORT_FORM` at the top of js/data.js holds the owner's Google Form address and the two
+  `entry.NNNN` field ids (from the form's "Get pre-filled link"). Empty = no report links shown.
 
 ## Standing decisions (from the owner — keep these)
 
@@ -129,5 +138,5 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   was already a separate institution. `NLC` (compact member states) moved from app.js to data.js so the
   schools page shares it. Later waves: UC + private universities, more community-college ADNs by region, and
   APRN/CRNA/CNM specialties.
-- Hosting: live at https://nursingpaths.com (GitHub Pages, repo znelson88/nursing-pathways, auto-deploys on
-  every push to `main`). See README.md.
+- Hosting: live at https://nursingpaths.com (GitHub Pages, repo znelson88/nursing-pathways, published by the
+  `Test and deploy` workflow after each push to `main` passes its checks). See README.md.

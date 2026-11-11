@@ -2,6 +2,23 @@
 // Loaded before app.js; top-level consts are shared across both classic scripts.
 // Every figure here has a source listed in docs/DATA_SOURCES.md. Update both together.
 const narrow=()=>window.matchMedia("(max-width:860px)").matches;
+// "Report an error" goes to the owner's Google Form. Fill these from the form's "Get pre-filled link":
+//   url         = the link up to and including "viewform"
+//   recordField = the entry.NNNN id of the "Which school / program / fact?" question
+//   pageField   = the entry.NNNN id of the "Page link" question
+// While url is empty, no "Report an error" links are shown anywhere.
+const REPORT_FORM = {url:"", recordField:"", pageField:""};
+function reportURL(record){
+  if(!REPORT_FORM.url) return "";
+  const p=new URLSearchParams({usp:"pp_url"});
+  if(REPORT_FORM.recordField&&record) p.set(REPORT_FORM.recordField, record);
+  if(REPORT_FORM.pageField) p.set(REPORT_FORM.pageField, location.href);
+  return REPORT_FORM.url+"?"+p;
+}
+function reportLinkHTML(record, text){
+  const u=reportURL(record); if(!u) return "";
+  return `<a class="report" href="${u.replace(/&/g,"&amp;").replace(/"/g,"&quot;")}" target="_blank" rel="noopener">${text||"Report an error"}</a>`;
+}
 const GROUPS = {
   entry:  {name:"Ways in",            a:180, col:"--g-entry"},
   bedside:{name:"Bedside specialties",a:240, col:"--g-bedside"},

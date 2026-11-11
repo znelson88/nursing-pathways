@@ -1,0 +1,51 @@
+# Monthly check of the site's sources, run on the 1st of each month (and on demand from the Actions tab).
+#  - every source link: is the page still there?
+#  - every record: was it last checked more than 9 months (270 days) ago?
+# If anything needs attention, it opens a GitHub issue with the list (GitHub emails the repo owner).
+# Note: GitHub pauses scheduled workflows after 60 days with no commits; re-enable it from the Actions tab.
+name: Monthly data check
+
+on:
+  schedule:
+    - cron: "0 15 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check source links
+        run: python tests/check_links.py links.md
+      - name: Find records due for re-verification
+        run: node tests/check_data.js --stale-days=270 --markdown > stale.md || true
+      - name: Open an issue if anything needs attention
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat stale.md
+          broken=$(grep -c '^### Broken links' links.md || true)
+          stale=$(grep -c 'last checked more than' stale.md || true)
+          problems=$(grep -c 'rule problem' stale.md || true)
+          if [ "$broken$stale$problems" = "000" ]; then echo "Nothing needs attention this month."; exit 0; fi
+          {
+            echo "Automatic monthly check of the sources behind nursingpaths.com."
+            echo
+            cat links.md
+            echo
+            cat stale.md
+            echo
+            echo "_After fixing, update \`last_verified\` on each record you re-checked. Close this issue when done._"
+          } > report.md
+          gh issue create --title "Monthly data check: $(date -u +%Y-%m)" --body-file report.md

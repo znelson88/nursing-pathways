@@ -830,3 +830,8 @@ renderStart(false);
 applyFilters();
 setView(view);syncReset();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>drawLines());
+
+// "Report an error" in the footer (shown only once REPORT_FORM in data.js has the form's address).
+(function(){const rf=document.getElementById("reportfoot");if(!rf)return;
+  const h=reportLinkHTML("Career map (pay, cost, routes or job details)","Report an error");
+  if(h){rf.innerHTML=`<b>Spotted something wrong?</b> ${h} and say which job and number.`;rf.hidden=false;}}());

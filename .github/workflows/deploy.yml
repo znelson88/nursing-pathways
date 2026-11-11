@@ -1,0 +1,61 @@
+# Test, then publish nursingpaths.com.
+# Every push to main runs the data-rules check and the Playwright smoke test. Only if both pass is
+# the site published to GitHub Pages; if anything fails, the live site stays on the last good version
+# and GitHub emails the repo owner. (Pages must be set to "GitHub Actions" as its source.)
+name: Test and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Check data rules (sources, dates, ids, links between records)
+        run: node tests/check_data.js
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright and Chromium
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Smoke test (laptop, phone, 200% zoom)
+        run: python tests/smoke.py
+
+  deploy:
+    needs: test
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package only the public site (not tests, docs or notes)
+        run: |
+          mkdir _site
+          cp -r index.html schools.html css js data CNAME .nojekyll _site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

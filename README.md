@@ -5,7 +5,15 @@ time for the western US. A second page shows real schools, prerequisites and tra
 Arizona and California.
 
 **Live at https://nursingpaths.com** (GitHub Pages from the `main` branch of `znelson88/nursing-pathways`;
-every push to `main` goes live in a minute or two).
+every push to `main` is checked first, then goes live in a few minutes if the checks pass).
+
+## Automatic checks
+
+- **Before publishing:** GitHub runs the data-rules check and the smoke test on every push. If either fails, the
+  live site keeps the last good version and GitHub emails you. See the repository's **Actions** tab.
+- **Every month:** GitHub checks every source link and lists records last verified more than 9 months ago. If
+  anything needs attention it opens an issue in the repository (you'll get an email).
+- **Readers' error reports** go to your Google Form once its address is set in `REPORT_FORM` (js/data.js).
 
 ## Look at it on your computer
 

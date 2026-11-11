@@ -260,9 +260,10 @@
 
   // ---------- Rendering ----------
   function instName(data, id) { const i = data.institutions.find(x => x.id === id); return i ? i.name : id; }
-  function srcLine(url, date) {
+  function srcLine(url, date, record) {
     const link = url ? `<a href="${esc(url)}" target="_blank" rel="noopener">Source</a>` : `<span class="nosrc">No source link</span>`;
-    return `<p class="src">${link}${date ? ` · Last checked ${esc(date)}` : ""}</p>`;
+    const rep = record ? reportLinkHTML(record) : "";
+    return `<p class="src">${link}${date ? ` · Last checked ${esc(date)}` : ""}${rep ? ` · ${rep}` : ""}</p>`;
   }
   function field(label, value) {
     return `<div class="fld"><span class="fl">${esc(label)}</span><span class="fv">${value}</span></div>`;
@@ -344,7 +345,7 @@
       ${field("NCLEX-RN pass rate", passRateHTML(p.nclex_pass_rate))}
       ${field("Accreditation", na(p.accreditation))}
       ${p.notes ? `<p class="pnote">${esc(p.notes)}</p>` : ""}
-      ${srcLine(p.source_url, p.last_verified)}
+      ${srcLine(p.source_url, p.last_verified, `${p.name} at ${instName(data, p.institution)} (${p.id})`)}
     </article>`;
   }
   function agreementHTML(agr) {
@@ -514,7 +515,7 @@
         <p>We currently cover ${esc(coveredStates(data))}. The route above is confirmed as far as we can source it; the remaining step is being added, and nothing here is guessed.</p></div>`;
     }
 
-    html += `<p class="disclaim">Programs, costs, prerequisites and pass rates change. Always confirm current details with each school before you rely on them.</p>`;
+    html += `<p class="disclaim">Programs, costs, prerequisites and pass rates change. Always confirm current details with each school before you rely on them.${reportURL("x") ? ` Spotted something wrong? ${reportLinkHTML(`Route: ${goalLabel} from ${held ? "an RN license" : instName(data, schoolId)}`, "Tell us")}.` : ""}</p>`;
     routeEl.innerHTML = html;
   }
 
@@ -644,7 +645,7 @@
         <button type="button" class="cpick" data-pick="${esc(x.s.id)}">See this route <span aria-hidden="true">→</span></button>
       </article>`;
     }).join("") + `</div>`;
-    html += `<p class="disclaim">Pass rates are for first-time NCLEX-RN takers, as reported by the state board of nursing or the school; the most recent year differs by school. Cost is the nursing program's own price where the school publishes one; otherwise it's the school-wide yearly tuition and fees for full-time undergraduates from the U.S. Department of Education's College Scorecard, which leaves out extra nursing fees, books and living costs. "Lowest yearly tuition" sorts by that school-wide figure. Full details, prerequisites and sources are on each route. Always confirm with the school.</p>`;
+    html += `<p class="disclaim">Pass rates are for first-time NCLEX-RN takers, as reported by the state board of nursing or the school; the most recent year differs by school. Cost is the nursing program's own price where the school publishes one; otherwise it's the school-wide yearly tuition and fees for full-time undergraduates from the U.S. Department of Education's College Scorecard, which leaves out extra nursing fees, books and living costs. "Lowest yearly tuition" sorts by that school-wide figure. Full details, prerequisites and sources are on each route. Always confirm with the school.${reportURL("x") ? ` Spotted something wrong? ${reportLinkHTML(`School comparison: ${fullState(startState)}`, "Tell us")}.` : ""}</p>`;
     return html;
   }
 
