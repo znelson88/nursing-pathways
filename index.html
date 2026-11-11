@@ -17,40 +17,9 @@
   <header>
     <span class="count" id="count"></span>
     <h1>Nursing Pathways</h1>
-    <p class="sub">Every route in nursing, from a first job as a CNA to a doctorate. Search for a job, or read the map step by step.</p>
+    <p class="sub">Every route in nursing, from a first job as a CNA to a doctorate. Tap any job to see where it comes from and where it leads. Dashed lines need work experience first; dotted lines are optional.</p>
   </header>
 
-  <div class="tools">
-    <div class="search">
-      <input id="q" type="search" autocomplete="off" placeholder="Search jobs or questions, e.g. ER, loans, Colorado" aria-label="Search nursing jobs" aria-controls="qres" aria-expanded="false" aria-autocomplete="list">
-      <div class="qres" id="qres" role="listbox" aria-label="Search results" hidden></div>
-    </div>
-    <button type="button" id="pzbtn" class="pzbtn" aria-expanded="false" aria-controls="sheet">My situation<span class="pzn" id="pzn" hidden></span></button>
-  </div>
-  <div class="active" id="active"></div>
-  <div class="sheetback" id="sheetback" hidden></div>
-  <section class="sheet" id="sheet" hidden aria-label="My situation">
-    <div class="shead"><h2>My situation</h2><button type="button" id="sheetdone" class="primary">Done</button></div>
-    <div class="sgrid">
-      <div class="sblock">
-        <label for="startAt" class="slabel">I'm starting as</label>
-        <select id="startAt"></select>
-        <p class="shint">Highlights your realistic next steps.</p>
-      </div>
-      <div class="sblock">
-        <label for="st" class="slabel">State for pay, taxes and laws</label>
-        <select id="st"></select>
-        <label class="adjpick"><input type="checkbox" id="adj"> Adjust pay for cost of living</label>
-        <p class="shint">Shows what the pay buys compared with an average US state. It doesn't change your actual paycheck.</p>
-      </div>
-    </div>
-    <div class="sfoot"><button type="button" id="clearall">Clear starting point</button></div>
-  </section>
-  <div class="nextsteps" id="nextsteps" aria-live="polite"></div>
-
-  <div class="viewbar">
-    <p class="howto" id="howto">Read top to bottom: start, school, license, then jobs. Tap any job to draw its lines to where it comes from and where it leads. Lines show common next steps, not required ones; <b>dashed lines</b> need work experience first.</p>
-  </div>
   <div class="key" id="key" aria-hidden="true"></div>
   <div class="layout">
     <div class="mapwrap" id="mapwrap">

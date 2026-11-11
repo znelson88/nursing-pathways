@@ -13,8 +13,7 @@ css/site.css        All styles for the map page; schools.css builds on its token
 css/schools.css
 js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), taxes (FED, STAX, net),
                     cost of living (RPP), loan rates (RATE), costs (COST, STEP, ROUTES), value (VAL)
-js/app.js           Everything that touches the page: tiered map, search, job details panel,
-                    "My situation" sheet, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
+js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
 data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js
@@ -53,6 +52,10 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
 3. **Cost of living** is an optional checkbox that adjusts what pay *buys*; it never changes the paycheck.
 4. **The map is a six-step tiered layout** (Start here → Nursing school → RN license → Work as an RN →
    More school → Advanced roles). Lines appear only for the selected job, with its route drawn thicker.
+   "Start here" shows CNA/LPN under "Optional: work first as" and, below them, what you actually need to start
+   nursing school (labels, not jobs): "High school diploma or GED" (ADN, BSN, Diploma RN) and "Bachelor's degree in
+   another field" (accelerated BSN, direct-entry MSN). A school route draws a solid line from its requirement;
+   CNA/LPN → school lines are dotted (optional), so the map never reads "you need a CNA first" (owner, 2026-11-11).
 5. **Phones:** tapping a job keeps you on the map; a "↓ details below" pill appears and the details stay at
    the bottom of the page. The owner rejected a pop-up bottom sheet and an inline summary card — don't
    bring those back without asking.
@@ -64,6 +67,10 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
 9. **The map is the focus.** The owner removed the four quick-question buttons ("What pays most?" etc.), the
    "Show only jobs that are…" schedule filters and the Map/List toggle with the list view (2026-11-11). Don't bring
    them back without asking. Each job's details still show its schedule tags and pay.
+   Later the same day the owner also removed the search box, "My situation" (state picker, "I'm starting as",
+   cost-of-living toggle, the chip row and "next steps") and the "Read top to bottom" note. The map now always uses
+   US-average pay and taxes; saved state/start choices from older visits are cleared. The owner may add a search bar
+   back later — the old search code is in git history (before this change). The schools page keeps its own pickers.
 
 ## Data rules for the schools page
 

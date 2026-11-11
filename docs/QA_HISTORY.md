@@ -33,3 +33,5 @@ pill plus Reset map buttons.
 Removed the question buttons, the schedule filters and the list view (with its Map/List toggle) so the page leads
 with the map. Search no longer offers "see jobs ranked by…" links. Reset map moved onto the map's top-right corner
 so it can't shift the page when it appears.
+Then also removed the search box, "My situation" (state, starting point, cost of living) and the how-to note; the
+intro sentence now carries the essentials (tap a job; dashed lines need experience). Map pay is US averages.

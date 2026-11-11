@@ -136,7 +136,7 @@ const PAY = {
 Object.values(PAY).forEach(p=>{const e=Object.entries(p.st);p.lo=e.reduce((a,b)=>b[1]<a[1]?b:a);p.hi=e.reduce((a,b)=>b[1]>a[1]?b:a);});
 const SCALE = 260000;
 let pickState = "none";
-try{const s=localStorage.getItem("np-state"); if(s&&(STATES[s]||s==="none"))pickState=s;}catch(e){}
+try{localStorage.removeItem("np-state")}catch(e){}  // no state picker on the map any more: always US averages
 const RNnote = {
   up:"Usually above the RN median for the state. Night, critical care and on-call differentials add up.",
   mid:"Usually close to the RN median for the state.",
@@ -224,7 +224,7 @@ const COST = {
 const money=n=>{const a=Math.abs(n),sg=n<0?"−":"";return a<1000?sg+"$"+Math.round(a):sg+"$"+Math.round(a/1000)+"k";};
 // BEA Regional Price Parities 2024 (released Feb 2026), all items (US = 100)
 const RPP = {MO:90.8,AK:102.4,AZ:100.7,CA:110.7,CO:103.1,HI:110.0,ID:95.5,MT:94.6,NV:100.0,NM:92.2,OR:103.4,UT:98.9,WA:107.0,WY:92.7};
-let adj=false; try{adj=localStorage.getItem("np-adj")==="1"}catch(e){}
+let adj=false; try{localStorage.removeItem("np-adj")}catch(e){}  // cost-of-living adjustment has no control any more
 // ---------- 2026 take-home pay, single filer, wages only ----------
 const brk=(x,b)=>{let t=0;for(let i=0;i<b.length;i++){const [lo,r]=b[i],hi=i+1<b.length?b[i+1][0]:Infinity;if(x>lo)t+=(Math.min(x,hi)-lo)*r;}return t;};
 const FED=[[0,.10],[12400,.12],[50400,.22],[105700,.24],[201775,.32],[256225,.35],[640600,.37]];

@@ -3,7 +3,7 @@
 const col=g=>`var(${GROUPS[g].col})`;
 const all=Object.values(byId);
 const TIERS=[
-  {n:"Start here", d:"No nursing license needed yet", groups:[["",["cna","lpn"]]]},
+  {n:"Start here", d:"Nursing school doesn't require a license or a health-care job first", groups:[["Optional: work first as",["cna","lpn"]],["What you need to start nursing school",["@hs","@bach"]]]},
   {n:"Nursing school", d:"Pick one route to the RN exam", groups:[["",["adn","bsn","absn","demsn","diploma"]]]},
   {n:"Get your RN license", d:"", groups:[["",["rn"]]]},
   {n:"Work as an RN", d:"No more school required; many jobs want experience first", groups:[
@@ -16,16 +16,20 @@ const TIERS=[
     ["Leadership & teaching",["manager","director","cno","educator","faculty","policy"]],
     ["Research & business",["scientist","industry","entre"]]]}
 ];
+// What you actually need to start each nursing-school route (shown as labels in "Start here").
+const ENTRY_LABEL={"@hs":["High school diploma or GED","For ADN, BSN or Diploma RN"],"@bach":["Bachelor's degree in another field","For an accelerated BSN or direct-entry MSN"]};
+const ENTRY_FROM={adn:"@hs",bsn:"@hs",diploma:"@hs",absn:"@bach",demsn:"@bach"};
 const TIER_OF={};
 const svg=document.getElementById("map");
 const tl=document.getElementById("tlines");
 const nodeEls={}; const edgeEls=[];
 document.getElementById("tiers").innerHTML=TIERS.map((t,i)=>`<section class="tier" data-tier="${i}" aria-label="Step ${i+1}: ${t.n}">
   <header class="thead"><span class="tnum" aria-hidden="true">${i+1}</span><div><h3>${t.n}</h3>${t.d?`<p>${t.d}</p>`:""}${i===3?`<p class="tnote" hidden>Every job in this step starts from the RN license.</p>`:""}</div></header>
-  ${t.groups.map(([gn,ids])=>`<div class="tgroup">${gn?`<span class="tglabel">${gn}</span>`:""}<div class="tchips">${ids.map(id=>{TIER_OF[id]=i;const n=byId[id];
+  ${t.groups.map(([gn,ids])=>`<div class="tgroup">${gn?`<span class="tglabel">${gn}</span>`:""}<div class="tchips">${ids.map(id=>{TIER_OF[id]=i;if(ENTRY_LABEL[id])return `<span class="entry" data-entry="${id}"><b>${ENTRY_LABEL[id][0]}</b><small>${ENTRY_LABEL[id][1]}</small></span>`;const n=byId[id];
      return n.g==="hub"?`<button type="button" class="rchip hub" data-id="rn"><b>Registered Nurse (RN)</b><small>Pass the NCLEX-RN exam. Every job below runs through this license.</small></button>`
        :`<button type="button" class="rchip" data-id="${id}" style="--c:${col(n.g)}"><i aria-hidden="true"></i>${n.label}</button>`;}).join("")}</div></div>`).join("")}
 </section>`).join("");
+document.querySelectorAll("#tiers .entry").forEach(e=>{nodeEls[e.dataset.entry]=e;});
 document.querySelectorAll("#tiers .rchip").forEach(b=>{const id=b.dataset.id; nodeEls[id]=b;
   b.addEventListener("click",()=>{select(id);openPanel();});});
 let curRoute={nodes:[],edges:[]};
@@ -58,8 +62,10 @@ function drawLines(){
   tl.setAttribute("width",M.width); tl.setAttribute("height",M.height); tl.setAttribute("viewBox",`0 0 ${M.width} ${M.height}`);
   const R=e=>{const r=e.getBoundingClientRect();return {x:r.left-M.left,y:r.top-M.top,w:r.width,h:r.height};};
   const seen=new Set(), pairs=[];
+  const first=curRoute.nodes[0]||id;
+  if(ENTRY_FROM[first])pairs.push([ENTRY_FROM[first],first,first===id&&curRoute.nodes.length<2?"lentry":"lroute"]);
   curRoute.edges.forEach(([a,b])=>{seen.add(a+">"+b);pairs.push([a,b,"lroute"]);});
-  (from[id]||[]).forEach(f=>{if(!seen.has(f+">"+id))pairs.push([f,id,"lin"]);});
+  (from[id]||[]).forEach(f=>{if(!seen.has(f+">"+id))pairs.push([f,id,(TIER_OF[f]===0&&TIER_OF[id]===1)?"lopt":"lin"]);});
   if(id!=="rn")(to[id]||[]).forEach(t=>{if(!seen.has(id+">"+t))pairs.push([id,t,"lout"]);});
   let out=`<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="currentColor"/></marker></defs>`;
   pairs.forEach(([a,b,cls])=>{
@@ -220,7 +226,7 @@ const LIFE = {
   scientist:"mr"
 };
 const LT = {n:"Nights common", w:"Weekends & holidays", c:"On call", m:"Mostly Mon–Fri", r:"Remote possible", p:"Physically demanding"};
-function applyFilters(){ renderActive(); drawLines(); }
+function applyFilters(){ drawLines(); }
 function lifeHTML(n){
   const t=LIFE[n.id]; if(t===undefined||t==="")return "";
   const on=Object.keys(LT).filter(k=>t.includes(k));
@@ -239,21 +245,8 @@ const STARTS = {
   bsnrn:{n:"RN with a BSN", at:"rn", next:[["icu","Gate for CRNA, acute care NP, flight"],["charge","Leadership after 1–3 yrs"],["travel","After 1–2 yrs in a specialty"],["fnp","NP: 2–4 yrs of grad school"],["pmhnp","Widely reported as high-demand"],["crna","After 1–3 yrs of ICU"]]},
   msnap:{n:"Nurse practitioner or MSN", at:"msn", next:[["pmc","Add a second NP specialty"],["dnp","MSN-to-DNP, 1–2 yrs"],["faculty","Teach clinicals with an MSN"],["entre","Own practice in full-practice states"]]}
 };
-const startSel=document.getElementById("startAt"), nextEl=document.getElementById("nextsteps");
-startSel.innerHTML=Object.entries(STARTS).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join("");
-let startKey="none"; try{const s=localStorage.getItem("np-start"); if(s&&STARTS[s])startKey=s;}catch(e){}
-startSel.value=startKey;
-function renderStart(go){
-  const st=STARTS[startKey];
-  all.forEach(m=>nodeEls[m.id].classList.remove("next"));
-  if(!st.at){nextEl.innerHTML="";return;}
-  nextEl.innerHTML=`<span class="nsh">Your realistic next steps</span><div class="nsl">${st.next.map(([id,why])=>`<button type="button" data-next="${id}" style="--c:${col(byId[id].g)}"><i></i>${byId[id].label} <small>${why}</small></button>`).join("")}</div>`;
-  nextEl.querySelectorAll("[data-next]").forEach(b=>b.onclick=()=>{select(b.dataset.next);focusNode(b.dataset.next);openPanel();});
-  if(go){select(st.at);focusNode(st.at);
-  }
-  st.next.forEach(([id])=>nodeEls[id].classList.add("next"));
-}
-startSel.addEventListener("change",()=>{startKey=startSel.value;try{localStorage.setItem("np-start",startKey)}catch(e){}renderStart(startKey!=="none");renderActive();});
+let startKey="none"; try{localStorage.removeItem("np-start")}catch(e){}  // no "I'm starting as" picker any more
+function renderStart(){}
 
 // group color key
 const STAGES=["entry","degree","bedside","beyond","lead","aprn"];
@@ -445,40 +438,8 @@ function select(id){
 }
 
 // ---------- Personalize sheet + active choices ----------
-const sheet=document.getElementById("sheet"), sheetback=document.getElementById("sheetback"), pzbtn=document.getElementById("pzbtn");
-function openSheet(){sheet.hidden=false;sheetback.hidden=!narrow();pzbtn.setAttribute("aria-expanded","true");
-  const f=sheet.querySelector("select");if(f)f.focus({preventScroll:!narrow()});}
-function closeSheet(){sheet.hidden=true;sheetback.hidden=true;pzbtn.setAttribute("aria-expanded","false");pzbtn.focus({preventScroll:true});}
-pzbtn.onclick=()=>sheet.hidden?openSheet():closeSheet();
-document.getElementById("sheetdone").onclick=closeSheet;
-sheetback.onclick=closeSheet;
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!sheet.hidden)closeSheet();});
-function clearAll(){startKey="none";startSel.value="none";try{localStorage.setItem("np-start","none")}catch(e){}
-  renderStart(false);
-applyFilters();select("rn");unselect();drawLines();syncReset();}
-document.getElementById("clearall").onclick=clearAll;
-function renderActive(){
-  const el=document.getElementById("active"); if(!el)return;
-  const items=[];
-  if(startKey!=="none")items.push({t:`Starting as <b>${STARTS[startKey].n}</b>`,x:()=>{startKey="none";startSel.value="none";try{localStorage.setItem("np-start","none")}catch(e){}renderStart(false);renderActive();}});
-  items.push({t:pickState!=="none"?`State: <b>${STATES[pickState]}</b>`:`State: <b>not set (US averages)</b>`});
-  if(adj)items.push({t:`Cost of living adjusted`,x:()=>{adj=false;adjBox.checked=false;try{localStorage.setItem("np-adj","0")}catch(e){}select(curId);renderActive();}});
-  const nf=startKey!=="none"?1:0;
-  const pzn=document.getElementById("pzn"); pzn.hidden=!nf; pzn.textContent=nf;
-  el.innerHTML=items.map((it,i)=>`<span class="achip">${it.t}${it.x?`<button type="button" class="x" data-i="${i}" aria-label="Remove">×</button>`:`<button type="button" class="x" data-open aria-label="Change">✎</button>`}</span>`).join("")+(nf?`<button type="button" class="aclear">Clear</button>`:"");
-  el.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>items[+b.dataset.i].x());
-  el.querySelectorAll("[data-open]").forEach(b=>b.onclick=openSheet);
-  const c=el.querySelector(".aclear"); if(c)c.onclick=clearAll;
-}
-
-// state picker
-const stSel=document.getElementById("st"); let curId="rn";
-stSel.innerHTML=`<option value="none">Not set (use US averages)</option>`+Object.entries(STATES).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
-stSel.value=pickState;
-stSel.addEventListener("change",()=>{pickState=stSel.value;try{localStorage.setItem("np-state",pickState)}catch(e){}select(curId);renderActive();});
-
-const adjBox=document.getElementById("adj"); adjBox.checked=adj;
-adjBox.addEventListener("change",()=>{adj=adjBox.checked;try{localStorage.setItem("np-adj",adj?"1":"0")}catch(e){}select(curId);renderActive();});
+function renderActive(){}
+let curId="rn";
 
 // ---------- Map / List views ----------
 const map=document.getElementById("map"), mapwrap=document.getElementById("mapwrap");
@@ -508,127 +469,7 @@ function backUp(){ const t=(lastFocus&&lastFocus.isConnected&&lastFocus!==docume
   t.scrollIntoView({behavior:smooth(),block:t===mapwrap?"start":"center"}); if(t.focus)t.focus({preventScroll:true}); }
 
 
-// ---------- Search with everyday words ----------
-const SYN={
-  rn:["registered nurse","rn","nurse"], cna:["nursing assistant","aide","nurse aide","assistant"], lpn:["practical nurse","vocational nurse","lvn"],
-  adn:["associate degree","community college","2 year"], bsn:["bachelor","bachelors","4 year","university"], absn:["second degree","accelerated","career change"],
-  demsn:["second degree","career change","masters entry"], rnbsn:["rn to bsn","online bsn"], msn:["masters","master's","graduate school"],
-  dnp:["doctor","doctorate","doctor of nursing"], phd:["doctor","doctorate","research"], pmc:["certificate","second specialty"],
-  fnp:["nurse practitioner","np","family","primary care"], agpcnp:["nurse practitioner","np","adult","primary care"], agacnp:["nurse practitioner","np","hospital np","acute care"],
-  pnp:["nurse practitioner","np","kids","children","pediatric np"], pmhnp:["nurse practitioner","np","mental health","psychiatric","psych np"], whnp:["nurse practitioner","np","women's health","womens health","gyn","ob gyn"],
-  nnp:["nurse practitioner","np","baby","newborn","neonatal","preemie"], enp:["nurse practitioner","np","er np","emergency np","urgent care"],
-  crna:["anesthesia","anesthetist","anesthesiology","anaesthesia","nurse anesthetist","put people to sleep"], cnm:["midwife","midwifery","birth","baby","delivering babies","pregnancy"],
-  cns:["clinical nurse specialist","specialist"], er:["er","er nurse","emergency room","trauma","emergency"], icu:["intensive care","critical care","icu"],
-  ld:["baby","babies","labor","delivery","birth","maternity","ob","pregnancy","baby nurse"], nicu:["baby","babies","newborn","neonatal","preemie","baby nurse"],
-  peds:["kids","children","child","pediatric"], onc:["cancer","chemo","oncology"], or:["surgery","surgical","operating room","or nurse"],
-  psych:["mental health","psychiatric","behavioral health"], cardiac:["heart","cardiac","cardiology","cath lab"], dialysis:["kidney","renal","dialysis"],
-  hospice:["end of life","palliative","dying"], medsurg:["med surg","hospital floor","general hospital"],
-  home:["home health","visiting nurse","in-home"], public:["community","health department","public health"], school:["school","schools","kids"],
-  tele:["remote","phone","telehealth","work from home","virtual"], travel:["travel","traveling","contract"], flight:["helicopter","air ambulance","transport","flight"],
-  military:["army","navy","air force","military","veteran"], corr:["prison","jail","correctional"], occ:["workplace","occupational","employee health"],
-  sane:["forensic","sexual assault","sane"], legal:["law","lawyer","legal","court"], aesth:["botox","injector","med spa","cosmetic","aesthetics"],
-  info:["computer","tech","technology","it","data","epic","informatics"], case:["case manager","discharge","insurance"], ip:["infection","infection control"],
-  woc:["wound","ostomy"], research:["research","clinical trials","studies"], industry:["pharma","pharmaceutical","sales","tech company"],
-  entre:["business","own business","entrepreneur","own practice"], charge:["charge","shift lead","leader"], manager:["manager","boss","leadership","management"],
-  director:["director","leadership"], cno:["executive","chief","ceo","leadership"], educator:["teach","teaching","trainer","educator"],
-  faculty:["teacher","professor","teach","instructor","teaching"], quality:["quality","safety","patient safety"], policy:["government","advocacy","politics","policy"],
-  scientist:["research","scientist","researcher"]
-};
-const MORE_SYN={
-  rn:["enfermera","enfermero","registered"], cna:["nursing home","long-term care","auxiliar de enfermeria","auxiliar"], lpn:["nursing home","long-term care"],
-  adn:["bridge","lpn to rn","lpn-to-rn"], bsn:["lpn to bsn"], rnbsn:["bridge","rn to bsn","online"], msn:["bridge","rn to msn"],
-  fnp:["dermatology","enfermera practicante"], agpcnp:["geriatric","geriatrics","elderly","older adults","old people","seniors","gero","enfermera practicante"],
-  agacnp:["enfermera practicante"], pnp:["enfermera practicante"], pmhnp:["enfermera practicante"], whnp:["enfermera practicante"], nnp:["enfermera practicante"], enp:["enfermera practicante"],
-  crna:["anestesia","anestesista"], cnm:["partera"], peds:["kid"], home:["elderly","seniors","old people","geriatric"], hospice:["elderly"], aesth:["dermatology","skin"],
-  dialysis:["kidney"],
-  absn:["absn","second career","career changer","over 50","older adult student","changing careers"], demsn:["demsn","direct entry msn","second career","over 50","changing careers"],
-  adn:["2 years","two years","cna to rn","medic","corpsman","68w","combat medic","no bachelor"], lpn:["cna to lpn","no degree","without a degree","medic","corpsman","68w"],
-  cna:["no degree","without a degree","no experience","quickest"], military:["corpsman","medic","68w","combat medic","navy corpsman"],
-  ld:["l&d","l and d"], or:["or","circulating nurse","scrub nurse","perioperative"], woc:["wound care","wocn","woc","ostomy nurse"],
-  msn:["rn to np","rn to msn"], fnp:["rn to np","fnp"], pmhnp:["pmhnp","psychiatric nurse practitioner","psych np"], agpcnp:["agpcnp"], agacnp:["agacnp","acnp"], pnp:["pnp"], whnp:["whnp"], nnp:["nnp"], enp:["enp"],
-  crna:["crna"], cnm:["cnm"], cns:["cns"], rn:["enfermeria"], bsn:["enfermeria","licenciatura"]
-};
-Object.entries(MORE_SYN).forEach(([k,v])=>SYN[k]=(SYN[k]||[]).concat(v));
-const STOP=new Set(["nurse","nurses","nursing","a","an","the","job","jobs","career","careers","become","becoming","to","be","how","i","want","work","in","as","much","does","do","make","makes","what","whats","is","are","for","of","with","vs","versus","or","and","my","me","get","good","best","pay","paid","salary","money","about","de","la","el","una","un","que","cuanto","cual","can","there","need","should","will","would","its","it"]);
-const words=x=>x.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9' ]+/g," ").split(/\s+/).filter(Boolean);
-function lev(a,b){if(Math.abs(a.length-b.length)>2)return 9;const d=[];for(let i=0;i<=a.length;i++){d[i]=[i];}for(let j=1;j<=b.length;j++)d[0][j]=j;
-  for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length];}
-const VOCAB={}; all.forEach(n=>{const sigLast=n.sig.split(",").pop(); VOCAB[n.id]=new Set([...words(n.label),...words(sigLast).filter(w=>w.length>1),...(SYN[n.id]||[]).flatMap(words)]);});
-function tokScore(t,set){if(set.has(t))return 1;let best=0;
-  for(const w of set){
-    if(t.length>=3&&w.startsWith(t)&&(t.length>=5||w.length-t.length<=2))best=Math.max(best,.8);
-    else if(t.length>=4&&w.length>=4&&t[0]===w[0]){const dd=lev(t,w); if(dd<=(t.length>=7?2:1))best=Math.max(best,.6);}
-  }return best;}
-function searchRoles(v){
-  const raw=words(v).join(" "); if(!raw)return [];
-  const toks=raw.split(" ").filter(t=>!STOP.has(t));
-  return all.map(n=>{
-    const lab=words(n.label).join(" "), syn=(SYN[n.id]||[]).map(x=>words(x).join(" "));
-    let sc=0;
-    if(lab===raw)sc=200; else if(lab.startsWith(raw))sc=150; else if(syn.includes(raw))sc=140;
-    else if(syn.some(x=>x.includes(" ")&&(" "+raw+" ").includes(" "+x+" ")))sc=125;
-    if(toks.length){const ts=toks.map(t=>tokScore(t,VOCAB[n.id])), matched=ts.filter(x=>x>0).length;
-      if(matched){const t=60*ts.reduce((a,b)=>a+b,0)/toks.length+(matched===toks.length?20:0); sc=sc?sc+t:40+t;}}
-    return [n,sc];
-  }).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]||a[0].label.localeCompare(b[0].label)).slice(0,8).map(x=>x[0]);
-}
-// Topics: questions about money, licenses and places, answered by opening the right section
-const US_STATES={alabama:0,alaska:"AK",arizona:"AZ",arkansas:0,california:"CA",colorado:"CO",connecticut:0,delaware:0,florida:0,georgia:0,hawaii:"HI",idaho:"ID",illinois:0,indiana:0,iowa:0,kansas:0,kentucky:0,louisiana:0,maine:0,maryland:0,massachusetts:0,michigan:0,minnesota:0,mississippi:0,missouri:0,montana:"MT",nebraska:0,nevada:"NV","new hampshire":0,"new jersey":0,"new mexico":"NM","new york":0,"north carolina":0,"north dakota":0,ohio:0,oklahoma:0,oregon:"OR",pennsylvania:0,"rhode island":0,"south carolina":0,"south dakota":0,tennessee:0,texas:0,utah:"UT",vermont:0,virginia:0,washington:"WA","west virginia":0,wisconsin:0,wyoming:"WY"};
-const cap=x=>x.replace(/\b\w/g,c=>c.toUpperCase());
-function topicsFor(t){
-  const r=" "+words(t).join(" ")+" ", out=[];
-  const has=re=>re.test(r);
-  if(has(/ (loans?|scholarships?|forgiv\w*|financial aid|grants?|gi bill|fafsa|debt|pay for (nursing )?school|becas?|prestamos?|pslf|repayment) /))
-    out.push({k:"aid",t:"Ways to pay less for school: scholarships, loan repayment and forgiveness"});
-  if(has(/ (compact|multistate|multi state|nlc|another state|other states?|different state|move to another|transfer my license|license in another) /))
-    out.push({k:"nlc",t:"Which states share one RN license (the Nurse Licensure Compact)"});
-  else if(has(/ (nclex|licen[sc]e|licensing|licensure|boards?|state exam) /))
-    out.push({k:"nclex",t:"How the RN license and the NCLEX exam work"});
-  for(const [nm,code] of Object.entries(US_STATES)){
-    if(r.includes(" "+nm+" ")&&!(nm==="washington"&&/ dc /.test(r))&&!(nm==="virginia"&&r.includes(" west virginia "))){
-      out.push(code?{k:"state",code,t:`Use ${cap(nm)} pay, taxes and cost of living`}:{k:"nostate",t:`${cap(nm)} isn't one of the 13 western states here, so pay uses US averages. Pick a state`}); break; } }
-  if(has(/ (diabetes|diabetic|cdces) /))out.push({k:"note",t:"Diabetes educator isn't its own step on this map. It's a certification (CDCES) that RNs can earn after at least 2 years of practice and 1,000 hours teaching diabetes care. The closest jobs:",ids:["case","public","medsurg"]});
-  return out;
-}
-function openSection(id,tab,sel){
-  closeRes(); q.value=""; select(id); if(view==="map")focusNode(id);
-  const tb=panel.querySelector(`[data-tab="${tab}"]`); if(tb)tb.click();
-  const tg=sel?panel.querySelector(sel):null; if(tg&&tg.tagName==="DETAILS")tg.open=true;
-  (tg||panel).scrollIntoView({behavior:smooth(),block:"start"});
-}
-function runTopic(tp){
-  if(tp.k==="aid"){const id=(svg.classList.contains("sel")&&AID_FOR[curId])?curId:"bsn"; openSection(id,"money",".msec.aidsec");}
-  else if(tp.k==="nlc")openSection("rn","where");
-  else if(tp.k==="nclex")openSection("rn","getin");
-  else if(tp.k==="state"){closeRes();q.value="";const was=svg.classList.contains("sel");stSel.value=tp.code;stSel.dispatchEvent(new Event("change"));if(!was){unselect();drawLines();syncReset();}openSheet();}
-  else if(tp.k==="nostate"){closeRes();q.value="";openSheet();}
-}
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const q=document.getElementById("q"), qres=document.getElementById("qres");
-function closeRes(){qres.hidden=true;q.setAttribute("aria-expanded","false");}
-function pickRole(id){closeRes();q.value="";select(id);focusNode(id);openPanel();}
-function showRes(){
-  const v=q.value, t=v.trim(); if(!t){closeRes();return;}
-  const tps=topicsFor(t), note=tps.find(x=>x.k==="note");
-  let items=searchRoles(v); if(note)items=[...note.ids.map(i=>byId[i]),...items.filter(n=>!note.ids.includes(n.id))].slice(0,8);
-  let html=tps.map((tp,i)=>tp.k==="note"?`<div class="qnone">${tp.t}</div>`:`<button type="button" role="option" class="qopt qintent" data-topic="${i}">${tp.t} →</button>`).join("");
-  html+=items.map(n=>`<button type="button" role="option" class="qopt" data-id="${n.id}" style="--c:${col(n.g)}"><i aria-hidden="true"></i><span>${n.label}</span><small>${GROUPS[n.g].name}</small></button>`).join("");
-  if(!items.length&&!tps.length)html=`<div class="qnone">No match for “${esc(t)}”. Try a job like <b>nurse practitioner</b>, <b>ER</b> or <b>school nurse</b>, or tap any job on the map.</div>`;
-  qres.innerHTML=html; qres.hidden=false; q.setAttribute("aria-expanded","true");
-  qres.querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>pickRole(b.dataset.id));
-  qres.querySelectorAll("[data-topic]").forEach(b=>b.onclick=()=>runTopic(tps[+b.dataset.topic]));
-}
-q.addEventListener("input",showRes);
-q.addEventListener("focus",()=>{if(q.value.trim())showRes();});
-q.addEventListener("keydown",e=>{
-  if(e.key==="Enter"){e.preventDefault();const f=qres.querySelector("[data-topic],[data-id]");if(f)f.click();}
-  else if(e.key==="ArrowDown"){const f=qres.querySelector("button");if(f){e.preventDefault();f.focus();}}
-  else if(e.key==="Escape")closeRes();});
-qres.addEventListener("keydown",e=>{const bs=[...qres.querySelectorAll("button")],i=bs.indexOf(document.activeElement);
-  if(e.key==="ArrowDown"&&i<bs.length-1){e.preventDefault();bs[i+1].focus();}
-  else if(e.key==="ArrowUp"){e.preventDefault();(i>0?bs[i-1]:q).focus();}
-  else if(e.key==="Escape"){closeRes();q.focus();}});
-document.addEventListener("click",e=>{if(!e.target.closest(".search"))closeRes();});
 
 // ---------- Plain-language definitions ----------
 const GLOSS={
@@ -713,10 +554,10 @@ let rz; window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=
 (function(){
   let seen=false; try{seen=localStorage.getItem("np-gloss-tip")==="1";}catch(e){}
   if(seen)return;
-  const vb=document.querySelector(".viewbar"); if(!vb)return;
+  const vb=document.getElementById("key"); if(!vb)return;
   const tip=document.createElement("div"); tip.className="glosstip";
   tip.innerHTML=`<span aria-hidden="true">💡</span><p>New to the lingo? Underlined words like <button type="button" class="term" data-t="BSN" aria-label="BSN: show definition">BSN</button> have a plain-English definition — tap one.</p><button type="button" class="gtipx" aria-label="Dismiss this tip">×</button>`;
-  vb.insertAdjacentElement("afterend",tip);
+  vb.insertAdjacentElement("beforebegin",tip);
   const close=()=>{try{localStorage.setItem("np-gloss-tip","1")}catch(e){} tip.remove();};
   tip.querySelector(".gtipx").onclick=close;
 }());

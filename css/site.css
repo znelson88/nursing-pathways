@@ -238,6 +238,13 @@ dd{margin:0}
 .tlines path{fill:none;stroke-width:1.7}
 .tlines .lout{stroke:var(--ink);opacity:.7}
 .tlines .lin{stroke:var(--muted);opacity:.8}
+.tlines .lentry{stroke:var(--ink);stroke-width:2.4;opacity:.95}
+/* Optional stepping stones (CNA/LPN before nursing school): dotted and faint, so they never read as required */
+.tlines .lopt{stroke:var(--muted);stroke-dasharray:1.5 6;stroke-linecap:round;opacity:.75}
+/* "Start here" entry requirements: plain labels, not jobs */
+.entry{display:inline-flex;flex-direction:column;justify-content:center;gap:1px;min-height:38px;padding:6px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.25}
+.entry b{font-weight:600}
+.entry small{font-size:12px;color:var(--muted)}
 .tlines .gated{stroke-dasharray:5 5}
 #tiers{position:relative;z-index:1;display:grid}
 .tier{display:grid;gap:10px;padding-block:14px;border-top:1px dashed var(--line)}

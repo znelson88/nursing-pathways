@@ -8,6 +8,8 @@ srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(http.s
 threading.Thread(target=srv.serve_forever, daemon=True).start()
 BASE = f"http://127.0.0.1:{srv.server_port}"
 fails = []
+def pickState_none(page):
+    return page.evaluate("()=>pickState==='none' && adj===false")
 def check(name, ok):
     print(("PASS " if ok else "FAIL ") + name)
     if not ok: fails.append(name)
@@ -20,11 +22,12 @@ with sync_playwright() as p:
     d = b.new_page(viewport={"width": 1360, "height": 900}); d.on("pageerror", lambda e: errs.append(str(e)))
     d.goto(BASE + "/index.html"); d.evaluate("()=>{localStorage.clear()}"); d.reload(); d.wait_for_timeout(500)
     check("map has 64 chips", d.evaluate("()=>document.querySelectorAll('#tiers .rchip').length") == 64)
-    for q, want in [("nurse practicioner", "NP"), ("psychiatric nurse practitioner", "Psych"), ("loans", "Ways to pay"), ("colorado", "Colorado"), ("corpsman", "ADN")]:
-        d.fill("#q", q); d.wait_for_timeout(40)
-        first = d.evaluate("()=>{const e=document.querySelector('#qres .qopt');return e?e.innerText:''}")
-        check(f"search '{q}' -> {want}", want in first)
-    d.fill("#q", "")
+    check("map page has no search box, My situation or how-to bar", d.evaluate("()=>!document.getElementById('q') && !document.getElementById('pzbtn') && !document.querySelector('.viewbar')"))
+    # Choices saved by earlier visits have no control any more, so they must not apply.
+    d.evaluate("()=>{localStorage.setItem('np-state','CA');localStorage.setItem('np-start','adnrn');localStorage.setItem('np-adj','1')}"); d.reload(); d.wait_for_timeout(400)
+    d.click('.rchip[data-id="fnp"]'); d.wait_for_timeout(200)
+    href0 = d.get_attribute(".schoolsbtn", "href") or ""
+    check("old saved state / starting point no longer apply", "state=" not in href0 and "start=" not in href0 and pickState_none(d))
     d.click('.rchip[data-id="crna"]'); d.wait_for_timeout(200)
     check("CRNA route drawn", d.evaluate("()=>curRoute.nodes.includes('rn')&&document.querySelectorAll('#tlines path').length>0"))
     href = d.get_attribute(".schoolsbtn", "href") or ""
@@ -116,10 +119,6 @@ with sync_playwright() as p:
     check("schools route: BSN start skips the RN-to-BSN step",
           d.evaluate("()=>{const h=[...document.querySelectorAll('#route .step .pchead h3')].map(x=>x.textContent);return h[0].includes('Traditional BSN') && !h.some(t=>/RN-to-BSN|RN-BSN/.test(t))}"))
     # "I'm starting as" (?start= from the map) changes where the route begins.
-    d.goto(BASE + "/index.html"); d.wait_for_timeout(300)
-    d.evaluate("()=>{localStorage.setItem('np-start','adnrn')}"); d.reload(); d.wait_for_timeout(400)
-    d.click('.rchip[data-id="fnp"]'); d.wait_for_timeout(200)
-    check("map passes starting point to schools page", "start=adnrn" in (d.get_attribute(".schoolsbtn", "href") or ""))
     d.evaluate("()=>{localStorage.clear()}")
     d.goto(BASE + "/schools.html?job=fnp&state=CO&start=adnrn"); d.wait_for_timeout(400)
     check("schools start=adnrn: picker shows ADN RN, school picker disabled",
