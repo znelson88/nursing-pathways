@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California and Missouri**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri and Washington**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -16,7 +16,7 @@ js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), t
 js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
@@ -156,6 +156,11 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   Introduces `bridge_from` on LPN/paramedic bridge programs (shown only to "LPN / LVN" starters). Missouri is an NLC
   state. Exclusions and gaps are in docs/DATA_SOURCES.md. Missouri tuition (`MO.tuition`) still to add. The career
   map's pay-state list has no Missouri (no BLS pay data there yet), so map links don't preselect Missouri.
+- Washington: built in `data/schools/wa.js` (`window.SCHOOLS.WA`), **44 schools / 91 programs / 17 agreements**
+  (verified 2026-11-11) from the Washington State Board of Nursing roster (Nov 9, 2026) and its NCLEX school report
+  (2023-2025). 28 community/technical colleges (many offer LPN bridges and their own RN-to-BSN), UW/WSU/EWU and the
+  private nonprofits (Gonzaga CRNA, Seattle U and UW midwifery). NLC state. Tuition (`WA.tuition`) still to add.
+  Exclusions and gaps are in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", 6am and 6pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state for the owner to review and merge; it never merges or pushes to main. The state list lives
   in `SCHOOL_STATES` (js/data.js) plus one `<script>` tag in schools.html.

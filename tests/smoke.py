@@ -1,6 +1,6 @@
 """Smoke test for Nursing Pathways. Run from the project folder: python tests/smoke.py
 Starts a local server, then checks the main flows on a laptop, a phone and at 200% zoom."""
-import http.server, threading, functools, pathlib, sys
+import http.server, threading, functools, pathlib, re, sys
 from playwright.sync_api import sync_playwright
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -104,6 +104,17 @@ with sync_playwright() as p:
     d.goto(BASE + "/schools.html?job=fnp&state=CO&finish=MO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools MO: Colorado to Missouri hand-off says the compact license carries over",
           "Nurse Licensure Compact" in d.inner_text("#route") and d.evaluate("()=>[...document.querySelectorAll('#route .pstate')].some(b=>b.textContent.trim()==='Missouri')"))
+    # Washington (fifth state): board roster, board NCLEX figures, LPN bridges only for LPNs.
+    d.goto(BASE + "/schools.html?job=fnp&state=WA"); d.wait_for_timeout(400)
+    check("schools WA: comparison lists 35+ Washington start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 35)
+    check("schools WA: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=WA&start=lpn&school=pierce"); d.wait_for_timeout(400)
+    check("schools WA: an LPN at Pierce starts with its LPN-to-RN bridge",
+          "LPN to RN" in d.inner_text("#route .step .pchead h3") and "starts with an LPN-to-RN bridge" in d.inner_text("#route"))
+    d.goto(BASE + "/schools.html?job=fnp&state=WA&school=wsu"); d.wait_for_timeout(400)
+    check("schools WA: pass rates come from the Washington board report",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"nursing.wa.gov\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # Verified Colorado route view: Trinidad State -> Family NP
     d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools route: three program steps", d.evaluate("()=>document.querySelectorAll('#route .step').length") == 3)
