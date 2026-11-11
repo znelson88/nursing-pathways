@@ -206,3 +206,44 @@ IPEDS id (`unitid`), `year`, `in_state`, `out_of_state`, `in_label`, `source_url
   2026-11-11, not because the document moved. Kept the link and the `CRNAOPT` values unchanged; re-check once AANA is
   back up. (Becker's ASC, the main secondary list, blocks automated readers, so it couldn't be used to cross-check.)
 
+# Data sources (schools page — Missouri, added 2026-11-11)
+
+Missouri: **47 schools / 168 programs / 58 transfer agreements** in `data/schools/mo.js` (verified 2026-11-11), built
+the same way as Colorado, Arizona and California: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Missouri State Board of Nursing "Schools of Nursing" list (pr.mo.gov/boards/nursing/schoolsofnursing.pdf,
+  revised 10/22/2026): approved Associate Degree, RN Diploma and Baccalaureate programs. Every public and private
+  nonprofit RN program on it is included (43 starting schools), plus RN-to-BSN and graduate APRN/CRNA programs at those
+  schools and Webster University (RN-to-BSN, nurse anesthesia).
+- **NCLEX-RN pass rates:** the board's NCSBN "Report 4" (per program, first-time candidates) for calendar 2023, 2024
+  and 2025, linked from pr.mo.gov/nursing-education.asp. Each year's per-program totals were checked against the board's
+  statewide "Report 1" total (2023: 3,768 tested / 3,388 passed; 2024: 3,751 / 3,496; 2025: 3,661 / 3,246 = 88.66%).
+  Programs map to the board's program codes (US17xxxxxx); where a school reports one code for several BSN tracks the
+  card says so, East Central's two codes are combined, and Crowder is shown by campus. New programs (Lindenwood,
+  Culver-Stockton) have no results yet. pr.mo.gov's certificate chain is incomplete, so the PDFs were downloaded with
+  Windows' own web client (which completes the chain) rather than with certificate checks turned off.
+- **Excluded (same rules as other states):** private for-profit — Chamberlain, Concorde Career College, Arizona College
+  of Nursing, Stepful College (formerly St. Louis College of Health Careers), Texas County Technical College (owned by
+  "SPC Subsidiary 1, LLC"), Ponce Health Sciences University–St. Louis, **Research College of Nursing** (HCA Healthcare-owned;
+  its MSN closed Dec 2024); Grand Canyon University's Missouri site (out-of-state, as in Colorado). **Cox College** is
+  not admitting students and plans to close after Summer 2027 (students are referred to the Alliance for Healthcare
+  Education). Paused: UMKC's RN-to-BSN (not accepting applications) and BSN-to-DNP NP tracks (reopening Aug 2027; its
+  MSN NP routes are included). Truman's accelerated BSN (suspended; last cohort Aug 2026).
+- **LPN/paramedic bridges:** 25 programs carry `bridge_from` ("lpn", "lpn_or_paramedic" or "paramedic"). The schools
+  page offers them only to people who choose "LPN / LVN", and lists them first for those people. NCMC's ADN, State Tech's
+  AAS and Franklin Tech's RN diploma are bridge-only (they require an LPN license).
+- **Agreements:** 58 kept — same-school continuations plus community-college → university RN-to-BSN partnerships
+  documented on either school's site (e.g., STLCC/UMSL/Webster dual admission, OTC→Missouri State 2+2, Mineral Area and
+  Three Rivers→SEMO, Jefferson/State Fair/MCC→UCM, MCC/State Fair/NCMC/Crowder→Saint Luke's). Dropped: partners outside
+  the data (SIUE in Illinois, Northwest Missouri State, Cox College). Some agreement documents date from 2012-2022 and are
+  labeled in their notes.
+- **Spot check (2026-11-11):** SEMO BSN admission, SLU accelerated BSN length/tuition and MCC ADN TEAS/points/GPA/cost
+  matched the schools' pages; MCC's cost appears on its main program page, now cited in the cost note.
+- **Known gaps:** Mercy (Cape Girardeau)'s site blocks automated reading, so its records are mostly "check with the school";
+  St. Charles CC's catalog didn't load (prerequisites null); several catalogs (Mizzou, UMSL, Missouri Western, Rockhurst,
+  Avila, Park, Columbia College) blocked automated reading, so some course codes are null. Bolivar Technical College's
+  homepage showed unrelated casino ads on 2026-11-11 (possible compromise); only its program page and catalog are linked.
+- **Tuition:** not yet added for Missouri — College Scorecard's demo key hit its rate limit on 2026-11-11. Add `MO.tuition`
+  the same way as the other states when it resets.
+- **Refresh:** re-pull the roster and the board's Report 4 each spring (the year's Q4 report appears around March).
+

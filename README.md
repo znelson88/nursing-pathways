@@ -2,7 +2,7 @@
 
 Every route in nursing, from a first job as a CNA to a doctorate, with take-home pay, school cost and
 time for the western US. A second page shows real schools, prerequisites and transfer routes in Colorado,
-Arizona and California.
+Arizona, California and Missouri.
 
 **Live at https://nursingpaths.com** (GitHub Pages from the `main` branch of `znelson88/nursing-pathways`;
 every push to `main` is checked first, then goes live in a few minutes if the checks pass).

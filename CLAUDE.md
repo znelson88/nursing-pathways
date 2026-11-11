@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona and California**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California and Missouri**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -138,5 +138,10 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   was already a separate institution. `NLC` (compact member states) moved from app.js to data.js so the
   schools page shares it. Later waves: UC + private universities, more community-college ADNs by region, and
   APRN/CRNA/CNM specialties.
+- Missouri: built in `data/schools/mo.js` (`window.SCHOOLS.MO`), **47 schools / 168 programs / 58 agreements**
+  (verified 2026-11-11) from the Missouri State Board of Nursing roster and its per-program NCLEX reports (2023-2025).
+  Introduces `bridge_from` on LPN/paramedic bridge programs (shown only to "LPN / LVN" starters). Missouri is an NLC
+  state. Exclusions and gaps are in docs/DATA_SOURCES.md. Missouri tuition (`MO.tuition`) still to add. The career
+  map's pay-state list has no Missouri (no BLS pay data there yet), so map links don't preselect Missouri.
 - Hosting: live at https://nursingpaths.com (GitHub Pages, repo znelson88/nursing-pathways, published by the
   `Test and deploy` workflow after each push to `main` passes its checks). See README.md.

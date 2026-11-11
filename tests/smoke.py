@@ -82,6 +82,20 @@ with sync_playwright() as p:
           and "schools.html" in q.get("entry.978238469", [""])[0])
     d.goto(BASE + "/index.html"); d.wait_for_timeout(300)
     check("career map footer has a report link", d.evaluate("()=>!document.getElementById('reportfoot').hidden && !!document.querySelector('#reportfoot a.report')"))
+    # Missouri (fourth state): board roster, board NCLEX figures, LPN bridges only for LPNs.
+    d.goto(BASE + "/schools.html?job=fnp&state=MO"); d.wait_for_timeout(400)
+    check("schools MO: comparison lists 40+ Missouri start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 40)
+    check("schools MO: no bridge program offered to someone new to nursing",
+          d.evaluate("()=>![...document.querySelectorAll('#route .ccard .cstats div:first-child dd')].some(e=>/LPN|bridge|Paramedic/i.test(e.innerText))"))
+    d.goto(BASE + "/schools.html?job=fnp&state=MO&start=lpn&school=stlcc"); d.wait_for_timeout(400)
+    check("schools MO: an LPN at STLCC starts with its LPN-to-RN bridge",
+          "Bridge" in d.inner_text("#route .step .pchead h3") and "starts with an LPN-to-RN bridge" in d.inner_text("#route"))
+    d.goto(BASE + "/schools.html?job=fnp&state=MO&school=semo"); d.wait_for_timeout(400)
+    check("schools MO: pass rates come from the Missouri board report",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"pr.mo.gov\"]')") and "2025" in d.inner_text("#route .pcard"))
+    d.goto(BASE + "/schools.html?job=fnp&state=CO&finish=MO&school=trinidad-state"); d.wait_for_timeout(400)
+    check("schools MO: Colorado to Missouri hand-off says the compact license carries over",
+          "Nurse Licensure Compact" in d.inner_text("#route") and d.evaluate("()=>[...document.querySelectorAll('#route .pstate')].some(b=>b.textContent.trim()==='Missouri')"))
     # Verified Colorado route view: Trinidad State -> Family NP
     d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools route: three program steps", d.evaluate("()=>document.querySelectorAll('#route .step').length") == 3)
@@ -137,7 +151,7 @@ with sync_playwright() as p:
     d.goto(BASE + "/schools.html?job=enp&state=AZ"); d.wait_for_timeout(300)
     txt = d.inner_text("#route")
     check("schools: unavailable job gives honest no-data gap naming all covered states",
-          "don't have a verified" in txt and "Colorado, Arizona and California" in txt)
+          "don't have a verified" in txt and "Colorado, Arizona, California and Missouri" in txt)
     # Start/finish state model: a starting state that cascades the school list, and a finishing state.
     d.goto(BASE + "/schools.html?job=fnp&state=AZ"); d.wait_for_timeout(400)
     check("schools: start and finish state selectors offer CO + AZ",

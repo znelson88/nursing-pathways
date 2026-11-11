@@ -24,7 +24,7 @@
   // You pick the state you're starting in (which fills the starting-school list below), and the state
   // you want to FINISH in. When they match it's an ordinary in-state route; when they differ the route
   // hands off from the start state to the finish state after the RN license (see buildRoute).
-  const LOADED = ["CO", "AZ", "CA"].filter(s => window.SCHOOLS && window.SCHOOLS[s]);
+  const LOADED = ["CO", "AZ", "CA", "MO"].filter(s => window.SCHOOLS && window.SCHOOLS[s]);
   const stateOpts = LOADED.map(s => `<option value="${s}">${esc(fullState(s))}</option>`).join("");
   startStateSel.innerHTML = stateOpts;
   finishStateSel.innerHTML = stateOpts;
@@ -246,7 +246,15 @@
     return { steps, missing, reachedGoal: reached, goalIsProgram: PROGRAM_CREDS.has(goal), startState, finishState, held };
   }
   function agreement(data, fromId, toId) {
-    return (data.agreements || []).find(a => a.from_program === fromId && a.to_program === toId) || null;
+    const list = data.agreements || [];
+    const direct = list.find(a => a.from_program === fromId && a.to_program === toId);
+    if (direct) return direct;
+    // A bridge program awards the same degree as the school's standard program, so the school's transfer
+    // agreements for that degree apply to bridge graduates too.
+    const from = data.programs.find(p => p.id === fromId);
+    if (!from || !from.bridge_from) return null;
+    return list.find(a => a.to_program === toId && data.programs.some(p =>
+      p.id === a.from_program && p.institution === from.institution && p.credential === from.credential)) || null;
   }
   // "Completeness" score so the most fully-verified option is shown first.
   function score(p) {
@@ -304,7 +312,7 @@
   function costHTML(cost) {
     if (!cost) return na(null);
     const u = costUnit(cost);
-    const amt = cost.amount != null ? `<b>$${Number(cost.amount).toLocaleString()}</b>${u === "credit" ? "/credit" : u === "year" ? "/year" : ""}` : "";
+    const amt = cost.amount != null ? `<b>${usd(cost.amount)}</b>${u === "credit" ? "/credit" : u === "year" ? "/year" : ""}` : "";
     return `${amt ? amt + " — " : ""}${cost.basis ? esc(cost.basis) : na(null)}${cost.year ? ` <span class="muted">(${esc(cost.year)})</span>` : ""}`;
   }
   function admissionHTML(a) {
@@ -321,7 +329,7 @@
     if (!pr) return na(null);
     if (!pr.by_campus) return `<span class="muted">${esc(pr.basis || "Not applicable")}</span>`;
     const rows = Object.entries(pr.by_campus).map(([campus, series]) => {
-      const cells = series.map(s => `<span class="yr">${s.year}: <b>${pct(s.rate)}</b></span>`).join(" ");
+      const cells = series.map(s => `<span class="yr">${s.year}: <b>${pct(s.rate)}</b>${s.tested ? ` <span class="muted">(${s.tested} tested)</span>` : ""}</span>`).join(" ");
       return `<div class="prrow"><span class="camp">${esc(campus)}</span> ${cells}</div>`;
     }).join("");
     const link = pr.source_url ? ` <a href="${esc(pr.source_url)}" target="_blank" rel="noopener">source</a>` : "";
@@ -405,6 +413,22 @@
     const startKey = startAsSel.value;
     const who = STARTS[startKey] || STARTS.none;
     const held = who.held || null;
+    // Bridge programs (bridge_from: lpn / lpn_or_paramedic / paramedic) need an existing license, so they're
+    // only offered to people starting as an LPN, and for them they come first.
+    const lpnStart = startKey === "lpn";
+    data.programs = data.programs.filter(p => !p.bridge_from || (lpnStart && /lpn/.test(p.bridge_from)));
+    if (lpnStart) data.programs.sort((a, b) => (b.bridge_from ? 1 : 0) - (a.bridge_from ? 1 : 0));
+    const lpnNote = (schoolIdOrNull, stateCode) => {
+      if (!lpnStart) return "";
+      const bridgeHere = schoolIdOrNull && data.programs.some(p => p.institution === schoolIdOrNull && p.bridge_from);
+      if (bridgeHere) return `<div class="gap"><b>This route starts with an LPN-to-RN bridge.</b>
+        <p>It's for nurses who already hold an LPN license, so it's shorter than the standard entry. Check the admission details for license and experience rules.</p></div>`;
+      const anyInState = data.programs.some(p => p.bridge_from && p._state === stateCode);
+      if (!schoolIdOrNull && anyInState) return `<div class="gap"><b>Schools with an LPN-to-RN bridge show it on their card.</b>
+        <p>A bridge is shorter than the standard entry because it counts your LPN license. Schools without one show their standard entry; ask them what your license counts for.</p></div>`;
+      return `<div class="gap"><b>${anyInState ? "This school has no LPN-to-RN bridge in our data." : "We don't list LPN-to-RN bridge programs for this state yet."}</b>
+        <p>${schoolIdOrNull ? "The route below uses the standard entry." : "Where a school offers an LPN-to-RN bridge, its card shows the bridge."} Many nursing programs give LPNs advanced placement or a shorter bridge, so ask each school what your LPN license counts for.</p></div>`;
+    };
 
     // Starting-school selector: only schools in the chosen STARTING state (the cascade). Preserve the
     // current choice across re-renders, otherwise rebuilding the <option> list resets it.
@@ -439,7 +463,7 @@
 
     if (!held && !starts.length) { routeEl.innerHTML = buildingMsg(data); return; }
     if (!held && !schoolSel.value) {
-      routeEl.innerHTML = compareHTML(data, starts, goal, goalLabel, startStateV, finishStateV, entry, startKey);
+      routeEl.innerHTML = compareHTML(data, starts, goal, goalLabel, startStateV, finishStateV, entry, startKey, lpnNote);
       return;
     }
     const schoolId = held ? null : schoolSel.value;
@@ -469,10 +493,7 @@
     }
     html += glanceHTML(data, r.steps);
 
-    if (startKey === "lpn") {
-      html += `<div class="gap"><b>We don't list LPN-to-RN bridge programs yet.</b>
-        <p>The route below uses the standard entry. Many nursing programs give LPNs advanced placement or a shorter bridge, so ask each school what your LPN license counts for.</p></div>`;
-    }
+    html += lpnNote(schoolId, startState);
     if (held === "msn" && r.steps.length) {
       html += `<div class="gap"><b>You may not need a second full degree.</b>
         <p>The program below is the one we list for this specialty, and it may be built for nurses with a bachelor's. Many schools offer a shorter post-master's certificate or an MSN-to-DNP path for nurses who already hold an MSN. We don't list those yet, so ask each school what your master's counts for.</p></div>`;
@@ -563,24 +584,26 @@
     const top = Math.max(...latest.map(x => yearKey(x.year)));
     const same = latest.filter(x => yearKey(x.year) === top);
     const rates = same.map(x => x.rate);
-    return { year: same[0].year, lo: Math.min(...rates), hi: Math.max(...rates), campuses: latest.length };
+    const tested = same.every(x => x.tested) ? same.reduce((a, x) => a + x.tested, 0) : null;
+    return { year: same[0].year, lo: Math.min(...rates), hi: Math.max(...rates), campuses: latest.length, tested };
   }
   function passShort(lp) {
     if (!lp) return `<span class="muted">Not published</span>`;
     const r = lp.lo === lp.hi ? pct(lp.lo) : `${pct(lp.lo)}–${pct(lp.hi)}`;
     const yl = String(lp.year).replace(/^(\d+)-qtr$/, "last $1 quarters");
-    return `<b>${r}</b> <span class="muted">(${esc(yl)}${lp.lo !== lp.hi ? ", by campus" : ""})</span>`;
+    return `<b>${r}</b> <span class="muted">(${esc(yl)}${lp.lo !== lp.hi ? ", by campus" : ""}${lp.tested ? `, ${lp.tested} tested` : ""})</span>`;
   }
   // Short cost for the comparison. The full basis is on the program card in the route.
   function costShort(c, t) {
     if (!c || c.amount == null) return t ? `${tuitionText(t)} <span class="muted">(school-wide, ${esc(t.year)})</span>` : `<span class="muted">Not published</span>`;
     const u = costUnit(c);
-    const own = `<b>$${Number(c.amount).toLocaleString()}</b>${u === "credit" ? " per credit" : u === "year" ? " per year" : " for the program"}`;
+    const own = `<b>${usd(c.amount)}</b>${u === "credit" ? " per credit" : u === "year" ? " per year" : " for the program"}`;
     return t ? `${own}<br><span class="muted">School-wide (${esc(t.year)}):</span> ${tuitionText(t)}` : own;
   }
+  const usd = n => "$" + Number(n).toLocaleString("en-US", Number.isInteger(Number(n)) ? {} : { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const firstClause = s => String(s || "").split(/;\s|\.\s/)[0];
 
-  function compareHTML(data, starts, goal, goalLabel, startState, finishState, entry, startKey) {
+  function compareHTML(data, starts, goal, goalLabel, startState, finishState, entry, startKey, lpnNoteFn) {
     let rows = starts.map(s => {
       const cred = entryCredential(data, s.id, entry);
       const prog = data.programs.find(p => p.institution === s.id && p.credential === cred);
@@ -614,10 +637,7 @@
       html += `<div class="gap"><b>We don't have a verified ${esc(credLabel(noneReach))} program in our data yet.</b>
         <p>We currently cover ${esc(coveredStates(data))}. Each route below is confirmed as far as we can source it; the last step is being added, and nothing here is guessed.</p></div>`;
     }
-    if (startKey === "lpn") {
-      html += `<div class="gap"><b>We don't list LPN-to-RN bridge programs yet.</b>
-        <p>The schools below show their standard entry. Many give LPNs advanced placement or a shorter bridge, so ask what your LPN license counts for.</p></div>`;
-    }
+    html += lpnNoteFn ? lpnNoteFn(null, startState) : "";
     html += `<div class="cmpbar">
       <label><span>Sort by</span>${sel("sort", cmpSort, [["pass", "Highest NCLEX pass rate"], ["tuition", "Lowest yearly tuition"], ["steps", "Fewest programs to the goal"], ["az", "Name (A–Z)"]])}</label>
       <label><span>Show</span>${sel("type", cmpType, [["all", "All schools"], ["cc", "Community colleges"], ["uni", "Universities and 4-year colleges"]])}</label>
@@ -658,7 +678,7 @@
     return names.length <= 1 ? (names[0] || "no states") :
       names.slice(0, -1).join(", ") + " and " + names[names.length - 1];
   }
-  function fullState(st) { return { CO: "Colorado", AZ: "Arizona", CA: "California" }[st] || st; }
+  function fullState(st) { return { CO: "Colorado", AZ: "Arizona", CA: "California", MO: "Missouri" }[st] || st; }
   function credLabel(c) { return byId[c] ? byId[c].label : c; }
 
   jobSel.onchange = startAsSel.onchange = finishStateSel.onchange = schoolSel.onchange = render;
