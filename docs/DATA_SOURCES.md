@@ -243,14 +243,14 @@ the same way as Colorado, Arizona and California: every fact from the school's o
   St. Charles CC's catalog didn't load (prerequisites null); several catalogs (Mizzou, UMSL, Missouri Western, Rockhurst,
   Avila, Park, Columbia College) blocked automated reading, so some course codes are null. Bolivar Technical College's
   homepage showed unrelated casino ads on 2026-11-11 (possible compromise); only its program page and catalog are linked.
-- **Tuition (`MO.tuition`, added 2026-11-11):** 41 of 47 schools, College Scorecard 2025-26, same method as the
+- **Tuition (`MO.tuition`, added 2026-11-11/12):** 43 of 47 schools, College Scorecard 2025-26, same method as the
   section above. The 12 district community colleges (STLCC, St. Charles, Jefferson, East Central, Mineral Area, Three
   Rivers, Moberly, MCC-KC, State Fair, North Central, Crowder, OTC) are labeled "in-district"; State Tech, MSU-West
   Plains and the universities "in-state". Overrides: MCC-KC → 177995, Mizzou → 178396, UMSL → 178420, Missouri State →
   179566, UCM → 176965, SLU → 179159, UMKC → 178402 (university-wide), Central Methodist → 176947 (College of Liberal
   Arts and Sciences), Missouri Valley → 178369, Mercy's Southeast Missouri Hospital College → 417734. Left out:
   Graceland and WGU (home campus out of state), Goldfarb and Franklin Technology Center (no tuition reported).
-  **Still to add:** Rockhurst–Saint Luke's and Bolivar Technical College. The demo key ran out after 100 of Missouri's
-  138 Scorecard records, and these two are in the rest; add them by hand once the key resets.
+  Added by hand on 2026-11-12 (the script won't rewrite an existing block): Rockhurst–Saint Luke's → 179043 (Rockhurst
+  University, university-wide rate) and Bolivar Technical College → 490203 (private nonprofit).
 - **Refresh:** re-pull the roster and the board's Report 4 each spring (the year's Q4 report appears around March).
 
