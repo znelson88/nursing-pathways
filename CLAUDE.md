@@ -154,7 +154,7 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
 - Missouri: built in `data/schools/mo.js` (`window.SCHOOLS.MO`), **47 schools / 168 programs / 58 agreements**
   (verified 2026-11-11) from the Missouri State Board of Nursing roster and its per-program NCLEX reports (2023-2025).
   Introduces `bridge_from` on LPN/paramedic bridge programs (shown only to "LPN / LVN" starters). Missouri is an NLC
-  state. Exclusions and gaps are in docs/DATA_SOURCES.md. Missouri tuition (`MO.tuition`) still to add. The career
+  state. Exclusions and gaps are in docs/DATA_SOURCES.md. `MO.tuition` covers 43 schools (the rest are explained in DATA_SOURCES). The career
   map's pay-state list has no Missouri (no BLS pay data there yet), so map links don't preselect Missouri.
 - Washington: built in `data/schools/wa.js` (`window.SCHOOLS.WA`), **44 schools / 91 programs / 17 agreements**
   (verified 2026-11-11) from the Washington State Board of Nursing roster (Nov 9, 2026) and its NCLEX school report

@@ -12,8 +12,8 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | Colorado | CO | done | 28 schools / 53 programs |
 | — | Arizona | AZ | done | 15 / 42 |
 | — | California | CA | done | 24 / 61 (partial: CSU/UC/major privates + 8 CC ADNs; more CCs possible later) |
-| — | Missouri | MO | done, tuition pending | 47 / 168 |
-| 1 | Washington | WA | PR open (#2), tuition pending | 44 / 91 (17 agreements); NLC member |
+| — | Missouri | MO | done | 47 / 168 |
+| — | Washington | WA | done, tuition pending | 44 / 91 (17 agreements); NLC member |
 | 2 | Oregon | OR | todo | not NLC |
 | 3 | Nevada | NV | todo | not NLC |
 | 4 | Idaho | ID | todo | NLC member |
