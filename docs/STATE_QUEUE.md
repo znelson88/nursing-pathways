@@ -12,7 +12,7 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | Colorado | CO | done | 28 schools / 53 programs |
 | — | Arizona | AZ | done | 15 / 42 |
 | — | California | CA | done | 24 / 61 (partial: CSU/UC/major privates + 8 CC ADNs; more CCs possible later) |
-| — | Missouri | MO | done | 47 / 168 (tuition for 41; Rockhurst–Saint Luke's and Bolivar Tech still to add) |
+| — | Missouri | MO | done | 47 / 168 |
 | 1 | Washington | WA | todo | NLC member |
 | 2 | Oregon | OR | todo | not NLC |
 | 3 | Nevada | NV | todo | not NLC |

@@ -343,7 +343,9 @@
     "sbu": {"unitid": 179326, "federal_name": "Southwest Baptist University", "year": "2025-26", "in_state": 31500, "out_of_state": 31500, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?179326", "last_verified": "2026-11-11"},
     "college-ozarks": {"unitid": 178697, "federal_name": "College of the Ozarks", "year": "2025-26", "in_state": 24420, "out_of_state": 24420, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?178697", "last_verified": "2026-11-11"},
     "hannibal-lagrange": {"unitid": 177542, "federal_name": "Hannibal-LaGrange University", "year": "2025-26", "in_state": 26880, "out_of_state": 26880, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?177542", "last_verified": "2026-11-11"},
-    "culver-stockton": {"unitid": 177144, "federal_name": "Culver-Stockton College", "year": "2025-26", "in_state": 32130, "out_of_state": 32130, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?177144", "last_verified": "2026-11-11"}
+    "culver-stockton": {"unitid": 177144, "federal_name": "Culver-Stockton College", "year": "2025-26", "in_state": 32130, "out_of_state": 32130, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?177144", "last_verified": "2026-11-11"},
+    "saint-lukes": {"unitid": 179043, "federal_name": "Rockhurst University", "year": "2025-26", "in_state": 46270, "out_of_state": 46270, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?179043", "last_verified": "2026-11-12"},
+    "bolivar-tech": {"unitid": 490203, "federal_name": "Bolivar Technical College", "year": "2025-26", "in_state": 29925, "out_of_state": 29925, "in_label": "in-state", "source_url": "https://collegescorecard.ed.gov/school/?490203", "last_verified": "2026-11-12"}
   };
 
   window.SCHOOLS = window.SCHOOLS || {};
