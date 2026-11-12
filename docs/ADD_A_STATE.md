@@ -76,6 +76,8 @@ why and stops.
   California's don't). If they do, pass their ids in `--district`. When unsure, check one college's College
   Navigator page with a single WebFetch (in-district row vs in-state row) — if it shows a high-traffic notice, don't
   retry; leave those labeled in-state and note it.
+- Key: the script uses the owner's personal api.data.gov key automatically (saved outside the repo in
+  `~/.scorecard_api_key`; it prints "personal key"). Never copy the key into the repo, a PR or a log.
 - Then re-run with `--write`. If Scorecard says it's over its rate limit, skip this step, mark the queue row
   `tuition pending`, and say so in the PR.
 
