@@ -305,3 +305,59 @@ with docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `
   WSU → 236939 (Pullman main-campus rate; Scorecard reports no tuition for WSU Spokane, home of the College of
   Nursing). Left out: WGU Washington (WGU's one national rate isn't a Washington figure).
 - **Refresh:** re-pull the roster and the board's NCLEX school report each year (the report is updated around February).
+
+
+# Data sources (schools page — Oregon, added 2026-11-12)
+
+Oregon: **27 schools / 50 programs / 17 transfer agreements** in `data/schools/or.js` (verified 2026-11-12), built
+with docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Oregon State Board of Nursing "Approved Programs" list (osbnpublic.osbn.oregon.gov/approvedprograms,
+  read 2026-11-12; 40 entries, no revision date shown), using the page's own program-type filter (Associate RN,
+  Baccalaureate RN, BSN Accelerated, Masters RN, APRN/DNP types). Every public and private nonprofit RN program on it is
+  included: 17 community colleges, OHSU (Portland, Ashland/SOU, Bend, Klamath Falls/Oregon Tech, La Grande/EOU,
+  Monmouth/WOU; plus its DNP APRN programs), Linfield, University of Portland, Concordia University St. Paul's Portland
+  ABSN (home campus Minnesota), Walla Walla University's Portland campus (home campus Washington; its id here is
+  `walla-walla-u-pdx` because `walla-walla-u` is already in wa.js), Warner Pacific, George Fox (BSN + CRNA), Bushnell
+  (ABSN), Corban (new BSN) and Western University of Health Sciences' Lebanon campus (new entry-level MSN). No other
+  Oregon public university runs its own nursing program (OSU, UO and PSU say so; SOU, WOU, EOU and Oregon Tech host OHSU).
+- **NCLEX-RN pass rates:** the board's "RN/LPN Education Program NCLEX Pass Rates 2021-2025" (updated Jan 2026;
+  www.oregon.gov/osbn/Documents/Resource_NCLEXpassrates.pdf), first-time takers by calendar year, printed as whole
+  percentages with candidate counts; 2023-2025 are stored. The PDF's third page starts with the end of the associate
+  table (Rogue Grants Pass, SWOCC, Sumner, Tillamook Bay, Treasure Valley, Umpqua) above the practical-nurse table, so
+  rows were read by page position, not text order. Cross-check against NCSBN's 2025 NCLEX Examination Statistics
+  (Table 8, Oregon, first-time US-educated): associate degree 687 tested in both sources (exact match); baccalaureate
+  1,201 (NCSBN) vs 1,196 BSN + 24 entry-level master's (board). The board reports OHSU by campus and separately for
+  its accelerated tracks; Linfield's BSN, accelerated BSN and entry-level master's have their own rows. Corban and
+  WesternU Lebanon are new (no results yet); OHSU's Bend ABSN cohort is new (the ABSN card shows Portland and Ashland).
+- **Excluded:** private for-profit — Carrington College, Institute of Technology, Sumner College (Portland and Bend),
+  Concorde Career College (PN only). University of Portland's DNP-FNP: UP's nursing home page says it "is not currently
+  accepting new students" (its DNP page still shows an application window — owner may want to re-check). Linfield's
+  RN-to-BSN (no longer admitting), Bushnell's RN-to-BSN (no longer on its site or catalog), Klamath CC's LPN-to-RN
+  transition (on hold for 2027), George Fox's PMHNP DNP (not launched yet; fall 2027 vs 2028 on its pages). PN-only
+  programs, education/leadership master's and PhDs are out of scope as in other states. OHSU's AGACNP DNP is included
+  (open for Fall 2027 on OHSU's site) though the board roster's filter doesn't list that type.
+- **LPN bridges:** 5 programs carry `bridge_from` (Chemeketa, Oregon Coast, COCC and TVCC LPN-to-RN; Lane LPN or
+  paramedic). The board reports one ADN figure per college, which the bridge cards share.
+- **Agreements:** 17 kept — OCNE co-admission from 10 community colleges' ADNs into OHSU's online RN-to-BSN (PCC, MHCC,
+  Clackamas, Clatsop, Columbia Gorge, Oregon Coast, Umpqua, SWOCC, Blue Mountain, Rogue; as documented on OHSU's or the
+  college's site — where both sides documented it, the college's page is cited), and same-school ADN → RN-to-BSN at the
+  six colleges of the new BSN Community College Collaborative (Chemeketa, Oregon Coast, Linn-Benton, Klamath, COCC,
+  TVCC — first cohorts Fall 2026) plus Lane's own online RN-to-BSN. Dropped 7 partnerships into Linfield's and Bushnell's RN-to-BSN programs, which no longer admit students.
+- **Spot check (2026-11-12):** PCC ADN ($22,500 two-year estimate, HSRT-AD in Phase II, Feb 15, 2027 NursingCAS and
+  Dec 14, 2026 PCC deadlines, up to 40 seats), George Fox BSN transfer admission (3.00 cumulative and science GPA, points
+  plus group interview, fall/spring windows) and OHSU CRNA DNP (3 years, 129 credits, $906/$944 per credit, 3.0 GPA,
+  one year critical care, COA through Oct 2028) matched. OHSU's program totals ($149,833 / $154,735) are on its nursing
+  tuition page, now cited in the cost note.
+- **Known gaps:** Mt. Hood CC and Rogue CC block automated reading (403), so their ADN records come from search excerpts
+  of their own pages and are flagged "check with the school" (Rogue's cost/accreditation null). Blue Mountain's
+  prerequisite and cost sheets need a login. Klamath's tuition table year was unclear (cost null). Clatsop's cost
+  documents didn't load. Several colleges state only Oregon board approval (no ACEN/CNEA); MHCC is an ACEN candidate,
+  Linn-Benton's pages disagree (initial accreditation vs candidate). WesternU's Oregon cost and accreditor aren't
+  published. Corban's site doesn't state its board approval stage or accreditation candidacy.
+- **Tuition (`OR.tuition`, added 2026-11-12):** 23 of 27 schools, College Scorecard 2025-26. Every Oregon community
+  college is its own district; College Navigator shows Central Oregon CC charging less in-district than in-state
+  (2024-25: $5,049 vs $6,885), so all 17 are labeled "in-district" (some charge every Oregon resident the same rate).
+  Left out: OHSU (Scorecard reports no tuition; its per-credit rates are on each program), WesternU Lebanon, Concordia
+  St. Paul and Walla Walla (home campuses out of state).
+- **Refresh:** re-read the roster and the board's NCLEX PDF each year (the PDF was updated in January).

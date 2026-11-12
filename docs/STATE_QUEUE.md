@@ -14,7 +14,7 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | California | CA | done | 24 / 61 (partial: CSU/UC/major privates + 8 CC ADNs; more CCs possible later) |
 | — | Missouri | MO | done | 47 / 168 |
 | — | Washington | WA | done | 44 / 91 (17 agreements); NLC member |
-| 2 | Oregon | OR | todo | not NLC |
+| 2 | Oregon | OR | PR open | 27 / 50 (17 agreements); not NLC (checked nursecompact.com) |
 | 3 | Nevada | NV | todo | not NLC |
 | 4 | Idaho | ID | todo | NLC member |
 | 5 | Utah | UT | todo | NLC member |
