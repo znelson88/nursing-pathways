@@ -298,6 +298,10 @@ with docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `
   42.9% 2025 pass rate (shown). Highline (roster: ACEN with conditions) and Shoreline (ACEN continuing with warning)
   are labeled. Walla Walla University's nursing years are on its Portland, Oregon campus, with a College Place, WA
   cohort phasing in (noted).
-- **Tuition:** not yet added for Washington — College Scorecard's demo key was over its rate limit on 2026-11-11.
-  Washington's community colleges charge one statewide rate (no in-district rate), so no `--district` list is needed.
+- **Tuition (`WA.tuition`, added 2026-11-12):** 43 of 44 schools, College Scorecard 2025-26. Washington's community
+  colleges charge one statewide rate (no in-district rate), so all are labeled "in-state". Overrides: Shoreline →
+  236610 (Shoreline College), Seattle Colleges → 236513 (Seattle Central College, which runs the nursing program),
+  Pierce → 235237 (Pierce College District), UW → 236948 (Seattle campus), UW Bothell → 377555, UW Tacoma → 377564,
+  WSU → 236939 (Pullman main-campus rate; Scorecard reports no tuition for WSU Spokane, home of the College of
+  Nursing). Left out: WGU Washington (WGU's one national rate isn't a Washington figure).
 - **Refresh:** re-pull the roster and the board's NCLEX school report each year (the report is updated around February).

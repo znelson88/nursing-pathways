@@ -159,9 +159,9 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
 - Washington: built in `data/schools/wa.js` (`window.SCHOOLS.WA`), **44 schools / 91 programs / 17 agreements**
   (verified 2026-11-11) from the Washington State Board of Nursing roster (Nov 9, 2026) and its NCLEX school report
   (2023-2025). 28 community/technical colleges (many offer LPN bridges and their own RN-to-BSN), UW/WSU/EWU and the
-  private nonprofits (Gonzaga CRNA, Seattle U and UW midwifery). NLC state. Tuition (`WA.tuition`) still to add.
+  private nonprofits (Gonzaga CRNA, Seattle U and UW midwifery). NLC state. `WA.tuition` covers 43 schools.
   Exclusions and gaps are in docs/DATA_SOURCES.md.
-- **Adding states:** a scheduled task ("Add next state", 6am and 6pm) follows docs/ADD_A_STATE.md and opens one
+- **Adding states:** a scheduled task ("Add next state", 8am and 4pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state for the owner to review and merge; it never merges or pushes to main. The state list lives
   in `SCHOOL_STATES` (js/data.js) plus one `<script>` tag in schools.html.
 - Hosting: live at https://nursingpaths.com (GitHub Pages, repo znelson88/nursing-pathways, published by the

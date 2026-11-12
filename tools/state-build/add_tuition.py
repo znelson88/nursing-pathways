@@ -4,8 +4,9 @@ Usage (from the project folder):
   python -I tools/state-build/add_tuition.py --state WA [--write] [--map inst-id=UNITID,...] [--skip inst-id,...]
          [--district inst-id,...] [--cache <dir>] [--today 2026-11-12]
 
-- API key: uses the SCORECARD_API_KEY environment variable if set, else the shared DEMO_KEY (about 10 requests per few
-  hours). If the key is over its limit the script stops without changing anything; the state ships without tuition
+- API key: the SCORECARD_API_KEY environment variable, else a key saved in ~/.scorecard_api_key (the owner's free
+  api.data.gov key, 1,000 requests an hour; kept on the owner's computer, never in this public repo), else the shared
+  DEMO_KEY (about 10 requests per few hours). If the key is over its limit the script stops without changing anything; the state ships without tuition
   and a later run adds it.
 - Without --write it only prints the proposed match for every institution (check every "CHECK" line).
 - Labels: Scorecard's resident figure is the IN-DISTRICT rate. Community colleges listed in --district are labeled
@@ -24,7 +25,9 @@ a = ap.parse_args()
 ST = a.state.upper(); ROOT = pathlib.Path(__file__).resolve().parents[2]
 OVR = {k: int(v) for k, v in (x.split("=") for x in a.map.split(",") if x)}
 SKIP = {x for x in a.skip.split(",") if x}; DISTRICT = {x for x in a.district.split(",") if x}
-KEY = os.environ.get("SCORECARD_API_KEY") or "DEMO_KEY"
+KEY_FILE = pathlib.Path.home() / ".scorecard_api_key"
+KEY = os.environ.get("SCORECARD_API_KEY") or (KEY_FILE.read_text().strip() if KEY_FILE.exists() else "") or "DEMO_KEY"
+print("Scorecard key:", "DEMO_KEY (shared, low limit)" if KEY == "DEMO_KEY" else "personal key")
 FIELDS = ("id,school.name,school.city,school.state,school.ownership,2024.cost.tuition.in_state,"
           "2024.cost.tuition.out_of_state,2025.cost.tuition.in_state,2025.cost.tuition.out_of_state")
 

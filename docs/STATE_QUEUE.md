@@ -1,6 +1,6 @@
 # State queue for the schools page
 
-Work order: **west to east**. The scheduled "Add next state" task (6am and 6pm) takes the first state marked
+Work order: **west to east**. The scheduled "Add next state" task (8am and 4pm) takes the first state marked
 `todo`, follows docs/ADD_A_STATE.md, and opens a pull request. The owner reviews and merges; the task never
 merges or pushes to `main`. Only one state pull request is open at a time.
 
@@ -13,7 +13,7 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | Arizona | AZ | done | 15 / 42 |
 | — | California | CA | done | 24 / 61 (partial: CSU/UC/major privates + 8 CC ADNs; more CCs possible later) |
 | — | Missouri | MO | done | 47 / 168 |
-| — | Washington | WA | done, tuition pending | 44 / 91 (17 agreements); NLC member |
+| — | Washington | WA | done | 44 / 91 (17 agreements); NLC member |
 | 2 | Oregon | OR | todo | not NLC |
 | 3 | Nevada | NV | todo | not NLC |
 | 4 | Idaho | ID | todo | NLC member |
