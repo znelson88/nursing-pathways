@@ -254,3 +254,50 @@ the same way as Colorado, Arizona and California: every fact from the school's o
   University, university-wide rate) and Bolivar Technical College → 490203 (private nonprofit).
 - **Refresh:** re-pull the roster and the board's Report 4 each spring (the year's Q4 report appears around March).
 
+
+# Data sources (schools page — Washington, added 2026-11-11)
+
+Washington: **44 schools / 91 programs / 17 transfer agreements** in `data/schools/wa.js` (verified 2026-11-11), built
+with docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Washington State Board of Nursing "Approved In-State Nursing Programs" (dated November 9, 2026),
+  linked from nursing.wa.gov/node/251 (nursing.wa.gov/sites/default/files/2026-11/Approved-In-State-Nursing-Programs-2026-11-9.pdf).
+  Every RN program on it is included: 28 community/technical colleges (ADN, LPN-to-RN and LPN-to-BSN bridges, and the
+  colleges' own RN-to-BSN degrees), 6 public universities plus WGU Washington, and 9 private nonprofit universities.
+  The roster lists no for-profit RN programs.
+- **NCLEX-RN pass rates:** the board's "NCLEX School Reports" (WABON, February 2026; nursing.wa.gov/sites/default/files/2026-02/NCLEX-pass-rates.pdf),
+  first-time takers by calendar year; 2023-2025 are stored. The report gives no statewide total, so its 2025 per-program
+  counts were checked against NCSBN's 2025 NCLEX Examination Statistics for Washington (first-time US-educated RN:
+  3,062 tested / 2,599 passed): the board's rows add up to 2,983 tested / 2,528 passed plus Bellevue's 70 passed, i.e.
+  within one or two candidates. Every row's printed percentage was re-computed from its counts; the one mismatch is
+  Bellevue 2025 ("70/80 = 89.74%"; 70/80 is 87.5%) — the page shows the printed 89.74% with no tested count and a
+  note. The board reports one figure for all of a school's BSN tracks (WSU's campuses, PLU's BSN + ABSN, UW's BSN +
+  ABSN); LPN-to-BSN programs have their own rows; PLU's Entry-Level MSN ("GE") and Seattle U's APNI have their own
+  rows. Edmonds' LPN-to-RN program has no RN row yet; Whitworth's BSN is new (initial approval).
+- **Excluded / left out:** UW's Pediatric Clinical Nurse Specialist DNP (no longer accepting students); Gonzaga's
+  BSN-to-DNP NP route (discontinued — its MSN FNP/PMHNP are included) and RN-to-MSN (suspended); Seattle U's
+  FNP-Adult-Gero DNP (closed) and its new AGCNS DNP (open only to Virginia Mason Franciscan Health employees); Tacoma
+  CC's RN-to-BSN (on the roster with initial approval but not yet on TCC's own site); WWU's MSN (education/leadership
+  only). Leadership/education/informatics master's and PhDs are out of scope as in other states.
+- **LPN bridges:** 17 programs carry `bridge_from: "lpn"` (LPN-to-RN ADNs and the LPN-to-BSN degrees at Columbia
+  Basin, Green River, Olympic, Saint Martin's and Wenatchee). Clover Park, Edmonds and Green River offer RN training
+  only as LPN bridges.
+- **Agreements:** 17 kept — same-school ADN → RN-to-BSN continuations, UW Bothell's Nurse Scholars (Everett, LWTech,
+  Shoreline), WSU's Concurrent Enrollment (Big Bend, Clark, Lower Columbia, South Puget Sound), and Pierce → UW
+  Tacoma / Saint Martin's. Walla Walla CC lists ten RN-to-BSN partners, but its site blocks automated reading (403) and
+  the list could only be seen in search snippets, so those agreements were left out. Washington's statewide Associate
+  in Nursing DTA/MRP degree is designed to transfer into university RN-to-BSN programs; RN-to-BSN programs are marked
+  open to any RN, so routes still offer them.
+- **Spot check (2026-11-11):** Clark College ADN (3.0 GPA, Kira assessment, NursingCAS, $65 fee, 7-year science
+  limit, Apr 8 / Jul 8 / Nov 8 deadlines), WSU BSN tuition ($12,063 resident 2026-27 from WSU's Spokane tuition
+  PDF; DNP $24,544) and UW DNP FNP ($1,097 per credit from Autumn 2026) all matched the cited pages.
+- **Known gaps:** Bellevue, Everett, Whatcom, Walla Walla CC, Gonzaga and Seattle Pacific block automated reading, so
+  their facts come from their own PDFs or catalogs, or are flagged "check with the school" where only search excerpts of
+  their pages were available. Several colleges publish no program cost (null). WSU moved its Yakima nursing students to
+  Tri-Cities/Spokane after spring 2026 (noted). Renton Technical College's ADN has conditional board approval and a
+  42.9% 2025 pass rate (shown). Highline (roster: ACEN with conditions) and Shoreline (ACEN continuing with warning)
+  are labeled. Walla Walla University's nursing years are on its Portland, Oregon campus, with a College Place, WA
+  cohort phasing in (noted).
+- **Tuition:** not yet added for Washington — College Scorecard's demo key was over its rate limit on 2026-11-11.
+  Washington's community colleges charge one statewide rate (no in-district rate), so no `--district` list is needed.
+- **Refresh:** re-pull the roster and the board's NCLEX school report each year (the report is updated around February).
