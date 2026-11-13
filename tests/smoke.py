@@ -126,6 +126,17 @@ with sync_playwright() as p:
     check("schools OR: pass rates come from the Oregon board report",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"oregon.gov/osbn\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Nevada (seventh state): board roster, board NCLEX figures (NCSBN program report), LPN bridges only for LPNs, not a compact state.
+    d.goto(BASE + "/schools.html?job=fnp&state=NV"); d.wait_for_timeout(400)
+    check("schools NV: comparison lists 8+ Nevada start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 8)
+    check("schools NV: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=NV&start=lpn&school=csn"); d.wait_for_timeout(400)
+    check("schools NV: an LPN at CSN starts with its LPN-to-RN bridge",
+          "starts with an LPN-to-RN bridge" in d.inner_text("#route"))
+    d.goto(BASE + "/schools.html?job=fnp&state=NV&school=unr"); d.wait_for_timeout(400)
+    check("schools NV: pass rates come from the Nevada board report",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"nevadanursingboard.org\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # Verified Colorado route view: Trinidad State -> Family NP
     d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools route: three program steps", d.evaluate("()=>document.querySelectorAll('#route .step').length") == 3)
