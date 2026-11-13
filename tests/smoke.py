@@ -115,6 +115,17 @@ with sync_playwright() as p:
     check("schools WA: pass rates come from the Washington board report",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"nursing.wa.gov\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Oregon (sixth state): board roster, board NCLEX figures, LPN bridges only for LPNs, not a compact state.
+    d.goto(BASE + "/schools.html?job=fnp&state=OR"); d.wait_for_timeout(400)
+    check("schools OR: comparison lists 20+ Oregon start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 20)
+    check("schools OR: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=OR&start=lpn&school=lane-cc"); d.wait_for_timeout(400)
+    check("schools OR: an LPN at Lane starts with its LPN-to-RN bridge",
+          "LPN to RN" in d.inner_text("#route .step .pchead h3") and "starts with an LPN-to-RN bridge" in d.inner_text("#route"))
+    d.goto(BASE + "/schools.html?job=fnp&state=OR&school=ohsu"); d.wait_for_timeout(400)
+    check("schools OR: pass rates come from the Oregon board report",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"oregon.gov/osbn\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # Verified Colorado route view: Trinidad State -> Family NP
     d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools route: three program steps", d.evaluate("()=>document.querySelectorAll('#route .step').length") == 3)
