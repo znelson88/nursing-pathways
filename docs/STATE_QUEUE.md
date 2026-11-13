@@ -14,8 +14,8 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | California | CA | done | 24 / 61 (partial: CSU/UC/major privates + 8 CC ADNs; more CCs possible later) |
 | — | Missouri | MO | done | 47 / 168 |
 | — | Washington | WA | done | 44 / 91 (17 agreements); NLC member |
-| 2 | Oregon | OR | PR open | 27 / 50 (17 agreements); not NLC (checked nursecompact.com) |
-| 3 | Nevada | NV | todo | not NLC |
+| — | Oregon | OR | done | 27 / 50 (17 agreements); not NLC (checked nursecompact.com) |
+| 3 | Nevada | NV | PR open | 9 / 31 (6 agreements); not NLC (no compact law; 2025 bills died) |
 | 4 | Idaho | ID | todo | NLC member |
 | 5 | Utah | UT | todo | NLC member |
 | 6 | Montana | MT | todo | NLC member |

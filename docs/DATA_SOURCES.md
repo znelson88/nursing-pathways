@@ -361,3 +361,50 @@ with docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `
   Left out: OHSU (Scorecard reports no tuition; its per-credit rates are on each program), WesternU Lebanon, Concordia
   St. Paul and Walla Walla (home campuses out of state).
 - **Refresh:** re-read the roster and the board's NCLEX PDF each year (the PDF was updated in January).
+
+
+# Data sources (schools page — Nevada, added 2026-11-13)
+
+Nevada: **9 schools / 31 programs / 6 transfer agreements** in `data/schools/nv.js` (verified 2026-11-13), built
+with docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Nevada State Board of Nursing "Approved Nursing Programs" list (Updated-program-list-09.23.26.pdf,
+  linked from nevadanursingboard.org/education). Every public and private nonprofit RN program on it is included: College
+  of Southern Nevada (AAS + LPN-to-RN bridge), Truckee Meadows CC (AS), Western Nevada College (AAS), Great Basin College
+  (AAS + paramedic/LPN-to-RN bridge), Nevada State University (BSN), UNLV (BSN + Direct Entry MSN), UNR (BSN at Reno and
+  the Lake Tahoe campus in Incline Village, plus a new Accelerated Second BSN) and Roseman University (BSN). Touro
+  University Nevada (not on the pre-licensure roster) is included for its RN-to-BSN and MSN FNP.
+- **NCLEX-RN pass rates:** the board's yearly NCSBN "Report 4 – Jurisdiction Program Summary of all First-Time Candidates"
+  for calendar 2023, 2024 and 2025 (linked from nevadanursingboard.org/education). Each program's total row was checked
+  against the sum of its graduation-date rows. Cross-check against NCSBN's 2025 NCLEX Examination Statistics (Table 8,
+  Nevada, first-time US-educated RN): 2,052 tested / 1,811 passed vs 2,050 / 1,809 summed from the board's rows (all
+  programs, including the excluded for-profits); associate degree 626 in both (exact). UNLV's Direct Entry MSN has its own
+  board row (first results 2025); UNR's BSN and Accelerated Second BSN share one board figure, as do Roseman's sites.
+- **Excluded:** private for-profit — Arizona College of Nursing, Carrington College (Las Vegas, Reno), Chamberlain
+  (Las Vegas, Reno, online), Galen College, Nevada Career Institute, Unitek College (BSN, direct-entry MSN), Las Vegas
+  College (ADN in teach-out: lost board approval, not admitting); Grand Canyon University's Henderson ABSN site
+  (out-of-state, as in Colorado and Missouri). Clinical-only out-of-state programs (Joyce, Nightingale, WGU, Mohave CC)
+  aren't Nevada programs. Together the excluded for-profits produced about 40% of Nevada's 2025 first-time NCLEX-RN
+  takers. Also left out: UNLV's BSN-to-DNP PMHNP (listed "On Hold"; its MSN PMHNP is included), Nevada State's MSN
+  (leadership only), education/leadership tracks, PhDs and post-graduate certificates.
+- **LPN bridges:** CSN's LPN-to-RN (`lpn`) and GBC's Paramedic/LPN bridge (`lpn_or_paramedic`).
+- **Agreements:** 6 kept — same-school ADN → RN-to-BSN at CSN (ADN and bridge), TMCC and GBC, and TMCC/WNC ADN → UNR
+  RN-to-BSN (UNR catalog transfer pathways "R.N. to B.S.N. (TMCC)" / "(WNC)"; UNR's catalog pages returned no readable
+  text, so these rest on search excerpts of UNR's own catalog). UNLV has no RN-to-BSN; its 2026-27 transfer agreement maps
+  CSN's Associate of Science (not the nursing AAS) into UNLV's BSN, so it isn't a program-to-program agreement here.
+  UNR's concurrent ADN/RN-to-BSN enrollment is open to any accredited ADN student (RN-to-BSN programs are open entry).
+- **Spot check (2026-11-13):** WNC ADN (4 semesters, 71.5 credits, April 1 deadline, TEAS, 17-point system, CNA
+  requirement, ACEN), Nevada State BSN (TEAS 60% overall and per section, 2.5 cumulative / 3.25 nursing GPA, priority
+  windows Sept 1–Oct 1 2026 / Feb 1–Mar 1 / Jun 1–Jul 1 2027, five semesters full time, CCNE) and UNLV CRNA DNP (36-month
+  hybrid; $800 per credit on UNLV Nursing's tuition page) matched. UNLV's current pages don't state the CRNA's COA status
+  (a March 2025 announcement said approval was pending), so its accreditation now says "check with the school".
+- **Known gaps:** tmcc.edu blocks automated reading (403) and its catalog refused connections, so TMCC's records come
+  from search excerpts of its own pages and say so (length, cost and full prerequisites null). UNLV's catalog returned no
+  readable text (Direct Entry MSN prerequisites/GPA and DNP admission criteria null; most UNLV costs are only per-credit
+  fee add-ons, so null). Roseman's CRNA admits its next cohort July 2028 (applications open Jan 1, 2027). UNLV's
+  PMHNP MSN starts only with enough enrollment. Several catalog/program-page conflicts (GBC deadlines, Nevada State
+  prerequisite wording, Roseman's cohort term) are in the program notes.
+- **Tuition (`NV.tuition`, added 2026-11-13):** 7 of 9 schools, College Scorecard 2025-26. Nevada's community colleges
+  (NSHE) charge one statewide per-credit rate, so all are labeled "in-state". Override: UNLV → 182281 (name match below
+  the automatic threshold). Left out: Roseman and Touro (Scorecard reports no tuition).
+- **Refresh:** re-read the roster and the board's yearly Report 4 each January (the 2025 report was posted January 2026).
