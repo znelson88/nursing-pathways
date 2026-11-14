@@ -408,3 +408,52 @@ with docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `
   (NSHE) charge one statewide per-credit rate, so all are labeled "in-state". Override: UNLV → 182281 (name match below
   the automatic threshold). Left out: Roseman and Touro (Scorecard reports no tuition).
 - **Refresh:** re-read the roster and the board's yearly Report 4 each January (the 2025 report was posted January 2026).
+
+# Data sources (schools page — Idaho, added 2026-11-14)
+
+Idaho: **9 schools / 25 programs / 10 transfer agreements** in `data/schools/id.js` (verified 2026-11-14), built
+with docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** the Idaho Board of Nursing's "Nursing Education Programs" list on its page at the Division of
+  Occupational and Professional Licenses (dopl.idaho.gov/bon/; no revision date shown; 12 institutions). Every public and
+  private nonprofit RN program on it is included: Boise State (BSN, online RN-BS, BS-DNP FNP and AG-ACNP), BYU-Idaho (BSN),
+  College of Eastern Idaho, College of Southern Idaho, College of Western Idaho and North Idaho College (ADNs), Idaho State
+  University (BSN, Accelerated BSN at Meridian/Pocatello/Twin Falls/Coeur d'Alene, LPN-to-RN ADN from the College of
+  Technology, RN-to-BSN, DNP FNP and PMHNP, and the Doctor of Nurse Anesthesia Practice — COA-accredited May 2025, first
+  class Fall 2025), Lewis-Clark State College (BSN, LPN-to-BSN, RN-to-BSN and the new 2026 Direct-Entry MSN, which LC State
+  says prepares graduates for the NCLEX-RN) and Northwest Nazarene (BSN, MSN FNP).
+- **NCLEX-RN pass rates:** the board's "NCLEX First-Time Pass Rates" table (BON-NCLEX-Scores-2023-25.pdf, calendar 2023-2025,
+  # taken and % pass per program). Cross-check against NCSBN's 2025 NCLEX Examination Statistics (Table 8, Idaho):
+  baccalaureate 842 tested / 764 passed vs 842 / 764 summed from the board's BSN and Eagle Gate MEPN rows (exact);
+  associate 434 / 393 vs 433 / 392 (one candidate apart); total 1,276 / 1,157 vs 1,275 / 1,156. The board reports one figure
+  for all of ISU's BSN tracks (traditional + accelerated) and one for each school's ADN including its LPN bridge.
+  LC State's Direct-Entry MSN is new and has no board figure yet.
+- **Excluded:** private for-profit — Carrington College (Boise: LPN, ADN, LPN-to-RN), Eagle Gate College (Boise and Idaho
+  Falls: BSN, master's entry, LPN; owned by Unitek Learning, already excluded in CA and NV); Grand Canyon University's
+  Meridian BSN site (out-of-state, as in Colorado, Missouri and Nevada; the board shows N/A results). Together the excluded
+  for-profits produced about 24% of Idaho's 2025 first-time NCLEX-RN takers (302 of 1,275). Also left out: LPN programs,
+  ISU's MS in nursing education, PhDs, post-master's DNPs and certificates (including ISU's FNP-to-PMHNP), LC State's MSN
+  leadership track, NNU's MSN leadership/education, and NNU's former RN-to-BSN (no longer in its 2026-27 catalog).
+- **Bridges (LPN only):** ISU's College of Technology ADN, CSI's LPN-to-ADN track, CEI's LPN-to-RN track (a separate
+  LPN-only admission within CEI's board-approved ADN), NIC's PN-to-RN Advanced Placement and LC State's LPN-to-BSN.
+- **Agreements:** 10 kept — Boise State's FAQ says it has agreements with all Idaho community colleges so ADN students can
+  dual enroll in its online RN-BS (recorded for CWI, CSI, CEI and NIC; the colleges aren't named individually); LC State's
+  "CC to BSN" concurrent track for CSI, CWI, CEI and NIC (ADN and LPN-to-RN); and ISU's ADN → its own RN-to-BSN.
+- **Spot check (2026-11-14):** CWI ADN (Kaplan exam, March 1-31 / October 1-31 windows, "3 years", $16,612 as listed on the
+  program page with no breakdown, ACEN continuing accreditation with conditions), Boise State BSN (five semesters / about
+  2.5 years, 100 admitted each fall and spring, cumulative GPA above 2.5 and above 3.0 in key sciences, no entrance exam)
+  and ISU DNAP (in-state total approximately $128,703 on ISU's 2026-27 cost sheet) matched. An agent had summed Boise
+  State's sample DNP plan into a credit total; that was removed (not stated by the school).
+- **Known gaps:** CWI and CEI catalogs returned no readable text (total credits unconfirmed); LC State's catalog refused
+  connections. BYU-Idaho's entrance-exam status is null (a search excerpt says the HESI A2 was dropped in Feb 2026; the page
+  404s). BYU-Idaho admits only enrolled BYU-Idaho students (ecclesiastical endorsement and Honor Code required). Boise
+  State's DNP cost is published only as a $820-$895 per-credit range (null). LC State's Direct-Entry MSN cost and
+  grade minimums aren't published. Several page conflicts (LC State RN-to-BSN cost, NIC bridge credits, ISU ABSN cost sheet,
+  NNU FNP credits, CSI LPN track credits) are in the program notes. A University of Idaho planning document mentions a UI
+  direct-entry MSN, but UI isn't on the board roster, so it isn't included.
+- **Tuition (`ID.tuition`, added 2026-11-14):** 8 of 9 schools, College Scorecard 2025-26. Idaho's community colleges are
+  district colleges (e.g. NIC: Kootenai County $152/credit vs non-district $226), and Scorecard's figures match the district
+  rate, so NIC, CSI, CWI and CEI are labeled "in-district". BYU-Idaho is left out: Scorecard gives one figure ($4,944), which
+  the site would show as "for every student", but BYU-Idaho charges non-members double ($5,088 vs $2,544 per semester on
+  its BSN record).
+- **Refresh:** re-read the roster and the board's NCLEX table each January (the 2023-25 table was posted January 2026).
