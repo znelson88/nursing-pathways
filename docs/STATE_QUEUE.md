@@ -1,8 +1,9 @@
 # State queue for the schools page
 
 Work order: **west to east**. The scheduled "Add next state" task (8am and 4pm) takes the first state marked
-`todo`, follows docs/ADD_A_STATE.md, and opens a pull request. The owner reviews and merges; the task never
-merges or pushes to `main`. Only one state pull request is open at a time.
+`todo`, follows docs/ADD_A_STATE.md, opens a pull request, and merges it once every check
+passes (owner's decision, 2026-11-16; he reviews after it's live). It never pushes directly to `main`. Only one
+state pull request is open at a time.
 
 Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (#n)` · `blocked: reason` ·
 `wave 1 merged` (big states split into waves) · add `tuition pending` when Scorecard was rate-limited.
