@@ -148,6 +148,17 @@ with sync_playwright() as p:
     check("schools ID: pass rates come from the Idaho board table",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"dopl.idaho.gov\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Utah (ninth state): roster = DOPL's NCLEX-RN table (Utah approves programs by accreditation), LPN bridges only for LPNs, compact state.
+    d.goto(BASE + "/schools.html?job=fnp&state=UT"); d.wait_for_timeout(400)
+    check("schools UT: comparison lists 10+ Utah start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 10)
+    check("schools UT: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=UT&start=lpn&school=weber"); d.wait_for_timeout(400)
+    check("schools UT: an LPN at Weber State starts with its LPN-to-RN bridge",
+          "starts with an LPN-to-RN bridge" in d.inner_text("#route"))
+    d.goto(BASE + "/schools.html?job=fnp&state=UT&school=snow"); d.wait_for_timeout(400)
+    check("schools UT: pass rates come from the Utah DOPL table",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"commerce.utah.gov\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # Verified Colorado route view: Trinidad State -> Family NP
     d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools route: three program steps", d.evaluate("()=>document.querySelectorAll('#route .step').length") == 3)
