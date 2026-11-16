@@ -159,6 +159,16 @@ with sync_playwright() as p:
     check("schools UT: pass rates come from the Utah DOPL table",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"commerce.utah.gov\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
+    d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
+    check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)
+    check("schools CA: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=CA&start=lpn&school=grossmont"); d.wait_for_timeout(400)
+    check("schools CA: an LVN at Grossmont starts with its LVN-to-RN bridge",
+          "starts with an LPN-to-RN bridge" in d.inner_text("#route"))
+    d.goto(BASE + "/schools.html?job=fnp&state=CA&school=grossmont"); d.wait_for_timeout(400)
+    check("schools CA: wave-3 pass rates come from the California BRN table",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"rn.ca.gov\"]')") and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # Verified Colorado route view: Trinidad State -> Family NP
     d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools route: three program steps", d.evaluate("()=>document.querySelectorAll('#route .step').length") == 3)
