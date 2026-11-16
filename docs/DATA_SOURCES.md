@@ -553,3 +553,58 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   non-member tuition, as with BYU-Idaho) and Roseman's South Jordan campus (no separate Scorecard record; name matching
   picked a different school). WGU is included here (its home campus is in Salt Lake City).
 - **Refresh:** re-read DOPL's NCLEX table each January (it also shows the current year by quarter).
+
+# Data sources (schools page — Montana, added 2026-11-16)
+
+Montana: **14 schools / 26 programs / 2 transfer agreements** in `data/schools/mt.js` (verified 2026-11-16), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Montana Board of Nursing "Montana Approved Professional Nursing Education Programs"
+  (boards.bsd.dli.mt.gov/nursing/approved-nur-programs.pdf, dated 9/11/2026; an older 8/1/2026 copy sits at
+  /_docs/nur/approved-nur-programs.pdf). 15 RN programs, all public, tribal or private nonprofit — Montana has no
+  for-profit RN program. Included: the two-year colleges (City College at MSU Billings, Great Falls College MSU, Helena
+  College, Missoula College, Flathead Valley, Miles), the tribal colleges (Aaniiih Nakoda ASN, Blackfeet BSN, Salish
+  Kootenai BSN — typed "community college" on the site), MSU Bozeman (BSN at Bozeman, Billings, Great Falls, Kalispell and
+  Missoula; accelerated BSN; DNP FNP, PMHNP and nurse-midwifery), MSU-Northern (ASN + RN-to-BSN), Montana Tech (BSN),
+  Carroll College (BSN + 15-month accelerated track = the roster's "BAN") and Touro University Montana (new BSN, board
+  "Phase II approved in 2026 (may enroll)", first cohort January 2027; new RN-to-BS from Fall 2027), plus MSU Billings'
+  online RN-to-BSN (filed under City College).
+- **NCLEX-RN pass rates:** the board's "Registered Nursing NCLEX Pass Rates per Calendar Year" table
+  (boards.bsd.dli.mt.gov/_docs/nur/new_nclex_rn.pdf, 2021-2025, one row per school; 2023-2025 used). Cross-check: per-program
+  takers add up exactly to the state's first-time takers in 2023 (603, 91.71%) and 2025 (572, 90.73%); in 2024 the rows
+  add to 688 against the board's 689 (one taker isn't in any program row; the rates match to within rounding). MSU Bozeman
+  reports one figure for all campuses and both BSN tracks; Carroll one for both tracks. Aaniiih Nakoda had no takers in
+  2025 and Salish Kootenai none before 2024 (those years are left out). Blackfeet's figures are tiny (2-3 takers a year).
+- **Excluded:** University of Providence (Great Falls) — its trustees voted on Oct 27, 2026 to close the university at the
+  end of 2026-27 (last day of instruction Aug 20, 2027); the board roster still shows it approved through 2036. It produced
+  30 of Montana's 572 first-time NCLEX-RN takers in 2025. Also left out: LPN-only certificates (Bitterroot College, City
+  College, FVCC, Great Falls, Helena, Williston State's Montana site), MSU's Master of Nursing (not APRN), post-master's DNP
+  and post-graduate PMHNP certificate. Montana has **no nurse anesthesia (CRNA) program** (Gonzaga's Spokane program uses a
+  Montana clinical site; it is already in the Washington data).
+- **Bridges:** Missoula College's distance LPN-to-RN Bridge (Montana LPN + 2,000 work hours), Miles CC's LPN to RN
+  Completion and Aaniiih Nakoda's LPN advanced placement (`bridge_from: "lpn"`). The other ASNs admit new students directly
+  and take LPNs through the same application (course credit noted on each card).
+- **Agreements:** 2 — same-school ADN → RN-to-BSN at MSU-Northern and City College/MSU Billings (2+1 concurrent option).
+  Dropped: FVCC → Montana Tech "Digger Connect" (a 2022 news release; Montana Tech's current site lists no RN-to-BSN), and
+  Great Falls College's mentions of MSU-Northern and MSU Billings (the page says only that students are "recruited and
+  welcomed" — not a documented partnership). Miles CC's "RN-BSN Pathways" page lists options but names no agreement.
+- **Accreditation flags shown on the cards:** Blackfeet's BSN is on CONDITIONAL board approval through 2026 and not
+  nationally accredited (board stipulation; decision due by Feb 2027). Great Falls College's ASN is an ACEN candidate
+  (since Aug 2025). Touro's BSN is not yet accredited (the board roster lists CCNE; Touro says it is pursuing it). MSU's
+  nurse-midwifery has ACME pre-accreditation.
+- **Spot check (2026-11-16):** Montana Tech BSN (Nov 1-Dec 1, 2026 window, TEAS 68%, 60% GPA / 40% TEAS ranking, decisions
+  by Dec 28), Helena College ASRN (four consecutive semesters, TEAS 70%, 2.75 GPA, 58 points, up to 20 a semester, Nov 2,
+  2026 deadline, ACEN) and MSU's DNP FNP (82 credits, 3 or 4 years, 765 clinical hours, Sept 15-Dec 15 portal, 3.0 GPA
+  preferred, applicants in MT/UT/WY/ID/CO/AK, CCNE) matched the cited pages.
+- **Known gaps:** the catalogs of MSU, MSU-Northern, MSU Billings, Great Falls College and UM refused connections, so some
+  credit totals and course codes are null. Aaniiih Nakoda's cost and entrance exam aren't published; Miles CC's LPN bridge
+  length isn't published; Touro's RN-to-BS length/cost aren't published yet; Missoula's bridge cost isn't published.
+  Page conflicts (Great Falls class size 25 vs 30, FVCC accreditation dates, MSU-Northern deadline June 10 vs 15, Montana
+  Tech application window, Salish Kootenai prerequisite grades, Carroll's paused 2026 accelerated cohort) are in the notes.
+- **Tuition (`MT.tuition`, added 2026-11-16):** 12 of 14 schools, College Scorecard 2025-26. Flathead Valley and Miles are
+  locally governed district colleges ("in-district"); the Montana University System two-year colleges and the tribal
+  colleges are "in-state". Overrides: MSU Bozeman → 180461, Montana Tech → 180416, MSU-Northern → 180522. Left out:
+  Missoula College (no separate Scorecard record; the University of Montana's rate would overstate it) and Touro University
+  Montana (no record yet).
+- **Refresh:** re-read the board's NCLEX table each spring and the roster after board meetings (it is re-issued a few
+  times a year).
