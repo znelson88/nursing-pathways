@@ -137,6 +137,17 @@ with sync_playwright() as p:
     check("schools NV: pass rates come from the Nevada board report",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"nevadanursingboard.org\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Idaho (eighth state): board roster on the Idaho BON page, board NCLEX table (DOPL PDF), LPN bridges only for LPNs, compact state.
+    d.goto(BASE + "/schools.html?job=fnp&state=ID"); d.wait_for_timeout(400)
+    check("schools ID: comparison lists 8+ Idaho start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 8)
+    check("schools ID: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=ID&start=lpn&school=isu"); d.wait_for_timeout(400)
+    check("schools ID: an LPN at Idaho State starts with its LPN-to-RN bridge",
+          "starts with an LPN-to-RN bridge" in d.inner_text("#route"))
+    d.goto(BASE + "/schools.html?job=fnp&state=ID&school=boise-state"); d.wait_for_timeout(400)
+    check("schools ID: pass rates come from the Idaho board table",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"dopl.idaho.gov\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # Verified Colorado route view: Trinidad State -> Family NP
     d.goto(BASE + "/schools.html?job=fnp&state=CO&school=trinidad-state"); d.wait_for_timeout(400)
     check("schools route: three program steps", d.evaluate("()=>document.querySelectorAll('#route .step').length") == 3)

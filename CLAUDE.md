@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon and Nevada**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada and Idaho**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -16,7 +16,7 @@ js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), t
 js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
@@ -172,6 +172,12 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   (incl. Direct Entry MSN, CNM, CRNA), UNR (Reno + Lake Tahoe), Roseman and Touro (graduate/RN-to-BSN only). About
   40% of Nevada's 2025 first-time NCLEX-RN takers came from excluded for-profit schools. Not an NLC state. `NV.tuition` covers 7
   schools. Exclusions and gaps are in docs/DATA_SOURCES.md.
+- Idaho: built in `data/schools/id.js` (`window.SCHOOLS.ID`), **9 schools / 25 programs / 10 agreements**
+  (verified 2026-11-14) from the Idaho Board of Nursing program list (dopl.idaho.gov/bon) and its NCLEX table (2023-2025).
+  Four district community colleges (ADNs, most with LPN bridges), Boise State, Idaho State (incl. Accelerated BSN, DNP
+  FNP/PMHNP and the new nurse anesthesia DNAP), Lewis-Clark State (incl. a new Direct-Entry MSN), BYU-Idaho and NNU.
+  Excluded for-profits (Carrington, Eagle Gate) were about 24% of 2025 first-time NCLEX-RN takers. NLC state.
+  `ID.tuition` covers 8 schools (BYU-Idaho left out: two-tier church/non-member tuition). Details in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", 8am and 4pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state for the owner to review and merge; it never merges or pushes to main. The state list lives
   in `SCHOOL_STATES` (js/data.js) plus one `<script>` tag in schools.html.

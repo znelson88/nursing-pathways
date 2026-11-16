@@ -15,8 +15,8 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | Missouri | MO | done | 47 / 168 |
 | — | Washington | WA | done | 44 / 91 (17 agreements); NLC member |
 | — | Oregon | OR | done | 27 / 50 (17 agreements); not NLC (checked nursecompact.com) |
-| 3 | Nevada | NV | PR open | 9 / 31 (6 agreements); not NLC (no compact law; 2025 bills died) |
-| 4 | Idaho | ID | todo | NLC member |
+| — | Nevada | NV | done | 9 / 31 (6 agreements); not NLC (no compact law; 2025 bills died) |
+| 4 | Idaho | ID | PR open | 9 / 25 (10 agreements); NLC member (DOPL issues multistate licenses) |
 | 5 | Utah | UT | todo | NLC member |
 | 6 | Montana | MT | todo | NLC member |
 | 7 | Wyoming | WY | todo | NLC member |
