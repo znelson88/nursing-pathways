@@ -457,3 +457,61 @@ with docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `
   the site would show as "for every student", but BYU-Idaho charges non-members double ($5,088 vs $2,544 per semester on
   its BSN record).
 - **Refresh:** re-read the roster and the board's NCLEX table each January (the 2023-25 table was posted January 2026).
+
+
+# Data sources (schools page — Utah, added 2026-11-16)
+
+Utah: **12 schools / 43 programs / 8 transfer agreements** in `data/schools/ut.js` (verified 2026-11-16), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Utah has no separate approved-program list. Since 2012 a nursing program counts as "approved" under
+  Utah's Nurse Practice Act when it holds programmatic accreditation from a US Department of Education-recognized nursing
+  accreditor (state Office of Professional Licensure Review report on nursing education oversight, Jan 2024,
+  commerce.utah.gov/wp-content/uploads/2024/01/OPLR-Legislative-Inquiry-Report-Nursing-Education-Oversight-PDF-for-Publication-1-3-2024-2-1.pdf).
+  So the roster is the Division of Professional Licensing's (DOPL, Board of Nursing) NCLEX-RN pass-rate table, which names
+  every program it tracks (commerce.utah.gov/dopl/nursing/resources/nclex-rn-pass-rates/, read 2026-11-16; no revision
+  date). Every public and private nonprofit program on it is included: University of Utah, Utah State (ADN at
+  Price/Blanding/Moab, LPN-to-RN at Tooele/Uintah Basin, BSN at Logan), Weber State (ADN and PN-to-RN; its BSN is RN-to-BSN
+  only), Southern Utah, Utah Tech, Snow College, Utah Valley, Salt Lake CC, BYU, Westminster University, Roseman's South
+  Jordan campus (accelerated BSN) and WGU (Salt Lake City-based; pre-licensure BSN for Utah residents), plus those
+  schools' RN-to-BSN and graduate APRN programs: U of U's BSN-to-DNP NP specialties (FNP, PMHNP, AG-ACNP, three pediatric
+  tracks, NNP, WHNP) and nurse-midwifery (two tracks), Westminster's MSN FNP and DNP nurse anesthesia, Weber's DNP FNP and
+  PMHNP, BYU's MS FNP and WGU's MSN FNP and PMHNP.
+- **NCLEX-RN pass rates:** DOPL's annual per-program tables for calendar 2023, 2024 and 2025 (first-time candidates
+  educated in Utah). Cross-check: each year's per-program rows add up exactly to DOPL's "Total Candidates Educated in Utah"
+  (2023: 3,318 tested / 2,892 passed; 2024: 3,807 / 3,291; 2025: 4,364 / 3,455 = 79.17%). DOPL reports one figure per school
+  per degree level, so multi-site programs (USU, Weber, Snow, SLCC) and LPN bridges share their school's ADN figure.
+  Snow College had no takers in 2023 (that year is left out rather than shown as 0%).
+- **Excluded:** private for-profit (College Navigator) — Nightingale College, Joyce University of Nursing and Health
+  Sciences, Provo College, Eagle Gate College, Fortis College, Galen College of Nursing (HCA) and Arizona College of
+  Nursing, plus two new for-profit pre-licensure programs not yet in the table (Chamberlain University's Sandy BSN,
+  approved by DOPL's education committee Nov 2025; North-West College's Provo BSN, temporarily approved) and Rocky Mountain
+  University of Health Professions (graduate NP programs; private for-profit). Grand Canyon University's Sandy accelerated
+  BSN site (a site of the Arizona university, as in Colorado, Missouri, Nevada and Idaho). Stevens-Henager College
+  (inactive; closed 2021). Southern Utah's MSN FNP (at capacity: no applications until March 15, 2027, for Spring 2028).
+  Roseman's FNP and nurse anesthesia run in Henderson, NV and are already in the Nevada data. **The excluded schools
+  produced about 56% of Utah's 2025 first-time NCLEX-RN takers (2,424 of 4,364; Nightingale alone 1,366).** Also left
+  out: LPN programs, MSN education/leadership/informatics tracks, post-master's DNPs and certificates, PhDs.
+- **Bridges:** USU's Tooele/Uintah Basin associate, Weber's PN-to-RN, Snow's LPN-to-RN and SLCC's LPN-to-RN Advanced
+  Placement (LPN only). Utah Tech's AASN (admits only LPNs, paramedics and military medics) and SUU's Health Professional
+  to BSN (LPNs, paramedics, respiratory therapists, athletic trainers, military medics) are tagged `lpn_or_paramedic`.
+  UVU admits LPNs into the 3rd semester of its ASN (noted on the record, not a separate program).
+- **Agreements:** 8 — SLCC → U of U RN-BS Express Pathway (dual enrollment), SLCC → WGU RN-to-BSN guaranteed admission,
+  and same-school ADN → RN-to-BSN continuations at USU, Weber, Utah Tech and UVU.
+- **Spot check (2026-11-16):** Westminster's DNP nurse anesthesia (3 years / 9 semesters, applications July 1-Sept 15,
+  2026, May 17, 2027 start, COA approval Jan 2022; $1,640 x 90 credits = $147,600 in the 2026-27 graduate catalog), SUU's
+  BSN (4 semesters, no entrance exam, 3.0 GPA, Feb 3, 2027 deadline, CCNE) and Snow's ADN (3.0 GPA with 2.80-2.99
+  petition, Jan 1-Mar 1 / Jul 1-Sept 1 windows, Utah CNA, ACEN) matched. Snow's "four semesters" is on snow.edu/asn,
+  not the application packet; now cited in the note. An agent note quoting a search snippet (Westminster deposit
+  timing) was removed.
+- **Known gaps:** Utah Tech's and UVU's online catalogs refused connections (credit totals unconfirmed; UVU ASN length
+  from a catalog excerpt); SLCC's catalog returned 403 (LPN bridge length null). UVU's RN-to-BSN cost and several minimum
+  GPAs aren't published. U of U's prerequisite course codes and DNP GPA minimums aren't published. Weber's DNP costs are
+  published only as ranges (null). Page conflicts (U of U BSN deadline Jan 31 vs Feb 1, Westminster BSN per-credit rates,
+  SLCC cohort size, BYU credit cap and FNP experience, WGU e-book fee, Snow bridge GPA) are in the program notes.
+- **Tuition (`UT.tuition`, added 2026-11-16):** 10 of 12 schools, College Scorecard 2025-26. Utah's public colleges
+  charge one statewide resident rate (SLCC's 2026-27 rate table has only resident and non-resident rows), so all are
+  labeled "in-state". Overrides: U of U → 230764, Weber State → 230782. Left out: BYU (two-tier Latter-day Saint /
+  non-member tuition, as with BYU-Idaho) and Roseman's South Jordan campus (no separate Scorecard record; name matching
+  picked a different school). WGU is included here (its home campus is in Salt Lake City).
+- **Refresh:** re-read DOPL's NCLEX table each January (it also shows the current year by quarter).
