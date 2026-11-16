@@ -12,7 +12,7 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 |---|---|---|---|---|
 | — | Colorado | CO | done | 28 schools / 53 programs |
 | — | Arizona | AZ | done | 15 / 42 |
-| — | California | CA | done | 24 / 61 (partial: CSU/UC/major privates + 8 CC ADNs; more CCs possible later) |
+| — | California | CA | done | 128 / 278 (94 agreements); every public/non-profit school on the BRN roster (wave 3, 2026-11-16) |
 | — | Missouri | MO | done | 47 / 168 |
 | — | Washington | WA | done | 44 / 91 (17 agreements); NLC member |
 | — | Oregon | OR | done | 27 / 50 (17 agreements); not NLC (checked nursecompact.com) |

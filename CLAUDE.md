@@ -130,7 +130,9 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   GCU is included and labeled (its nonprofit status is contested). AZ uses many entrance exams (HESI, TEAS,
   NLN, Kaplan). See docs/DATA_SOURCES.md.
 - California: built in `data/schools/ca.js` (attached to `window.SCHOOLS.CA`; loaded by schools.html).
-  **24 schools / 61 programs** (verified 2026-11-06, in two waves plus later additions) — larger than CO or AZ. Wave 1: the CSU
+  **128 schools / 278 programs / 94 agreements** (waves 1-2 verified 2026-11-06; wave 3 added 2026-11-16 = every
+  remaining public or non-profit school on the BRN roster: 72 community colleges, 13 more CSU campuses incl. the
+  RN-to-BSN-only CSU Monterey Bay and Cal Poly Humboldt, 19 private non-profits; details in DATA_SOURCES). Wave 1: the CSU
   pre-licensure BSN backbone (Long Beach, San Diego State, Sacramento State, SF State, Fullerton) + Fullerton
   Accelerated BSN + SF State Entry-Level Master's; three community-college ADNs; five RN-to-BSN completions.
   Wave 2: UCLA, UC Irvine, UCSF, UC Davis, Samuel Merritt, Loma Linda, USF, USD, Azusa Pacific and five more

@@ -131,7 +131,7 @@ Cloudflare-gated.
 
 # Data sources (schools page — California)
 
-California is **in progress — waves 1-2** (23 schools / 58 programs, verified 2026-11-06), in `data/schools/ca.js`.
+California is **complete for the BRN roster** — **128 schools / 278 programs / 94 agreements** in `data/schools/ca.js` (waves 1-2 verified 2026-11-06; wave 3 added 2026-11-16, see below).
 Each record carries its own `source_url` + `last_verified` (the authoritative per-fact log). Facts come from
 each institution's own website; **NCLEX pass rates are the California BRN's by-school first-time table.**
 
@@ -165,6 +165,44 @@ critical-care experience). Excluded as paused/pending: UCSF's MEPN (paused) and 
 WHNP has no open California program yet (routes fall back out of state, honestly flagged). Still open for future
 waves: more private universities (Point Loma, Mount Saint Mary's, Dominican, CBU, Charles Drew) and more
 community-college ADNs by region. Re-verify before each academic year.
+
+**Wave 3 (added 2026-11-16): every remaining public or non-profit school on the BRN roster.** The BRN list
+(rn.ca.gov/education/rnprograms.shtml, read 2026-11-16) has 97 ADN, 54 BSN and 17 entry-level master's rows; an
+asterisk marks private schools, whose ownership was checked in College Scorecard (IPEDS control). 104 schools were
+added by 14 parallel research agents (school sites only), assembled with tools/state-build/build_state.py and merged
+into the existing file: **72 community colleges** (incl. Los Angeles County College of Nursing & Allied Health, a
+county school), **13 public universities** (CSU Bakersfield, Channel Islands, Chico, East Bay, Los Angeles,
+Northridge, San Bernardino, San Marcos, Stanislaus, Sonoma State, San José State, plus the RN-to-BSN-only CSU Monterey
+Bay and Cal Poly Humboldt, which receive many community-college concurrent-enrollment students) and **19 private
+non-profits** (Biola, Cal Baptist, Charles Drew, Concordia Irvine, Mount Saint Mary's, Pepperdine, Vanguard, WesternU,
+Point Loma, National University, Dominican, Fresno Pacific, Saint Mary's, Simpson, Westmont, William Jessup, Pacific
+Union, University of the Pacific, Weimar). 56 programs are LVN/paramedic bridges (`bridge_from`); the BRN's non-degree
+"30-unit option" is mentioned in notes only.
+- **NCLEX:** the BRN school pass-rate table (July-June years 2022-23 to 2024-25) mapped by name. New programs with no
+  results yet: Pepperdine, Saint Mary's (first BSN class Fall 2025), Lassen (first ADN class 2024) and College of the
+  Siskiyous (LVN-RN Step-Up reopened 2026; the BRN table still says "Closed"). Chabot's 2024-25 row shows 1 tester.
+- **Excluded:** private for-profits (Scorecard control 3 or the school's own disclosures): American Career College,
+  American University of Health Sciences, Angeles, Arizona College, California Career College, California Nurses
+  Educational Institute, California Northstate, Career Care Institute, Carrington, Chamberlain, CNI College, Gurnick,
+  High Desert Medical College, Marsha Fuerst/Glendale Career College, Pacific College, San Joaquin Valley College,
+  Smith Chason, Sri Sai Krish, Stanbridge, Unitek, West Coast University, Westcliff, Xavier College, and United Nursing
+  College (BPPE-approved private institution with no non-profit claim). Closed/not admitting: UMass Global, University
+  of Phoenix, Mount Saint Mary's ADN (being discontinued), CSUCI's Goleta BSN (paused), Cal State LA's standalone
+  RN-to-BSN (on hold), Point Loma's MSN-FNP and LVN-to-BSN, Merced's and Chabot's LVN bridges, Bakersfield College's
+  LVN-to-RN AS, COS's year-round track, Cabrillo's LVN advanced placement. Stanislaus's PMHNP certificate (requires a
+  master's) was left out.
+- **Gaps:** the Los Angeles Community College District colleges (LACC, ELAC, Harbor, Pierce, Southwest, Trade-Tech,
+  Valley), De Anza, Ohlone, Madera, Simpson and Pacific Union block automated reading; their records come from search
+  excerpts of their own pages and say "check with the school". Many community colleges publish no program cost.
+- **Agreements:** 94 documented community-college ADN -> university RN-to-BSN partnerships (concurrent enrollment,
+  collaboratives, roadmaps named by a school's own page) plus same-school steps. Dropped where the partner has no
+  RN-to-BSN in the data (Azusa Pacific, Loma Linda, SF State) or the source was only a generic transfer roadmap.
+- **Tuition:** College Scorecard 2025-26 for 101 of 104 new schools (personal key); overrides El Camino 113980,
+  Antelope Valley 109350, Butte 110246, San José State 122755, Mt. San Jacinto 119216, Copper Mountain 395362, MSMU
+  119173. No Scorecard tuition: LA County College of Nursing, WesternU (graduate-only); Weimar has no Scorecard record.
+- **Spot check (2026-11-16):** Grossmont ADN (TEAS 62%, Jan/Jul windows, 2.5 science GPA, multi-criteria, $6,132
+  estimate), CSU San Marcos BSN (TEAS 71, 2.75 core GPA, 68-point scale, Oct 1-Nov 30 window) and National University
+  DNAP (36 months, $887/credit, 3.0 GPA, 1 year ICU, COA next review May 2027) matched the schools' pages.
 
 ## School-wide tuition (all three states, added 2026-11-11)
 
