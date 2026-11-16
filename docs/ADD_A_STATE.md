@@ -4,7 +4,9 @@ This is the procedure used for Colorado, Arizona, California and Missouri. The s
 follows it unattended, so every step says exactly what to do and when to stop. Read CLAUDE.md first (standing
 decisions: facts first, nothing guessed, plain language).
 
-**The task never merges a pull request, never pushes to `main`, never bypasses a site's bot protection (captchas,
+**Merging (owner's decision, 2026-11-16):** the task merges its own pull request once every check passes (step 11);
+the owner reviews each state after it is live. It never pushes directly to `main`, never merges with a failing or
+pending check, and never bypasses a site's bot protection (captchas,
 "verify you are human", 403 walls), and never enters credentials.** If a step can't be done honestly, it records
 why and stops.
 
@@ -13,9 +15,11 @@ why and stops.
    `gh` is at `"/c/Program Files/GitHub CLI/gh.exe"` (not on PATH). Repo: `znelson88/nursing-pathways`.
 2. `git status` must be clean and the branch `main`. If not, stop and report (don't stash or discard anyone's work).
 3. `git pull --ff-only origin main`.
-4. If a state pull request is already open (`gh pr list -R znelson88/nursing-pathways --state open --search "Add state in:title"`),
-   **don't start a new state.** Instead: report that PR's checks/review status, then do step 12 ("tuition catch-up")
-   if any merged state is marked `tuition pending`, then stop.
+4. If a state pull request is already open (`gh pr list -R znelson88/nursing-pathways --state open --search "Add state in:title"`):
+   if all its checks passed and GitHub says MERGEABLE, merge it as in step 11 and carry on. If it only conflicts in
+   docs/queue/notes files, merge `origin/main` into its branch in a separate worktree (keep both sides), re-run both
+   tests, push, wait for checks, then merge. If a check failed or code/data files conflict, **don't merge or start a
+   new state**: report it, do step 12 if any merged state is `tuition pending`, then stop.
 5. If a row is `in progress (branch state/xx)`, check out that branch and continue it. Otherwise pick the first row
    marked `todo` in docs/STATE_QUEUE.md (west to east) and create branch `state/<xx>` (lowercase code).
 
@@ -102,11 +106,15 @@ why and stops.
   branch, and open a PR titled `Add state: <Name> (<n> schools, <m> programs)`. The body lists: counts, roster and
   NCLEX sources, exclusions and why, gaps, spot-check results, tuition status, test results. End it with the PR
   attribution line from the session's instructions. Wait for the "Test and deploy" checks on the PR and report them.
-- Do **not** merge. The owner reviews and merges; merging publishes the state through the checked deploy.
+- Merge only when every PR check passed (none failing or pending), GitHub says MERGEABLE, both local tests passed and
+  the step 8 spot check passed: `gh pr merge <n> -R znelson88/nursing-pathways --merge` (never `--admin`). Then watch
+  the "Test and deploy" run on `main` (`gh run watch <id> --exit-status`) and confirm
+  `https://nursingpaths.com/data/schools/<xx>.js` is live. If the deploy fails the live site is unchanged: report and
+  stop. The summary calls out anything the owner should look at, since he reviews after it's live.
 
 ## 12. Tuition catch-up (when no new state can start)
 - For any merged state marked `tuition pending`: branch `tuition/<xx>` from `main`, run step 7, run the tests, open
-  a PR `Add tuition: <Name>`. Set the queue note when merged (the owner merges).
+  a PR `Add tuition: <Name>`, and merge it under the same rules as step 11. Set the queue note in the next PR.
 
 ## If something goes wrong
 - Can't finish in this run (agents failed, roster unreadable): commit what's done to the branch, push it, set the

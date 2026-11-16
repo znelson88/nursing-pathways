@@ -179,7 +179,8 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   Excluded for-profits (Carrington, Eagle Gate) were about 24% of 2025 first-time NCLEX-RN takers. NLC state.
   `ID.tuition` covers 8 schools (BYU-Idaho left out: two-tier church/non-member tuition). Details in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", 8am and 4pm) follows docs/ADD_A_STATE.md and opens one
-  pull request per state for the owner to review and merge; it never merges or pushes to main. The state list lives
+  pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
+  live). It never pushes directly to main or merges with a failing check. The state list lives
   in `SCHOOL_STATES` (js/data.js) plus one `<script>` tag in schools.html.
 - Hosting: live at https://nursingpaths.com (GitHub Pages, repo znelson88/nursing-pathways, published by the
   `Test and deploy` workflow after each push to `main` passes its checks). See README.md.
