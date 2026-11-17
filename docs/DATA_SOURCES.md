@@ -608,3 +608,48 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   Montana (no record yet).
 - **Refresh:** re-read the board's NCLEX table each spring and the roster after board meetings (it is re-issued a few
   times a year).
+
+
+# Data sources (schools page — Wyoming, added 2026-11-17)
+
+Wyoming: **8 schools / 16 programs / 7 transfer agreements** in `data/schools/wy.js` (verified 2026-11-17), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Wyoming State Board of Nursing "List of Wyoming Nursing Education Programs" (wsbn.wyo.gov/education,
+  read 2026-11-17) and its 2025 Annual Nursing Education Report (same page): nine RN programs at eight schools, all public —
+  Casper College, Central Wyoming College (Riverton; also runs a Jackson site), Eastern Wyoming College (Douglas/Torrington),
+  Laramie County CC (Cheyenne), Northern Wyoming Community College District (Sheridan + Gillette), Northwest College
+  (Powell), Western Wyoming CC (Rock Springs) and the University of Wyoming (Basic BSN + the accelerated "BRAN"/BRAND
+  program). Wyoming has **no for-profit RN program, and no nurse anesthesia or nurse-midwifery program**.
+- **NCLEX-RN pass rates:** the board's quarterly "NCLEX Statistics, First-time Test Takers" PDFs for 2023, 2024 and 2025
+  (Google Drive files linked from wsbn.wyo.gov/education; the 2026 file, as of 10/12/2026, was read but not used — the year
+  isn't finished). Calendar-year totals per program; UW's Basic and Accelerated programs are reported separately.
+  Cross-check: 2024 per-program totals add up exactly to the state total (309 of 326). 2025 rows add to 277/305 against the
+  state's 276/304 — Western Wyoming's yearly row (28/29) is one taker more than its own quarters (27/28); the board's row is
+  used. 2023 has table errors: Northwest College's RN yearly row (11/12) equals its PN quarters, so the sum of its RN
+  quarters (33/37) is used and the card says so; Central Wyoming (26/26 vs 29/29 by quarter) and UW Basic (46/46 vs 47/47)
+  are 100% either way and the yearly rows are used. Also, the 2025 file's April-June state RN and PN totals are swapped.
+- **Excluded:** nothing on the roster. Left out by scope: PN certificates (Casper, LCCC incl. PN-Hybrid, NWCCD, Northwest,
+  Western), UW's MS nurse educator/leader tracks, PhD and post-graduate certificates.
+- **Bridges:** Casper College's LPN advanced placement (third semester) and Central Wyoming's LPN to RN Completion
+  (`bridge_from: "lpn"`). LCCC's LPN Advanced Placement and Northwest College's midpoint entry are also flagged "lpn": they
+  admit LPNs plus nursing re-entry/transfer students, never brand-new students (noted on the cards). Eastern and Western
+  Wyoming have no LPN entry.
+- **Agreements:** 7 — each college ADN → UW's online BSN Completion through **ReNEW** (Revolutionizing Nursing Education in
+  Wyoming, a shared statewide curriculum; students can take UW courses while still in the ADN). Each is cited from the
+  college's own page or handbook; UW's 2026-27 ReNEW transfer guide lists all seven too (UW's ReNEW page returned an error).
+- **Spot check (2026-11-17):** Western Wyoming ADN (Jan-Mar 31 window, TEAS Proficient, 2.5 GPA, 40 a year, hybrid, ACEN),
+  UW Basic BSN non-freshman admission (HESI A2 75% English/Science/Math, 2.75 pre-clinical GPA, Jan 15 to last Thursday of
+  March, holistic review) and UW DNP FNP (3.0 GPA, WY/multistate RN license by May 1, July 1 open / first Friday of October
+  priority, $500 seat fee, virtual interview) matched the cited pages.
+- **Known gaps / owner attention:** Gillette College is now its own district (HLC candidate) but its nursing still runs
+  under Northern Wyoming's board approval and ACEN accreditation — split it out if Gillette gets its own approval. Eastern
+  Wyoming's 2025 board pass rate (8 of 11, 72.7%) is below the board's 80% threshold. UW's BRAND and BSN Completion costs are
+  null (UW lists a $187 campus and a $215 online per-credit rate but doesn't say which applies). Catalogs at Sheridan,
+  Western and Eastern refused automated reading (some minimum grades null); LCCC's catalog had a certificate error. Page
+  conflicts (LCCC format and math prerequisite, Casper GPA 2.5 vs 2.8 and prerequisites, Northwest portal date, BRAND
+  10 vs 11 prerequisites, UW DNP out-of-state clinical sites) are in the notes.
+- **Tuition (`WY.tuition`, added 2026-11-17):** all 8 schools, College Scorecard 2025-26. Wyoming's community colleges charge
+  one statewide resident rate set by the Wyoming Community College Commission (Central, Eastern and Western Wyoming
+  each list $112/credit tuition for 2026-27), so they are labeled "in-state", not in-district. Override: University of Wyoming → 240727.
+- **Refresh:** the board updates its NCLEX PDF quarterly; re-read the 2026 file each spring for the full year.
