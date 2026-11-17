@@ -170,6 +170,17 @@ with sync_playwright() as p:
     check("schools MT: pass rates come from the Montana Board of Nursing table",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"boards.bsd.dli.mt.gov\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Wyoming (eleventh state): Wyoming State Board of Nursing roster and yearly NCLEX statistics, ReNEW, compact state.
+    d.goto(BASE + "/schools.html?job=fnp&state=WY"); d.wait_for_timeout(400)
+    check("schools WY: comparison lists all 8 Wyoming start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 8)
+    check("schools WY: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=WY&start=lpn&school=casper-college"); d.wait_for_timeout(400)
+    check("schools WY: an LPN at Casper College starts with its LPN-to-RN bridge",
+          "starts with an LPN-to-RN bridge" in d.inner_text("#route"))
+    d.goto(BASE + "/schools.html?job=fnp&state=WY&school=central-wyoming"); d.wait_for_timeout(400)
+    check("schools WY: pass rates come from the Wyoming State Board of Nursing",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"wsbn.wyo.gov\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
     d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
     check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)
