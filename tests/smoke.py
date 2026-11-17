@@ -181,6 +181,17 @@ with sync_playwright() as p:
     check("schools WY: pass rates come from the Wyoming State Board of Nursing",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"wsbn.wyo.gov\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # New Mexico (twelfth state): NM Board of Nursing roster and End of Year NCLEX table, NMNEC dual degree with UNM, compact state.
+    d.goto(BASE + "/schools.html?job=fnp&state=NM"); d.wait_for_timeout(400)
+    check("schools NM: comparison lists 18+ New Mexico start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 18)
+    check("schools NM: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=NM&start=lpn&school=cnm"); d.wait_for_timeout(400)
+    check("schools NM: an LPN at CNM starts with its LPN-to-RN bridge",
+          "starts with an LPN-to-RN bridge" in d.inner_text("#route"))
+    d.goto(BASE + "/schools.html?job=fnp&state=NM&school=san-juan"); d.wait_for_timeout(400)
+    check("schools NM: pass rates come from the New Mexico Board of Nursing table",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"bon.nm.gov\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
     d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
     check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)
