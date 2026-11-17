@@ -20,8 +20,8 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | Idaho | ID | done | 9 / 25 (10 agreements); NLC member (DOPL issues multistate licenses) |
 | — | Utah | UT | done | 12 / 43 (8 agreements); NLC member since 2018 (nursecompact.com); roster = DOPL NCLEX table (Utah approves by accreditation) |
 | — | Montana | MT | done | 14 / 26 (2 agreements); NLC member since 2015; University of Providence excluded (closing 2027); no for-profit RN programs |
-| 7 | Wyoming | WY | PR open (#13) | 8 / 16 (7 agreements); NLC member since 2018 (nursecompact.com map); no for-profit RN programs |
-| 8 | New Mexico | NM | todo | NLC member |
+| — | Wyoming | WY | done | 8 / 16 (7 agreements); NLC member since 2018 (nursecompact.com map); no for-profit RN programs |
+| 8 | New Mexico | NM | PR open | 22 / 40 (14 agreements); NLC member since 2018 (nursecompact.com map); NMNEC dual degree with UNM |
 | 9 | Alaska | AK | todo | not NLC |
 | 10 | Hawaii | HI | todo | not NLC |
 | 11 | North Dakota | ND | todo | |

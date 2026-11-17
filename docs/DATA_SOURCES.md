@@ -653,3 +653,63 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   one statewide resident rate set by the Wyoming Community College Commission (Central, Eastern and Western Wyoming
   each list $112/credit tuition for 2026-27), so they are labeled "in-state", not in-district. Override: University of Wyoming → 240727.
 - **Refresh:** the board updates its NCLEX PDF quarterly; re-read the 2026 file each spring for the full year.
+
+# Data sources (schools page — New Mexico, added 2026-11-17)
+
+New Mexico: **22 schools / 40 programs / 14 transfer agreements** in `data/schools/nm.js` (verified 2026-11-17), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** New Mexico Board of Nursing "NMBON approved nursing education programs" (files.bon.nm.gov/WebDocs, linked
+  from bon.nm.gov/approval-accreditation; PDF printed 2026-07-20). It lists approval status, expiry, accreditation and the
+  board's average program cost for every PN, ADN and BSN program. Included: every public or nonprofit RN program on it —
+  CNM, Clovis, ENMU-Roswell, Luna, Mesalands (new), Navajo Technical University (new, tribal; typed community college as in
+  Montana), New Mexico Junior College, NMSU (Las Cruces, with Alamogordo and Grants partner sites), NMSU-Alamogordo, NMSU Doña
+  Ana, Northern New Mexico College (typed public university: a regional four-year college), San Juan, Santa Fe CC, Southeast
+  New Mexico College, UNM College of Nursing, UNM-Taos, UNM-Gallup, UNM-Valencia, Western New Mexico University — plus
+  Grand Canyon University's Albuquerque site (labeled, as in Arizona: its nonprofit status is contested). Added for their
+  RN-to-BSN / graduate programs: Eastern New Mexico University (Portales; online RN-to-BSN only) and New Mexico Highlands
+  University (RN-to-BSN, MSN FNP).
+- **NCLEX-RN pass rates:** the board's "NCLEX Pass Rates" PDF ("End of Year 2025", dated 2.23.26; files.bon.nm.gov/WebDocs),
+  first-time takers by calendar year 2021-2025; 2023-2025 are stored. UNM's BSN is reported per site (Albuquerque plus the
+  NMNEC dual-degree sites at CNM, San Juan, Santa Fe, UNM-Gallup, UNM-Taos and UNM-Valencia) and stored by campus.
+  **Cross-check:** the table has no statewide total, so the per-program sum could not be checked; instead every stored rate was
+  recomputed from the board's passed/tested counts and matches its printed percentage. Southeast New Mexico College's 2025
+  row gives a rate (92.86%) but no counts, so it is stored without a tested number. Rows marked "Pending 2026" (Mesalands,
+  Navajo Tech, NMSU-Alamogordo, GCU, UNM-Taos ADN, NMJC's UNM BSN site, WNMU ADN) have no figure. The table also shows an
+  ENMU BSN through 2024; ENMU's site has no pre-licensure BSN today (its BSN is for RNs only), so that row isn't used.
+- **Excluded:** private for-profit Brookline College (Unitek), Carrington College and Pima Medical Institute; out-of-state
+  programs approved only for clinical placements or still pending (Western Governors University, Edgewood University WI,
+  Joyce University UT — Joyce is also for-profit). Western NM University's post-master's FNP certificate (requires an MSN
+  first — not an entry route, as with Fresno State's certificates). Out of scope: PN certificates, MSN education/leadership,
+  post-graduate certificates, PhD. UNM has no nurse anesthesia program (its School of Medicine anesthesia master's trains
+  anesthesiologist assistants); NMSU's DNP Nurse Anesthesiology (COA initial accreditation, 2023) is the state's only CRNA
+  program.
+- **Bridges:** CNM's LPN to RN Mobility, NMSU Doña Ana's LPN-to-RN advanced placement, Clovis's LPN direct entry to Level III
+  and NMJC's new LPN-to-RN Accelerated Pathway (`bridge_from: "lpn"`). The PN-ADN ladders at Clovis, Northern NM and SENMC
+  admit brand-new students at level 1, so they are ordinary ADNs.
+- **Agreements:** 14. New Mexico's signature route is **NMNEC** (New Mexico Nursing Education Consortium): a shared
+  curriculum where students at CNM, San Juan, Santa Fe CC, UNM-Gallup, UNM-Taos and UNM-Valencia co-enroll in UNM's BSN and
+  finish with an associate degree and a UNM BSN (agreements to `unm-bsn`; CNM's LPN entry too). Others: Clovis (ADN and LPN
+  entry) and ENMU-Roswell → ENMU RN-to-BSN; SFCC and Luna → NMHU RN-to-BSN (NMHU's articulation pages); NNMC ADN → its own
+  RN-to-BSN; NMHU RN-to-BSN → MSN FNP.
+- **Spot check (2026-11-17):** NMJC ADN (TEAS 58.7% adjusted total plus section cut scores, 2.75 prerequisite GPA, May 20
+  deadline, holistic selection; $40/credit in-district Fall 2026 from its cost sheet), NMSU BSN (HESI A2 75% per section and
+  composite, 2.75 prerequisite GPA, April 1 fall / Sept 1 spring, 40/50/5/3/2 ranking, cohorts 64/64/24/8, CCNE) and UNM
+  Post-Bachelor's DNP FNP (3 years, 825 clinical hours, Aug 15 / Dec 1 / Apr 1, one year RN experience; the $49,698.40
+  resident total for 2026-27 is on UNM's tuition page, now cited in the note) matched the cited pages.
+- **Known gaps / owner attention:** UNM-Valencia's ADN is on "Full Approval with warning" and its board pass rates are low
+  (2025: 8 of 15; its UNM BSN site 1 of 5); UNM-Gallup's 2025 rate was 9 of 14 and its UNM BSN site 1 of 4. Luna's own page
+  says "full approval with warning" although the roster says full approval. Navajo Tech's dates conflict (roster: first class
+  graduates Fall 2026; NTU page: first cohort starts Spring 2027). NMSU-Alamogordo's handbook still says initial approval /
+  ACEN candidate. Mesalands' site loads by JavaScript, so its prerequisites, GPA and exam are null. CNM, SFCC and NNMC catalogs
+  returned 403 (some minimum grades null); NMSU's catalog had a certificate error. NMJC's UNM BSN site (board: pending 2026) and
+  an ENMU "NMJC AAS to BSN" pathway (behind a login) couldn't be confirmed, so no agreement was added. NMSU Doña Ana and
+  Alamogordo publish no path into NMSU's BSN. Western NM's ADN (board: pending 2026) isn't on WNMU's site yet.
+- **Tuition (`NM.tuition`, added 2026-11-17):** 21 of 22 schools, College Scorecard 2025-26. New Mexico's two-year colleges
+  charge an in-district rate (the NM Higher Education Department's FY26 tuition table labels their resident rate "In District";
+  NMSU's community-college rate sheet, CNM, Luna and Clovis show separate out-of-district rates), so they are labeled
+  "in-district" — except San Juan College (one New Mexico resident rate) and Navajo Tech (tribal, one rate), labeled
+  "in-state" like the universities and Northern NM College. Overrides: UNM main 187985, NMSU main 188030, NMSU Doña Ana
+  187620, ENMU main 187648, UNM-Taos 188225, UNM-Gallup 187958, UNM-Valencia 188049. GCU's Albuquerque site skipped (its
+  federal record is the Arizona campus).
+- **Refresh:** the board updates its NCLEX PDF early each year; re-read it each spring for 2026.
