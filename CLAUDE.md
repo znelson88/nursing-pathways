@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming and New Mexico**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico and Alaska**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -16,7 +16,7 @@ js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), t
 js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
@@ -205,6 +205,12 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   CRNA), WNMU, NNMC, ENMU and NMHU (RN-to-BSN/FNP) and GCU's Albuquerque site (labeled). Signature route: **NMNEC** dual
   degree — students at six colleges co-enroll in UNM's BSN. Excluded for-profits: Brookline, Carrington, Pima Medical.
   NLC state. `NM.tuition` covers 21 schools. Details in docs/DATA_SOURCES.md.
+- Alaska: built in `data/schools/ak.js` (`window.SCHOOLS.AK`), **2 schools / 8 programs / 1 agreement**
+  (verified 2026-11-18). The board's web pages are behind bot protection, so the roster and NCLEX figures come from its own
+  meeting PDFs (January 2026 meeting book: calendar-year chart 2022-2025, rates only). University of Alaska Anchorage (AAS at
+  12 distance sites, BSN at Anchorage/Fairbanks/Mat-Su, online RN to BS, MS FNP and PMHNP) and Alaska Pacific University (ADN,
+  LPN-to-RN bridge, RN-to-BSN). Excluded: Charter College (for-profit). Not an NLC state (the 2026 compact bill didn't pass).
+  `AK.tuition` covers both schools. Details in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", 8am and 4pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives
