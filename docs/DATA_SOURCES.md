@@ -713,3 +713,53 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   187620, ENMU main 187648, UNM-Taos 188225, UNM-Gallup 187958, UNM-Valencia 188049. GCU's Albuquerque site skipped (its
   federal record is the Arizona campus).
 - **Refresh:** the board updates its NCLEX PDF early each year; re-read it each spring for 2026.
+
+# Data sources (schools page — Alaska, added 2026-11-18)
+
+Alaska: **2 schools / 8 programs / 1 transfer agreement** in `data/schools/ak.js` (verified 2026-11-18), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** the Alaska Board of Nursing's web pages (commerce.alaska.gov, Board of Nursing) sit behind bot
+  protection ("enable JS" captcha wall), so they were not read. The board's own meeting PDFs on the same site download
+  normally and serve as the roster: the NCSBN Education Program Summary and NCLEX report in the **January 2026 meeting
+  book** (Portals/5/pub/Archive26/BoardMeetings/2026_Jan_BON_Meeting Book.pdf) and the annual school reports in the
+  **November 2025 meeting book** (NURboardbook_2025_11.pdf) name every board-approved program: UAA AAS, UAA BSN, Charter
+  College ADN, Alaska Pacific University ADN and the LPN programs (APU, UAF Community & Technical College). The board's
+  August 2026 minutes list the same RN programs with FY2026 pass rates. Included: **University of Alaska Anchorage** (AAS at
+  12 distance sites — Bethel, Dillingham, Homer, Juneau, Kenai, Ketchikan, Kodiak, Kotzebue, Nome, Petersburg, Sitka, Valdez;
+  BSN at Anchorage, Fairbanks with UAF CTC, and Mat-Su; online RN to BS; MS Family NP and Psychiatric-Mental Health NP) and
+  **Alaska Pacific University** (ADN in Anchorage and Utqiagvik, LPN-to-RN bridge, RN-to-BSN).
+- **NCLEX-RN pass rates:** the board's "NCLEX pass rates 4 year trends" chart (calendar years 2022-2025) in the January
+  2026 meeting book; 2023-2025 are stored. The chart prints rates only (no counts), so cards show no "tested" number. The
+  page is a rotated chart; each label was matched to its program and year by its position on the page (four bars per
+  program, 2022 to 2025). UAA AAS 83% / 94% / 73%, UAA BSN 87% / 89% / 78%, APU ADN 60% / 100% / 86% (2023 / 2024 / 2025).
+  **Cross-check:** the chart has no statewide total; as a sanity check, the board's Q4 2025 NCSBN table in the same book and
+  its FY2026 figures in the August 2026 minutes (APU ADN 81%, UAA ADN 76%, UAA BS 96%) are in line with the chart. UAA's own
+  annual report (April-March years, with counts: AAS 56 of 62 and BSN 92 of 109 in Apr 2024-Mar 2025) is a different
+  period and isn't stored.
+- **Excluded:** Charter College (Anchorage; AAS in Nursing, ACEN) — private for-profit per College Navigator (unit 102845).
+  Out of scope: LPN certificates (APU, UAF CTC, AVTEC, Charter's new LPN), UAF's AS Nursing Foundations and UAS's pre-nursing
+  certificate (they feed UAA programs and lead to no license themselves), UAA's DNP (post-master's, APRNs only), its FNP and
+  PMHNP graduate certificates (require a graduate nursing degree) and its leadership/education tracks. Alaska has no
+  accelerated BSN, direct-entry master's, CRNA, midwifery or CNS program.
+- **Bridges:** APU's LPN to RN (`bridge_from: "lpn"`; Alaska LPN license required, 9 credits granted). UAA's AAS takes no LPN
+  credit (per its 2026-27 handbook).
+- **Agreements:** 1 — UAA AAS → UAA RN to BS (its "direct articulation option" for associate-degree RNs, up to 42 credits for
+  the license). No documented APU → UAA path. APU's RN-to-BSN and UAA's MS programs admit any qualified RN (open entry).
+- **Spot check (2026-11-18):** UAA AAS (TEAS 58.7 + Kira, 2.0 prerequisite GPA, Fall 2027 window mid-Jan to March 22, 2027,
+  scored selection), UAA BSN (TEAS 58.7 + Kira, 3.0 prerequisite GPA, March 22, 2027, sites Anchorage/Fairbanks/Mat-Su) and
+  UAA MS FNP/PMHNP (BSN from ACEN/CCNE program, 3.0 GPA, one year RN experience, Alaska RN license, opens Nov 1, 2026,
+  priority Jan 4 / final Feb 1, 2027, Kira, three references) matched the cited pages. APU's cost was restated as its yearly
+  undergraduate tuition ($20,960 = two $10,480 flat-rate semesters, 2026-27 cost of attendance page, now cited) so the page
+  doesn't read a per-semester figure as a whole-program price.
+- **Known gaps / owner attention:** UAA's AAS board pass rate fell to 73% in 2025 and the BSN to 78% (below the board's 80%
+  standard; the board said in January 2026 it sends letters of concern for yearly rates under 80%). UAA's catalog
+  (catalog.uaa.alaska.edu) refused every connection, so the AAS 72-credit total and some minimum grades rest on UAA's program
+  pages or are null. UAA's BSN page lists Spring 2027 sites but no spring deadline (noted "check with the school"). The board's
+  2024-25 report lists AAS sites in Anchorage and Mat-Su, but UAA's current pages say the AAS isn't offered there; UAA's
+  current list is used. APU's catalog and /programs/ pages returned 403, so most APU prerequisite codes and the bridge and
+  RN-to-BSN lengths are null; APU's most recent ACEN decision is initial accreditation (continuing-accreditation visit Sept
+  2026). APU's Utqiagvik ADN site is confirmed only by the board report and a search snippet.
+- **Tuition (`AK.tuition`, added 2026-11-18):** both schools, College Scorecard 2025-26 (UAA 102553, APU 102669), labeled
+  "in-state" (no community-college districts in Alaska).
+- **Refresh:** each January meeting book carries the board's calendar-year NCLEX chart; re-read it each year.
