@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico and Alaska**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska and Hawaii**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -16,7 +16,7 @@ js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), t
 js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
@@ -211,6 +211,14 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   12 distance sites, BSN at Anchorage/Fairbanks/Mat-Su, online RN to BS, MS FNP and PMHNP) and Alaska Pacific University (ADN,
   LPN-to-RN bridge, RN-to-BSN). Excluded: Charter College (for-profit). Not an NLC state (the 2026 compact bill didn't pass).
   `AK.tuition` covers both schools. Details in docs/DATA_SOURCES.md.
+- Hawaii: built in `data/schools/hi.js` (`window.SCHOOLS.HI`), **8 schools / 33 programs / 8 agreements**
+  (verified 2026-11-18) from the Hawaii Board of Nursing's recognized-schools list (Feb 2026) and its 2025 NCLEX report (the
+  board publishes only the latest year, so cards show 2025 only). Three UH community colleges (ADN + LPN bridge each; all feed
+  UH Mānoa's/UH Hilo's RN-to-BS), UH Maui College (new BSN, first cohort Fall 2026; LPN-to-ASN), UH Hilo (BSN, RN-to-BSN, DNP
+  FNP), UH Mānoa (BS, Graduate Entry Program, online RN-to-BS, DNP FNP/AGPCNP/PMHNP), Chaminade (BSN, MSN/DNP FNP/PNP/PMHNP)
+  and HPU (BSN, LPN-to-BSN, RN-to-BSN, online MSN/DNP FNP/PMHNP/AGACNP under a CCNE show-cause directive). No for-profit RN
+  programs on the roster; no CRNA or midwifery program in Hawaii. Not an NLC state. `HI.tuition` covers all 8 schools.
+  Details in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", 8am and 4pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives

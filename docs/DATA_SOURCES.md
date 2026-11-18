@@ -763,3 +763,54 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
 - **Tuition (`AK.tuition`, added 2026-11-18):** both schools, College Scorecard 2025-26 (UAA 102553, APU 102669), labeled
   "in-state" (no community-college districts in Alaska).
 - **Refresh:** each January meeting book carries the board's calendar-year NCLEX chart; re-read it each year.
+
+
+# Data sources (schools page — Hawaii, added 2026-11-18)
+
+Hawaii: **8 schools / 33 programs / 8 transfer agreements** in `data/schools/hi.js` (verified 2026-11-18), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Hawaii Board of Nursing "Recognized Schools of Nursing" (cca.hawaii.gov/pvl/hawaii-nursing-programs →
+  Hawaii-Schools-of-Nursing-as-of-022026.pdf, last updated February 2026): Chaminade, Hawaiʻi Pacific University, UH Hilo,
+  UH Mānoa, Hawaiʻi CC, Kapiʻolani CC, Kauaʻi CC and UH Maui College. All eight are public or private nonprofit and all are
+  included. The PDFs carry an owner-password (no open password); text was extracted with pdftotext.
+- **NCLEX-RN pass rates:** the board's "NCLEX Pass Rates for 2025" (HI_Nursing_Report_Jan_Dec_25.pdf, NCSBN/Pearson VUE
+  program report, Jan-Dec 2025, report date April 1, 2026). Stored: US-educated first-time candidates per program code.
+  **Only 2025 is stored** — the board's page links only the latest year and no 2023/2024 report was found on its site.
+  Chaminade BS 98/105 (93.3%), HPU BS 76/99 (76.8%), UH Hilo BS 27/34 (79.4%), UH Mānoa BS 42/42 (100%), UH Mānoa MEPN/GEPN
+  41/41 (100%), Hawaiʻi CC ADN 41/49 (83.7%), Kapiʻolani CC ADN 46/48 (95.8%), Kauaʻi CC ADN 17/17 (100%), Maui CC ADN 33/39
+  (84.6%). **Cross-check:** the report has no statewide total line (it is itself the full list of Hawaii program codes, plus
+  "closed program", equivalency and re-entry rows, which aren't schools). **Which UH BS row is which:** the report labels
+  both US37500200 and US37505600 "University of Hawaii - BS". UH Mānoa's own fast-facts page reports a 100% first-time rate
+  for its BS in calendar 2025, which matches only US37505600 (42/42), so that row is Mānoa and US37500200 (27/34) is Hilo
+  (Hilo admits about 40 a year — 30 Hilo + 10 Waiʻanae — consistent with 34 takers). UH Hilo publishes no rate of its own to
+  confirm. Hawaiʻi CC's and UH Hilo's single board figures cover all of their sites (labeled "one board figure").
+- **Excluded / left out:** no for-profit RN programs are on the board's roster. HPU's HM-to-BSN (military hospital corpsmen
+  only — the site has no bridge type for corpsmen, and showing it to all starters would mislead); HPU's on-campus MSN and
+  adult-gero NP certificate (closed on the 2026-27 tuition schedule); UH Maui College's general ASN (not admitting — its
+  apply page offers only the new BSN and CNA-to-PN); UH Mānoa's MS Advanced Population Health (not APRN), nursing education
+  MS/certificate (not admitting) and post-master's DNP; Chaminade's post-graduate NP certificates and DNP Executive Leader;
+  UH Hilo's MSN-to-DNP; all LPN-only certificates. Hawaii has no CRNA or nurse-midwifery program (searches found none).
+- **Bridges:** five LPN-only programs (`bridge_from: "lpn"`): Kapiʻolani CC LPN-RN Transition, Kauaʻi CC LPN-to-RN Transition,
+  Hawaiʻi CC LPN to AS-NURS (Hilo only, offered when budget/staff allow), UH Maui College LPN-to-ASN (its menu says "coming
+  soon" but a Nov 15, 2026 application is open — noted "check with the school"), HPU LPN/LVN-to-BSN.
+- **Agreements:** 8 articulations, all community-college ADN → UH RN-to-BS through the UH nursing consortium (Hawaiʻi
+  Statewide Nursing Consortium curriculum): Kapiʻolani ADN and LPN-RN → UH Mānoa and UH Hilo (the college's own transfer
+  checklists), Kauaʻi → UH Mānoa, Hawaiʻi CC → UH Hilo and UH Mānoa, UH Maui → UH Mānoa. Duplicate copies found by two agents
+  were merged. Chaminade and HPU document no community-college agreements.
+- **Spot check (2026-11-18):** Hawaiʻi CC ADN (TEAS Proficient 58.7%, 2.0 GPA, Nov 1–Jan 15 window; 2026-27 admissions PDF),
+  UH Hilo BSN (2.7 cumulative / 3.0 natural-science GPA, TEAS 70%, Nov 1 deadline, 30 Hilo + 10 Waiʻanae) and HPU online MSN
+  FNP (45 credits, 624 clinical hours, $1,156/credit = $52,020, 3.0 GPA preferred, Dec 18, 2026 deadline for the Jan 11, 2027
+  start, CCNE) matched the cited pages.
+- **Known gaps / owner attention:** **HPU's graduate NP programs are under a CCNE show-cause directive** (July 8, 2026;
+  clinical placements and course sequencing; site visit Nov 9-11, 2026; report due March 1, 2027) — stated on every HPU
+  graduate card. HPU's 2025 board pass rate was 76.8% and UH Hilo's 79.4%. **UH Maui College's BSN** is new (first cohort Fall
+  2026, no NCLEX results yet) and its ACEN candidacy notice says it "expires on 11/5/2026" — recheck its status. UH Hilo's
+  BSN accreditation is stated as CCNE on the department page but ACEN in the 2026-27 catalog (both shown, "check with the
+  school"). Kauaʻi CC's enroll page still shows a 2025 deadline. Chaminade's BSN cost is the 2027-28 rate (the only one its
+  cost page now shows); its "Accelerated Track" page returned a server error, so no accelerated BSN record. UH Mānoa's
+  graduate/RN-to-BS per-credit costs are Outreach College rates the program pages don't name explicitly (noted).
+- **Tuition (`HI.tuition`, added 2026-11-18):** all 8 schools, College Scorecard 2025-26 (UH Mānoa mapped by hand to
+  141574). UH community colleges are labeled "in-state" (one statewide UH rate, no local districts).
+- **Refresh:** the board posts each calendar year's NCLEX report around April; keep earlier years when re-pulling so cards
+  build up to three years.
