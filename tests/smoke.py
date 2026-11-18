@@ -200,6 +200,14 @@ with sync_playwright() as p:
     check("schools AK: pass rates come from the Alaska Board of Nursing",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"commerce.alaska.gov\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Hawaii (fourteenth state): Hawaii Board of Nursing 2025 NCLEX report; UH system, Chaminade, HPU; not a compact state.
+    d.goto(BASE + "/schools.html?job=fnp&state=HI"); d.wait_for_timeout(400)
+    check("schools HI: comparison lists the Hawaii start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 7)
+    check("schools HI: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=HI&school=kapiolani-cc"); d.wait_for_timeout(400)
+    check("schools HI: pass rates come from the Hawaii Board of Nursing",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"cca.hawaii.gov\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
     d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
     check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)
