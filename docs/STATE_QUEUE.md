@@ -24,8 +24,8 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | New Mexico | NM | done | 22 / 40 (14 agreements); NLC member since 2018 (nursecompact.com map); NMNEC dual degree with UNM |
 | — | Alaska | AK | done | 2 / 8 (1 agreement); not NLC (2026 compact bill didn't pass); roster/NCLEX from board meeting PDFs (web pages bot-protected); Charter College excluded (for-profit) |
 | — | Hawaii | HI | done | 8 / 33 (8 agreements); not NLC (2026 compact bills stalled in committee); NCLEX = board's 2025 report only; no for-profit RN programs on the roster |
-| 11 | North Dakota | ND | PR open | 11 / 30 (25 agreements); NLC member since 2004 (ndbon.org); NCLEX by fiscal year from the board's annual education reports; Rasmussen excluded (for-profit) |
-| 12 | South Dakota | SD | todo | |
+| — | North Dakota | ND | done | 11 / 30 (25 agreements); NLC member since 2004 (ndbon.org); NCLEX by fiscal year from the board's annual education reports; Rasmussen excluded (for-profit) |
+| 12 | South Dakota | SD | PR open | 12 / 32 (9 agreements); NLC member (sdbon.org); NCLEX = board's 2025 annual education report only; no for-profit RN programs on the roster; tech-college RN programs are LPN bridges |
 | 13 | Nebraska | NE | todo | |
 | 14 | Kansas | KS | todo | |
 | 15 | Oklahoma | OK | todo | |

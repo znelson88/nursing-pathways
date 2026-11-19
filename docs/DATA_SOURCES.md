@@ -872,3 +872,57 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   districts), so they're labeled "in-state".
 - **Refresh:** the board posts each fiscal year's annual education report in spring (FY2024-25 appeared May 2026); add the new year
   and keep the last three.
+
+
+# Data sources (schools page — South Dakota, added 2026-11-19)
+
+South Dakota: **12 schools / 32 programs / 9 transfer agreements** in `data/schools/sd.js` (verified 2026-11-19), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** South Dakota Board of Nursing "Board Approved Nursing Programs" (sdbon.org/education/ApprovedNursingEducationPrograms.asp,
+  page updated 10/9/2026), cross-checked with the approval tables in the board's 2025 Annual Nursing Education Report (status as of
+  February 2026; sdbon.org/userfiles/files/AnnualEducationReport2026.pdf, linked from sdbon.org/NursingWorkforce/Reports.asp).
+  Associate degree RN: Lake Area Tech, Mitchell Tech, Southeast Tech, Western Dakota Tech, Oglala Lakota College, Dakota Wesleyan
+  (new, interim approval). Baccalaureate: Augustana, Dakota Wesleyan, Mount Marty, Northern State (new, interim), SDSU, University of
+  Sioux Falls, USD. APRN: NP at Augustana (AG acute care), Mount Marty (FNP, PMHNP) and SDSU (DNP FNP, PMHNP); nurse anesthesia at
+  Mount Marty and USD; CNS at Augustana. (doh.sd.gov's old board pages now return 404; the board's own site is sdbon.org.)
+- **NCLEX-RN pass rates:** the 2025 Annual Nursing Education Report (Jan-Dec 2025, first-time test writers). The board posts only the
+  latest report and no earlier ones could be found online, so cards show 2025 only (as for Hawaii). **Cross-check:** the per-program rows
+  add up exactly to the board's totals: associate 175 tested / 157 passed, baccalaureate 565 / 521, all 740 / 678 (91.6%). The board
+  gives one figure per school, so SDSU's (297 tested) covers every site and BSN track, USD's covers its BSN and LPN-BSN, and Augustana's and
+  USF's cover their generic and accelerated BSNs. **Oglala Lakota College:** 7 tested, 4 passed; the board withholds a rate until a
+  program reaches 21 first-time takers, so the card states the counts and shows no rate (set by hand after the build script; re-apply if
+  sd.js is rebuilt). New with no results yet: Dakota Wesleyan's A.S. in Nursing, Northern State's BSN and LPN-to-BSN, SDSU's Online BSN
+  (launched spring 2026) and USF's LPN-to-BSN (approved Nov 2024).
+- **Excluded / not added:** no private for-profit RN programs are on the roster (National American University and Presentation College
+  closed their programs in 2019 and 2023, per the board's history). Dakota Wesleyan's LPN-to-BSN (Sioux Falls closed Feb 2025 per the
+  board; the page now returns 404). The Augustana DNP (AG acute care NP / CNS) has only "prerequisite" board status and isn't advertised.
+  SDSU's adult-gerontology acute care NP (post-graduate certificate only) and the closed FNP certificate; Mount Marty's leadership DNP and
+  MS-to-DNAP (needs a CRNA); USD's DNP (leadership, post-MSN) and informatics MSN; all PN programs (incl. Sinte Gleska and Sisseton
+  Wahpeton, PN only). The SDSU/Northern State global health + accelerated BSN dual degree (only an NSU "intent to plan" document; SDSU's
+  Aberdeen accelerated site is closing).
+- **Technical-college RN programs are LPN bridges:** Lake Area, Mitchell, Southeast and Western Dakota Tech admit only LPNs (or, at
+  Southeast and Mitchell, students finishing their own PN program), so all four carry `bridge_from: "lpn"`; the way in for a new student
+  is the college's PN diploma (described on each card). Bridges in all (7): those four plus Northern State, USD and USF LPN-to-BSN.
+- **Agreements (9):** the statewide Board of Regents / Board of Technical Education "Uniform RN to BSN Articulation Agreement" (approved
+  5/25/2023 and 6/22/2023; students starting the AAS in Fall 2024 or later; 2.0 GPA, C or better, RN license; 78+ credits transfer,
+  admission not guaranteed) from each of the four technical-college ADNs into SDSU's and USD's RN-to-BSN (8), plus Mount Marty's
+  direct-entry BSN → DNAP. Two research agents recorded the statewide agreement; one copy (citing the signed PDF on wdt.edu) was kept.
+  Not recorded: Southeast Tech / Mitchell Tech agreements with Dakota Wesleyan and USD that start from the PN program (they lead into a
+  BSN, not from the ADN); Mount Marty, named as a partner only in a Lake Area FAQ.
+- **Spot check (2026-11-19):** Southeast Tech RN admission (2.5 GPA or NACE, 85% NCLEX-PN predictor or LPN license, 750 paid LPN hours;
+  ACEN continuing, next visit Spring 2028), SDSU standard BSN (Feb 15 / June 1 fall deadlines, $462/credit, $55,440 / $54,400 / $70,320
+  estimates) and Mount Marty BS-to-DNAP (36 months, 3.00 GPA, 1 year critical care, April 1-July 1 NursingCAS window, $1,400/credit)
+  matched the cited pages.
+- **Known gaps / owner attention:** **University of Sioux Falls' site returned 403 to automated reading**, so its three records come from
+  search-engine copies of USF's own pages (each card says so); BSN tuition, length and prerequisites are null, and the LPN-to-BSN GPA (3.0
+  vs 2.75) and ABSN deadline disagree between USF pages. Both university catalogs (SDSU, USD) returned 403: USD BSN/LPN-BSN cost and length
+  are null and its prerequisites are partial; USD's RN-BSN cost is USD's general online per-credit rate. **Mount Marty's BSN NCLEX rate
+  was 67.9% in 2025** (19 of 28; the board's standard is 75%, measured over its own periods). **Oglala Lakota College's** CNEA
+  accreditation is listed by the board only "through April 10, 2025" and the college's site names none (accreditation null). Mitchell Tech
+  names no national accreditor and shows two different costs (brochure $16,628 vs a "$4,000" line). SDSU's page shows the SD Advantage
+  estimate below the resident one at the same per-credit rate (possible typo). Mount Marty's RN-to-BSN appears only in its 2025-26
+  catalog. Northern State's CCNE decision (visit Sept 2026) isn't posted. Augustana ABSN credits: 50 (tuition page) vs 47 (plan).
+- **Tuition (`SD.tuition`, added 2026-11-19):** all 12 schools, College Scorecard 2025-26, no manual mappings. South Dakota's technical
+  colleges are run by the state Board of Technical Education with one statewide rate (no local districts), so they're labeled "in-state".
+- **Refresh:** the board posts each year's annual education report in spring; add the new year and keep the last three.
