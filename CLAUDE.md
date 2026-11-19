@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii and North Dakota**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota and South Dakota**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -16,7 +16,7 @@ js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), t
 js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
@@ -227,6 +227,14 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   DNP nurse anesthesia), Minot State, Dickinson State (new traditional BSN), University of Mary and University of Jamestown
   (new ASN and direct-entry MSN in Fargo). Excluded: Rasmussen University (for-profit). NLC state. `ND.tuition` covers all
   11 schools. `new_programs` in nclex.json now also accepts single program ids. Details in docs/DATA_SOURCES.md.
+- South Dakota: built in `data/schools/sd.js` (`window.SCHOOLS.SD`), **12 schools / 32 programs / 9 agreements**
+  (verified 2026-11-19) from the South Dakota Board of Nursing approved-programs page (sdbon.org, updated Oct 9, 2026) and its 2025
+  Annual Nursing Education Report (the board posts only the latest year, so cards show 2025 only; Oglala Lakota's 7 takers get counts,
+  no rate). Four technical colleges (LPN-to-RN bridges only; the statewide 2023 agreement feeds SDSU's and USD's RN-to-BSN), Oglala
+  Lakota, Dakota Wesleyan (new A.S. in Rapid City/Sioux Falls, BSN, RN-to-BSN), Northern State (new BSN), SDSU (BSN at three sites,
+  accelerated, new online BSN for SD residents, RN-to-BSN, DNP FNP/PMHNP), USD (BSN, LPN-BSN, RN-BSN, DNAP), Augustana (BSN, ABSN, MSN
+  AGACNP/CNS), Mount Marty (BSN, MSN FNP/PMHNP, DNAP) and University of Sioux Falls (site blocked automated reading). No for-profit RN
+  programs on the roster. NLC state. `SD.tuition` covers all 12 schools. Details in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", 8am and 4pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives
