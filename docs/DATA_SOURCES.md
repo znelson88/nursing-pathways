@@ -814,3 +814,61 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   141574). UH community colleges are labeled "in-state" (one statewide UH rate, no local districts).
 - **Refresh:** the board posts each calendar year's NCLEX report around April; keep earlier years when re-pulling so cards
   build up to three years.
+
+
+# Data sources (schools page — North Dakota, added 2026-11-19)
+
+North Dakota: **11 schools / 30 programs / 25 transfer agreements** in `data/schools/nd.js` (verified 2026-11-19), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** North Dakota Board of Nursing "Approved Nursing Programs" (ndbon.org/academic/nursing-programs, no
+  revision date; © 2026 page, shows approvals into 2026), cross-checked with the board's FY2024-25 Nursing Education Annual
+  Report (published May 2026). RN programs: Dakota Nursing Program consortium AAS at Bismarck State, Dakota College at
+  Bottineau, Lake Region State and Williston State; NDSCS AAS; University of Jamestown ASN (Fargo, initial approval) and
+  Direct-Entry MSN (Fargo, continued initial approval to July 2027); BSNs at Dickinson State, Minot State, NDSU (Fargo and NDSU
+  Nursing at Sanford Health, Bismarck), Rasmussen, Jamestown, University of Mary and UND; APRN programs at NDSU and University of
+  Mary (DNP FNP) and UND (MS/DNP FNP and PMHNP, DNP nurse anesthesia).
+- **NCLEX-RN pass rates:** the board's Nursing Education Annual Reports for FY2022-23, FY2023-24 and FY2024-25 (fiscal years
+  July-June; stored as "2022-23" etc. so cards show the fiscal year), first-time candidates per institution. **Cross-check:** the
+  per-program rows (including the excluded Rasmussen) add up exactly to the board's totals: FY2022-23 684 tested / 631 passed,
+  FY2023-24 621 / 602, FY2024-25 578 / 534 (92.38%). The board gives one figure per school, so NDSU's covers Fargo + Bismarck and
+  all BSN tracks, and University of Mary's covers all its BSN tracks. **NDSCS FY2024-25:** the board's table prints 81.82% but its
+  own counts are 27 of 31 (87.1%); the stored rate is calculated from the counts (noted on the card). Dickinson State's figures come
+  from its earlier LPN-to-BSN completion (noted on the card). Jamestown's ASN and DEMSN are new (no graduates yet).
+- **Excluded:** **Rasmussen University** (Fargo BSN/ABSN) — private for-profit (part of American Public University System /
+  American Public Education, Inc., as the board's page itself says); it was 17 of 578 FY2024-25 first-time takers (about 3%).
+  **UND adult-gerontology acute care NP** (MS and DNP, announced July 2026) — not on the board's APRN list yet and no admission date
+  published; add it once it admits. UND's adult-gerontology primary care NP (no longer listed / not taking applications). NDSCS's
+  Associate in Science in Nursing (phased out, stopped admitting Fall 2025). Dickinson State's old LPN-to-BSN completion (teach-out)
+  and an RN-to-BSN DSU no longer lists. Sitting Bull College (PN only), all PN certificates, post-graduate certificates. Out-of-state
+  articulation partners (Mayville State is in ND but has no RN program on the roster; Northland CTC and MSU Moorhead are in Minnesota).
+- **Dakota Nursing Program:** the AAS RN is "Year Two" of a 1+1 ladder. New students start in the consortium's PN certificate year
+  and move up; outside LPNs (and Lake Region's paramedic-to-nurse bridge completers) enter Year Two directly. The four records have
+  no `bridge_from` because new students can enter through the PN year; the cards describe both routes. Williston's sites include
+  Sidney, Montana. Bismarck State and Lake Region describe their ACEN status as "initial" accreditation — confirm the current term.
+- **Bridges:** three LPN-only programs (`bridge_from: "lpn"`): NDSCS LPN-to-RN AAS, NDSU LPN-to-BSN, University of Mary LPN-to-BSN.
+- **Agreements (25):** Minot State guaranteed-admission/articulation agreements with Dakota College at Bottineau, Lake Region,
+  Bismarck State, Williston State and NDSCS (the NDSCS agreement PDF returned 404, so its terms aren't shown); NDSU RN-to-BSN
+  agreements with Williston State and NDSCS (2.75 nursing GPA; the WSC one says it ended 04/18/2026 — check renewal); the Williston
+  State → University of Mary agreement (2023-2028); NDSU's direct BSN → DNP FNP entry; NDSU's reserved FNP seats for Dickinson State
+  BSN graduates (June 2026). **Weakest evidence:** the consortium colleges → NDSU / Jamestown / University of Mary / UND links come
+  only from the Dakota Nursing Program's "Articulation Partner Colleges" page (no agreement documents). Dropped: Williston State →
+  Dickinson State (DSU no longer lists an RN-to-BSN); UND's 2+2 plans (they lead into the pre-licensure BSN, not from the ADN).
+- **Spot check (2026-11-19):** Minot State BSN (TEAS Proficient, 2.8 support-course GPA, 27-point ranking, Sept 15 / Feb 1
+  deadlines), University of Mary BSN-to-DNP FNP (as little as 2.7 years, $685/credit, 2.75 GPA, next start 9/6/2027, CCNE) and the
+  Dakota Nursing Program AAS entry rules (current PN/paramedic-bridge students or licensed LPNs, 92% ATI PN Predictor, 2.50
+  cumulative / 2.75 nursing GPA) matched the cited pages.
+- **Known gaps / owner attention:** **UND's costs are all null** (its tuition table is interactive and couldn't be read; the school-wide
+  Scorecard figure fills in). NDSU's program overview, accelerated BSN, RN-to-BSN and DNP pages returned 403, so those facts come from
+  NDSU's 2025-26 handbooks and admission pages; NDSU's DNP handbook says CCNE accreditation runs "until June 30, 2026" (renewal not
+  confirmed). University of Mary's catalog and accelerated-BSN page returned 403 (GPA/exam/prerequisites null; ABSN length and
+  deadline from the page's search-indexed text, confirmed by its 2024-25 handbook). NDSCS's nursing pages returned 403 (facts from its
+  catalog; entrance exam not named; catalog deadlines conflict with a "no deadline" line on the web page). Jamestown's own pages
+  disagree on the new ASN's accreditation (CNEA pre-accreditation vs initial) and on ASN/DEMSN GPA (3.0 vs 2.5/2.85); the DEMSN is
+  not yet accredited (pursuing CCNE). Dickinson State's new traditional BSN (launching fall 2026 after the 2024 faculty resignations;
+  ACEN removed its "good cause" status Sept 2025) publishes no prerequisites, GPA or exam yet.
+- **Tuition (`ND.tuition`, added 2026-11-19):** all 11 schools, College Scorecard 2025-26 (NDSU mapped to 200332, main campus).
+  North Dakota's two-year colleges are part of the North Dakota University System with one statewide resident rate (no local
+  districts), so they're labeled "in-state".
+- **Refresh:** the board posts each fiscal year's annual education report in spring (FY2024-25 appeared May 2026); add the new year
+  and keep the last three.

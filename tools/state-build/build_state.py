@@ -8,7 +8,7 @@ nclex.json (built from the state board's own data — see docs/ADD_A_STATE.md):
   { "board": "Washington State Board of Nursing", "source_url": "https://...", "basis": "First-time NCLEX-RN pass rate ...",
     "programs": { "<program id> | <institution id>|adn | <institution id>|bsn | <institution id>":
                    { "<campus label>": [ {"year": 2025, "rate": 0.93, "tested": 41}, ... ] } },
-    "new_programs": ["<institution id>", ...] }      (new programs with no results yet)
+    "new_programs": ["<institution id or program id>", ...] }      (new programs with no results yet)
 config.json (all optional):
   { "exclude": ["inst-id"], "alias": {"guessed-program-id": "real-program-id"}, "type_fix": {"inst-id": "community_college"},
     "bridge": {"program-id": "lpn"}, "https_hosts": ["host.example.edu"], "notes_for_cost": {"program-id": "extra text"} }
@@ -55,6 +55,8 @@ for rec in inst + progs + agrs:
 
 NEW = set(nx.get("new_programs", []))
 def rates(p):
+    if p["id"] in NEW:   # new_programs may also list single program ids (e.g. a new ADN at a school whose BSN has results)
+        return {"basis": f"New program: no graduates appear in the {nx['board']}'s NCLEX-RN results yet.", "by_campus": None, "source_url": None}
     if p["credential"] == "demsn" and p["id"] not in nx["programs"]:
         return {"basis": f"Not reported separately by the {nx['board']} for this entry-level master's; check with the school.", "by_campus": None, "source_url": None}
     if p["institution"] in NEW:
