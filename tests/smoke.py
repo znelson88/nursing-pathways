@@ -208,6 +208,14 @@ with sync_playwright() as p:
     check("schools HI: pass rates come from the Hawaii Board of Nursing",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"cca.hawaii.gov\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # North Dakota (fifteenth state): ND Board of Nursing annual education reports (fiscal-year NCLEX); Dakota Nursing Program, universities; compact state.
+    d.goto(BASE + "/schools.html?job=fnp&state=ND"); d.wait_for_timeout(400)
+    check("schools ND: comparison lists the North Dakota start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 8)
+    check("schools ND: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=ND&school=minot-state"); d.wait_for_timeout(400)
+    check("schools ND: pass rates come from the North Dakota Board of Nursing",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"ndbon.org\"]')") and "2024-25" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
     d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
     check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)
