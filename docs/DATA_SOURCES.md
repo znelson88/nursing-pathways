@@ -926,3 +926,53 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
 - **Tuition (`SD.tuition`, added 2026-11-19):** all 12 schools, College Scorecard 2025-26, no manual mappings. South Dakota's technical
   colleges are run by the state Board of Technical Education with one statewide rate (no local districts), so they're labeled "in-state".
 - **Refresh:** the board posts each year's annual education report in spring; add the new year and keep the last three.
+
+
+# Data sources (schools page — Nebraska, added 2026-11-20)
+
+Nebraska: **18 schools / 68 programs / 17 transfer agreements** in `data/schools/ne.js` (verified 2026-11-20), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Nebraska Board of Nursing "Nebraska Approved Nursing Education Programs" (dhhs.ne.gov/licensure/Documents/NebraskaApprovedNursingEdPrograms.pdf,
+  updated 10/2026; the board approves pre-licensure programs only). Baccalaureate: Bryan College of Health Sciences, Clarkson College, College of
+  Saint Mary, Creighton, Herzing (initial), Midland, Nebraska Methodist College, Nebraska Wesleyan, Union Adventist, UNMC, WGU (initial). Associate
+  degree: Central, Herzing (initial), Metropolitan, Mid-Plains, Northeast, Southeast and Western Nebraska community colleges (the list's heading
+  says 8 but names 7). Graduate and RN-to-BSN programs at those schools are included, plus Bellevue University (RN-to-BSN only).
+- **NCLEX-RN pass rates:** the board's own site posts no per-program table (its meeting minutes only summarise quarterly results). The board's
+  "NEBRASKA BOARD OF NURSING / NCLEX-RN PASS RATES 2021-2025" table is posted by Mid-Plains Community College
+  (mpcc.edu/academics/programs/academics-files/associate_degree_pass_rates_2025.pdf; the 2020-2024 edition gives the same 2023-2024 figures), and
+  that copy shows the **associate degree rows only**. Those rows are used for the six community-college ADNs (2023-2025, calendar year, first-time).
+  **Cross-check** against NCSBN's yearly NCLEX statistics (Nebraska, associate degree, Jan-Dec): passed counts match exactly every year (2025: 235;
+  2024: 212; 2023: 247 incl. Purdue Global-Lincoln, closed March 2023); NCSBN counts one more tester each year (280 / 227 / 262 vs 279 / 226 / 261).
+  Southeast's 2025 row prints "48 48 87.50%"; 87.5% of 48 = 42, which matches the NCSBN total, so 87.5% is shown (noted on the card).
+  **Bachelor's programs:** no board per-program figures could be found, so each card shows the school's own published rate where there is one
+  (UNMC combined traditional + accelerated; Creighton and Nebraska Methodist, whose pages don't say "first-time"; College of Saint Mary; Union
+  Adventist 2022-2024) and otherwise "check with the school". Nebraska Wesleyan's latest year-by-year figures are from 2018-2019 and aren't shown.
+- **Excluded / not added:** no private for-profit RN programs are on the roster (Herzing has been a nonprofit since 2015, per its own
+  announcement). Herzing's ADN and BSN: Herzing's own pages don't list Nebraska as eligible, so only its graduate NP programs open to Nebraska
+  nurses (FNP, PMHNP, AGACNP) are included; its MSN Direct Entry (Herzing lists Lincoln/Omaha) isn't on the board's roster, so it's left out.
+  Creighton's DNP nurse anesthesia (no students until its COA decision, expected May 2027). Midland's RN-to-BSN (paused, no next start).
+  Nebraska Wesleyan's RN-BSN and RN-to-MSN (only in the 2022-23 catalog). Creighton's Phoenix ABSN (already in Arizona). All PN-only programs,
+  post-graduate certificates, and MSN education/leadership/informatics tracks.
+- **LPN bridges (9):** Mid-Plains, Northeast, WNCC and Southeast LPN-to-ADN; Clarkson, Nebraska Methodist, College of Saint Mary, Midland and Union
+  Adventist LPN-to-BSN. Central's and Metro's ADNs are PN-then-RN ladders (Metro requires a finished PN program first; its own PN graduates don't
+  need a license), so they carry no bridge flag; from Fall 2026 Southeast's ADN also starts with a PN year (new curriculum pending accreditation).
+- **Agreements (17):** the UNMC Nebraska RN to BSN Collaborative (guaranteed early admission with a 3.25 GPA) from all six community-college ADNs
+  (the page looks dated, © 2014, so cards say check with the school); Clarkson's signed RN-to-BSN articulations with all six (2026-27 transfer
+  plans); Nebraska Methodist transfer guides from Central, Northeast, Southeast and Metro; Central → Bellevue (signed Oct 29, 2026). Dropped:
+  Mid-Plains → Bryan / Midland / Bellevue (only search-result text of a catalog page that wouldn't load; Bryan has no RN-to-BSN and Midland's is
+  paused); duplicates recorded by two agents.
+- **Spot check (2026-11-20):** WNCC ADN admission (TEAS + critical thinking 60, prerequisite GPA 3.0, May 15 deadline, nursing assistant registry,
+  4 semesters), UNMC traditional BSN (3.0 prerequisite GPA, Oct 1 / Jan 15 / Apr 1, $464 per credit resident on the 2026-27 cost sheet; CCNE) and
+  Clarkson nurse anesthesia (36 months, 3.0 GPA, one year critical care, Dec 1 deadline, $1,212 per credit, COA through June 2036) matched the
+  cited pages.
+- **Known gaps / owner attention:** **WGU's** Nebraska pre-licensure BSN: its program page says the board approved it (Omaha clinical district), but
+  its state-licensure page leaves Nebraska off (card says check with the school). **Metro CC's 2025 rate was 75.9%** (66 of 87), below the national
+  86.7%. Bryan's and Midland's main sites returned 403, so their records come from their catalog sites; a few Midland facts (tuition, LPN-to-BSN
+  GPA and length) come from search-engine copies of Midland's own pages (each card says so). CCC, WNCC and MPCC catalogs were unreadable, so some
+  credit totals and prerequisites are null. WNCC states its latest ACEN decision as "initial Accreditation". Creighton's Grand Island site no longer
+  appears on current pages (only Omaha is listed). UNMC's catalog returned 503 (graduate credits unconfirmed).
+- **Tuition (`NE.tuition`, added 2026-11-20):** 15 of 18 schools, College Scorecard 2025-26. Overrides: Southeast Community College Area → 181640,
+  Nebraska Methodist College → 181297. Left out: UNMC (no tuition reported), Herzing and WGU (home campus out of state). Nebraska's community
+  colleges charge one Nebraska-resident rate (no in-district rate), so they're labeled "in-state".
+- **Refresh:** look each spring for the board's new NCLEX-RN table (and ask the board whether it publishes the bachelor's rows).

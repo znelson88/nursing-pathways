@@ -224,6 +224,14 @@ with sync_playwright() as p:
     check("schools SD: pass rates come from the South Dakota Board of Nursing",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"sdbon.org\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Nebraska (seventeenth state): board's 2021-2025 NCLEX-RN table (ADN rows; BSN rates as the schools publish them); compact state.
+    d.goto(BASE + "/schools.html?job=fnp&state=NE"); d.wait_for_timeout(400)
+    check("schools NE: comparison lists the Nebraska start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 12)
+    check("schools NE: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=NE&school=mid-plains"); d.wait_for_timeout(400)
+    check("schools NE: ADN pass rates come from the Nebraska Board of Nursing table",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"associate_degree_pass_rates_2025\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
     d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
     check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)
