@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota and Nebraska**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota, Nebraska and Kansas**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -16,7 +16,7 @@ js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), t
 js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js, ks.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
@@ -243,6 +243,14 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   tracks incl. NNP), Clarkson and Bryan (CRNA), Nebraska Methodist, College of Saint Mary, Midland, Nebraska Wesleyan, Union Adventist, WGU,
   Herzing (graduate NP only) and Bellevue (RN-to-BSN). No for-profit RN programs on the roster. NLC state. `NE.tuition` covers 15 schools.
   Details in docs/DATA_SOURCES.md.
+- Kansas: built in `data/schools/ks.js` (`window.SCHOOLS.KS`), **37 schools / 81 programs / 80 agreements**
+  (verified 2026-11-20) from the Kansas State Board of Nursing prelicensure roster (rev 2025-12) and its Multi-Year Pass Rates RN table
+  (2023-2025, rates only, no counts). 15 community colleges and 5 technical colleges (many "1 + 1" PN-then-RN ladders or bi-level programs,
+  13 LPN/paramedic bridges), KU (BSN at Kansas City and Salina, DNP FNP/AGACNP/PMHNP/midwifery, nurse anesthesia; Community College Nursing
+  Partnership with 8 colleges), Wichita State (incl. the K-State Manhattan site), Washburn, Fort Hays State (guaranteed RN-to-BSN admission
+  from 16 colleges), Pittsburg State, Emporia State and 11 private nonprofits (Newman CRNA, Saint Mary FNP/PMHNP). Excluded: Chamberlain,
+  Galen, Rasmussen (for-profit), Donnelly (no new admits), KU and MNU direct-entry MSNs (not on the roster yet). NLC state.
+  `KS.tuition` covers 36 schools. Details in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", 8am and 4pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives
