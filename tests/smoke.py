@@ -232,6 +232,14 @@ with sync_playwright() as p:
     check("schools NE: ADN pass rates come from the Nebraska Board of Nursing table",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"associate_degree_pass_rates_2025\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Kansas (eighteenth state): KSBN roster (rev 2025-12) and its Multi-Year Pass Rates RN table (2023-2025); compact state.
+    d.goto(BASE + "/schools.html?job=fnp&state=KS"); d.wait_for_timeout(400)
+    check("schools KS: comparison lists the Kansas start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 25)
+    check("schools KS: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=KS&school=pittsburg-state"); d.wait_for_timeout(400)
+    check("schools KS: pass rates come from the Kansas State Board of Nursing",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"ksbn.kansas.gov\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
     d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
     check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)

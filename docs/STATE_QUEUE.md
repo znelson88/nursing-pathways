@@ -26,8 +26,8 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | Hawaii | HI | done | 8 / 33 (8 agreements); not NLC (2026 compact bills stalled in committee); NCLEX = board's 2025 report only; no for-profit RN programs on the roster |
 | — | North Dakota | ND | done | 11 / 30 (25 agreements); NLC member since 2004 (ndbon.org); NCLEX by fiscal year from the board's annual education reports; Rasmussen excluded (for-profit) |
 | — | South Dakota | SD | done | 12 / 32 (9 agreements); NLC member (sdbon.org); NCLEX = board's 2025 annual education report only; no for-profit RN programs on the roster; tech-college RN programs are LPN bridges |
-| 13 | Nebraska | NE | PR open | 18 / 68 (17 agreements); NLC member since 2018 (dhhs.ne.gov); ADN NCLEX = board table posted by Mid-Plains (BSN rows not published; school-published rates shown); no for-profit RN programs on the roster |
-| 14 | Kansas | KS | todo | |
+| — | Nebraska | NE | done | 18 / 68 (17 agreements); NLC member since 2018 (dhhs.ne.gov); ADN NCLEX = board table posted by Mid-Plains (BSN rows not published; school-published rates shown); no for-profit RN programs on the roster |
+| 14 | Kansas | KS | PR open | 37 / 81 (80 agreements); NLC member since 2019 (ksbn.kansas.gov); NCLEX = KSBN Multi-Year Pass Rates RN (rates only); Chamberlain, Galen, Rasmussen excluded (for-profit); Donnelly excluded (no new admits) |
 | 15 | Oklahoma | OK | todo | |
 | 16 | Texas | TX | todo | very large: plan waves |
 | 17 | Minnesota | MN | todo | |

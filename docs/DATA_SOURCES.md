@@ -976,3 +976,60 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   Nebraska Methodist College → 181297. Left out: UNMC (no tuition reported), Herzing and WGU (home campus out of state). Nebraska's community
   colleges charge one Nebraska-resident rate (no in-district rate), so they're labeled "in-state".
 - **Refresh:** look each spring for the board's new NCLEX-RN table (and ask the board whether it publishes the bachelor's rows).
+
+
+# Data sources (schools page — Kansas, added 2026-11-20)
+
+Kansas: **37 schools / 81 programs / 80 transfer agreements** in `data/schools/ks.js` (verified 2026-11-20), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Kansas State Board of Nursing "Undergraduate Prelicensure Programs" (ksbn.kansas.gov/wp-content/uploads/Education/Prelicensure-Programs.pdf,
+  revised 2025-12; linked from ksbn.kansas.gov/programs/) plus its "KSBN Approved Graduate Nursing Schools in Kansas" (last revised 6/2021, so
+  graduate programs were confirmed on each school's current pages). Every public and private nonprofit RN program on the list is included:
+  15 community colleges, 5 technical colleges (Fort Hays Tech North Central at Beloit and Hays, Manhattan Tech, Salina Tech, Washburn Tech,
+  WSU Tech), 6 public universities and 11 private nonprofits. The roster calls many college programs "1 + 1" (a PN year, then a PN license,
+  then the RN year) or "bi-level" (one application, optional PN exit). Like North Dakota's ladder, these ADN records carry no `bridge_from`
+  because new students enter through the school's own PN year; the cards describe both routes.
+- **NCLEX-RN pass rates:** the board's "Multi-Year Pass Rates RN" table (ksbn.kansas.gov/wp-content/uploads/2022/04/Multi-Year-Pass-Rates-RN.pdf,
+  all first-time candidates educated in Kansas, calendar years through Dec 31, 2025, data dated 1/12/2026). Cards show 2023-2025. The table
+  gives **rates only, no number tested**, so the per-program figures can't be added up against the statewide total (Kansas 2025: 89.19%;
+  ADN 88.45%, BSN 89.86%) the way Missouri's could; rows were read from the PDF's column layout (new programs leave earlier columns blank:
+  Ottawa's first figure is 2025, WSU Tech's 2024, Fort Hays Tech Beloit's 2023). The board reports one BSN figure per school (KU's covers
+  Kansas City and Salina, Wichita State's covers Wichita and the K-State Manhattan site) and one ADN figure per college; bridge tracks show
+  their college's figure. New, no results yet: Barclay College BSN, Southwestern College BSN, Washburn Tech ADN (first cohort Aug 2025).
+- **Excluded:** private for-profit — Chamberlain University (Overland Park), Galen College of Nursing (Wichita), Rasmussen University
+  (Overland Park, Topeka). **Donnelly College** (board conditional approval, no new admits). PN-only programs (Allied Health Career Training,
+  Mid-America College of Health Sciences, Flint Hills Tech, Hutchinson's McPherson PN, JCCC's and KCKCC's PN). Not on the board's roster
+  yet, so left out: **KU's Direct-Entry MSN** and **MidAmerica Nazarene's Direct Entry MSN** (both first cohorts in 2027). Not admitting /
+  no longer listed: Wichita State's accelerated BSN ("not enrolling"), Barclay's online RN-BSN (no 2026-27 applications), Southwestern's,
+  Hesston's, Kansas Wesleyan's, Saint Mary's and MNU's RN-to-BSN and MNU's AGPCNP (not on current pages). Post-master's certificates and
+  education/leadership tracks as usual.
+- **Bridges (13):** LPN-only tracks at Butler, Cloud County, JCCC, Neosho, Dodge City, Hutchinson (June start), WSU Tech, Washburn
+  (LPN-to-BSN), Hesston and Newman (LPN-to-BSN); LPN-or-paramedic at KCKCC (also RRTs) and Hutchinson (online, January start); Colby's
+  paramedic/RRT-to-ADN.
+- **Agreements (80):** 24 same-school steps (BSN/RN-to-BSN → the school's DNP/CRNA programs, competitive). 56 college → university:
+  Fort Hays State's guaranteed RN-to-BSN admission (16 colleges), Wichita State RN-to-BSN partners (13, incl. WSU Tech, Manhattan Tech and
+  Fort Hays Tech), KU's Community College Nursing Partnership (concurrent ADN + KU BSN at Butler, Cloud County, Fort Scott, Hutchinson,
+  JCCC, KCKCC, Labette, Neosho) and other KU RN-to-BSN partnerships, Washburn transfer guides (incl. Washburn Tech), Pittsburg State's
+  ADN-to-BSN Jumpstart (5 colleges), Cloud County → Ottawa University concurrent program (2022 brochure; check with the school). Dropped:
+  partners outside Kansas (Grand Canyon, Chamberlain, Missouri/Oklahoma/Arkansas colleges) and pre-nursing transfer plans into a traditional
+  BSN (Newman, Southwestern–Cowley, Hesston–Sterling).
+- **Spot check (2026-11-20):** Labette ADN (bi-level Level I PN / Level II RN, TEAS Proficient, 3.00 GPA to be considered, CNA, March 4, 2027
+  in the packet, ACEN continuing, $132 per credit Kansas resident + $85 health-care course fee), Pittsburg State BSN (Dec 15 deadline, TEAS
+  65.0%, 3.0 GPA / 2.50 science-math, CNA, 120 hours, CCNE, $326 per credit 2026-27) and Newman's nurse anesthesia DNAP (36 months, 88 credits,
+  3.0 GPA or 3.2 last 60 hours, 1 year ICU, $1,321 per credit 2026-27 + $3,300 yearly program fee) matched the cited pages. Newman's program
+  page still says the next COA review is May 2026; the COA renewal (June 3, 2026) is from Newman's own news page.
+- **Known gaps / owner attention:** **Bethel College's** site (bethelks.edu) returned 403 everywhere, so its BSN facts come from search-engine
+  copies of its own pages (card says check with the school; cost null). **JCCC's** site was blocked too (same treatment). Newman's,
+  Benedictine's and MNU's catalogs, Wichita State's, Washburn's and Fort Hays State's catalogs were unreadable, so some prerequisites and
+  deadlines are null. **Conditional board approval:** Fort Scott (ADN) and Seward County (ADN level) — noted on the cards. Neosho's ACEN status
+  is "continuing with conditions"; KU's nurse-midwifery ACME status is "continued accreditation - on probation" (KU's own page). Low recent
+  rates: Ottawa University BSN 69.23% (2025, first class), WSU Tech ADN 77.78% (2025), Seward 80.00% (2025). Coffeyville's ADN is board-approved
+  only (no national accreditation). The roster PDF is dated 2025-12 — the newest the board posts.
+- **Tuition (`KS.tuition`, added 2026-11-20):** 36 of 37 schools, College Scorecard 2025-26. Kansas community colleges are county-based
+  districts with a lower in-district rate (JCCC's College Navigator page shows in-district $2,424 vs in-state $2,904 for 2024-25), so the 15
+  community colleges are labeled "in-district"; the technical colleges and universities "in-state". Overrides: University of Kansas → 155317
+  (Lawrence, university-wide undergraduate rate; the School of Nursing is at KU Medical Center), Bethel College-North Newton → 154749, Barton
+  County Community College → 154697, Washburn Institute of Technology → 155423. Left out: Ottawa University-Kansas City (Scorecard reports no
+  tuition; its cards show the school's own per-credit prices).
+- **Refresh:** re-pull the roster and the board's Multi-Year Pass Rates RN table each January (the new year's figures appear mid-January).
