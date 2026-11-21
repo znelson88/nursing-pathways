@@ -28,8 +28,8 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | South Dakota | SD | done | 12 / 32 (9 agreements); NLC member (sdbon.org); NCLEX = board's 2025 annual education report only; no for-profit RN programs on the roster; tech-college RN programs are LPN bridges |
 | — | Nebraska | NE | done | 18 / 68 (17 agreements); NLC member since 2018 (dhhs.ne.gov); ADN NCLEX = board table posted by Mid-Plains (BSN rows not published; school-published rates shown); no for-profit RN programs on the roster |
 | — | Kansas | KS | done | 37 / 81 (80 agreements); NLC member since 2019 (ksbn.kansas.gov); NCLEX = KSBN Multi-Year Pass Rates RN (rates only); Chamberlain, Galen, Rasmussen excluded (for-profit); Donnelly excluded (no new admits) |
-| 15 | Oklahoma | OK | PR open | 32 / 88 (17 agreements); NLC member since 2018 (oklahoma.gov/nursing); NCLEX = board ten-year table (2025 counts); ATA College and Central Oklahoma College excluded (for-profit); OU CRNA excluded (COA pending) |
-| 16 | Texas | TX | todo | very large: plan waves |
+| — | Oklahoma | OK | done | 32 / 88 (17 agreements); NLC member since 2018 (oklahoma.gov/nursing); NCLEX = board ten-year table (2025 counts); ATA College and Central Oklahoma College excluded (for-profit); OU CRNA excluded (COA pending) |
+| 16 | Texas | TX | PR open (wave 1) | wave 1: 107 / 228 (93 agreements) = every public/nonprofit pre-licensure program + RN-to-BSN; NLC member (bon.texas.gov); NCLEX = board five-year table; 15 for-profit schools excluded; next: wave 2 = graduate APRN programs |
 | 17 | Minnesota | MN | todo | |
 | 18 | Iowa | IA | todo | |
 | 19 | Arkansas | AR | todo | |

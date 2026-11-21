@@ -1092,3 +1092,76 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   Campus), University of Oklahoma → 207500 (Norman, university-wide undergraduate rate; the Health Sciences Center reports no tuition),
   University of Tulsa → 207971, Oklahoma City University → 207458.
 - **Refresh:** re-pull the three roster PDFs and the ten-year NCLEX-RN table each spring (the board updates the table after the calendar year).
+
+# Data sources (schools page — Texas wave 1, added 2026-11-21)
+
+Texas wave 1: **107 schools / 228 programs / 93 transfer agreements** in `data/schools/tx.js` (verified 2026-11-21), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`. Texas is a "very large" state, so wave 1 covers
+every public and private nonprofit **pre-licensure RN program** (ADN incl. LVN/paramedic bridges, BSN, accelerated BSN, LVN-to-BSN,
+diploma, alternate/direct-entry MSN) and each school's **RN-to-BSN**. **Graduate NP/CRNA/CNM/CNS programs are wave 2** (routes to
+those jobs fall back out of state until then).
+
+- **Master roster:** Texas Board of Nursing "Texas Approved Pre-Licensure Professional Nursing Education Programs"
+  (bon.texas.gov/pdfs/education_pdfs/education_programs/ApprovedRNSchools.pdf, dated 11/12/26: 74 ADN, 62 BSN, 1 diploma, 2
+  alternate-entry MSN = 139 programs), linked from bon.texas.gov/education_programs.asp.html. Included: 55 two-year colleges, 29
+  public universities, 23 private nonprofits (incl. Covenant School of Nursing's hospital diploma). Lone Star College's five campus
+  programs, San Jacinto's Central/South programs, Howard College's Big Spring/San Angelo programs and TSTC's Harlingen/West Texas
+  programs are each one school with campuses. Fairfield University (Connecticut nonprofit) is included and labeled as an out-of-state
+  university's Austin site because the board counts it.
+- **NCLEX-RN pass rates:** the board's "RN Pass Rates for Last 5 Years" table (RN 5YR-25.pdf, same folder; calendar years
+  2021-2025, passed/tested by program). Cards show 2023-2025. **Cross-check:** the per-program rows add up exactly to the board's
+  ADN, BSN, diploma and MSN totals for 2025 and 2024 (2025: 16,451 tested / 14,580 passed statewide, also matching the board's April
+  2026 report, agenda item 3-2-13) and for 2023 BSN/MSN/diploma; older ADN years are short by about 200 takers (closed programs no
+  longer listed; not used on cards). The board reports one row per school for most BSNs (all tracks); University of St. Thomas's
+  accelerated BSN and the two alternate-entry MSNs have their own rows. New, no results yet: Houston City College (replaced Houston
+  Community College's closed ADN), Lamar Institute of Technology, Palo Alto, Northeast Lakeview, Coastal Bend (re-opened LVN-to-ADN;
+  the old closed program's results are not used), Hardin-Simmons, St. Mary's and UNT Health Science Center.
+- **Excluded — private for-profit** (College Navigator showed a high-traffic notice, so catalogs, regulators or the Carnegie
+  Classifications/IPEDS profile were used): American Career College, ECPI University, Galen College of Nursing (HCA), South College,
+  Southern Careers Institute, Southwest University at El Paso, The College of Health Care Professions, Arizona College of Nursing,
+  Chamberlain (4 campuses), Denver College of Nursing, West Coast University, Western Technical College, **Baptist Health System School
+  of Health Professions** (Carnegie/IPEDS: private for-profit; parent VHS San Antonio Partners LLC), **Rio Grande Valley College**
+  (Carnegie/IPEDS: private for-profit) and **South University** (Carnegie/IPEDS lists the Austin campus as for-profit; a Perdoceo
+  purchase was signed Sept 2026). **Not researched (ownership unconfirmed):** Texas Health School and Texas School of Health Sciences —
+  no ownership statement found on their own sites; left out of wave 1 pending a check. Closed programs on the board list (Aspen, College
+  of Nursing and Advanced Health Professions, Houston Community College's old ADN, Coastal Bend's old ADN) are not used.
+- **Left out, not admitting or not confirmed:** Alvin College's new RN-to-BSN ("pending final program approval" on its own page);
+  UTHealth Houston's RN-to-BSN (new admissions on hold from Fall 2026); Schreiner's new ADN (on the roster as initial approval but not on
+  Schreiner's site yet); RN-to-BSN tracks the roster or older pages mention but the school's current pages don't list (TAMUCC, Concordia,
+  ACU, Howard Payne, McMurry, UMHB, Angelo State, UT Austin, UT San Antonio); Midwestern State's ACCEL BSN and Texas State's
+  second-degree track (current pages don't show them). RN-to-BSN-only universities not on the pre-licensure roster (e.g. Lubbock
+  Christian) are wave 2.
+- **Orchestrator decisions:** UTA's Accelerated Online BSN, UTHealth Houston's Pacesetter and Texas Tech El Paso's Accelerated BSN are
+  listed as regular BSNs (`bsn`), because none requires a prior bachelor's degree. TTUHSC's Veteran to BSN is a BSN with no
+  `bridge_from` (it needs military medic training, not a license). Lamar State College Orange's generic ADN is included from the
+  school's own BON-approval release (Jan 2025 start) although the roster names only its LVN track.
+- **Bridges (64):** LVN-to-ADN tracks (`lpn`), LVN/paramedic tracks (`lpn_or_paramedic`), paramedic-only tracks (Blinn, Tyler JC,
+  Howard College, Vernon) and LVN-to-BSN at Prairie View, Sam Houston, Tarleton, WTAMU, SWAU and Wayland.
+- **Agreements (93):** 14 same-school ADN → RN-to-BSN steps and 79 college → university RN-to-BSN partnerships (UT Tyler concurrent
+  enrollment, TTUHSC early decision/articulation, Sam Houston joint admission, SFA SONIC, Midwestern State partner colleges, TWU blended
+  ADN/BSN, Texas A&M RN-BSN, Lamar University pathways, East Texas A&M). 33 pairs found by both schools' agents were merged. Dropped:
+  partners not in wave 1 (Lubbock Christian, UH-Victoria, UH-Clear Lake, Texas A&M-Central Texas) and RN-to-BSNs not confirmed above.
+- **Spot check (2026-11-21):** McLennan CC ADN (two years after prerequisites, HESI A2, Spring 2027 deadline Oct 19, 2026 / Fall 2027
+  May 10, 2027, ACEN continuing accreditation, about $13,077 total for county residents with no year stated) matched its ADN and cost
+  pages; Texas State BSN (Round Rock; TEAS 85% Priority / 70% General and External; NURS GPA 3.0, science GPA 3.5/3.0; deadlines Jan 1,
+  Jan 15, Mar 15, 2027) matched its admission-requirements page; UT Austin Alternate Entry MSN (3 years full-time from each summer,
+  Aug 1 - Oct 1 window, 3.0 GPA, seven prerequisites with C- or better, non-nursing bachelor's) matched its page, including the page's own
+  24-vs-23 credit discrepancy noted on the card.
+- **Known gaps / owner attention:** many school sites or catalogs blocked automated reading (Tyler JC, Central Texas College, Blinn,
+  Prairie View, Sul Ross, the Laredo, Dallas College, Texas State, UTA and UT Austin catalogs and others), so some records rest on the
+  schools' PDFs or search copies of their own pages, with many nulls (38 pre-licensure records have no stated accreditation). **Board
+  approval:** Sul Ross State's BSN is on **Conditional** approval. **ACEN conditions:** College of the Mainland, Galveston and Dallas
+  College ADNs. **Low 2025 rates** (statewide 88.63%): Sul Ross 57% (7 takers), Wayland 59% (17), TSTC West Texas 63%, St. Thomas
+  accelerated BSN 71% (231) and Houston BSN 77%, Hill College 74%, WGU 75% (145), TSTC Harlingen 78%, Tarleton 78% (193), Amarillo 79%
+  (236), East Texas A&M 79%, Hallmark 80%. Hallmark is included as a nonprofit on its own statement (nonprofit since 2013) and is only an
+  ACEN candidate (expires March 2027). Several roster tracks weren't found on the schools' sites (Collin and Laredo paramedic/allied
+  tracks, South Texas and Vernon apprenticeships, Amarillo's Dumas and Ranger's Brownwood sites).
+- **Tuition (`TX.tuition`, added 2026-11-21):** 98 of 107 schools, College Scorecard 2025-26. Texas community colleges are taxing
+  districts with an in-district rate, so 51 of them are labeled "in-district" (not Lamar State College Orange/Port Arthur, Lamar Institute
+  of Technology or TSTC, which charge one state rate). Overrides: Alvin 222567, San Jacinto 227979, Collin 247834, Austin CC 222992, Blinn
+  223427, WTAMU 229814, TWU 229179, Lamar University 226091, Texas State 228459, University of Houston 225511, Baylor 223232, TCU 228875,
+  plus confirmed name matches (UT and A&M campuses; UT San Antonio = 229027 after the 2025 merger; TTUHSC El Paso 492689). Left out (no
+  Scorecard tuition or no Texas record): Fairfield (Austin site), Patty Hanks Shelton, WGU Texas, Hallmark, Covenant, UTHealth Houston,
+  UTMB, Texas Tech HSC (Lubbock), UNT Health Science Center.
+- **Refresh:** re-pull the roster and the five-year NCLEX-RN table each spring. **Wave 2:** graduate APRN programs (NP, CRNA, CNM,
+  CNS) at these schools plus graduate-only and RN-to-BSN-only universities.

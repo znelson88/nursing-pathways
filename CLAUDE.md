@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota, Nebraska, Kansas and Oklahoma**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota, Nebraska, Kansas, Oklahoma and Texas**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -16,7 +16,7 @@ js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), t
 js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js, ks.js, ok.js
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js, ks.js, ok.js, tx.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
@@ -259,6 +259,13 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   OCU (DNP FNP/AGACNP/PMHNP), ORU, OBU, Oklahoma Christian, OKWU, SNU. Excluded: ATA College and Central Oklahoma College (for-profit), OU's
   CRNA (COA accreditation pending, not enrolling). Several sites blocked automated reading (RSU, UCO, OSU, OSU-OKC, NEO, OSUIT). NLC state.
   `OK.tuition` covers all 32 schools. Details in docs/DATA_SOURCES.md.
+- Texas (wave 1): built in `data/schools/tx.js` (`window.SCHOOLS.TX`), **107 schools / 228 programs / 93 agreements**
+  (verified 2026-11-21) from the Texas Board of Nursing approved-RN-programs roster (11/12/26) and its five-year NCLEX-RN table (cards show
+  2023-2025 with counts; 2025 and 2024 rows match the board totals exactly). Wave 1 = every public/nonprofit pre-licensure program (55 two-year
+  colleges, 29 public universities, 23 private nonprofits incl. Covenant's diploma; UT Austin and Texas Lutheran alternate/direct-entry MSNs) and
+  their RN-to-BSNs; 64 LVN/paramedic bridges. **Graduate APRN programs are wave 2.** Excluded: 15 for-profit schools (Galen, Chamberlain, Baptist Health
+  SHP, South University, Rio Grande Valley College and others); Texas Health School and Texas School of Health Sciences not researched
+  (ownership unconfirmed). NLC state. `TX.tuition` covers 98 schools (community colleges in-district). Details in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", 8am and 4pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives
