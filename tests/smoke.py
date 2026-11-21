@@ -248,6 +248,14 @@ with sync_playwright() as p:
     check("schools OK: pass rates come from the Oklahoma Board of Nursing table",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"nclexpass1\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Texas wave 1 (twentieth state): Texas BON approved-RN-programs roster (11/12/26) and its five-year NCLEX-RN table; compact state.
+    d.goto(BASE + "/schools.html?job=rn&state=TX"); d.wait_for_timeout(600)
+    check("schools TX: comparison lists 80+ Texas start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)
+    check("schools TX: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=rn&state=TX&school=mclennan"); d.wait_for_timeout(400)
+    check("schools TX: pass rates come from the Texas Board of Nursing table",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"bon.texas.gov\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
     d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
     check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)
