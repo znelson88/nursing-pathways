@@ -1033,3 +1033,62 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   County Community College → 154697, Washburn Institute of Technology → 155423. Left out: Ottawa University-Kansas City (Scorecard reports no
   tuition; its cards show the school's own per-credit prices).
 - **Refresh:** re-pull the roster and the board's Multi-Year Pass Rates RN table each January (the new year's figures appear mid-January).
+
+
+# Data sources (schools page — Oklahoma, added 2026-11-21)
+
+Oklahoma: **32 schools / 88 programs / 17 transfer agreements** in `data/schools/ok.js` (verified 2026-11-21), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Oklahoma Board of Nursing "State Approved Nursing Education Programs" lists, linked from
+  oklahoma.gov/nursing/education/education-program-types.html: Associate Degree (ed-schls2.pdf, revised 09/23/26; "17 programs on 34
+  campuses"), Baccalaureate Degree (ed-schls3.pdf, revised 09/23/26; "16 programs across 33 campuses") and APRN (ed-schls4.pdf, revised
+  10/6/25). Every public and private nonprofit RN program is included: 14 two-year colleges (all with an LPN or LPN/paramedic bridge
+  track), Mid-America Christian (new ADN, provisional approval), 9 public universities and 7 private nonprofit universities. Southeastern
+  Oklahoma State is included for its RN-to-BSN only (not a pre-licensure school). Cameron University has no nursing degree (OU teaches its
+  BSN on Cameron's Lawton campus), so it is not listed.
+- **NCLEX-RN pass rates:** the board's "First-Time NCLEX-RN Candidate Ten-Year Pass Rate Percentage by Calendar Year" table
+  (oklahoma.gov/content/dam/ok/en/nursing/documents/nclexpass1.pdf, 2015-2025). Cards show 2023-2025; the table gives the number tested
+  only for 2025. **Cross-check:** the 2025 per-program rows add up to 2,755 candidates against the board's statewide 2,746 (9 more,
+  0.3%), and the implied passes (2,217) give exactly the board's statewide 80.47%; the small gap couldn't be traced (likely a late
+  correction in one row), so figures are used as published. The board reports by campus; cards list each campus. Online bridge rows
+  (Carl Albert, Eastern, Murray incl. its Duncan career-mobility site, Rose State, Western) are shown on the bridge records; Oklahoma
+  Christian's online and Chickasaw Nation (Ada) tracks and Tulsa's online ABSN have their own rows. The board lists one row per school for
+  OU's BSN (by site, incl. "Online"), OCU, UCO and others, so their accelerated and LPN tracks show the school figure. New, no results
+  yet: Mid-America Christian ADN and Northeastern State BSN (provisional approval). Southern Nazarene had no 2025 first-time takers.
+- **Excluded:** private for-profit — **ATA College** (Tulsa; its July 2026 catalog: LLC owned by A Technological Advantage, Inc.,
+  licensed as a private vocational school) and **Central Oklahoma College** (Oklahoma City; its catalog: "Central State Beauty Academy,
+  Inc. dba Central Oklahoma College", ACCSC-accredited). Closed sites on the board's table: Marian University (OKC) and Oklahoma Christian's
+  Integris Baptist and Mercy Hospital sites. **OU's nurse anesthesia DNP**: OU's pages still show COA initial accreditation pending with
+  no enrollment until it is granted (planned Spring 2027 start) — add it once accredited. OU's Neonatal CNS track (page 404, not on OU's
+  current DNP menu). Not admitting: Tulsa's RN-to-BSN/RN-to-MSN ("not accepting applications at this time"); East Central has no current
+  RN-to-BSN; Oklahoma Christian, OBU and SNU offer no RN-to-BSN. Post-master's certificates and education/leadership tracks as usual.
+- **Bridges (24):** 12 LPN-only (Carl Albert, Seminole, Redlands, Western, East Central "LPN Pathways", Langston, NWOSU, SWOSU, OU, OCU,
+  OBU, OKWU) and 12 LPN-or-paramedic (Connors, Eastern, NEO, OSUIT, TCC, Murray, NOC, OCCC, OSU-OKC, Rose State, MACU, Rogers State).
+  OCCC's BADNAP (accelerated ADN for bachelor's holders) admits new students, so it sits inside OCCC's ADN record.
+- **Agreements (17):** 8 same-school steps (BSN/RN-to-BSN → the school's DNP: OU, Tulsa incl. CRNA, OCU, NWOSU, ORU). 9 college → university
+  RN-to-BSN: TCC, Rose State, Connors and OSU-OKC → UCO (UCO catalog transfer plans; pages blocked automated reading, so years are
+  unconfirmed), NOC and Redlands → NWOSU, Western → SWOSU (signed 2023), OSU-OKC → OSU Stillwater (priority admission), Murray State →
+  OU (signed 2026-27 map). Dropped: Murray at Southeastern → Southeastern RN-BSN (the 2021 MOU only says an RN-BSN "may" be developed),
+  Eastern → East Central (ECU no longer lists an RN-to-BSN), pre-nursing transfer plans into a traditional BSN (TCC → OU/TU/OCU, Rose State
+  → UCO, Seminole → ECU) and out-of-state partners (Carl Albert → Arkansas Tech).
+- **Spot check (2026-11-21):** OCCC ADN (Accuplacer Next-Gen Reading 250, 2.5 retention GPA, ranked by up to 29 preference points then
+  GPA, 70-71 credits, resident program estimate $10,656.51 / non-resident $17,557.71 AY26) matched OCCC's Prospective Nursing Student
+  Information PDF; SWOSU BSN (2.50 retention GPA, fall window Sep 1 - Feb 1, spring Feb 2 - Jul 1) matched its BSN page, and its ACEN
+  accreditation is now cited from swosu.edu/nursing/accreditation.php; NWOSU BSN-to-DNP FNP (73 credits, 1,020 practicum hours, 3- or
+  4-year plans, Oct 1 - Feb 1 applications, CCNE, $440 in-state per credit + $300 online + $350 residency) matched its pages. OCU's FNP
+  page was the first graduate pick but returned 403 to a plain request, so NWOSU's was checked instead.
+- **Known gaps / owner attention:** sites that blocked automated reading — **Rogers State, UCO, OSU-OKC, NEO, OSUIT, Oklahoma State
+  (Stillwater)** — so their facts come partly from search-engine copies of the schools' own pages (each card says so; check with the
+  school), with many nulls (OSU's accreditation is null). **Board warnings/conditions** (from the roster, noted on cards): "Full Approval w/
+  Warning" for Connors, Seminole State, NOC Stillwater, Redlands, Langston (Langston campus), Oklahoma Christian online BSN, ORU and SNU;
+  Conditional for Langston Tulsa and SWOSU's online LPN-to-BSN; Provisional for Northeastern State's BSN and Mid-America Christian's ADN
+  (ACEN candidate). **Low 2025 rates** (statewide 80.47%): Connors Muskogee 49.46% (93 takers), Oklahoma Christian online BSN 57.69% (52),
+  Langston 64.29%, ORU 64.52%, Tulsa online ABSN 64.86% (first class), OU Lawton 66.67%, SWOSU online LPN-to-BSN 68.99% (129). Southern
+  Nazarene's BSN had no 2025 takers but its site shows no pause (check). Seminole's online LPN track isn't confirmed as still admitting.
+  Many deadlines differ between a school's own pages (recorded as both, "check with the school").
+- **Tuition (`OK.tuition`, added 2026-11-21):** all 32 schools, College Scorecard 2025-26. Oklahoma's two-year colleges charge one
+  resident rate statewide (no county in-district rate), so every school is labeled "in-state". Overrides: Oklahoma State → 207388 (Main
+  Campus), University of Oklahoma → 207500 (Norman, university-wide undergraduate rate; the Health Sciences Center reports no tuition),
+  University of Tulsa → 207971, Oklahoma City University → 207458.
+- **Refresh:** re-pull the three roster PDFs and the ten-year NCLEX-RN table each spring (the board updates the table after the calendar year).
