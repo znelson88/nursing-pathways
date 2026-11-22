@@ -266,6 +266,10 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   their RN-to-BSNs; 64 LVN/paramedic bridges. **Graduate APRN programs are wave 2.** Excluded: 15 for-profit schools (Galen, Chamberlain, Baptist Health
   SHP, South University, Rio Grande Valley College and others); Texas Health School and Texas School of Health Sciences not researched
   (ownership unconfirmed). NLC state. `TX.tuition` covers 98 schools (community colleges in-district). Details in docs/DATA_SOURCES.md.
+- Texas (wave 2, 2026-11-22): graduate APRN layer added from the BON's 2025 graduate program survey (DSHS/TCNWS): 94 NP/CRNA/CNM/CNS
+  programs at 33 schools, incl. new Baylor College of Medicine and Texas Wesleyan (nurse anesthesia) and Lubbock Christian (RN-to-BSN,
+  FNP); Texas A&M-Victoria and Texas A&M-Central Texas added for their RN-to-BSNs. Texas now **112 schools / 325 programs / 98 agreements**; FNP, PMHNP, peds, AGACNP, CRNA
+  (8 programs), CNM (Baylor, TTUHSC), CNS (UT Austin) and WHNP (TWU) routes stay in Texas. `TX.tuition` covers 102 schools.
 - **Adding states:** a scheduled task ("Add next state", 8am and 4pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives
