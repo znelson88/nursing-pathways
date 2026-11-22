@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota, Nebraska, Kansas, Oklahoma and Texas**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota, Nebraska, Kansas, Oklahoma, Texas and Minnesota**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -16,7 +16,7 @@ js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), t
 js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js, ks.js, ok.js, tx.js
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js, ks.js, ok.js, tx.js, mn.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
@@ -270,6 +270,13 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   programs at 33 schools, incl. new Baylor College of Medicine and Texas Wesleyan (nurse anesthesia) and Lubbock Christian (RN-to-BSN,
   FNP); Texas A&M-Victoria and Texas A&M-Central Texas added for their RN-to-BSNs. Texas now **112 schools / 325 programs / 98 agreements**; FNP, PMHNP, peds, AGACNP, CRNA
   (8 programs), CNM (Baylor, TTUHSC), CNS (UT Austin) and WHNP (TWU) routes stay in Texas. `TX.tuition` covers 102 schools.
+- Minnesota: built in `data/schools/mn.js` (`window.SCHOOLS.MN`), **46 schools / 104 programs / 60 agreements**
+  (verified 2026-11-22) from the Minnesota Board of Nursing approved-professional-programs page and its 2025 annual education report
+  (roster + APRN list), with NCLEX-RN from the board's 2022-2025 table (cards show 2023-2025 with counts). 22 Minnesota State/tribal colleges
+  (18 LPN bridges in all), the Minnesota State universities (St. Cloud State's RN-to-BS memo covers 22 colleges; Bemidji State's Operation
+  LEAD), UMN (BSN, Master of Nursing entry, DNP NP/CNS/midwifery/anesthesia), St. Catherine, St. Thomas (new BSN + entry MSN), St. Scholastica,
+  Mayo (nurse anesthesia) and other private nonprofits. Excluded: Rasmussen, Chamberlain, Capella, Walden (for-profit); Minneapolis School of
+  Anesthesia (new DNAP not yet enrolling). Not an NLC state. `MN.tuition` covers 45 schools. Details in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", 8am and 4pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives

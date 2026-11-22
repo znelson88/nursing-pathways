@@ -1209,3 +1209,67 @@ the same build rules: graduate and RN-to-BSN programs are open entry; pre-licens
   several others require Texas residency or a Texas RN license.
 - **Tuition:** College Scorecard 2025-26 added for Texas Wesleyan, LCU, A&M-Victoria and A&M-Central Texas (`TX.tuition` now 102
   schools); Baylor College of Medicine has no Scorecard tuition figure.
+
+# Data sources (schools page — Minnesota, added 2026-11-22)
+
+Minnesota: **46 schools / 104 programs / 60 transfer agreements** in `data/schools/mn.js` (verified 2026-11-22), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** Minnesota Board of Nursing "Approved Professional Nursing Programs" page
+  (mn.gov/boards/nursing/education/approved-professional-nursing-programs, read 2026-11-22: baccalaureate, entry-level master's and
+  associate degree lists) checked against Appendix A1 (licensure-preparing programs, as of Dec 31, 2025: 25 ADN, 22 baccalaureate, 4
+  entry-level master's) and Appendix H (advanced practice programs) of the board's **2025 Annual Nursing Education Program Report**
+  (mn.gov/boards/assets/2025_Annual_Educ_Rpt_revised_tcm21-378590.pdf). The board's other HTML pages (advanced practice list, corrective
+  action list) returned a "verify you are human" page on the next request, so they were not read; the annual report PDF covers the same
+  ground. Included: 22 Minnesota State and tribal two-year colleges, 8 public universities (seven Minnesota State universities incl.
+  Southwest Minnesota State for its RN-to-BSN only, and the University of Minnesota), and 16 private nonprofits incl. Augsburg (RN-to-BSN +
+  DNP FNP only) and Mayo Clinic School of Health Sciences (nurse anesthesia DNAP only).
+- **NCLEX-RN pass rates:** the board's "Number and First-time Success Rate of NCLEX-RN Candidates Educated in Minnesota" table
+  (mn.gov/boards/assets/2022-2025_RN_NCLEX_tcm21-280648.pdf, ADN and baccalaureate/higher pages, calendar years 2022-2025 with counts).
+  Cards show 2023-2025. **Cross-check:** the ADN rows add up exactly to the board's ADN totals for 2022-2024 (2025: 1,713 tested vs the
+  board's 1,714, 81.73% vs 81.74%); the baccalaureate/master's rows match exactly for 2022 and 2025 (2023 and 2024 totals are one candidate
+  higher than the rows). The one-candidate gaps couldn't be traced; figures are used as published. The board reports one row per school
+  (St. Scholastica, UMN and others cover all sites and BSN tracks) and separate "Master" rows for the entry-level master's programs at
+  Metro State, St. Catherine, UMN and St. Thomas. New, no results yet: **University of St. Thomas BSN**. Saint Mary's BSN is new (first
+  results in 2025).
+- **Excluded:** private for-profit — **Rasmussen University** (ADN at Mankato, Moorhead [voluntary closure effective Dec 31, 2027] and
+  St. Cloud; BSN; MSN NP), **Chamberlain University** (BSN, Shoreview), **Capella University** (BSN; MSN NP) and **Walden University**
+  (MSN/DNP NP). **Minneapolis School of Anesthesia**: Metro State no longer accepts applications to their joint DNP, and the new DNAP with
+  Northwestern Health Sciences University is still awaiting approvals and COA review (first cohort 2027 or 2028 per its own pages) — add
+  it once it enrolls. Also left out: Winona State's proposed Direct-Entry MS (pending board approval), UMN's Pediatric CNS (not accepting
+  applications) and post-DNP AGACNP certificate, Saint Mary's, Bethel's and Crown's RN-to-BSNs (only in older catalogs), Herzing's online
+  NP programs (run by its online division, not the Minneapolis campus).
+- **Bridges (18):** LPN-only main programs at Alexandria, Pine Tech, Minnesota West, Northland and St. Cloud Tech (the board marks these
+  "admits LPNs only"); separate LPN tracks at Anoka-Ramsey, Inver Hills (thin data — confirm it still admits), Minneapolis College, Lake
+  Superior, Fond du Lac, Central Lakes, Minnesota North, M State, Northwest Tech, Ridgewater and South Central; Century's track takes LPNs
+  or paramedics; Herzing's LPN-to-BSN.
+- **Agreements (60):** St. Cloud State's RN-to-BS memorandum with 22 Minnesota State colleges (meeting the terms doesn't guarantee
+  admission; "Hibbing Community College" mapped to Minnesota North); Bemidji State's Operation LEAD (7 colleges, guaranteed admission);
+  MSU Moorhead dual/automatic acceptance (8); MSU Mankato Maverick Advance Plan and partners (6; Riverland's plan dates from 2022 — check);
+  Augsburg RN-BSN partners (8); Winona State dual admission (Minnesota State College Southeast, Riverland); Metro State (Anoka-Ramsey,
+  South Central); St. Scholastica (Lake Superior, Fond du Lac); 3 same-school steps to an FNP (Metro State, St. Catherine, CSB/SJU). Eleven
+  pathways found by both the college's and the university's research agent were kept once. Not recorded: the Minnesota Alliance for
+  Nursing Education (MANE) dual admission with Metro State (being phased out; no current partner list), UMN's Saint Paul College pathway
+  (Saint Paul College has no RN program), out-of-state partners (UW-Green Bay, UW-Superior, Mayville State, Minot State, UND).
+- **Spot check (2026-11-22):** RCTC ADN (HSRT exam, 2.5 cumulative and science GPA, ranked by HSRT/10 + science-GPA points, deadlines
+  March 1 / Sept 15, LPN Mobility needs a MN LPN license and C in BIOL 1217/CHEM 1117/ENGL 1117) matched its admission and FAQ pages;
+  Winona State BSN (TEAS 58.7, 3.0 GPA holistic / 3.75 direct admission, Oct 1 and Feb 15 deadlines, 90-100 admitted per term, CCNE,
+  Winona and Rochester) matched; Mayo DNAP (3.25 GPA, two years ICU, CCRN, July 1 - Sept 1 window, 39 months, $796/credit, $72,691 total)
+  matched — the total has no year on the page, so the card now says so.
+- **Known gaps / owner attention:** **Mayo's COA accreditation** is shown on its page as "October 2024 to 2026" — check it was renewed.
+  **Accreditation with conditions:** ACEN conditions at Anoka-Ramsey (follow-up report due Feb 2027), Minneapolis College, Lake Superior and
+  South Central; Saint Mary's BSN moved to "Approved with Conditions" by the board (June 2025 minutes; the school's pages don't say).
+  **Low 2025 first-time rates** (board minimum 75%; statewide 83.44%): Fond du Lac 57.14% (14 takers), Northwest Tech 69.79% (96), Inver
+  Hills 70.33% (91), Metro State BSN 70.97% (31), MSU Moorhead 73.47% (49). Ridgewater received a board reprimand (June 2026) over a
+  faculty licensing issue; approval unchanged. Inver Hills is merging with Dakota County Technical College (summer 2027). St. Catherine's
+  entry-level master's isn't taking applications until April 1, 2027 (Spring 2028 start). Pages that blocked automated reading: Riverland
+  (main nursing page; cost null), Minneapolis College (application page), M State (nursing page redirects to a login), and the St.
+  Scholastica, Bethany Lutheran, St. Catherine, Bethel, CSP and Crown catalogs. Many costs are per credit or college-wide; several are null
+  (Pine Tech, Central Lakes, M State, Minnesota West, Northwest Tech, Bemidji State, some DNPs).
+- **Not an NLC state:** the compact bill (HF 1925 / SF 2608) was introduced in 2025 and never left committee (revisor.mn.gov).
+- **Tuition (`MN.tuition`, added 2026-11-22):** 45 of 46 schools, College Scorecard 2025-26. Minnesota State colleges charge one resident
+  rate statewide (no local district rate), so every school is labeled "in-state". Overrides: Minneapolis College → 174136 (the name match
+  picked Minnesota North), University of Minnesota → 174066 (Twin Cities), Central Lakes → 173203 (Brainerd), CSB/SJU → 174747 (College of
+  Saint Benedict), Concordia → 173300 (Moorhead). Skipped: Mayo Clinic School of Health Sciences (graduate-only; Scorecard's figure isn't
+  comparable).
+- **Refresh:** re-pull the board's NCLEX-RN table and annual education report each spring.
