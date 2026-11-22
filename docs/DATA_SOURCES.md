@@ -1165,3 +1165,47 @@ those jobs fall back out of state until then).
   UTMB, Texas Tech HSC (Lubbock), UNT Health Science Center.
 - **Refresh:** re-pull the roster and the five-year NCLEX-RN table each spring. **Wave 2:** graduate APRN programs (NP, CRNA, CNM,
   CNS) at these schools plus graduate-only and RN-to-BSN-only universities.
+
+## Texas wave 2 — graduate APRN programs (added 2026-11-22)
+
+Texas now totals **112 schools / 325 programs / 98 agreements**. Wave 2 added **94 graduate APRN programs, 3 RN-to-BSNs, 5 schools
+and 5 agreements** (verified 2026-11-22 from each school's own site by six parallel research agents, merged into the wave-1 file with
+the same build rules: graduate and RN-to-BSN programs are open entry; pre-licensure records and pass rates are unchanged).
+
+- **Roster:** the Texas Board of Nursing's 2025 Nursing Education Program Information Survey, graduate edition, as published by the
+  Texas Center for Nursing Workforce Studies ("2025 Admission, Enrollment, and Graduation — Graduate Nursing Programs",
+  dshs.texas.gov/sites/default/files/chs/cnws/NEPIS/2025/Graduate/2025-gnepis-enrollment-graduation-admissions-spreadsheet_final.pdf):
+  40 graduate nursing programs with enrollment by track (NP, CNS, nurse anesthetist, nurse-midwife). The board does not approve
+  APRN programs separately (22 TAC 221.3 requires an accredited program), so this survey is the official list. Each school's own
+  site decided which tracks are currently admitting.
+- **Specialties added:** FNP 35, PMHNP 19, pediatric NP 11 (primary and acute), AGACNP 10, nurse anesthesia 8 (UT Tyler, UTHealth
+  Houston, UT San Antonio, UTMB, TCU, Baylor College of Medicine, Texas Wesleyan, UIW), neonatal NP 4, AGPCNP 3, nurse-midwifery 2
+  (Baylor, TTUHSC), CNS 1 (UT Austin), WHNP 1 (TWU). MSN and BSN-to-DNP versions of one specialty are separate records.
+- **New schools:** Baylor College of Medicine (graduate-only, BSN-DNP nurse anesthesia), Texas Wesleyan University (nurse anesthesia
+  DNAP, MSN and DNP FNP; private nonprofit per College Scorecard), Lubbock Christian University (RN-to-BSN, MSN FNP), Texas A&M
+  University-Victoria (formerly University of Houston-Victoria, moved to the A&M System Sept 1, 2025; RN-to-BSN; id `uhv`) and Texas
+  A&M University-Central Texas (RN-to-BSN).
+- **Agreements (5):** Covenant diploma → LCU (integrated BSN), Victoria College ADN → A&M-Victoria (concurrent ADN/BSN), Central Texas
+  College, McLennan and Austin CC ADNs → A&M-Central Texas (transfer pathway sheets).
+- **Left out:** post-master's certificates and post-master's DNPs everywhere; Baylor's U.S. Army Graduate Program in Anesthesia Nursing
+  (applicants must join the Army and owe five years of service — not an open civilian route); TCU's CNS (on the survey, not on TCU's
+  current program list); HCU's pediatric NP (no new students after Fall 2025); UMHB's AGACNP ("not currently accepting applications");
+  McMurry/Patty Hanks MSN-FNP (still in the 2025-26 catalog but gone from the current nursing page and inquiry form — treated as not
+  admitting); University of Houston-Clear Lake (RN-to-BSN phasing out in 2026, no APRN tracks). No APRN program found at Tarleton,
+  Lamar (FPMHNP and nurse anesthesia "being developed"), ACU, Wayland, Texas Tech El Paso (survey shows NP enrollment; the site lists
+  only a leadership MSN) or UTEP's CRNA (survey hint only).
+- **Spot check (2026-11-22):** Baylor College of Medicine nurse anesthesia (June 1 deadline / June 15 documents, 3.0 GPA, GRE, 1 year ICU
+  with 2 preferred, Texas or compact RN, CCRN encouraged) matched its admissions page; Texas State online MSN-FNP (43 credits, $502 per
+  credit, 3.25 GPA, Texas RN, 1 year RN experience, deadlines 12/17/26, 5/3/27, 7/28/27, CCNE) matched its page, which states a $21,084
+  total that does not equal $502 x 43 (noted on the card); Lubbock Christian RN-to-BSN (online, 2.5 GPA, current or pending RN, 120 hours
+  incl. 42 validation hours, ACEN) matched its catalog; its $530 per hour rate is on LCU's tuition page (cited).
+- **Known gaps / owner attention:** many catalogs blocked automated reading (UTA, UTEP, UTHealth, UT San Antonio, TTUHSC El Paso, the
+  A&M campuses, TWU, SFASU, Midwestern State, Baylor, Texas Wesleyan, ACU). **Prairie View's** FNP and **A&M-Central Texas** (whole
+  site 403) rest on search excerpts of their own pages. Accreditation to watch: TAMIU's MSN ("approved by ACEN until 2026"), TCU's
+  nurse anesthesia (COA through 2026, review by December 2026), Texas Wesleyan's MSN-FNP (CCNE visit Nov 4-6, 2026), Prairie View
+  (ACEN/CCNE visits fall 2025, outcome not found). New anesthesia programs: UT Tyler (first class 2025), UIW (first class Fall 2026),
+  UTMB (no graduates yet). Many graduate costs are null (no figure on the program page) and several pages disagree on deadlines; each
+  card says so. Residency limits: UT Tyler APRN students must live and do clinicals in Texas; TWU's campus NP tracks, Angelo State and
+  several others require Texas residency or a Texas RN license.
+- **Tuition:** College Scorecard 2025-26 added for Texas Wesleyan, LCU, A&M-Victoria and A&M-Central Texas (`TX.tuition` now 102
+  schools); Baylor College of Medicine has no Scorecard tuition figure.

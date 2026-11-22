@@ -256,6 +256,17 @@ with sync_playwright() as p:
     check("schools TX: pass rates come from the Texas Board of Nursing table",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"bon.texas.gov\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Texas wave 2 (graduate APRN programs from the Texas BON 2025 graduate survey roster): NP, CRNA and midwifery routes stay in Texas.
+    d.goto(BASE + "/schools.html?job=fnp&state=TX&school=mclennan"); d.wait_for_timeout(400)
+    check("schools TX: a Family NP route from a Texas college stays in Texas",
+          d.evaluate("()=>document.querySelectorAll('#route .pcard').length>=2 && [...document.querySelectorAll('#route .pstate')].every(b=>b.textContent.trim()==='Texas')")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=crna&state=TX&school=mclennan"); d.wait_for_timeout(400)
+    check("schools TX: a nurse anesthesia route finishes at a Texas program",
+          d.evaluate("()=>document.querySelectorAll('#route .pcard').length>=2 && [...document.querySelectorAll('#route .pstate')].every(b=>b.textContent.trim()==='Texas')"))
+    d.goto(BASE + "/schools.html?job=cnm&state=TX&school=mclennan"); d.wait_for_timeout(400)
+    check("schools TX: a nurse-midwifery route renders without NaN or undefined",
+          d.evaluate("()=>document.querySelectorAll('#route .pcard').length>=2") and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
     d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
     check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)
