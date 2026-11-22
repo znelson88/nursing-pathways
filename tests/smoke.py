@@ -267,6 +267,14 @@ with sync_playwright() as p:
     d.goto(BASE + "/schools.html?job=cnm&state=TX&school=mclennan"); d.wait_for_timeout(400)
     check("schools TX: a nurse-midwifery route renders without NaN or undefined",
           d.evaluate("()=>document.querySelectorAll('#route .pcard').length>=2") and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Minnesota (twenty-first state): MN Board of Nursing approved-programs list and its 2022-2025 NCLEX-RN table; not a compact state.
+    d.goto(BASE + "/schools.html?job=rn&state=MN"); d.wait_for_timeout(500)
+    check("schools MN: comparison lists 35+ Minnesota start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 35)
+    check("schools MN: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=MN&school=rctc"); d.wait_for_timeout(400)
+    check("schools MN: pass rates come from the Minnesota Board of Nursing table",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"RN_NCLEX\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
     d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
     check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)
