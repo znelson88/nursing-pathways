@@ -285,7 +285,7 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   and ABSN), Purdue Global's Iowa ASN (public per IPEDS; operated with Kaplan) and 18 private nonprofits (Allen, Mercy, St. Luke's, Briar Cliff, Morningside
   and others). Excluded: Iowa Wesleyan (closed), Upper Iowa (RN-to-BSN closed), Clarke DNP (teach-out). No for-profit RN programs on the roster.
   NLC state. `IA.tuition` covers 35 schools. Details in docs/DATA_SOURCES.md.
-- **Adding states:** a scheduled task ("Add next state", 8am and 4pm) follows docs/ADD_A_STATE.md and opens one
+- **Adding states:** a scheduled task ("Add next state", every 6 hours: 2am, 8am, 2pm, 8pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives
   in `SCHOOL_STATES` (js/data.js) plus one `<script>` tag in schools.html.
