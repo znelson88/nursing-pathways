@@ -1273,3 +1273,62 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   Saint Benedict), Concordia → 173300 (Moorhead). Skipped: Mayo Clinic School of Health Sciences (graduate-only; Scorecard's figure isn't
   comparable).
 - **Refresh:** re-pull the board's NCLEX-RN table and annual education report each spring.
+
+
+# Data sources (schools page — Iowa, added 2026-11-23)
+
+Iowa: **37 schools / 86 programs / 44 transfer agreements** in `data/schools/ia.js` (verified 2026-11-23), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** the board's own "List of nursing programs approved by the Iowa Board of Nursing" (a Google Sheet linked from
+  dial.iowa.gov/i-need/licenses/medical/nursing-professional-midwifery/nursing-education/iowa-nursing-education-programs) returned
+  "410 Gone" on 2026-11-23, so the roster is the board's **Nursing Education & Licensing Data Report** (dial.iowa.gov/media/8940,
+  "Approved Nursing Education Program Sites": associate, bachelor's and graduate program locations; education data from 2022-23)
+  checked against every program in the board's **"RN Program Data 2025"** NCLEX table. Included: 15 community colleges, the
+  University of Iowa, Iowa State, UNI, Purdue University Global's Iowa ASN sites, and 18 private nonprofits.
+- **NCLEX-RN pass rates:** "RN Program Data 2025" (linked from the board's Nursing Program Statistics page; NCSBN program summary,
+  calendar years 2021-2025 with counts; cards show 2023-2025). The board reports one row per school (Mercy's ASN and BSN, St. Luke's
+  ASN and accelerated BSN, and the University of Iowa's BSN and Master's entry are separate rows; Drake's row is its accelerated BSN).
+  **Cross-check:** the 2024 rows add up to 2,091 first-time takers / 1,940 passed; NCSBN's 2024 Report 1 for the Iowa board
+  (dial.iowa.gov/media/8864) says 2,091 / 1,941 — the one-pass gap is rounding in St. Ambrose's rate (printed "89.11" with no %).
+  New, no results yet: **UNI** (BSN first graduates spring 2027; ABSN first cohort Aug 2026) and **Iowa State's accelerated BSN**
+  (first cohort summer 2027). Graceland's small Iowa row (1-2 takers a year) predates its new residential Lamoni BSN (fall 2025);
+  the card says so.
+- **Excluded / not added:** Iowa Wesleyan University (closed 2023; still in the board's table). Upper Iowa University (stopped
+  admitting to its RN-to-BSN June 2023; only a 3+1 pre-nursing pathway into Allen College). Clarke's DNP (teach-out through May 2028,
+  no new students) and Clarke's RN-to-BSN (not in the 2026-27 catalog). St. Luke's RN-to-BSN ("no longer accepting applications").
+  Northwestern College's RN-to-BSN (page gone; not among current programs). Graceland's accelerated BSN in Independence, Missouri
+  (out of state). Grand View's RN-to-BSN couldn't be confirmed (missing from current pages), so it isn't listed. No private for-profit
+  RN programs are on Iowa's roster. **Purdue University Global** is included: it calls itself "a public, nonprofit institution" and
+  College Navigator lists it as public (IPEDS 489779); it is operated with Kaplan, which some readers will find surprising.
+  **Waldorf University** is included: the U.S. Department of Education approved its conversion to nonprofit status (Feb 2025).
+- **Bridges (9):** separate LPN-only entries at Kirkwood, NICC, NIACC, Southeastern, DMACC, Iowa Central, Iowa Lakes and Purdue
+  Global, and St. Ambrose's online LPN-to-BSN. Most Iowa community colleges run a PN-then-ADN ladder (the first year earns a practical
+  nursing diploma); at Hawkeye, Iowa Valley, Iowa Western, NCC, Southwestern and WITCC the ADN year itself requires the PN year or an
+  LPN license. These are explained in the card notes, not marked as bridges, because new students reach them through the PN year.
+- **Agreements (44):** University of Iowa RN-BSN 3+1 (14 colleges; NCC appears on UI's online RN-BSN page but not on its separate 3+1
+  page — check), Briar Cliff (8 colleges; its list doesn't say RN-BSN vs BSN — check), Mount Mercy (4 colleges incl. EICC early
+  admission), Iowa State (DMACC 3+1, Iowa Valley 2026, Kirkwood), Purdue Global, Waldorf (NIACC, Iowa Lakes), Morningside, St. Ambrose,
+  and UI's U2G fast track from its RN-BSN into its DNP NP tracks. Dropped: partners outside Iowa, Loras (no RN program on the roster),
+  agreements into programs that don't exist (Allen has no RN-to-BSN; Northwestern's and St. Luke's are closed), and 18 duplicates
+  found by both schools' agents.
+- **Spot check (2026-11-23):** Kirkwood ADN ($27,791.58 estimated total incl. $17,633 tuition at $229/credit, 77 credits, 2.75
+  prerequisite GPA with B- in critical courses, "limited and competitive", CNEA through 2027), Coe BSN (2.70 cumulative GPA, standard
+  vs direct entry with direct entry capped at one-third of enrollment) and University of Iowa nurse anesthesia DNP (June 1 deadline,
+  one year ICU, BLS/ACLS/PALS, interview in Iowa City, CCNE + COA) matched the schools' pages.
+- **Known gaps / owner attention:** **Eastern Iowa Community College** is on Iowa Board of Nursing **conditional approval and
+  improvement status** (NCLEX below the 80% benchmark; 2025: 70.09% of 117); a board visit in December 2026 decides its status.
+  **Low 2025 first-time rates:** William Penn 50.00% (18 takers; its BSN has only interim board approval), Hawkeye 59.15% (71), Dordt
+  69.57% (23), EICC 70.09%, Drake ABSN 72.22% (18; ACEN candidacy until May 2027), Purdue Global 77.11% (83). **Mergers:** St. Luke's
+  College is joining Morningside University (interim through 2026); St. Ambrose became Mount Mercy's parent in June 2025 (final federal
+  step pending) — records stay under each school's own name for now. Coe's CCNE accreditation runs to June 30, 2027 with a fall 2026
+  review; result not posted. Dordt's new MSN-FNP has conditional board approval and CCNE pending. Mercy College of Health Sciences is
+  now Mercy Health Sciences University (mercyhealthu.edu). Pages that blocked automated reading: dordt.edu, uiu.edu, the uiowa and
+  iastate catalogs, and the NIACC, EICC, NICC, Kirkwood, Iowa Valley, Indian Hills and Iowa Central catalogs. Many costs are null or per
+  credit (EICC, NIACC, SCC, Iowa Valley, Iowa Central, UI/ISU/UNI program costs, William Penn BSN).
+- **NLC state:** Iowa is a Nurse Licensure Compact member (Iowa Code ch. 152E; the board's Nurse Licensure Compact page).
+- **Tuition (`IA.tuition`, added 2026-11-23):** 35 of 37 schools, College Scorecard 2025-26. Iowa's community colleges charge one
+  Iowa-resident rate (no separate in-district rate), so all are labeled "in-state". Overrides: EICC → 153311 (Eastern Iowa Community
+  College District), Iowa Valley → 153922 (Marshalltown Community College; Ellsworth reports the same rate), Mercy → 153977,
+  Graceland → 153366 (Lamoni). Skipped: Allen College (no tuition reported to Scorecard) and Purdue Global (home campus in Indiana).
+- **Refresh:** re-check the board's roster sheet link (it may be re-shared) and the yearly RN Program Data table each spring.
