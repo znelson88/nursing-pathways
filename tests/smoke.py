@@ -275,6 +275,14 @@ with sync_playwright() as p:
     check("schools MN: pass rates come from the Minnesota Board of Nursing table",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"RN_NCLEX\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Iowa (twenty-second state): Iowa Board of Nursing approved-program sites and its "RN Program Data 2025" NCLEX-RN table; compact state.
+    d.goto(BASE + "/schools.html?job=rn&state=IA"); d.wait_for_timeout(500)
+    check("schools IA: comparison lists 28+ Iowa start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 28)
+    check("schools IA: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=IA&school=kirkwood"); d.wait_for_timeout(400)
+    check("schools IA: pass rates come from the Iowa Board of Nursing table",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"nursing-program-statistics\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
     d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
     check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)
