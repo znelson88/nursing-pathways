@@ -1,6 +1,6 @@
 # State queue for the schools page
 
-Work order: **west to east**. The scheduled "Add next state" task (8am and 4pm) takes the first state marked
+Work order: **west to east**. The scheduled "Add next state" task (every 6 hours: 2am, 8am, 2pm, 8pm) takes the first state marked
 `todo`, follows docs/ADD_A_STATE.md, opens a pull request, and merges it once every check
 passes (owner's decision, 2026-11-16; he reviews after it's live). It never pushes directly to `main`. Only one
 state pull request is open at a time.
