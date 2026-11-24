@@ -1332,3 +1332,55 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   College District), Iowa Valley → 153922 (Marshalltown Community College; Ellsworth reports the same rate), Mercy → 153977,
   Graceland → 153366 (Lamoni). Skipped: Allen College (no tuition reported to Scorecard) and Purdue Global (home campus in Indiana).
 - **Refresh:** re-check the board's roster sheet link (it may be re-shared) and the yearly RN Program Data table each spring.
+
+# Data sources (schools page — Arkansas, added 2026-11-23)
+
+Arkansas: **36 schools / 94 programs / 33 transfer agreements** in `data/schools/ar.js` (verified 2026-11-23), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** the Arkansas State Board of Nursing's approved-program pages (healthy.arkansas.gov/boards-commissions/boards/
+  nursing-arkansas-state-board/education/approved-nursing-programs/): "Approved Registered Nursing Associate Degree Programs",
+  "Approved Registered Nursing Baccalaureate Degree Programs" and "Post-Baccalaureate Degree Programs" (no revised date shown; read
+  2026-11-23). Included: 19 two-year colleges (incl. the ARNEC consortium), 11 public universities and 6 private nonprofits (Baptist Health
+  College Little Rock, Jefferson Regional School of Nursing, Harding, John Brown, Ouachita Baptist, Philander Smith).
+- **NCLEX-RN pass rates:** the board's "Arkansas Programs – 5 Year NCLEX Licensure Exam Results" (ADN and BSN/Master's-entry tables,
+  posted 8/11/2026, linked from the board's NCLEX Exam page). Columns are labeled 2022-2026 but are **fiscal years (July-June)**: UAM's own
+  table ("Annual results July 1 – June 30 as reported by the Arkansas State Board of Nursing") matches the board's columns exactly
+  (board "2025" BSN 9 of 10 = UAM 2024-25 9 of 10). Cards show 2025-26, 2024-25 and 2023-24 with counts; all campuses of a college are
+  combined (Harding's MEPN is its own row; UAMS's BSN and ABSN share one row). **Cross-check:** for all five years the per-program rows add
+  up exactly to the board's Arkansas ADN and BSN totals (2025-26: ADN 1,496 / 1,263; BSN 951 / 840; together 2,447 = the all-RN total).
+  New, no results yet: Philander Smith BSN, South Arkansas College's traditional RN (SATRN) and UA Rich Mountain's traditional RN.
+- **Excluded / not added:** Southeast Arkansas College (closed to new admissions Dec 2023). UAPB's pre-licensure BSN (closed to new
+  admissions May 2026; its online RN-BSN is kept). UA Hope-Texarkana (takes part only as an ARNEC site; no program of its own). SAU
+  Magnolia's RN-to-BSN (only in the 2025-26 catalog, application page gone — not confirmed as admitting). UARK's DNP AGACNP (not accepting
+  students), UCA's BSN-to-DNP (not accepting; MSN FNP kept), Ouachita's online RN-to-BSN (search excerpt says it no longer takes new
+  students; page blocked). No private for-profit RN programs are on Arkansas's roster.
+- **Bridges (25):** many Arkansas two-year RN programs admit only licensed LPNs (some also paramedics): ARNEC, ASU-Beebe, ASU Three Rivers,
+  SAU Tech, UACC Morrilton, Ozarka, ATU-Ozark and UAM's AAS. Most other colleges run a generic track plus a bridge (separate records). Also
+  UARK's online LPN-to-BSN and ATU's LPN-to-BSN.
+- **Agreements (33):** UCA's RN-to-BSN transfer list (16 colleges, plus ARNEC via UAHT's checklist), UAMS memoranda with 7 colleges
+  (they cover UAMS's online RN-to-MNSc, which awards the BSN on the way — mapped to `uams-rnbsn`), NPC's 3+1 with UAM on the NPC campus and
+  NPC's agreements with ATU, HSU and UARK, Cossatot → ATU, and internal ADN → RN-BSN at Baptist Health, UALR and ATU. Dropped: 7 duplicates
+  found by both schools' agents and UAHT's (no program). Not added: ATU "Nursing" MOUs of unstated type and UAMS "BSN" agreements that are
+  scanned images.
+- **Spot check (2026-11-23):** UCA BSN (2.75 cumulative / 2.5 science GPA, 125 seats, Feb 15 – Mar 15 for Summer II, ranked by GPA and
+  deficits, CCNE), UAMS DNP nurse anesthesia (36 months, 95.5 credits, 2,295 clinical hours, $30,000 a year resident, April 1 – July 1, CCRN,
+  COA through fall 2035) and PCCUA's AAS (63 hours, Nelson-Denny + ATI Critical Thinking 55, June 1, ranked by ATI score) matched. Fixed:
+  UAMS's "20 per cohort" (not on its pages) removed; PCCUA's ACEN "continuing" wording softened to the seal shown on the page.
+- **Known gaps / owner attention:** **Low 2025-26 first-time rates:** UA Cossatot 61.5% (13 takers, new program), UA-EACC 64.7% (17),
+  UACC Batesville 67.5% (80), ASU-Mountain Home 72.1% (61), Arkansas State ADN 75.8% (124), ASU Three Rivers 75.8% (62), Ozarka 77.4% (31); the
+  board's rule is above 75% two years running for continued full approval. **Baptist Health College Little Rock** is on ACEN "Continuing
+  Accreditation with Conditions" and board conditional approval. **UAPB** nursing is only an ACEN candidate (to April 2027). UAMS's
+  nurse-midwifery program is new (first class fall 2026; ACME pre-accreditation). UA Rich Mountain's traditional RN says "pending final
+  approval". North Arkansas College was renamed UA Northark (April 2026). Jefferson Regional's catalog still points students to Southeast
+  Arkansas College (closed) for general education. Many costs are per credit or null (BRTC, NWACC, Northark, Ozarka, UACCM, A-State ADN/BSN,
+  UAFS ABSN, Philander). Pages that blocked automated reading: the A-State, ATU, SAU, Harding, JBU, Northark, UAFS, UARM, NPC and UAM catalogs
+  and obu.edu pages.
+- **NLC state:** Arkansas is a Nurse Licensure Compact member (board's Compact page: original compact 2000, current compact since
+  Jan 19, 2018).
+- **Tuition (`AR.tuition`, added 2026-11-23):** 33 of 36 schools, College Scorecard 2025-26. Labeled **in-district** for the 8 colleges
+  whose own pages show a local/in-county rate (ANC, UACC Batesville, UA-EACC, PCCUA, NPC, SouthArk, UACC Morrilton, Cossatot); the other
+  two-year colleges are labeled in-state because College Navigator showed a high-traffic notice (not retried), so a local rate there is
+  unconfirmed. Overrides: SAU → 107983 (Main Campus, not SAU Tech), Cossatot → 106795, Northark → 107460, UA Rich Mountain → 107743, UAM →
+  106485. Skipped: ARNEC (consortium, no Scorecard record), Jefferson Regional and UAMS (no tuition reported to Scorecard).
+- **Refresh:** the board posts new 5-year tables each August; re-check UARM's and SouthArk's new programs and BHCLR's conditions.
