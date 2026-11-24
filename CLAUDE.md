@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota, Nebraska, Kansas, Oklahoma, Texas, Minnesota, Iowa and Arkansas**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota, Nebraska, Kansas, Oklahoma, Texas, Minnesota, Iowa, Arkansas and Louisiana**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -16,7 +16,7 @@ js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), t
 js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js, ks.js, ok.js, tx.js, mn.js, ia.js, ar.js
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js, ks.js, ok.js, tx.js, mn.js, ia.js, ar.js, la.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
@@ -293,6 +293,14 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   UAPB (RN-BSN only) and private nonprofits (Harding incl. MEPN, JBU, Ouachita, Philander Smith, Baptist Health, Jefferson Regional).
   Excluded: Southeast Arkansas College and UAPB's BSN (closed to new admissions). No for-profit RN programs on the roster. NLC state.
   `AR.tuition` covers 33 schools. Details in docs/DATA_SOURCES.md.
+- Louisiana: built in `data/schools/la.js` (`window.SCHOOLS.LA`), **31 schools / 111 programs / 19 agreements**
+  (verified 2026-11-24) from the Louisiana State Board of Nursing approved-programs PDF and its annual reports' per-program NCLEX-RN tables
+  (calendar 2023-2025 with counts; rows add up exactly to the board totals). 10 two-year colleges (each with an LPN-to-RN track; 20 bridges in
+  all), Baton Rouge General's diploma school, NSU (ASN, BSN, ABSN, MSN NP tracks, nurse anesthesia; RN-to-BSN list covers 10 schools), LSU Health
+  New Orleans (BSN, CARE accelerated, DNP NP/CNS/midwifery/anesthesia), the ICMSN universities (McNeese, Nicholls, Southeastern, UL Lafayette),
+  ULM, Grambling, Southern (Baton Rouge, New Orleans, Shreveport), LSUA, Louisiana Tech and private nonprofits (FranU CRNA, Loyola, Tulane's new
+  ABSN, Dillard, Holy Cross, Louisiana Christian, Herzing Metairie, William Carey's Baton Rouge site). Excluded: Chamberlain (for-profit).
+  Dillard is on board probation. NLC state. `LA.tuition` covers 28 schools. Details in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", every 6 hours: 2am, 8am, 2pm, 8pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives
