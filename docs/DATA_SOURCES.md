@@ -1436,3 +1436,68 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   (home campus in Mississippi).
 - **Refresh:** the board posts each year's annual report (with Appendix B1) in the spring; re-check Tulane's first board results,
   Dillard's approval status and Louisiana Christian's new curriculum.
+
+
+# Data sources (schools page — Wisconsin, added 2026-11-24)
+
+Wisconsin: **39 schools / 132 programs / 140 transfer agreements** in `data/schools/wi.js` (verified 2026-11-24), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** the Wisconsin Board of Nursing's "Approved Nursing Schools — In-State Schools" list on the DSPS site
+  (dsps.wi.gov/a-z-boards-and-councils-list/nursing/schools-programs/, revised August 26, 2026). It lists schools, not programs, so each
+  school's own site supplied its programs. Included: the 16 Wisconsin Technical College System colleges and Lac Courte Oreilles Ojibwe
+  University (tribal; typed community college), 7 UW System universities and 15 private nonprofits (Herzing University's Brookfield,
+  Kenosha and Madison campuses are one record; Herzing is a 501(c)(3) nonprofit per its own About page).
+- **NCLEX-RN pass rates:** the board's yearly NCLEX tables. 2025 is the table on the board's NCLEX Pass Rate page
+  (dsps.wi.gov/a-z-boards-and-councils-list/nursing/nclex-pass-rate/). The 2023 and 2024 tables are the board's own PDFs
+  (dsps.wi.gov/Documents/2023YearlyPassRate_WI.pdf and "2024YearlyPass Rate_WI.pdf"), which went offline when DSPS moved to its new site;
+  they were read from the Internet Archive's copies (web.archive.org, captured 2024-05-18 and 2025-07-26). Rows use NCSBN program codes
+  (US505xxxxx) and give "exams delivered", passed and rate per program for the calendar year. **Cross-check:** the board doesn't say whether
+  these are first-time takers, and its totals don't match NCSBN's Wisconsin first-time, U.S.-educated figures (2025: board rows 4,065 delivered /
+  3,866 passed = 95.1%; NCSBN Table 8 for Wisconsin 3,890 / 3,440 = 88.4%; 2024: 4,246 / 4,078 vs 4,068 / 3,761). NCSBN counts everyone
+  testing for a Wisconsin license (including graduates of out-of-state and online programs), while the board's rows appear to follow Wisconsin
+  programs' graduates; school-published figures match the board rows (Viterbo 2023 142/143; UW-Milwaukee 2024 270 at 95.93%). So every card
+  says "exams delivered and passed per program; the board does not say whether repeat attempts are counted". UW-Milwaukee reports one code
+  for its Milwaukee, Waukesha and Parkside BSN sites and its Direct Entry MN; Herzing's BSN is shown by campus. New, no results yet:
+  Lakeland's BSN (run with Moraine Park); Concordia's Direct Entry MSN has no separate board row.
+- **Excluded / not added:** private for-profit — Arizona College of Nursing (Milwaukee; "authorized to admit, not yet approved"), Bryant &
+  Stratton College and Rasmussen University (Green Bay, Wausau). Board NCLEX rows for schools no longer on the roster: Cardinal Stritch
+  (closed 2023), Holy Family College (closed), Columbia College of Nursing (merged into Alverno in 2020), George Williams College of Aurora
+  University (not on the 2026 roster), College of Menominee Nation (one 2023 taker; not on the roster), Herzing College's old ADN (closed).
+  UW-Eau Claire's CNS track (on hold), Concordia's ABSN (replaced by its Direct Entry MSN), Mount Mary's RN-to-BSN and its 1-2-1 with MATC
+  (pages removed), Alverno's RN-to-BSN (may be suspended; not confirmed). The Mayo Clinic Health System–Franciscan anesthesia school in
+  La Crosse isn't a separate record: Viterbo grants the DNP.
+- **Roster notes:** **UW-Stevens Point** offers no standalone pre-licensure BSN on its own site; its route is the 1+2+1 with Mid-State,
+  Northcentral and Nicolet (ADN, then UWSP's RN-to-BSN), so it is RN-to-BSN only here. **UW-Superior** ("authorized to admit, not yet board
+  approved") shows only a new online RN-to-BSN (first offered 2025-26, seeking CCNE). **Carroll University's Milwaukee ADN** (board row
+  US50408700) is Carroll's own six-semester evening ADN (NLN CNEA). **Lakeland University's** BSN is delivered jointly with Moraine Park
+  Technical College.
+- **Bridges (18):** 14 technical-college LPN-to-ADN entries, paramedic-to-RN at Madison College, FVTC and NWTC, and Herzing's LPN-to-BSN.
+  Every WTCS ADN also has a practical-nursing exit after the first year. CVTC's "advanced placement" entry wasn't described clearly enough to
+  add as a bridge.
+- **Agreements (140):** most come from the 2021 statewide agreement between all 16 WTCS colleges and UW's BSN@Home online RN-to-BSN
+  (Madison, Milwaukee, Eau Claire, Oshkosh, Green Bay, Stevens Point; UW-Superior honors it). That agreement was due for review on
+  June 1, 2026 — check that it was renewed. Named partnerships: MATC → UW-Milwaukee, Mid-State/Northcentral/Nicolet → UW-Stevens Point
+  (1+2+1), Northwood → UW-Superior, Northcentral → UW Oshkosh, Moraine Park → Lakeland, Western → Viterbo, and WTCS → Concordia, Herzing,
+  Marian, Viterbo, Lakeland and Edgewood (ADN-to-MSN) routes listed on the colleges' transfer pages. Dropped: 26 duplicates found by two
+  agents, and two pointing to RN-to-BSN programs that no longer run (Mount Mary, Alverno).
+- **Spot check (2026-11-24):** Madison College ADN (65 credits / 2 years, $14,906.30 estimated program cost, $157.45 per credit 2026-27, ACEN
+  continuing accreditation, Madison/Reedsburg/Watertown), UW-Green Bay BSN (3.00 GPA, 30 college credits, resume + video reflection, two
+  attempts per prerequisite, January 15 / August 15 deadlines) and UW Oshkosh DNP nurse anesthesia (95 credits / 36 months, 3.0 GPA, CCRN,
+  one year of critical-care experience, three references incl. a CRNA, December 1 deadline, $105,133.65 program tuition) matched the schools'
+  pages. No fixes were needed.
+- **Known gaps / owner attention:** **Low board rates:** Lac Courte Oreilles ADN 35% in 2025 (20 delivered; 35-38% in 2023-2024 too), Mount
+  Mary BSN 70% (30), Herzing's Madison ADN 75% (4), Carroll's Milwaukee ADN 84.6% (13). **LCO's** pages contradict each other on ACEN status
+  (a release says initial accreditation in 2024; the program page and catalog still say candidacy) — flagged "check with the school".
+  Southwest Tech has ACEN continuing accreditation with conditions. Sites that blocked automated reading or refused connections:
+  northwoodtech.edu (facts from its FY26 cost-sheet PDFs), Nicolet's transfer guides, the UW-Madison and UW-Eau Claire catalogs, Marquette's
+  catalog, Wisconsin Lutheran's and Carroll's catalogs, WCTC's and Moraine Park's catalogs, Lakeshore's 2-2-1 page. Some UW-Madison and UWEC
+  values come from search excerpts of the schools' own pages and say so. Lakeshore Technical College's site now redirects to lakeshore.edu.
+- **NLC state:** Wisconsin joined the enhanced Nurse Licensure Compact on January 19, 2018 (NCSBN NLC map; the board's NCLEX page explains
+  Wisconsin multistate licenses).
+- **Tuition (`WI.tuition`, added 2026-11-24):** all 39 schools, College Scorecard 2025-26. All labeled in-state: WTCS tuition is set statewide
+  (every college charges the same per-credit rate, $157.45 in 2026-27), so there is no local district rate. Overrides: Nicolet → 239442,
+  UW-Milwaukee → 240453 (not the UW Flex record), UW-Madison → 240444, UW-Eau Claire → 240268, UW Oshkosh → 240365, Herzing → 240392
+  (Herzing University-Madison; its Brookfield and Kenosha campuses report separately).
+- **Refresh:** the board posts each year's table on its NCLEX page early in the year (save a copy — older years are taken down). Re-check
+  UW-Superior's and UW-Stevens Point's pre-licensure plans, Lakeland's first results, LCO's accreditation and the BSN@Home agreement renewal.
