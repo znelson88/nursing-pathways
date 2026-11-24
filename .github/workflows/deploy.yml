@@ -40,13 +40,12 @@ jobs:
       - name: Smoke test (laptop, phone, 200% zoom)
         run: python tests/smoke.py
 
-  deploy:
+  # Packaging and publishing are separate jobs (GitHub's recommended Pages layout): publishing in the same job
+  # seconds after the upload sometimes failed with "No artifacts named github-pages were found".
+  package:
     needs: test
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
       - name: Package only the public site (not tests, docs or notes)
@@ -57,5 +56,14 @@ jobs:
       - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
+
+  deploy:
+    needs: package
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v5
