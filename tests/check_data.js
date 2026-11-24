@@ -40,6 +40,83 @@ function sourced(where, rec) {
   if (args["stale-days"] && age > +args["stale-days"]) stale.push({ where, last: rec.last_verified, age, url: rec.source_url });
 }
 
+// Structured admissions details (XX.admissions, docs/ADMISSIONS_FIELDS.md). Every value is a real value,
+// "not_published" (the school doesn't say) or "see_text" (too conditional for one value). A state that has the
+// block must cover every one of its programs, and every number must appear in the school's quoted wording.
+const CATS = new Set("ap1 ap2 ap anatomy physiology micro bio chem chem_ob math stats eng1 eng2 psych lifespan soc nutrition patho pharm speech medterm humanities other".split(" "));
+const SELECT = new Set(["points", "competitive", "lottery", "waitlist", "first_come", "all_qualified", "see_text", "not_published"]);
+const TOK = new Set(["not_published", "see_text"]);
+const tok = (v, extra = []) => TOK.has(v) || extra.includes(v);
+const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
+const said = (n, text) => typeof text === "string" && (new RegExp(`(^|[^\\d.])${String(n).replace(".", "\\.")}0*(?![\\d])`).test(text)
+  || (Number.isInteger(n) && WORDS[n] && new RegExp(`\\b${WORDS[n]}\\b`, "i").test(text)));
+function checkAdmissions(st, d) {
+  const ids = new Set((d.programs || []).map(p => p.id));
+  for (const id of ids) if (!d.admissions[id]) err(`${st} admissions`, `program ${id} has no admissions record`);
+  for (const [id, a] of Object.entries(d.admissions)) {
+    const w = `${st} admissions ${id}`, wd = a.wording || {};
+    if (!ids.has(id)) err(w, "no program with this id");
+    // A school whose site couldn't be read gets a placeholder: the tool shows "check with the school".
+    if (a.status === "unreachable") {
+      if (!a.notes) err(w, "an unreachable record must say why in notes");
+      if (!isDate(a.last_verified)) err(w, "last_verified missing or not YYYY-MM-DD");
+      continue;
+    }
+    if (!Array.isArray(a.source_urls) || !a.source_urls.length || !a.source_urls.every(isUrl)) err(w, "source_urls must be a non-empty list of https links");
+    (a.source_urls || []).forEach(u => cite(u, w));
+    sourced(w, { source_url: (a.source_urls || [])[0], last_verified: a.last_verified });
+    if (!Array.isArray(a.prerequisites)) err(w, "prerequisites must be a list");
+    for (const [i, r] of (a.prerequisites || []).entries()) {
+      const rw = `${w} prerequisite ${i + 1} (${r.course})`;
+      if (!r.course) err(rw, "needs a course name");
+      if (!CATS.has(r.category)) err(rw, `category "${r.category}" is not on the list`);
+      if (!(tok(r.min_grade) || /^([A-D][+-]?|P)$/.test(r.min_grade))) err(rw, `min_grade "${r.min_grade}" must be a letter grade, not_published or see_text`);
+      if (!(tok(r.within_years, ["none"]) || (Number.isInteger(r.within_years) && r.within_years > 0 && r.within_years <= 25))) err(rw, `within_years "${r.within_years}" must be a whole number of years, none, not_published or see_text`);
+      else if (Number.isInteger(r.within_years) && !said(r.within_years, wd.prerequisites) && !said(r.within_years, a.notes)) err(rw, `within_years ${r.within_years} doesn't appear in the school's wording`);
+      if (!tok(r.by_when, ["apply", "start"])) err(rw, `by_when "${r.by_when}" must be apply, start, not_published or see_text`);
+      if (!(r.one_of == null || typeof r.one_of === "string")) err(rw, "one_of must be null or a group label");
+    }
+    const R = a.rules;
+    if (!R || typeof R !== "object") { err(w, "needs a rules block"); continue; }
+    for (const k of ["gpa_overall_min", "gpa_prereq_min", "gpa_science_min"]) {
+      const v = R[k];
+      if (typeof v === "number") { if (!(v > 0 && v <= 4)) err(w, `${k} ${v} is not on a 4.0 scale`); else if (!said(v, wd.gpa)) err(w, `${k} ${v} doesn't appear in the school's GPA wording`); }
+      else if (!tok(v)) err(w, `${k} must be a number, not_published or see_text (${v})`);
+    }
+    const ex = R.exam;
+    if (ex && typeof ex === "object") {
+      if (!ex.name) err(w, "exam needs a name");
+      for (const k of ["min_overall", "max_attempts", "valid_months"]) {
+        const v = ex[k];
+        if (typeof v === "number") { if (!said(v, wd.exam) && !(k === "valid_months" && v % 12 === 0 && said(v / 12, wd.exam))) err(w, `exam ${k} ${v} doesn't appear in the school's exam wording`); }
+        else if (!tok(v, ["none"])) err(w, `exam ${k} must be a number, none, not_published or see_text (${v})`);
+      }
+      if ("valid_years" in ex) err(w, "exam uses valid_months, not valid_years");
+      if (!(typeof ex.min_sections === "string")) err(w, "exam min_sections must be text, not_published or see_text");
+    } else if (!tok(ex, ["none"])) err(w, `exam must be an exam record, none, not_published or see_text (${ex})`);
+    if (!SELECT.has(R.selection)) err(w, `selection "${R.selection}" is not one of ${[...SELECT].join(", ")}`);
+    const pt = R.points;
+    if (R.selection === "points") {
+      if (pt && typeof pt === "object") {
+        if (typeof pt.max === "number") { if (!said(pt.max, wd.points) && !said(pt.max, wd.selection)) err(w, `points max ${pt.max} doesn't appear in the school's wording`); }
+        else if (!tok(pt.max)) err(w, "points max must be a number or not_published");
+        if (!(isUrl(pt.sheet_url) || tok(pt.sheet_url))) err(w, "points sheet_url must be an https link or not_published");
+        cite(pt.sheet_url, w + " (points sheet)");
+        if (!Array.isArray(pt.earns_points)) err(w, "points earns_points must be a list");
+      } else if (!tok(pt)) err(w, "selection is points, so points must be a points record or not_published");
+    } else if (!(pt === "not_applicable" || tok(pt))) err(w, "points must be not_applicable unless selection is points");
+    const rt = R.retakes;
+    if (rt && typeof rt === "object") {
+      if (!["first", "latest", "highest", "average", "see_text"].includes(rt.counts)) err(w, `retakes counts "${rt.counts}" is not first, latest, highest, average or see_text`);
+      for (const k of ["max_attempts", "window_years"]) if (!(typeof rt[k] === "number" || tok(rt[k]))) err(w, `retakes ${k} must be a number or not_published`);
+    } else if (!tok(rt)) err(w, `retakes must be a retake record, not_published or see_text (${rt})`);
+    if (typeof R.local_priority !== "string") err(w, "local_priority must be text, none or not_published");
+    const se = R.seats;
+    if (se && typeof se === "object") { if (!isUrl(se.source_url)) err(w, "seats needs an https source_url"); cite(se.source_url, w + " (seats)"); }
+    else if (se !== "not_published") err(w, "seats must be a seats record or not_published");
+  }
+}
+
 const instIds = new Map(), progIds = new Map();
 for (const st of STATES.map(s => s.toUpperCase())) {
   const d = SCHOOLS[st];
@@ -63,6 +140,7 @@ for (const st of STATES.map(s => s.toUpperCase())) {
     }
     sourced(w, p);
   }
+  if (d.admissions) checkAdmissions(st, d);
   for (const t of Object.entries(d.tuition || {})) {
     const [id, rec] = t, w = `${st} tuition ${id}`;
     if (!(d.institutions || []).some(i => i.id === id)) err(w, "no institution with this id");

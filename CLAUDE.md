@@ -312,7 +312,12 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   campuses, Lakeland's new BSN with Moraine Park and others). Most agreements come from the 2021 WTCS → UW BSN@Home statewide agreement.
   Excluded: Arizona College of Nursing, Bryant & Stratton, Rasmussen (for-profit). NLC state. `WI.tuition` covers all 39 schools.
   Details in docs/DATA_SOURCES.md.
-- **Adding states:** a scheduled task ("Add next state", every 6 hours: 2am, 8am, 2pm, 8pm) follows docs/ADD_A_STATE.md and opens one
+- **Structured admissions (2026-11-24, Colorado pilot):** `XX.admissions` blocks (docs/ADMISSIONS_FIELDS.md,
+  tools/state-build/ADMISSIONS_BRIEF.md, apply_admissions.js; checked by check_data.js) hold machine-readable
+  prerequisites and admission rules for a future "where can I get in?" tool. Only Colorado has one. Program cards (js/schools.js `admAdmissionHTML`/`admPrereqHTML`) show it in place of the
+  older prerequisite/admission text; unreachable schools keep the old text plus a "couldn't re-check" note. Owner approved
+  correcting the live records (2026-11-24); the old `admission.deadline` is still shown (20 CO deadlines updated).
+- **Adding states (PAUSED by the owner 2026-11-24 until the owner says otherwise):** a scheduled task ("Add next state", every 6 hours: 2am, 8am, 2pm, 8pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives
   in `SCHOOL_STATES` (js/data.js) plus one `<script>` tag in schools.html.

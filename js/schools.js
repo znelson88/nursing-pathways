@@ -325,6 +325,50 @@
     if (a.notes) bits.push(esc(a.notes));
     return bits.length ? bits.map(b => `<p>${b}</p>`).join("") : na(null);
   }
+  // ---- Re-researched admissions details (XX.admissions; docs/ADMISSIONS_FIELDS.md) ----
+  // When a state has them, they replace the older prerequisite and admission text on the card.
+  const PUB = v => v != null && v !== "not_published" && v !== "see_text" && v !== "none" && v !== "not_applicable";
+  function admRec(data, p) {
+    const a = data && data.admissions && data.admissions[p.id];
+    return a || null;
+  }
+  function admPrereqHTML(list) {
+    if (!list.length) return `<span class="muted">The school lists no college-course prerequisites.</span>`;
+    const one = c => {
+      const bits = [];
+      if (PUB(c.min_grade)) bits.push(`${esc(c.min_grade)} or higher`);
+      if (typeof c.within_years === "number") bits.push(`within ${c.within_years} years`);
+      if (c.by_when === "start") bits.push("can be in progress when you apply");
+      return `${esc(c.course)}${c.code ? ` <span class="code">${esc(c.code)}</span>` : ""}${bits.length ? ` · ${bits.join(" · ")}` : ""}`;
+    };
+    const items = [], seen = new Set();
+    for (const c of list) {
+      if (!c.one_of) { items.push(one(c)); continue; }
+      if (seen.has(c.one_of)) continue;
+      seen.add(c.one_of);
+      items.push(`One of: ${list.filter(x => x.one_of === c.one_of).map(one).join(" <b>or</b> ")}`);
+    }
+    return `<ul class="prereq">` + items.map(i => `<li>${i}</li>`).join("") + `</ul>`;
+  }
+  const SELECT_LABEL = { points: "Points system", competitive: "Competitive review", lottery: "Lottery", waitlist: "Waitlist",
+    first_come: "First come, first served", all_qualified: "Everyone who meets the requirements is admitted" };
+  function admAdmissionHTML(p, a) {
+    const r = a.rules, w = a.wording || {}, rows = [];
+    const add = (label, html) => { if (html) rows.push(`<p><b>${label}:</b> ${html}</p>`); };
+    add("Entrance exam", r.exam === "none" ? "None required" : w.exam ? esc(w.exam) : r.exam && r.exam.name ? esc(r.exam.name) : null);
+    add("How students are chosen", w.selection ? esc(w.selection) : SELECT_LABEL[r.selection] || null);
+    if (r.points && typeof r.points === "object") add("Points", `${w.points ? esc(w.points) + " " : ""}${PUB(r.points.sheet_url) ? `<a href="${esc(r.points.sheet_url)}" target="_blank" rel="noopener">See the school's points sheet</a>` : ""}`);
+    add("GPA", w.gpa ? esc(w.gpa) : null);
+    add("Repeated courses", w.retakes ? esc(w.retakes) : null);
+    if (PUB(r.local_priority)) add("Local applicants", esc(w.local_priority || r.local_priority));
+    add("Seats", w.seats ? esc(w.seats) : null);
+    if (p.admission && p.admission.deadline) add("When to apply", esc(p.admission.deadline));
+    if (!rows.length) rows.push(`<p>${na(null)}</p>`);
+    if (a.notes) rows.push(`<p>${esc(a.notes)}</p>`);
+    const links = (a.source_urls || []).map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener">source ${i + 1}</a>`).join(", ");
+    rows.push(`<p class="muted">Admission details checked ${esc(a.last_verified)}${a.academic_year ? ` for ${esc(a.academic_year)}` : ""}: ${links}.</p>`);
+    return rows.join("");
+  }
   function passRateHTML(pr) {
     if (!pr) return na(null);
     if (!pr.by_campus) return `<span class="muted">${esc(pr.basis || "Not applicable")}</span>`;
@@ -338,6 +382,14 @@
 
   function programCard(data, p, opts) {
     opts = opts || {};
+    // Programs can come from another state's file (p._state), so look up that state's admissions block.
+    const sd = p._state && window.SCHOOLS && window.SCHOOLS[p._state] || data;
+    const adm = admRec(sd, p), fresh = adm && adm.status !== "unreachable" ? adm : null;
+    const prereqs = fresh && !(p.open_entry && !fresh.prerequisites.length) ? admPrereqHTML(fresh.prerequisites)
+      : p.open_entry ? `<span class="muted">No college-course prerequisites — you qualify by holding the degree and license shown under Admission.</span>`
+      : prereqHTML(p.prerequisites);
+    const admission = fresh ? admAdmissionHTML(p, fresh)
+      : admissionHTML(p.admission) + (adm ? `<p class="muted">We couldn't re-check this school's website on ${esc(adm.last_verified)}. These details may be out of date — confirm with the school.</p>` : "");
     return `<article class="pcard${opts.alt ? " alt" : ""}">
       <div class="pchead">
         <h3>${esc(p.name)}</h3>
@@ -345,10 +397,8 @@
       </div>
       ${field("Length", na(p.length))}
       ${field("Format", na(p.format))}
-      ${p.open_entry
-        ? field("Prerequisites", `<span class="muted">No college-course prerequisites — you qualify by holding the degree and license shown under Admission.</span>`)
-        : field("Prerequisites", prereqHTML(p.prerequisites))}
-      ${field("Admission", admissionHTML(p.admission))}
+      ${field("Prerequisites", prereqs)}
+      ${field("Admission", admission)}
       ${field("Cost", costHTML(p.cost) + (schoolTuition(data, p) ? tuitionHTML(schoolTuition(data, p)) : ""))}
       ${field("NCLEX-RN pass rate", passRateHTML(p.nclex_pass_rate))}
       ${field("Accreditation", na(p.accreditation))}
