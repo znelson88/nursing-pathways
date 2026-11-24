@@ -1524,3 +1524,30 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
 - **Differences from the visible records:** listed per program in docs/admissions-review/CO.md; the cards now show the
   re-researched details, and 20 outdated or missing deadlines in co.js were updated from the same research (e.g. UCCS BSN's prerequisite list is outdated; Front Range uses a published 100-point table; CU Anschutz BS-to-DNP
   tracks require statistics and nursing research).
+
+## Structured admissions: Arizona (added 2026-11-24)
+
+- **What:** `AZ.admissions` in data/schools/az.js, same fields and tooling as the Colorado pilot
+  (docs/REFRESH_ADMISSIONS.md). Four research agents re-read all 42 Arizona programs on the schools' own sites.
+- **Filled:** 42 of 42 (no "couldn't re-check" placeholders).
+- **Partly blocked (gaps recorded as `not_published`, nothing bypassed):** maricopa.edu district pages and several
+  Maricopa college pages returned 403; Maricopa's record rests on Scottsdale CC's March 2026 prep-guide PDFs and Estrella
+  Mountain's nursing FAQ (both Maricopa colleges). Mohave's catalog (catalog.mohave.edu) returned 403, so Mohave uses its
+  program page only. catalog.pima.edu returned 403; Pima uses its program page and points rubric (revised 10/01/2026).
+  Coconino's old tip-sheet and FAQ PDFs now return 404.
+- **Orchestrator corrections:** ASU BSN/ABSN points `max` set to `not_published` (ASU publishes a 50% GPA / 50% TEAS
+  weighting, not a point total; the agent's "2.000" was its own arithmetic). U of A nurse anesthesia deadline no longer
+  guesses a year. NAU's "only once per application cycle" HESI rule is recorded as 1 attempt.
+- **Spot check (orchestrator):** Arizona Western ADN (2.5 GPA, HESI 75% on Math/English/Cumulative within 24 months, 3
+  retests per 12 months after 60 days, 445 points, ties by date then lottery, Mar 1 / Sep 1: all match the application
+  PDF); GCU BSN (3.25 prerequisite GPA, HESI 80/80/75 in one attempt, 4 attempts in 2 years, 7-year limit, 40%/15%
+  weights, Jan 15/May 15/Sep 15: match the students.gcu.edu page and the Fall 2026 handbook); U of A nurse anesthesia
+  (B-or-better science and statistics prerequisites within 10 years, 1 year ICU in the last 3, CCRN/ACLS/BLS/PALS,
+  Aug 1 deadline, Summer 2028 next start: match).
+- **Flagged for the owner (not removed):** ASU's nurse anesthesia DNP says it is pending COA accreditation; NAU says
+  Traditional at Pima West, Compressed at North Valley and Yuma, and the Flagstaff ABSN are not accepting applications,
+  and its DNP is not admitting; GCU's main-campus BSN now admits only students without prior college credit (others are
+  pointed to the ABSN), and GCU's NP handbook (cumulative 3.0, no conditional admits) conflicts with the older "GPA or
+  GRE/GMAT" record; Coconino now uses the TEAS (66.1%) with one fall intake of about 30, not the NLN NEX twice a year;
+  Maricopa's quoted wait is about 7-8 semesters, not 2-3; Pima no longer requires WRT 101 to apply.
+- **Differences per program:** docs/admissions-review/az.md.
