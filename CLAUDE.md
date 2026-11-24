@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota, Nebraska, Kansas, Oklahoma, Texas, Minnesota and Iowa**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota, Nebraska, Kansas, Oklahoma, Texas, Minnesota, Iowa and Arkansas**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -16,7 +16,7 @@ js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), t
 js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js, ks.js, ok.js, tx.js, mn.js, ia.js
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js, ks.js, ok.js, tx.js, mn.js, ia.js, ar.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
@@ -285,6 +285,14 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   and ABSN), Purdue Global's Iowa ASN (public per IPEDS; operated with Kaplan) and 18 private nonprofits (Allen, Mercy, St. Luke's, Briar Cliff, Morningside
   and others). Excluded: Iowa Wesleyan (closed), Upper Iowa (RN-to-BSN closed), Clarke DNP (teach-out). No for-profit RN programs on the roster.
   NLC state. `IA.tuition` covers 35 schools. Details in docs/DATA_SOURCES.md.
+- Arkansas: built in `data/schools/ar.js` (`window.SCHOOLS.AR`), **36 schools / 94 programs / 33 agreements**
+  (verified 2026-11-23) from the Arkansas State Board of Nursing approved-program pages (ADN, BSN, post-baccalaureate) and its 5-year NCLEX
+  tables (fiscal years July-June, shown as "2025-26" etc.; rows add up exactly to the board totals). 19 two-year colleges (ARNEC consortium and
+  many LPN/paramedic-only RN programs; 25 bridges in all), Arkansas State (ADN, BSN, ABSN, FNP/AGACNP/PMHNP, nurse anesthesia), UAMS (BSN, ABSN,
+  MNSc and DNP NP tracks, new midwifery, nurse anesthesia), UARK, UCA (RN-to-BSN list covers 16 colleges), ATU, HSU, UAFS, UAM, UALR, SAU,
+  UAPB (RN-BSN only) and private nonprofits (Harding incl. MEPN, JBU, Ouachita, Philander Smith, Baptist Health, Jefferson Regional).
+  Excluded: Southeast Arkansas College and UAPB's BSN (closed to new admissions). No for-profit RN programs on the roster. NLC state.
+  `AR.tuition` covers 33 schools. Details in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", every 6 hours: 2am, 8am, 2pm, 8pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives

@@ -31,8 +31,8 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | Oklahoma | OK | done | 32 / 88 (17 agreements); NLC member since 2018 (oklahoma.gov/nursing); NCLEX = board ten-year table (2025 counts); ATA College and Central Oklahoma College excluded (for-profit); OU CRNA excluded (COA pending) |
 | — | Texas | TX | done | 112 / 325 (98 agreements); wave 1 (2026-11-21) = every public/nonprofit pre-licensure program + RN-to-BSN; wave 2 (2026-11-22) = 94 graduate APRN programs + 3 RN-to-BSN-only universities; NLC member (bon.texas.gov); NCLEX = board five-year table; 15 for-profit schools excluded |
 | — | Minnesota | MN | done | 46 / 104 (60 agreements); not NLC (HF 1925 never passed); NCLEX = board 2022-2025 table; Rasmussen, Chamberlain, Capella, Walden excluded (for-profit); Minneapolis School of Anesthesia excluded (new DNAP not enrolling yet) |
-| 18 | Iowa | IA | PR open | 37 / 86 (44 agreements); NLC member (Iowa Code ch. 152E); roster = board data report program sites + RN Program Data 2025 (roster sheet link dead); no for-profit RN programs on the roster; Iowa Wesleyan closed, Upper Iowa RN-BSN closed |
-| 19 | Arkansas | AR | todo | |
+| — | Iowa | IA | done | 37 / 86 (44 agreements); NLC member (Iowa Code ch. 152E); roster = board data report program sites + RN Program Data 2025 (roster sheet link dead); no for-profit RN programs on the roster; Iowa Wesleyan closed, Upper Iowa RN-BSN closed |
+| 19 | Arkansas | AR | PR open | 36 / 94 (33 agreements); NLC member since 2018 (board Compact page); NCLEX = board 5-year tables (fiscal years); no for-profit RN programs on the roster; Southeast Arkansas College and UAPB BSN closed to new admissions |
 | 20 | Louisiana | LA | todo | |
 | 21 | Wisconsin | WI | todo | |
 | 22 | Illinois | IL | todo | large: plan waves |
