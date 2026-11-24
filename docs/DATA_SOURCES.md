@@ -1384,3 +1384,55 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   unconfirmed. Overrides: SAU → 107983 (Main Campus, not SAU Tech), Cossatot → 106795, Northark → 107460, UA Rich Mountain → 107743, UAM →
   106485. Skipped: ARNEC (consortium, no Scorecard record), Jefferson Regional and UAMS (no tuition reported to Scorecard).
 - **Refresh:** the board posts new 5-year tables each August; re-check UARM's and SouthArk's new programs and BHCLR's conditions.
+
+
+# Data sources (schools page — Louisiana, added 2026-11-24)
+
+Louisiana: **31 schools / 111 programs / 19 transfer agreements** in `data/schools/la.js` (verified 2026-11-24), built with
+docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`.
+
+- **Master roster:** the Louisiana State Board of Nursing's "LSBN Approved Nursing Education Programs" PDF
+  (lsbn.state.la.us/wp-content/uploads/credentialing/schools.pdf, linked from lsbn.state.la.us/schools-nursing/; no revised date shown;
+  read 2026-11-24): one diploma program, 13 associate degree programs, 19 baccalaureate programs and the graduate APRN programs.
+  Windows' own web client got a 403 from lsbn.state.la.us, but the site's pages and PDFs loaded normally through WebFetch (no block was
+  bypassed). Included: 10 two-year colleges (LCTCS colleges, LSU Eunice, Southern University at Shreveport), 12 public universities and 9
+  private nonprofits (Baton Rouge General's diploma school, FranU, Dillard, Louisiana Christian, Loyola, Tulane, Holy Cross, Herzing's
+  Metairie campus and William Carey University's Baton Rouge site — both out-of-state nonprofits that the roster counts as Louisiana programs).
+- **NCLEX-RN pass rates:** the board's annual reports (lsbn.state.la.us/annual-reports/): Appendix B1 "Performance of First Time
+  Candidates of Nursing Education Programs in Louisiana on NCLEX-RN" in the 2025 and 2024 reports and Appendix C1 in the 2023 report
+  (calendar years, with counts). Cards show 2023-2025; all campuses combined (the board reports one row per program type per school).
+  **Cross-check:** every year's per-program rows add up exactly to the board's totals (2025: 2,593 tested / 2,321 passed = 89.51%; 2024:
+  2,514 / 2,351; 2023: 2,454 / 2,280). New, no results yet: Tulane's accelerated BSN (first cohort fall 2024; Tulane reports its first
+  graduates passed in 2026). Northshore's ASN (first class 2025) and SUNO's BSN (initial approval) have 2025 only; Loyola's BSN 2024-2025.
+- **Excluded / not added:** Chamberlain University (private for-profit; 131 of the 2025 first-time takers). Out-of-state schools the
+  roster lists only for clinical placements (Emory, WGU, Southwest Mississippi CC, Bradley, Georgetown and others). FranU's RN-to-BSN
+  (not in the 2026-27 catalog), Loyola's and Holy Cross's RN-to-BSN (no longer listed), UL Lafayette's BSN-DNP (not admitting),
+  McNeese's DNP PMHNP (post-master's only). The roster's ICMSN Adult Health NP/CNS and Adult PMHNP tracks and SUBR's Gerontology NP/CNS
+  appear on no school page (likely old roster entries). Agreements dropped: BRCC → Southern (leads to an online MSN), BRCC → Holy Cross and
+  BRCC → FranU (those RN-to-BSNs no longer run), and six duplicates found by two agents.
+- **Bridges (20):** every two-year college runs a generic ASN plus an LPN-to-RN track (separate records); LSUA also has a paramedic track
+  and NSU's "Transition to RN" takes LPNs and paramedics. LPN-to-BSN at NSU, McNeese, Nicholls, Southeastern, ULM, Dillard and Herzing.
+- **Agreements (19):** NSU's RN-to-BSN articulation list (BPCC, LDCC, Louisiana Tech, SUSLA, BRCC, Baton Rouge General, Delgado, Fletcher,
+  LSUE, SOWELA), SOWELA → McNeese/ULL/ULM, LSUE → McNeese, BRCC → McNeese, Delgado → LSUHNO (EARN) and Nicholls, Fletcher → Nicholls,
+  and Louisiana Tech's integrated ASN → RN-BSN. Several BRCC and Delgado agreement documents date from 2011-2018 (noted on each).
+- **Spot check (2026-11-24):** Fletcher ASN (5 semesters / 69 credits, HESI A2 75% per section, 2.75 prerequisite GPA, ACEN continuing,
+  $14,853.50 total in the 2026-27 handbook), Nicholls BSN (ATI TEAS Proficient, 2.75 GPA in the first 35 hours, CCNE, $9,554 2026-27
+  in-state) and FranU DNP nurse anesthesia (36 months, 100 credits, 2,500 clinical hours, 3.0 GPA, June 1, CCRN before interview, COA to
+  2028, $115,233.16 total) matched. Fixed: Nicholls's "ranked by GPA, TEAS and repeats" (no ranking method is published), and Fletcher's
+  cost now notes that its separate 2026-27 cost sheet says $14,517.00.
+- **Known gaps / owner attention:** **Low 2025 first-time rates:** Southern University Baton Rouge BSN 69.3% (114 takers), SUNO 66.7% (9),
+  Loyola BSN 74.3% (35), Dillard 76.9% (26), Louisiana Delta 77.0% (74), BRCC 78.6% (131). **Dillard** is on board **probation**, while
+  its own pages say "conditionally approved" / "Full Approval" (conflict noted). **Louisiana Christian** restructured its BSN in 2023
+  (board initial approval; its 2023-2024 board figures, 56% and 69.6%, are from the old curriculum; no 2025 takers). Louisiana Tech's
+  RN-to-BSN and Northshore's ASN are only ACEN candidates; LSUHNO's and Loyola's midwifery programs are ACME pre-accredited. Sites that
+  blocked automated reading or failed certificate checks: subr.edu, suno.edu, susla.edu, northshorecollege.edu, solacc.edu, ladelta.edu,
+  bpcc.edu, and the Delgado, LSUE, SLCC, McNeese, Southeastern and LSUHNO catalogs — those records rely on catalogs, handbooks or search
+  excerpts of the schools' own pages and carry "check with the school". Many costs are null or per credit (Delgado, SOWELA, SLCC,
+  Northshore, LDCC, BPCC, SUSLA, SUBR, SUNO, Herzing, NSU pre-licensure).
+- **NLC state:** Louisiana has been a Nurse Licensure Compact member since July 1, 2019 (board's Nurse Licensure Compact page).
+- **Tuition (`LA.tuition`, added 2026-11-24):** 28 of 31 schools, College Scorecard 2025-26. All labeled in-state: Louisiana's community and
+  technical colleges are one statewide system with no local district rate (Scorecard's in- and out-of-state figures are equal for them).
+  Override: Tulane → 160755. Skipped: Baton Rouge General and LSU Health New Orleans (no tuition reported to Scorecard) and William Carey
+  (home campus in Mississippi).
+- **Refresh:** the board posts each year's annual report (with Appendix B1) in the spring; re-check Tulane's first board results,
+  Dillard's approval status and Louisiana Christian's new curriculum.
