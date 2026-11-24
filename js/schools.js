@@ -362,7 +362,9 @@
     add("Repeated courses", w.retakes ? esc(w.retakes) : null);
     if (PUB(r.local_priority)) add("Local applicants", esc(w.local_priority || r.local_priority));
     add("Seats", w.seats ? esc(w.seats) : null);
-    if (p.admission && p.admission.deadline) add("When to apply", esc(p.admission.deadline));
+    // The re-research's own deadline (newest cycle) wins; older records fall back to the program's deadline.
+    if (typeof a.deadline === "string" && a.deadline !== "not_published") add("When to apply", esc(a.deadline));
+    else if (p.admission && p.admission.deadline) add("When to apply", esc(p.admission.deadline));
     if (!rows.length) rows.push(`<p>${na(null)}</p>`);
     if (a.notes) rows.push(`<p>${esc(a.notes)}</p>`);
     const links = (a.source_urls || []).map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener">source ${i + 1}</a>`).join(", ");

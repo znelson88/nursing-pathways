@@ -63,6 +63,12 @@ with sync_playwright() as p:
     check("schools route: 'Compare all' returns to the comparison", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 20)
     d.goto(BASE + "/schools.html?job=rn&state=CO&school=pikes-peak"); d.wait_for_timeout(300)
     check("schools: a full-program cost isn't labeled per credit", "$19,733/credit" not in d.inner_text("#route"))
+    # Re-researched admissions details (CO.admissions) replace the older prerequisite/admission text.
+    check("schools admissions: card shows checked admission details with recency and retake rule",
+          d.evaluate("()=>{const t=document.querySelector('#route .pcard').innerText;return /Admission details checked \\d{4}-\\d{2}-\\d{2}/.test(t) && /within 7 years/.test(t) && /Repeated courses:/.test(t) && /When to apply:/.test(t)}"))
+    d.goto(BASE + "/schools.html?job=rn&state=CO&school=lamar"); d.wait_for_timeout(300)
+    check("schools admissions: a school whose site couldn't be read says so",
+          "couldn't re-check this school's website" in d.inner_text("#route .pcard"))
     # School-wide tuition (College Scorecard) fills the cost gap, labeled and sourced.
     d.goto(BASE + "/schools.html?job=fnp&state=CA"); d.wait_for_timeout(400)
     check("schools tuition: nearly every California start school shows a cost",

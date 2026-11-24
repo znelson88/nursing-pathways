@@ -20,7 +20,8 @@ data/schools/       School, program and transfer data, one file per state: co.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
-tools/state-build/  Adding a state: BRIEF.md (research rules), build_state.py, add_tuition.py (not published)
+tools/state-build/  Adding a state: BRIEF.md (research rules), build_state.py, add_tuition.py; admissions: ADMISSIONS_BRIEF.md,
+                    admissions_inputs.js, apply_admissions.js (not published)
 docs/ADD_A_STATE.md Standard procedure for adding a state; docs/STATE_QUEUE.md = order (west to east) and status
 ```
 
@@ -314,10 +315,12 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   Details in docs/DATA_SOURCES.md.
 - **Structured admissions (2026-11-24, Colorado pilot):** `XX.admissions` blocks (docs/ADMISSIONS_FIELDS.md,
   tools/state-build/ADMISSIONS_BRIEF.md, apply_admissions.js; checked by check_data.js) hold machine-readable
-  prerequisites and admission rules for a future "where can I get in?" tool. Only Colorado has one. Program cards (js/schools.js `admAdmissionHTML`/`admPrereqHTML`) show it in place of the
+  prerequisites and admission rules for a future "where can I get in?" tool. States with one: CO. The scheduled task
+  re-researches the other built states one per run (docs/REFRESH_ADMISSIONS.md; queue in docs/STATE_QUEUE.md), then new states
+  get the block as part of docs/ADD_A_STATE.md step 5b. Program cards (js/schools.js `admAdmissionHTML`/`admPrereqHTML`) show it in place of the
   older prerequisite/admission text; unreachable schools keep the old text plus a "couldn't re-check" note. Owner approved
-  correcting the live records (2026-11-24); the old `admission.deadline` is still shown (20 CO deadlines updated).
-- **Adding states (PAUSED by the owner 2026-11-24 until the owner says otherwise):** a scheduled task ("Add next state", every 6 hours: 2am, 8am, 2pm, 8pm) follows docs/ADD_A_STATE.md and opens one
+  correcting the live records (2026-11-24). "When to apply" uses the record's own `deadline` (newest cycle) when present, else the program's `admission.deadline` (CO has none yet; 20 CO deadlines were updated by hand).
+- **Adding states (restarted 2026-11-24: admissions refresh first, then new states):** a scheduled task ("Add next state", every 6 hours: 2am, 8am, 2pm, 8pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives
   in `SCHOOL_STATES` (js/data.js) plus one `<script>` tag in schools.html.

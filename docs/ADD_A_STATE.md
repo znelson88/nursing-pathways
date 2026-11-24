@@ -67,6 +67,17 @@ why and stops.
 2. `node tests/check_data.js` must say "All data rules pass" (it checks every state file automatically). Fix problems
    at the source (e.g. `https_hosts` for http links that work over https — test one first).
 
+## 5b. Admissions details (since 2026-11-24)
+Every new state also gets its structured admissions block (docs/ADMISSIONS_FIELDS.md), the same way as the admissions
+refresh (docs/REFRESH_ADMISSIONS.md steps 1-5):
+1. `node tools/state-build/admissions_inputs.js --state <XX> --out <scratch>/adm` and copy
+   tools/state-build/ADMISSIONS_BRIEF.md there with `{STATE_NAME}`/`{TODAY}` filled in.
+2. Launch one general-purpose agent per group in parallel (WebFetch/WebSearch only, no project edits).
+3. Review the results as in REFRESH_ADMISSIONS step 3 (unreachable placeholders; newest admission cycle; flag closures).
+4. `node tools/state-build/apply_admissions.js --state <XX> --research <scratch>/adm/out --today <date>` (no `--review`:
+   a new state has no earlier records to compare), then `node tests/check_data.js` must pass with every program covered.
+Big states done in waves: research admissions for the programs added in that wave.
+
 ## 6. Wire the state into the site (three small edits)
 - js/data.js: append the code to `SCHOOL_STATES`.
 - schools.html: add `<script src="data/schools/<xx>.js"></script>` after the last state's script tag.
@@ -87,7 +98,8 @@ why and stops.
 
 ## 8. Spot-check (you, not an agent)
 - Pick 3 records from different agents (one community college ADN, one university BSN, one graduate program) and
-  compare length/admission/cost/accreditation with the cited page using WebFetch. Fix anything wrong at the source;
+  compare length/admission/cost/accreditation with the cited page using WebFetch, plus their admissions records
+  (GPA minimum, prerequisites and grades, recency, exam, selection/points, retake rule, deadline). Fix anything wrong at the source;
   if a figure is real but on a different page, cite that page in the note. Record what you checked.
 
 ## 9. Tests

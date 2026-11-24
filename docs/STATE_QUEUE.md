@@ -1,9 +1,45 @@
 # State queue for the schools page
 
-**PAUSED (owner, 2026-11-24): the "Add next state" task is turned off until the owner says to restart it.** First the
-structured admissions fields (docs/ADMISSIONS_FIELDS.md) are piloted on Colorado and the built states are re-researched.
+**Restarted (owner, 2026-11-24) with a new first job.** Each run of the scheduled task (every 6 hours) first works
+through the **Admissions refresh** table below (docs/REFRESH_ADMISSIONS.md: re-research one built state's admissions
+details, or one wave of a big state). When every refresh row is `done`, it goes back to adding new states from the
+**New states** table (docs/ADD_A_STATE.md, which now includes the admissions research).
 
-Work order: **west to east**. The scheduled "Add next state" task (every 6 hours: 2am, 8am, 2pm, 8pm) takes the first state marked
+## Admissions refresh (built states, west to east)
+
+Status values: `done` · `todo` · `in progress (branch admissions/xx), wave N of M next` · `PR open (#n)` · `blocked: reason`.
+
+| # | State | Code | Programs | Waves | Status | Notes |
+|---|---|---|---|---|---|---|
+| — | Colorado | CO | 53 | 1 | done | Pilot, PR #32: 50 filled, 3 unreachable (Lamar, AdventHealth, CSU Pueblo 3+2) |
+| 1 | Arizona | AZ | 42 | 1 | todo | |
+| 2 | California | CA | 278 | 3 | todo | |
+| 3 | Missouri | MO | 168 | 2 | todo | |
+| 4 | Washington | WA | 91 | 1 | todo | |
+| 5 | Oregon | OR | 50 | 1 | todo | |
+| 6 | Nevada | NV | 31 | 1 | todo | |
+| 7 | Idaho | ID | 25 | 1 | todo | |
+| 8 | Utah | UT | 43 | 1 | todo | |
+| 9 | Montana | MT | 26 | 1 | todo | |
+| 10 | Wyoming | WY | 16 | 1 | todo | |
+| 11 | New Mexico | NM | 40 | 1 | todo | |
+| 12 | Alaska | AK | 8 | 1 | todo | |
+| 13 | Hawaii | HI | 33 | 1 | todo | |
+| 14 | North Dakota | ND | 30 | 1 | todo | |
+| 15 | South Dakota | SD | 32 | 1 | todo | |
+| 16 | Nebraska | NE | 68 | 1 | todo | |
+| 17 | Kansas | KS | 81 | 1 | todo | |
+| 18 | Oklahoma | OK | 88 | 1 | todo | |
+| 19 | Texas | TX | 325 | 3 | todo | |
+| 20 | Minnesota | MN | 104 | 1 | todo | |
+| 21 | Iowa | IA | 86 | 1 | todo | |
+| 22 | Arkansas | AR | 94 | 1 | todo | |
+| 23 | Louisiana | LA | 111 | 1 | todo | |
+| 24 | Wisconsin | WI | 132 | 2 | todo | |
+
+## New states
+
+Work order: **west to east**. Once the admissions refresh is finished, the scheduled task (every 6 hours: 2am, 8am, 2pm, 8pm) takes the first state marked
 `todo`, follows docs/ADD_A_STATE.md, opens a pull request, and merges it once every check
 passes (owner's decision, 2026-11-16; he reviews after it's live). It never pushes directly to `main`. Only one
 state pull request is open at a time.
