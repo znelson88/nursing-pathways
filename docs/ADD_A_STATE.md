@@ -109,8 +109,10 @@ why and stops.
 - Merge only when every PR check passed (none failing or pending), GitHub says MERGEABLE, both local tests passed and
   the step 8 spot check passed: `gh pr merge <n> -R znelson88/nursing-pathways --merge` (never `--admin`). Then watch
   the "Test and deploy" run on `main` (`gh run watch <id> --exit-status`) and confirm
-  `https://nursingpaths.com/data/schools/<xx>.js` is live. If the deploy fails the live site is unchanged: report and
-  stop. The summary calls out anything the owner should look at, since he reviews after it's live.
+  `https://nursingpaths.com/data/schools/<xx>.js` is live. If only the deploy job failed (tests passed; a GitHub Pages
+  error such as "Deployment failed, try again later"), wait ~5 minutes and re-run it once with
+  `gh run rerun <id>`; never retry a failed test job. If the retry fails too the live site is unchanged: report and
+  stop (the next run checks main's last run and retries before starting). The summary calls out anything the owner should look at, since he reviews after it's live.
 
 ## 12. Tuition catch-up (when no new state can start)
 - For any merged state marked `tuition pending`: branch `tuition/<xx>` from `main`, run step 7, run the tests, open
