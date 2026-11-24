@@ -299,6 +299,14 @@ with sync_playwright() as p:
     check("schools LA: pass rates come from the Louisiana State Board of Nursing annual reports",
           d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"lsbn.state.la.us\"]')") and "2025" in d.inner_text("#route .pcard")
           and not re.search(r"NaN|undefined", d.inner_text("#route")))
+    # Wisconsin (twenty-fifth state): Wisconsin Board of Nursing approved in-state schools list and its yearly NCLEX-RN tables; compact state.
+    d.goto(BASE + "/schools.html?job=rn&state=WI"); d.wait_for_timeout(500)
+    check("schools WI: comparison lists 25+ Wisconsin start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 25)
+    check("schools WI: no NaN or undefined in the comparison", not re.search(r"NaN|undefined", d.inner_text("#route")))
+    d.goto(BASE + "/schools.html?job=fnp&state=WI&school=madison-college"); d.wait_for_timeout(400)
+    check("schools WI: pass rates come from the Wisconsin Board of Nursing NCLEX tables",
+          d.evaluate("()=>!!document.querySelector('#route .pcard a[href*=\"dsps.wi.gov\"]')") and "2025" in d.inner_text("#route .pcard")
+          and not re.search(r"NaN|undefined", d.inner_text("#route")))
     # California wave 3 (every remaining non-profit/public school on the BRN roster): community colleges, CSUs, private nonprofits.
     d.goto(BASE + "/schools.html?job=rn&state=CA"); d.wait_for_timeout(600)
     check("schools CA: comparison lists 80+ California start schools", d.evaluate("()=>document.querySelectorAll('#route .ccard').length") >= 80)

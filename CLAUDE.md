@@ -1,6 +1,6 @@
 # Nursing Pathways — notes for Claude Code
 
-A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota, Nebraska, Kansas, Oklahoma, Texas, Minnesota, Iowa, Arkansas and Louisiana**. Live at https://nursingpaths.com.
+A static website that maps every nursing career path, from CNA to doctorate, with take-home pay, school cost, time and practical details for the western US. A second page shows real schools, prerequisites and transfer routes toward a chosen job in **Colorado, Arizona, California, Missouri, Washington, Oregon, Nevada, Idaho, Utah, Montana, Wyoming, New Mexico, Alaska, Hawaii, North Dakota, South Dakota, Nebraska, Kansas, Oklahoma, Texas, Minnesota, Iowa, Arkansas, Louisiana and Wisconsin**. Live at https://nursingpaths.com.
 
 The owner is not a developer. Explain choices in plain language, show results (screenshots, a running preview) instead of describing code, and ask before big structural changes.
 
@@ -16,7 +16,7 @@ js/data.js          Data + pure calculations: roles (N), edges (E), pay (PAY), t
 js/app.js           Everything that touches the page: tiered map, job details panel, glossary popups. Also holds some content tables (GATES, COMPETITIVE, AID,
                     LIFE, practice rules NLC/NPFPA/CRNAOPT, STARTS, GLOSS, SYN)
 js/schools.js       Schools page script
-data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js, ks.js, ok.js, tx.js, mn.js, ia.js, ar.js, la.js
+data/schools/       School, program and transfer data, one file per state: co.js, az.js, ca.js, mo.js, wa.js, or.js, nv.js, id.js, ut.js, mt.js, wy.js, nm.js, ak.js, hi.js, nd.js, sd.js, ne.js, ks.js, ok.js, tx.js, mn.js, ia.js, ar.js, la.js, wi.js
 docs/               SCHOOLS_SPEC.md, DATA_SOURCES.md, QA_HISTORY.md, START_PROMPT.md
 tests/smoke.py      Playwright check of the main flows on laptop, phone and 200% zoom
 tests/check_data.js Data rules for every data/schools/*.js file; tests/check_links.py monthly source-link check
@@ -301,6 +301,17 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   ULM, Grambling, Southern (Baton Rouge, New Orleans, Shreveport), LSUA, Louisiana Tech and private nonprofits (FranU CRNA, Loyola, Tulane's new
   ABSN, Dillard, Holy Cross, Louisiana Christian, Herzing Metairie, William Carey's Baton Rouge site). Excluded: Chamberlain (for-profit).
   Dillard is on board probation. NLC state. `LA.tuition` covers 28 schools. Details in docs/DATA_SOURCES.md.
+- Wisconsin: built in `data/schools/wi.js` (`window.SCHOOLS.WI`), **39 schools / 132 programs / 140 agreements**
+  (verified 2026-11-24) from the Wisconsin Board of Nursing's Approved In-State Nursing Schools list (dsps.wi.gov, rev Aug 26, 2026) and
+  its yearly NCLEX-RN tables (2025 on the board's NCLEX page; 2023-2024 from the board's yearly PDFs via web.archive.org after the DSPS site
+  moved). The board counts "exams delivered" per program and doesn't say they're first-time only; its totals don't match NCSBN's Wisconsin
+  first-time figures (it seems to count Wisconsin programs' graduates wherever they test), so cards say so. 16 WTCS technical colleges (PN-exit
+  ADN ladders; 14 LPN and 3 paramedic bridges) and Lac Courte Oreilles (tribal), the UW System (Madison, Milwaukee incl. Parkside/Waukesha sites
+  and Direct Entry MN, Eau Claire, Oshkosh incl. nurse anesthesia, Green Bay; Stevens Point and Superior RN-to-BSN only), and private
+  nonprofits (Marquette CNM/CRNA, Viterbo and Edgewood CRNA, Alverno, Bellin, Carroll incl. a Milwaukee ADN, Concordia, Herzing's three
+  campuses, Lakeland's new BSN with Moraine Park and others). Most agreements come from the 2021 WTCS → UW BSN@Home statewide agreement.
+  Excluded: Arizona College of Nursing, Bryant & Stratton, Rasmussen (for-profit). NLC state. `WI.tuition` covers all 39 schools.
+  Details in docs/DATA_SOURCES.md.
 - **Adding states:** a scheduled task ("Add next state", every 6 hours: 2am, 8am, 2pm, 8pm) follows docs/ADD_A_STATE.md and opens one
   pull request per state and merges it once every check passes (owner's decision, 2026-11-16; he reviews after it's
   live). It never pushes directly to main or merges with a failing check. The state list lives
