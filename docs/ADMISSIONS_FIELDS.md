@@ -10,7 +10,7 @@ like the `XX.tuition` block, so the existing hand-checked records are untouched.
 field rules), and validated by `tests/check_data.js`. Each record also stores the school's own short `wording` for
 each topic, its `source_urls`, `last_verified` and `academic_year`. Extra values beyond the three below: `"none"` (the
 school says there is no exam / no time limit / no local preference) and `"not_applicable"` (points, when selection
-isn't by points). The site doesn't display any of this yet.
+isn't by points). Program cards on the schools page show these details (with the school's wording and sources) in place of the older text.
 
 ## Why
 

@@ -35,7 +35,7 @@ function tidy(id, rec) {
     obj[key] = "see_text";
     rec.wording = rec.wording || {};
     const w = rec.wording[topic] || "";
-    if (!w.includes(String(v))) rec.wording[topic] = (w ? w + " " : "") + String(v);
+    if (!w.toLowerCase().includes(String(v).toLowerCase())) rec.wording[topic] = (w ? w + " " : "") + String(v);
     console.log(`tidied ${id}: ${topic} ${key} "${v}" -> see_text`);
   };
   if (ex && typeof ex === "object") for (const k of ["min_overall", "max_attempts", "valid_months"]) fix(ex, k, "exam");

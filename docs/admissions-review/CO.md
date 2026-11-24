@@ -1,8 +1,8 @@
 # Colorado admissions re-research: differences from the live records (2026-11-24)
 
 The re-research (tools/state-build/ADMISSIONS_BRIEF.md) found these differences between what each school publishes now and the
-program records the site shows today. **None of these are applied to the visible records yet**; the new structured block
-(`CO.admissions` in data/schools/co.js) already reflects them. Owner decides whether to update the visible records.
+program records the site shows today. The owner approved correcting the live records (2026-11-24): program cards now show the re-researched details from
+`CO.admissions`, and 20 outdated or missing deadlines were updated in the program records.
 
 ## Trinidad State College: Associate Degree Nursing (Nursing AAS) (`trinidad-state-adn`)
 

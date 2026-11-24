@@ -1508,7 +1508,7 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   minimums, entrance exam, selection method, points sheet, retake rule, local priority and seats, each a value,
   `"not_published"` or `"see_text"`, with the school's own wording and source links. Field rules:
   docs/ADMISSIONS_FIELDS.md and tools/state-build/ADMISSIONS_BRIEF.md. Written by tools/state-build/apply_admissions.js.
-  Not displayed on the site yet.
+  Program cards show it in place of the older prerequisite and admission text (owner approved 2026-11-24).
 - **Method:** five research agents re-read every Colorado program on the schools' own sites (program pages, admissions
   packets, points/ranking PDFs, handbooks, catalogs). 50 of 53 programs filled; 287 prerequisite rows (the visible
   records list 167).
@@ -1521,6 +1521,6 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   chem/biochem B within 5 years: match), UNC BSN (agent had used the Spring 2027 criteria; switched to the current
   Summer/Fall 2027 PDF: HESI minimum 80% or 70% depending on prerequisite GPA, HESI 25%/surveys 5%, second attempt
   counts). The brief now says to use the newest admission cycle.
-- **Differences from the visible records:** listed per program in docs/admissions-review/CO.md for the owner to decide
-  on (e.g. UCCS BSN's prerequisite list is outdated; Front Range uses a published 100-point table; CU Anschutz BS-to-DNP
+- **Differences from the visible records:** listed per program in docs/admissions-review/CO.md; the cards now show the
+  re-researched details, and 20 outdated or missing deadlines in co.js were updated from the same research (e.g. UCCS BSN's prerequisite list is outdated; Front Range uses a published 100-point table; CU Anschutz BS-to-DNP
   tracks require statistics and nursing research).
