@@ -315,7 +315,7 @@ clear reason; `fetch()` of JSON needs a server, so the schools page should eithe
   Details in docs/DATA_SOURCES.md.
 - **Structured admissions (2026-11-24, Colorado pilot):** `XX.admissions` blocks (docs/ADMISSIONS_FIELDS.md,
   tools/state-build/ADMISSIONS_BRIEF.md, apply_admissions.js; checked by check_data.js) hold machine-readable
-  prerequisites and admission rules for a future "where can I get in?" tool. States with one: CO. The scheduled task
+  prerequisites and admission rules for a future "where can I get in?" tool. States with one: CO, AZ. The scheduled task
   re-researches the other built states one per run (docs/REFRESH_ADMISSIONS.md; queue in docs/STATE_QUEUE.md), then new states
   get the block as part of docs/ADD_A_STATE.md step 5b. Program cards (js/schools.js `admAdmissionHTML`/`admPrereqHTML`) show it in place of the
   older prerequisite/admission text; unreachable schools keep the old text plus a "couldn't re-check" note. Owner approved

@@ -12,7 +12,7 @@ Status values: `done` · `todo` · `in progress (branch admissions/xx), wave N o
 | # | State | Code | Programs | Waves | Status | Notes |
 |---|---|---|---|---|---|---|
 | — | Colorado | CO | 53 | 1 | done | Pilot, PR #32: 50 filled, 3 unreachable (Lamar, AdventHealth, CSU Pueblo 3+2) |
-| 1 | Arizona | AZ | 42 | 1 | todo | |
+| 1 | Arizona | AZ | 42 | 1 | PR open | 42 filled, 0 placeholders; ASU nurse anesthesia DNP pending COA accreditation; NAU campus/format closures and DNP not admitting (flagged) |
 | 2 | California | CA | 278 | 3 | todo | |
 | 3 | Missouri | MO | 168 | 2 | todo | |
 | 4 | Washington | WA | 91 | 1 | todo | |
@@ -73,7 +73,7 @@ Status values: `done` · `todo` · `in progress (branch state/xx)` · `PR open (
 | — | Iowa | IA | done | 37 / 86 (44 agreements); NLC member (Iowa Code ch. 152E); roster = board data report program sites + RN Program Data 2025 (roster sheet link dead); no for-profit RN programs on the roster; Iowa Wesleyan closed, Upper Iowa RN-BSN closed |
 | — | Arkansas | AR | done | 36 / 94 (33 agreements); NLC member since 2018 (board Compact page); NCLEX = board 5-year tables (fiscal years); no for-profit RN programs on the roster; Southeast Arkansas College and UAPB BSN closed to new admissions |
 | — | Louisiana | LA | done | 31 / 111 (19 agreements); NLC member since 2019 (board Compact page); NCLEX = board annual reports (calendar 2023-2025, rows match totals); Chamberlain excluded (for-profit); Dillard on board probation; merged as PR #28 but its deploy hit a GitHub Pages error, so it is published by the next merge (Wisconsin, PR after #28) |
-| 21 | Wisconsin | WI | PR open | 39 / 132 (140 agreements); NLC member (implemented Jan 19, 2018); roster = board Approved In-State Schools (rev Aug 26, 2026); NCLEX = board yearly tables 2023-2025 (2023-2024 via archived board PDFs; counts are exams delivered, not stated as first-time); Arizona College of Nursing, Bryant & Stratton, Rasmussen excluded (for-profit) |
+| — | Wisconsin | WI | done (PR #29) | 39 / 132 (140 agreements); NLC member (implemented Jan 19, 2018); roster = board Approved In-State Schools (rev Aug 26, 2026); NCLEX = board yearly tables 2023-2025 (2023-2024 via archived board PDFs; counts are exams delivered, not stated as first-time); Arizona College of Nursing, Bryant & Stratton, Rasmussen excluded (for-profit) |
 | 22 | Illinois | IL | todo | large: plan waves |
 | 23 | Mississippi | MS | todo | |
 | 24 | Michigan | MI | todo | large |
