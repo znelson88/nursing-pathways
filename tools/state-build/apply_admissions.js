@@ -3,8 +3,9 @@
 //   node tools/state-build/apply_admissions.js --state CO --research <dir with A.json B.json ...> --today 2026-11-24
 // Each research file looks like { "admissions": { "<program id>": {...} }, "report": "..." } (ADMISSIONS_BRIEF.md).
 // The block goes just above the `window.SCHOOLS = ...` line, between two marker comments, as XX.admissions = {...};
-// so the rest of the hand-checked file is untouched. Re-running replaces only the block. Field rules live in
-// docs/ADMISSIONS_FIELDS.md; run node tests/check_data.js afterwards.
+// so the rest of the hand-checked file is untouched. Re-running rewrites only the block: records already in it are
+// kept unless the new research replaces them, so a big state can be done in waves (one research dir per wave).
+// Field rules live in docs/ADMISSIONS_FIELDS.md; run node tests/check_data.js afterwards.
 "use strict";
 const fs = require("fs"), path = require("path"), vm = require("vm");
 const args = Object.fromEntries(process.argv.slice(2).join(" ").split(/\s*--/).filter(Boolean).map(s => { const i = s.indexOf(" "); return i < 0 ? [s, true] : [s.slice(0, i), s.slice(i + 1).trim()]; }));
@@ -16,6 +17,7 @@ let src = fs.readFileSync(file, "utf8");
 
 const ctx = { window: {} }; vm.createContext(ctx); vm.runInContext(src, ctx);
 const ids = new Set(ctx.window.SCHOOLS[ST].programs.map(p => p.id));
+const before = Object.assign({}, ctx.window.SCHOOLS[ST].admissions || {});   // earlier waves / earlier runs
 
 // A number field that holds a sentence ("Twice in 365 days") becomes "see_text"; the sentence is kept in that
 // topic's wording so nothing the school said is lost. Reported so a person can turn it into a number later.
@@ -54,6 +56,9 @@ for (const f of fs.readdirSync(args.research).filter(f => f.endsWith(".json")).s
     adm[id] = keep;
   }
 }
+const fresh = Object.keys(adm).length;
+let kept = 0;
+for (const [id, rec] of Object.entries(before)) if (!adm[id] && ids.has(id)) { adm[id] = rec; kept++; }
 const missing = [...ids].filter(id => !adm[id]);
 
 // Keep the state file's own program order so the block reads alongside the records above it.
@@ -75,6 +80,27 @@ else {
   src = src.replace(anchor, block + "\n\n" + anchor);
 }
 fs.writeFileSync(file, src, "utf8");
-console.log(`${ST}: wrote admissions for ${order.length} of ${ids.size} programs.`);
+console.log(`${ST}: ${fresh} records from this research, ${kept} kept from before; ${order.length} of ${ids.size} programs covered.`);
 if (missing.length) console.log("missing:", missing.join(", "));
 if (changes.length) console.log("\nDifferences the research found (review these):\n" + changes.map(c => "  - " + c).join("\n"));
+
+// --review <path>: append this research's differences to a Markdown review list for the owner
+// (docs/admissions-review/XX.md), one section per program, so they can see what changed on the cards.
+if (args.review && changes.length) {
+  const S = ctx.window.SCHOOLS[ST];
+  const inst = Object.fromEntries(S.institutions.map(i => [i.id, i.name]));
+  const prog = Object.fromEntries(S.programs.map(p => [p.id, p]));
+  const out = path.resolve(ROOT, args.review);
+  let md = fs.existsSync(out) ? fs.readFileSync(out, "utf8") : `# ${ST} admissions re-research: differences from the earlier records\n\n` +
+    `What each school publishes now, compared with the program records the site showed before. Cards now show the\n` +
+    `re-researched details (${ST}.admissions in data/schools/${ST.toLowerCase()}.js). Closures or paused admissions are flagged here,\n` +
+    `never removed automatically.\n\n`;
+  md += `## Research of ${args.today}\n\n`;
+  for (const c of changes) {
+    const id = c.slice(0, c.indexOf(":")), p = prog[id];
+    md += `### ${p ? `${inst[p.institution]}: ${p.name}` : id} (\`${id}\`)\n\n${c.slice(c.indexOf(":") + 1).trim()}\n\n`;
+  }
+  fs.mkdirSync(path.dirname(out), { recursive: true });
+  fs.writeFileSync(out, md, "utf8");
+  console.log(`review list: ${changes.length} program(s) written to ${args.review}`);
+}

@@ -116,6 +116,8 @@ out = f'''// {ST} school, program and transfer data for the Schools page (built 
 }})();
 '''
 target = ROOT / f"data/schools/{ST.lower()}.js"
+if target.exists() and "admissions = {" in target.read_text(encoding="utf-8"):
+    sys.exit(f"{target} already has a structured admissions block; rebuild would drop it. Save it first and re-apply with apply_admissions.js after.")
 if target.exists() and "tuition = {" in target.read_text(encoding="utf-8"):
     sys.exit(f"{target} already has a tuition block; rebuild would drop it. Remove the block first or re-add tuition after.")
 target.write_text(out, encoding="utf-8", newline="\n")

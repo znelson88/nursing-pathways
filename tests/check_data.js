@@ -76,6 +76,7 @@ function checkAdmissions(st, d) {
       if (!tok(r.by_when, ["apply", "start"])) err(rw, `by_when "${r.by_when}" must be apply, start, not_published or see_text`);
       if (!(r.one_of == null || typeof r.one_of === "string")) err(rw, "one_of must be null or a group label");
     }
+    if ("deadline" in a && typeof a.deadline !== "string") err(w, "deadline must be text or not_published");
     const R = a.rules;
     if (!R || typeof R !== "object") { err(w, "needs a rules block"); continue; }
     for (const k of ["gpa_overall_min", "gpa_prereq_min", "gpa_science_min"]) {

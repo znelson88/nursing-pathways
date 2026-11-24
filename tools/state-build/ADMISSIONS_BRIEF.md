@@ -59,6 +59,7 @@ Include **every** program id you were given.
   "source_urls": ["https://..."],
   "last_verified": "{TODAY}",
   "academic_year": "2026-27",
+  "deadline": "Fall 2027: apply Feb 22 - Mar 1, 2027",
   "changes": "differences from the existing record, or null",
   "notes": "anything a student should know that doesn't fit, or null"
 }
@@ -100,6 +101,11 @@ Include **every** program id you were given.
 - **local_priority**: short text as written (e.g. "Service-area residents receive 5 points") | `"none"` (school says
   no preference) | `"not_published"`.
 - **seats**: `{ per_year, applicants, year, source_url }` only if the school publishes them | `"not_published"`.
+- **deadline**: when to apply for the next start term(s) students can still apply to, in plain words with real dates
+  as the school states them (e.g. "Spring 2027: apply Oct 15-31, 2026; Fall 2027: apply May 15-31, 2027"). Include
+  "admissions paused" or "applications every other year; next deadline Jan 15, 2028" when the school says so. If the
+  only dates shown have already passed, say that ("The page still lists a Jan 29, 2026 deadline; confirm the next
+  one with the school"). `"not_published"` if the school gives no dates.
 - Programs for licensed nurses (RN-to-BSN, graduate NP/CRNA/CNM/CNS): many fields will be `"not_published"` or
   `"none"`; still fill GPA, exam (GRE?), selection, prerequisites (statistics, etc.) and any experience rule in notes.
 
