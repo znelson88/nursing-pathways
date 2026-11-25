@@ -636,3 +636,216 @@ New details: science and statistics prerequisites expire after 10 years; up to t
 
 Fall 2027 deadlines are now posted on the apply-now page (the existing record said the eligibility page gives no dates). The evaluation fee is $50.
 
+## Research of 2026-11-25
+
+### California State University, Channel Islands: Generic (Basic) Track I BSN (Pre-Licensure) (`csuci-bsn`)
+
+No substantive change to requirements. The supplemental criteria PDF linked from the Track I page is still labelled 'Admissions Fall 2026' (revised 10/14/2024) although the page heading says Fall 2027 admission; the page also still contains 'Fall 2025'/'Fall 2026' wording.
+
+### California State University, Los Angeles: Bachelor of Science in Nursing (BSN) Traditional Program (`csula-bsn`)
+
+Requirements match the existing record. Additions: no limit on TEAS attempts; prerequisites have no expiration; applicants may apply only once (since Fall 2024) unless the prior application was incomplete; English prerequisite is described as 'English/Accelerated College Writing (GE A2)' and critical thinking as a GE A3 course.
+
+### California State University, Los Angeles: Accelerated Bachelor of Science in Nursing (ABSN) Program (`csula-absn`)
+
+Human Growth & Development, Intro to Sociology/Cultural Anthropology and Human Nutrition are no longer admission prerequisites: the Sept 2026 prerequisite sheet and Summer 2027 procedure list them as graduation requirements 'highly recommended' before the program starts. Critical Thinking is listed as a Critical Thinking course (e.g. COMM 1200, ENGL 1050) rather than 'Critical Thinking & Composition'. New detail: minimum 3.0 GPA in last 60 semester/90 quarter units (3.0 cumulative is only 'preferred'); TEAS may be taken only once in the window; repeats averaged.
+
+### California State University, Los Angeles: ADN-BSN Collaborative Program (`csula-rnbsn`)
+
+Only for students enrolled in the ADN program at one of 13 partner community colleges (Cerritos, College of the Canyons, Cypress, East LA, Glendale, Long Beach City, LA City, LA County College of Nursing and Allied Health, LA Harbor, LA Southwest, LA Trade Tech, Pasadena City, Rio Hondo); students in their first or second ADN semester apply through their community college nursing program. Must finish ADN semesters 1-2 before the first Cal State LA summer. The program web page (https://www.calstatela.edu/page/adn-bsn-collaborative-program) returned 403 to automated reading, so details come only from the 2022 brochure; confirm current partners, requirements and cost. Cal State LA's standalone RN-BSN is 'currently on hold' (rechecked 2026-11-25).
+
+### California State University, Northridge: Registered Nurse to Bachelor of Science in Nursing (RN to BSN) (`csun-rnbsn`)
+
+Existing record lists no prerequisites, but the 2026-2027 catalog requires anatomy, physiology, chemistry and microbiology (each with lab, minimum C) for admission, plus current California RN licensure and a maximum of 70 transferable units. The program page still says 'Join us in fall 2026'.
+
+### California State University, San Bernardino: Pre-Licensure BSN (PL-BSN) (`csusb-bsn`)
+
+No material change from the existing record. Additional rules found: maximum of 3 PL-BSN application attempts (starting Spring 2025 cycle); prerequisite GPA uses first earned grade.
+
+### California State University, San Marcos: Traditional Bachelor of Science in Nursing (TBSN) (`csusm-bsn`)
+
+Existing record matches the 2027-2028 criteria. Added detail: substandard grades may be repeated only once and are averaged; a first grade of C or better cannot be repeated; Intro to Chemistry does not meet the chemistry requirement.
+
+### California State University, San Marcos: Accelerated Bachelor of Science in Nursing (ABSN) (`csusm-absn`)
+
+Selection described as a points system (last-60 GPA, core GPA, TEAS) with rolling review, not only priority by date. No recency limit on prerequisites. Unlimited TEAS attempts (highest used).
+
+### California State University, San Marcos: Veteran to BSN Pathway (`csusm-bsn-veterans`)
+
+Page now lists only a Fall 2027 deadline (Feb 3, 2027); the existing record also listed Summer 2027 (Nov 4, 2026), which this page does not show. Page does not state a per-course minimum grade (existing record says C; the ABSN page requires C, but that is a different program).
+
+### California State University, Chico: Bachelor of Science in Nursing (Basic BSN) (`csu-chico-bsn`)
+
+No material change from the existing record. Added: repeated prerequisites use the highest grade; Casper only once per May-April cycle; combined general/organic/biochemistry generally not accepted; sciences cannot be survey or introductory courses; letters of recommendation not considered.
+
+### California State University, Chico: RN-BSN Program (RN BSN Online) (`csu-chico-rnbsn`)
+
+Existing record had no selection details; the page now publishes a priority-points scheme used when qualified applicants exceed capacity (Northern California county residence/employment/ADN graduation, GPA, upper-division GE) with veteran tie-breaker. Also allows one science prerequisite to be taken concurrently in the first summer.
+
+### California State University, East Bay: Pre-Licensure BSN Program (`csueb-bsn`)
+
+The program page no longer states a cohort size (existing record says 48 students each Fall and Spring); it says only that half of seats are reserved for CSUEB students. Chemistry options now also include CHEM 165 and CHEM 331; communication also accepts MLL 111; statistics also STAT 100E. Repeat rule added: one science repeat free, more cost points; higher grade used.
+
+### California State University, Stanislaus: Accelerated Second Bachelor of Science in Nursing (ASBSN) (`csu-stanislaus-absn`)
+
+Existing record's deadline (June 1 - Aug 1, 2026) has passed; next cycle per the criteria PDF is June 1 - Aug 1, 2027 for Spring 2028. Scoring page confirms top 40 admitted and adds a tie-breaker order.
+
+### California State University, Stanislaus: Online RN-BSN (Accelerated) (`csu-stanislaus-rnbsn`)
+
+Eligibility page lists prerequisites without course codes (existing record's Stan State course codes came from the roadmap, not re-checked).
+
+### The Valley Foundation School of Nursing at San José State University: Master of Science, Concentration in Family Nurse Practitioner (`sjsu-fnp`)
+
+The graduate apply page (November 2026 update) says application materials were reviewed in October and applications are now welcome, but the program page still advises waiting to apply. Experience rule conflicts: program page says minimum 3 years full-time direct patient care (5+ preferred); apply page says 1-2 years prior nursing experience. Apply page adds a 3-5 minute video.
+
+### California State Polytechnic University, Humboldt (Cal Poly Humboldt): Nursing, B.S. (RN to BSN and ADN to BSN Concurrent Enrollment Program (CEP) concentrations) (`cal-poly-humboldt-rnbsn`)
+
+Prerequisite minimum grade now confirmed: C or better on all 8 CSU nursing prerequisites (existing record said not confirmed). Page now says 'average cohort is between 10 and 18 students'.
+
+### California Baptist University: Nursing, BSN (`cbu-bsn`)
+
+Existing record calls the 100-point scale holistic; the full rubric is published, so selection is recorded as 'points'. Fall 2027 TEAS window (Sep 1, 2026 - Mar 1, 2027) now published.
+
+### California Baptist University: Nursing, RN to BSN (Online) (`cbu-rnbsn`)
+
+Deadlines are now published (priority May 15, standard August 15); existing record said no deadline published.
+
+### California Baptist University: Nursing, Entry-Level MSN (EL MSN) (`cbu-demsn`)
+
+Prerequisite course list now filled from CBU's EL MSN self-evaluation form (dated 2/9/21; may be outdated): Abnormal Psychology, A&P I/II (or Anatomy + Physiology), Microbiology, Intermediate Composition, Interpersonal/Oral Communication, Lifespan Development, Organic & Biochemistry, Sociology/Cultural Anthropology, Statistics/Intermediate Algebra.
+
+### California Baptist University: Nursing, BSN to MSN - Family Nurse Practitioner concentration (`cbu-fnp`)
+
+Fall priority deadline conflict on CBU's pages: application-requirements page says May 1, program page says May 15 (existing record has May 15).
+
+### California Baptist University: Nursing, BSN to MSN - Adult Gerontology Acute Care Nurse Practitioner concentration (`cbu-agacnp`)
+
+Fall priority deadline conflict on CBU's pages: application-requirements page says May 1, program page says May 15 (existing record has May 15).
+
+### California Baptist University: Nursing, BSN to MSN - Psychiatric Mental Health Nurse Practitioner concentration (`cbu-pmhnp`)
+
+Fall priority deadline conflict on CBU's pages: application-requirements page says May 1, program page says May 15 (existing record has May 15).
+
+### Mount Saint Mary's University, Los Angeles: Accelerated BS in Nursing (ABSN) (`msmu-absn`)
+
+Seat count now published (approximately 40 per cohort). LACE courses must be finished before the program starts (C minimum per the general rule). Program moves from 12 months to a 15-month, four-semester format starting Fall 2027.
+
+### Pepperdine University: Bachelor of Science in Nursing (BSN) (`pepperdine-bsn`)
+
+Prerequisite list should include the core GE requirements (Global Perspectives, Creative Arts or Interpretation, Historical Thinking or US Experience, Life Skills) that must be completed before enrolling; religion courses (REL 100/200/300) and Medical Spanish (LANG 241) may be done in a summer term after enrollment.
+
+### Vanguard University of Southern California: BSN - Pre-Licensure (`vanguard-bsn`)
+
+Prerequisite list was empty; Vanguard's How to Apply page now names five science prerequisites (Biology, Chemistry, Anatomy, Physiology, Microbiology, C or better). New: preference for 3.2 cumulative and 3.2 science prerequisite GPA (competitive, not a minimum); Fall 2026 class averaged 3.86 cumulative, 3.85 science GPA, 85 TEAS. Cohorts are fall and spring, 30 students each (record mentioned 32 per fall). Transfer deadlines on How to Apply (Dec 1 / Aug 1) differ from the BSN page's Jan 15, 2027.
+
+### Vanguard University of Southern California: MSN in Psychiatric Mental Health Nurse Practitioner (MSN PMHNP) (`vanguard-pmhnp`)
+
+Graduate admissions page now gives priority/standard deadlines (Fall Mar 1/Jul 1, Spring Oct 1/Nov 1) where the record says rolling. Summer enrollment for master's programs is paused for 2026.
+
+### Western University of Health Sciences: Master of Science in Nursing-Entry (MSN-E) (`westernu-demsn`)
+
+Apply page states a 3.0 minimum overall AND for the last 60 semester/90 quarter units; the record (from the catalog) lists only the last-60-units GPA. Class size now published: 100 seats Pomona. Deadline now published (extended to Jan 5, 2027). Psychology may be introductory, general or developmental; statistics must be introductory.
+
+### Western University of Health Sciences: Master of Science in Nursing/Family Nurse Practitioner (MSN/FNP) (`westernu-fnp`)
+
+Deadline now published (Dec 1, 2026 - May 1, 2027 for Fall 2027). WesternU's academic programs page lists an MSN/PMHNP (https://www.westernu.edu/nursing/programs/msn-psychiatric-mental-health-nurse-practitioner) that the catalog omits and the site has no record for.
+
+### Western University of Health Sciences: Doctor of Nursing Practice/Family Nurse Practitioner (DNP/FNP), BSN or MSN entry (`westernu-fnp-dnp`)
+
+Deadline now published (Dec 1, 2026 - May 1, 2027 for Fall 2027).
+
+### Western University of Health Sciences: Doctor of Nursing Practice/Psychiatric Mental Health Nurse Practitioner (DNP/PMHNP), BSN or MSN entry (`westernu-pmhnp`)
+
+Deadline now published (Dec 1, 2026 - May 1, 2027 for Fall 2027).
+
+### Point Loma Nazarene University: Nursing, B.S. (`point-loma-bsn`)
+
+Transfer route appears closed: the LVN-to-BSN page says PLNU is NOT accepting applications into the 3-year BSN or LVN-to-BSN "for the 2025-2026 and 2026-2027 academic school years" and "PLNU does not admit Nursing transfer students"; How to Apply says "Currently, PLNU is not accepting transfer nursing applications." The BSN page still describes the transfer route and names only 2025-26.
+
+### National University: Bachelor of Science in Nursing (BSN), Generic Entry (California) (`national-u-bsn`)
+
+Existing record omits ILR 260 Information Literacy (a listed prerequisite). The 2.75 GPA is an admission requirement (catalog: 2.75 cumulative in GE and prerequisite courses), not just recommended preparation. C or higher required in all prerequisites (C- not accepted). TEAS is required (catalog), up to 3 attempts 60+ days apart, no minimum score (ranking only). Selection is ranked: GPA 40% / TEAS 40% / interview 20%. Max three applications.
+
+### National University: Bachelor of Science in Nursing (BSN) - Second Bachelor (California) (`national-u-absn`)
+
+Existing record has no prerequisites; the school lists seven (COM 103, BST 322, SOC 100, PSY 100, BIO 201/201A, 202/202A, 203/203A) with C or higher. Same 2.75 GPA rule (or 3.0 in last 60 semester units for bachelor's holders), TEAS required (no minimum, up to 3 attempts), ranked selection with interview.
+
+### National University: Bachelor of Science in Nursing (RN-BSN) (`national-u-rnbsn`)
+
+Adds a published minimum: 2.0 cumulative GPA (catalog). Existing record had no GPA.
+
+### National University: Doctor of Nurse Anesthesia Practice (DNAP) (`national-u-crna`)
+
+Prerequisite list conflicts between sources: the program page (used here, matches the existing record) lists A&P I, A&P II, Microbiology and Chemistry/Biochemistry/Organic Chemistry within 10 years; General Catalog 88 lists Pharmacology, Anatomy with Lab, Physiology, General Chemistry with lab and Undergraduate statistics with no time limit. Confirm with the school.
+
+### Dominican University of California: Bachelor of Science in Nursing (Nursing, BS) (`dominican-bsn`)
+
+Not in existing record: five-year recency requirement for nursing sciences; repeated prerequisites disregarded for GPA; failing more than one major course disqualifies; transfer priority to applicants with all prerequisites complete. Prerequisite list above is the transfer list; continuing Dominican students take Chemistry for Health Sciences, Introduction to Psychology, Effective Communication 1 and a Civic Knowledge & Engagement course (prerequisites may be in progress).
+
+### Fresno Pacific University: Nursing, B.S.N. (`fresno-pacific-bsn`)
+
+The newest BSN application form (dated 2025-10-06) adds KIN 270 Nutrition and PSY 360 Lifespan Development to the prerequisite list; the program page and existing record list only five courses (chemistry, A&P I/II, microbiology, statistics). Confirm with the school.
+
+### Fresno Pacific University: Nursing, B.S. (RN to BSN) (`fresno-pacific-rnbsn`)
+
+The program page (https://www.fresno.edu/degree-completion/program/nursing-bs-rn-bsn), the Sunny's Blog news page and the online catalog search all returned 403 to automated reading, so no admission facts could be verified; the existing record's 2.4 GPA comes from search excerpts. The readable news release only says "Starting August 2026, a program for registered nurses is coming back to Fresno Pacific University" and refers to fpu.edu/RNtoBSN and degree.completion@fresno.edu (559-453-3690).
+
+### Fresno Pacific University: MSN Family Nurse Practitioner (`fresno-pacific-fnp`)
+
+The 3.0 bachelor's GPA is not a hard minimum: below 3.0 requires a letter of explanation (existing record calls it a minimum).
+
+### Saint Mary's College of California: Nursing, BS (`saint-marys-ca-bsn`)
+
+TEAS: the Feb 2025 handbook policy sets 70% (within 2 attempts) or a petition; the existing record says no minimum stated. The handbook also lists different grade minimums (C in chemistry, microbiology, statistics, writing; B in A&P, nutrition, sociology, psychology) than the current admissions pages (used here: C- / C / B-). Existing record's Nov 1, 2026 deadline has now passed.
+
+### Simpson University: Bachelor of Science in Nursing (Betty M. Dean School of Nursing) (`simpson-bsn`)
+
+Could not verify: every simpsonu.edu page tried returned HTTP 403. The existing record (TEAS 70, 3.0 prerequisite GPA, points weighting) is itself based on search excerpts and remains unverified. | simpsonu.edu returned HTTP 403 to automated reading for the transfer nursing admissions page, the RN-BSN page and the NURS-GPA worksheet PDF (https://simpsonu.edu/wp-content/uploads/2024/03/NURS-GPA.pdf). Search excerpts (not counted) mention TEAS adjusted total 70, 3.0 cumulative and prerequisite GPA, C or better, and NursingCAS dates; verify directly with the school.
+
+### Simpson University: RN to BSN (`simpson-rnbsn`)
+
+Could not verify: simpsonu.edu returned HTTP 403. | https://simpsonu.edu/academics/bettymdean-schoolofnursing/rn-bsn/ returned HTTP 403 to automated reading. Existing record (U.S. RN license, reference, transcripts, 84 GE credits) unverified.
+
+### Westmont College: Accelerated Bachelor of Science in Nursing (Westmont Downtown Grotenhuis Nursing Program) (`westmont-absn`)
+
+Deadline in existing record (Aug 15, 2026 for Spring 2027) has passed; next is Fall 2027 (Feb 15). TEAS: existing record says no minimum, but the apply page now says scores 'must meet or exceed the national rank composite score' (no number given).
+
+### Westmont College: Master's Entry Program in Nursing (MEPN) (`westmont-demsn`)
+
+Existing deadline (Aug 15, 2026 / Nov 15, 2026) has passed. TEAS now 'must meet or exceed the national rank composite score' (existing record said no minimum stated).
+
+### William Jessup University: Bachelor of Science in Nursing (BSN) (`jessup-bsn`)
+
+New criteria PDF revised Oct 2026 replaces the Feb 2026 PDF in the existing source_url. Prerequisite changes: Pathophysiology dropped from the B-required science list; Chemistry with lab (B, within 4 years) added; Applied Statistics added to the B-expected/one-C-allowed group; the 'online labs will not be considered' wording is gone. In-progress rule tightened from two science courses at application to only one science course remaining as of August 5. TEAS: highest of first two attempts August-to-August counts; 12 months measured from the application close date. Waitlist now lasts until the program start date (was one cycle with extra points). Overall GPA now 'for degree applicable courses'.
+
+### Pacific Union College: Associate of Science in Nursing (Angwin) (`puc-adn`)
+
+Could not verify: every puc.edu page and PDF tried returned HTTP 403. Search excerpts (not counted) suggest the 2026-27 pre-nursing sheet (NEM-04) may now use a TEAS 'Proficient' level; existing record unverified. | puc.edu returned HTTP 403 for https://www.puc.edu/academics/departments/nursing-health-sciences/rn-education, the Angwin application packet PDF, the 2026-27 catalog nursing section PDF and https://puc.edu/adventist-health. Verify with the school.
+
+### Pacific Union College: LVN/EMT-P to RN (AS in Nursing, Napa) (`puc-adn-lpn-bridge`)
+
+Could not verify: puc.edu returned HTTP 403. | puc.edu blocks automated reading (HTTP 403) site-wide, including PDFs; the existing record came from search excerpts and remains unverified.
+
+### Pacific Union College: Associate of Science in Nursing with Adventist Health (North Coast & Sonora) (`puc-adn-2`)
+
+Could not verify: https://puc.edu/adventist-health and other puc.edu pages returned HTTP 403. | puc.edu blocks automated reading (HTTP 403); existing record (TEAS 60%, 3.00 GPA, Sonora April 15, 2027) unverified.
+
+### Pacific Union College: RN to BSN (online) (`puc-rnbsn`)
+
+Could not verify: puc.edu returned HTTP 403. | puc.edu blocks automated reading (HTTP 403). For licensed RNs (existing record).
+
+### University of the Pacific: Entry Level Master of Science in Nursing (ELMSN) (`uop-demsn`)
+
+Matches the existing record. New details: 60 students admitted twice a year; B or better recommended (not required); seven-year recency desired but not required.
+
+### University of the Pacific: Midwifery, MS (`uop-cnm`)
+
+GPA: admission page now states 'Minimum GPA of 3.0' (existing record says 3.0 preferred; FAQ still says preferred). Adds a concrete Spring 2027 deadline of Nov 29, 2026.
+
+### Weimar University: Associate of Science in Nursing (ASN) (`weimar-adn`)
+
+No substantive change found versus the existing record. Clarifications: the 3.0 GPA is on the pre-nursing prerequisites; math and chemistry may instead be met by high school course + proficiency exam; the program page adds that only two courses may be repeated more than once and that each course needs a C (76%).
+
+### Weimar University: RN to BSN (`weimar-rnbsn`)
+
+No change found versus the existing record.
