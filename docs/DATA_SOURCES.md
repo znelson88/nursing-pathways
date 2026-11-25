@@ -1551,3 +1551,40 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   GRE/GMAT" record; Coconino now uses the TEAS (66.1%) with one fall intake of about 30, not the NLN NEX twice a year;
   Maricopa's quoted wait is about 7-8 semesters, not 2-3; Pima no longer requires WRT 101 to apply.
 - **Differences per program:** docs/admissions-review/az.md.
+
+## Structured admissions: California (added 2026-11-24 to 2026-11-25, three waves)
+
+- **What:** `CA.admissions` in data/schools/ca.js, same fields and tooling as the Colorado pilot
+  (docs/REFRESH_ADMISSIONS.md). 278 programs re-read on the schools' own sites in three waves (93 / 94 / 91 programs;
+  wave 3 = the CSUs not yet covered plus the private non-profit universities, 8 research agents).
+- **Filled:** 250 of 278. **"Couldn't re-check" placeholders: 28**, all because the school's site could not be read
+  (nothing bypassed): wave 1, 17 (12 Los Angeles Community College District programs, CCSF and Fresno City return 403;
+  USD entry-level MSN pages unreadable; SFSU BSN and ELM bulletin refused connections); wave 2, 3 (De Anza, Ohlone,
+  Madera return 403); wave 3, 8 (Simpson University 2 and Pacific Union College 4: every page and PDF returns 403;
+  Fresno Pacific RN-BSN: program page and catalog return 403; Cal State LA ADN-BSN Collaborative: page returns 403 and
+  the only readable source was a 2022 brochure).
+- **Partly blocked in wave 3 (gaps recorded as `not_published`):** www.cui.edu returned 403, so Concordia Irvine rests
+  on catalog.cui.edu (no deadlines); catalog.csumb.edu 403; catalog.biola.edu and catalog.vanguard.edu refused
+  connections; Sonoma State's points sheet (a Google Drive PDF) had no readable text, so its point values are not recorded.
+- **Orchestrator corrections (wave 3):** values are `see_text` (check with the school) where the school's own pages
+  disagree: Biola BSN minimum GPA (3.2 vs 3.0 for transfers), CSUSB BSN prerequisite grades (C in all 8 vs 2 of 4
+  science and 2 of 4 non-science), National University nurse anesthesia prerequisite recency (program page 10 years vs
+  catalog no limit, different course lists), Weimar ASN science recency (5 vs 7 years on one page). Sonoma State BSN
+  points and Mount St. Mary's ABSN seats (40 per cohort, cohorts per year not stated) moved to text.
+- **Spot checks:** wave 1 Pasadena ADN, SDSU BSN, UCLA DNP-FNP; wave 2 CSUB BSN and DNP-FNP matched, Palomar ADN
+  corrected; wave 3 Weimar ASN (3.0 prerequisite GPA, C (76%) per course, Kaplan 65%, two-course repeat rule, Weimar
+  pre-nursing priority, no dates: match; science recency conflict found and set to `see_text`), SJSU BSN (3.3
+  prerequisite GPA, sciences within 5 years of the deadline, TEAS 84 with two attempts, first passing attempt counts,
+  impaction score without published points, Fall 2027 Jan 15 - Feb 15, 2027: match), CSUSB DNP-FNP (3.0 cumulative in
+  the nursing degree, statistics, interview, 2,000 RN hours, Inland Empire preference, Feb 1, 2027 priority deadline: match).
+- **Flagged for the owner (not removed):** wave 1-2 items are in docs/STATE_QUEUE.md history (College of the Sequoias
+  year-round RN paused; Merced LVN-to-RN paused; Bakersfield LVN-RN not accepting; Mission LVN-RN closed with no next
+  dates; Saddleback Fall 2027 final cohort under current criteria; Merritt Fall 2027 rules much stricter). Wave 3:
+  Point Loma says it does not admit nursing transfer students and is not taking 3-year BSN or LVN-to-BSN applications
+  for 2025-26 and 2026-27, and its MSN-FNP is not taking applications; Cal State LA's standalone RN-BSN is on hold;
+  Sonoma State's traditional RN-to-BSN track is not admitting (the CNECM track is); SJSU's LVN 30-unit option is not
+  accepting applications; CSUCI's post-master's nurse educator is not accepting applications; Westmont's MEPN is pending
+  CCNE accreditation; Vanguard paused 2026 summer enrollment; Fresno Pacific restarted its RN-BSN for August 2026
+  (record could not be verified); WesternU lists an MSN-PMHNP the site has no record for; Pepperdine's ELM page gives
+  both 3.3 and 3.0 GPA; Vanguard's BSN deadlines differ between pages; Mount St. Mary's ABSN grows to 15 months from Fall 2027.
+- **Differences per program:** docs/admissions-review/ca.md.
