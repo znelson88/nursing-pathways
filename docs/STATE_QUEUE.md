@@ -12,8 +12,8 @@ Status values: `done` · `todo` · `in progress (branch admissions/xx), wave N o
 | # | State | Code | Programs | Waves | Status | Notes |
 |---|---|---|---|---|---|---|
 | — | Colorado | CO | 53 | 1 | done | Pilot, PR #32: 50 filled, 3 unreachable (Lamar, AdventHealth, CSU Pueblo 3+2) |
-| 1 | Arizona | AZ | 42 | 1 | PR open | 42 filled, 0 placeholders; ASU nurse anesthesia DNP pending COA accreditation; NAU campus/format closures and DNP not admitting (flagged) |
-| 2 | California | CA | 278 | 3 | todo | |
+| 1 | Arizona | AZ | 42 | 1 | done | PR #34: 42 filled, 0 placeholders; ASU nurse anesthesia DNP pending COA accreditation; NAU campus/format closures and DNP not admitting (flagged) |
+| 2 | California | CA | 278 | 3 | in progress (branch admissions/ca), wave 2 of 3 next | Wave 1 (2026-11-24): 93 programs, 76 filled, 17 placeholders (12 LA Community College District programs + CCSF + Fresno City: sites return 403; USD entry-level MSN: pages unreadable; SFSU BSN + ELM: bulletin refused connections). Spot check passed (Pasadena ADN, SDSU BSN, UCLA DNP-FNP). Waves 2-3: 185 programs left |
 | 3 | Missouri | MO | 168 | 2 | todo | |
 | 4 | Washington | WA | 91 | 1 | todo | |
 | 5 | Oregon | OR | 50 | 1 | todo | |
