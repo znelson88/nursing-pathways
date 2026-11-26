@@ -1702,3 +1702,32 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   nurse-midwifery deadline (Oct 13 vs Oct 6); Walla Walla U Portland priority deadline (March 15 vs 1); George Fox BSN
   math (MATH 180 vs 120).
 - **Differences per program:** docs/admissions-review/or.md.
+
+## Structured admissions: Nevada (added 2026-11-26)
+
+- **What:** `NV.admissions` in data/schools/nv.js, same fields and tooling as the Colorado pilot
+  (docs/REFRESH_ADMISSIONS.md). 31 programs re-read on the schools' own sites in one wave (9 research agents, one per school).
+- **Filled:** 23 of 31. **"Couldn't re-check" placeholders: 8**, all because the school's site could not be read
+  (nothing bypassed): Truckee Meadows CC ADN and RN-to-BSN (www.tmcc.edu 403 on every nursing page, catalog.tmcc.edu
+  refused connections; search excerpts mention a scoring-rubric change effective January 2027 that could not be read);
+  UNLV direct-entry MSN, MSN-FNP, MSN-PMHNP, MSN-CNM, BSN-to-DNP FNP and nurse anesthesia (the program pages and
+  handbooks send students to catalog.unlv.edu for admission requirements and prerequisites, and it returned 403).
+- **Older documents still in use:** Nevada State BSN points (1,000-point rubric) come from the 2024-2025 Pre-Nursing
+  Review, the only rubric posted; UNLV BSN points and the HESI A2 rule come from a calculation worksheet dated 8.20.19
+  that the current worksheet and CSN transfer agreement don't mention (exam set to `see_text`); GBC ADN uses the Fall
+  2026 criteria PDF (no Fall 2027 PDF posted); GBC RN-to-BSN points form is dated 2020.
+- **Spot checks:** WNC ADN (C or better, sciences within 5 years, may apply with courses in progress, no minimum GPA or
+  TEAS, 17-point maximum, ties by drawing lots, apply by April 1: match the catalog; points ranges corrected to 1-8 and
+  1-4 for the GPA bands), UNR BSN (2.8 GPA on required coursework, 16 credits in progress with 4 science, TEAS 65%
+  within a year, 50-point matrix, Jan 1 - Feb 8, 2027: match; added the prerequisite checklist's 10-year limit on CHEM and
+  BIOL courses), Touro MSN-FNP (3.0 GPA, conditional 2.7-2.99, no prerequisites or GRE, Arizona/Nevada residents,
+  Jan 11 and May 17 deadlines: match).
+- **Flagged for the owner (not removed):** no closures or pauses in these 31 programs (UNLV's BSN-to-DNP PMHNP track,
+  which has no record, is "On Hold"; Roseman CRNA opens applications Jan 1, 2027 for July 2028). Conflicts left as
+  `see_text` or noted: WNC math prerequisite (handbook MATH 120/126 vs catalog MATH 120/124+ or STAT 152); GBC ADN
+  deadline (first week of April vs May 31), GBC bridge (May 1 vs May 31) and RN-to-BSN (Aug 1 vs July 1); Nevada State
+  FAQ says prerequisites are built into the curriculum while the catalog requires 49 credits; UNR TEAS matrix bands
+  overlap at 71; UNR AGPCNP clinical hours (780 vs 500+); Roseman ABSN on-campus cohort called Fall 2027 on one page and
+  Summer 2027 on another; CSN ADN accreditation wording (ACEN "with conditions" on one page only); CSN RN-to-BSN Extended
+  Track sheet no longer linked.
+- **Differences per program:** docs/admissions-review/nv.md.
