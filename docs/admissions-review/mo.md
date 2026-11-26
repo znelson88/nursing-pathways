@@ -360,3 +360,237 @@ New on page: students admitted fall 2023 or later must also have all general edu
 
 Clinical location wording: 'practica for clinical courses in the state of Missouri or the greater Kansas City area' (existing record said clinicals in KS/MO). Otherwise matches.
 
+## Research of 2026-11-25
+
+### Truman State University: Bachelor of Science in Nursing (`truman-bsn`)
+
+No substantive change: ACT 20 (including science), 2.75 GPA, up to 60 per fall, competitive committee review all re-confirmed. Deadline conflict (Aug 1 rolling vs Jan 15) still present. Combined Ability Score 160 still appears only on the program page. Newly confirmed: a test score is required for nursing even though Truman is otherwise test-optional.
+
+### Missouri Southern State University: Nursing, BS (Pre-Licensure BSN) (`mssu-bsn`)
+
+Mostly unchanged (2.8 GPA, HESI A2 75% with one retake, C or better with one repeat, holistic review, 30 fall / 20 spring). Conflicts found: the 2026-27 handbook lists chemistry as CHEM 121/122 or CHEM 140/141 (web page: CHEM 125 or CHEM 151) and statistics option SOC 405 (web page: SOC 350); handbook describes the HESI minimum as 75% overall (web page: 75% on required sections). Handbook adds a preference for applicants who have met all science and math requirements and says prerequisites may be completed within one semester of application.
+
+### Missouri Southern State University: LPN-to-BSN track (`mssu-bsn-lpn-bridge`)
+
+No substantive change. Same course-code conflicts as mssu-bsn (handbook CHEM 121/122 or 140/141 and SOC 405 vs web CHEM 125/151 and SOC 350). Handbook clarifies the NACE exam awards credit for NURS 307 and NURS 314 (8 credit hours) and may be repeated once.
+
+### Missouri Southern State University: Nursing, RN to BSN (online) (`mssu-rnbsn`)
+
+Existing record lists no prerequisites; the AY 2025-26 applicant checklist and AY 2026-27 RN to BSN handbook list nine prerequisite areas (A&P I and II, microbiology, chemistry, nutrition, college algebra, statistics, general psychology, economics/sociology) with C or better in 2 or fewer attempts, plus all Core 42 general education. GPA 2.8 and Apr 1 / Jul 1 / Oct 1 deadlines confirmed from the handbook.
+
+### Missouri Western State University: Nursing (Bachelor of Science in Nursing) - Pre-Licensure (`missouri-western-bsn`)
+
+Seats: the current Admission and Application Process page says about 60 admitted twice per year (fall and spring); the existing record and the older FAQ page say 50 per semester. Application: the current page describes MoWest's own BSN application portal with a $65 fee and does not mention NursingCAS (existing record says via NursingCAS; the Traditional BSN page still links a NursingCAS portal) - check with the school. New details: support course list (ALH 106, BIO 101, 250, 251, 375, CHE 101/111, PHL 230/231, PSY 101, 240, General Studies Math, all C or higher), 10-year limit on BIO 250/251/375 and PSY 240, TEAS valid 3 years / 2 attempts per calendar year / highest score used, 250-300 word essay.
+
+### Missouri Western State University: LPN-BSN Pathway (`missouri-western-bsn-lpn-bridge`)
+
+Existing record lists no prerequisites; the 2026-27 LPN-BSN sample plan lists ALH 106, BIO 101, BIO 250, BIO 251, BIO 375, CHE 101 or 111, PHL 230 or 231, PSY 240 and General Studies Math (C or higher; 10-year limit on starred courses). The pathway page adds general psychology and says general biology and medical terminology may be waived (the sample plan short list omits PSY 101, which is still a general-studies requirement).
+
+### Missouri Western State University: RN-BSN Track (`missouri-western-rnbsn`)
+
+No substantive change; existing record keeps the three prerequisite courses in notes with an empty prerequisites list - they are now listed as rows (with conditional acceptance allowed if not yet complete).
+
+### Saint Louis University Trudy Busch Valentine School of Nursing: Accelerated One-Year B.S.N. (A.B.S.N.) (`slu-absn`)
+
+Existing record lists General Psychology (PSY 1010) and course codes for chemistry, statistics, ethics and A&P; the current page lists no course codes and no General Psychology prerequisite, and lists Chemistry as one 3-credit course (no separate lab). Current page adds arts, theology/religion, philosophy or ethics, humanities and a humanities-or-social-science choice (3 credits each) for bachelor's holders.
+
+### Saint Louis University Trudy Busch Valentine School of Nursing: M.S.N. Nurse Practitioner - Adult-Gerontological Acute Care (also offered as B.S.N.-D.N.P.) (`slu-agacnp`)
+
+Existing record lists deadlines Fall July 15, Spring Dec. 15, Summer April 15; the current MSN and BSN-DNP pages list no dated deadlines and say applications are reviewed on a rolling basis throughout the year.
+
+### Saint Louis University Trudy Busch Valentine School of Nursing: M.S.N. Nurse Practitioner - Family (also offered as B.S.N.-D.N.P.) (`slu-fnp`)
+
+Existing record lists deadlines Fall July 15, Spring Dec. 15, Summer April 15; the current MSN and BSN-DNP pages list no dated deadlines and say applications are reviewed on a rolling basis throughout the year.
+
+### Saint Louis University Trudy Busch Valentine School of Nursing: M.S.N. Nurse Practitioner - Psychiatric-Mental Health (also offered as B.S.N.-D.N.P.) (`slu-pmhnp`)
+
+Existing record lists deadlines Fall July 15, Spring Dec. 15, Summer April 15; the current MSN and BSN-DNP pages list no dated deadlines and say applications are reviewed on a rolling basis throughout the year.
+
+### Barnes-Jewish College Goldfarb School of Nursing: Bachelor of Science in Nursing (BSN) Upper Division Option (`goldfarb-bsn`)
+
+Apply page now states a 5-year limit for A&P I/II and Microbiology (catalog and program page still say 7 years). Apply page lists a Fall deadline of July 30, 2027 (existing record lists only Spring Nov. 30 and Summer Apr. 12). Otherwise matches existing record.
+
+### Barnes-Jewish College Goldfarb School of Nursing: Bachelor of Science in Nursing (BSN) Weekend/Evening Option (`goldfarb-bsn-evening`)
+
+Apply page states a 5-year limit for A&P I/II and Microbiology (catalog says 7). Existing record has no deadline; Apply page lists Spring Nov. 30, 2026, Summer Apr. 12, 2027, Fall July 30, 2027.
+
+### Barnes-Jewish College Goldfarb School of Nursing: Bachelor of Science in Nursing (BSN) Accelerated Option (`goldfarb-absn`)
+
+Apply page states a 5-year limit for A&P I/II and Microbiology (catalog says 7). Apply page adds a Fall 2027 deadline of July 30, 2027.
+
+### Barnes-Jewish College Goldfarb School of Nursing: MSN Adult-Gerontology Acute Care Nurse Practitioner Concentration (DNP AGACNP concentration also offered) (`goldfarb-agacnp`)
+
+Existing record has no deadline; program page lists Spring Nov. 30 and Summer Apr. 12. Start terms Spring and Fall.
+
+### Barnes-Jewish College Goldfarb School of Nursing: MSN Family Nurse Practitioner Concentration (DNP FNP concentration also offered) (`goldfarb-fnp`)
+
+The program web page now requires "Minimum of 1 year of full-time equivalent RN experience at time of admission"; the existing record (and the 2026-27 catalog) says no work-experience requirement. Program page lists Spring Nov. 30 and Summer Apr. 12 deadlines (existing record had none).
+
+### Barnes-Jewish College Goldfarb School of Nursing: MSN Adult-Gerontology Primary Care Nurse Practitioner Track (DNP AGPCNP concentration also offered) (`goldfarb-agpcnp`)
+
+The program web page now requires "Minimum of 1 year of full-time equivalent RN experience at time of admission"; the existing record (and the 2026-27 catalog) says no work-experience requirement. Program page lists Spring Nov. 30 and Summer Apr. 12 deadlines (existing record had none).
+
+### Barnes-Jewish College Goldfarb School of Nursing: MSN Psychiatric Mental Health Nurse Practitioner Concentration (DNP PMHNP concentration also offered) (`goldfarb-pmhnp`)
+
+The program web page now requires "Minimum of 1 year of full-time equivalent RN experience at time of admission"; the existing record (and the 2026-27 catalog) says no work-experience requirement. Program page lists Spring Nov. 30 and Summer Apr. 12 deadlines (existing record had none).
+
+### Barnes-Jewish College Goldfarb School of Nursing: Doctor of Nursing Practice (DNP) Nurse Anesthesia Track (`goldfarb-crna`)
+
+Program web page adds requirements not in the existing record or catalog: minimum 3.0 science GPA; prerequisite grade B- or higher (catalog says "satisfactory grade"); A&P at least 6 credit hours; current CCRN certification with AACN score report required (existing record says CCRN not mentioned); minimum 12 months full-time ICU experience at the application deadline (OR and NICU not accepted; PACU/ED may be considered only with ventilator, invasive monitoring and vasoactive infusion care, as in the existing record); GRE/GMAT explicitly not required; shadowing encouraged, not required; cohort of 15-20.
+
+### Maryville University of Saint Louis: Bachelor of Science in Nursing - Freshman Direct Entry (`maryville-bsn`)
+
+Program pages give no GPA, ACT/SAT, exam, or course rules; they refer to the catalog's Undergraduate Admissions Requirements (catalog.maryville.edu), which returned HTTP 403 to automated fetch. Program page lists term starts Spring 2027 (Jan. 11) and Fall 2027 (Aug. 23) and says 'free transcript evaluation, quick admission decisions, and no application fee.' Confirm requirements with Maryville admissions (1-800-627-9855).
+
+### Maryville University of Saint Louis: Bachelor of Science in Nursing - Fast Track (transfer) (`maryville-bsn-fast-track`)
+
+Specific prerequisite list, GPA and grade minimums are not on the program pages; the catalog (catalog.maryville.edu) returned HTTP 403. A third-party site cites a 3.25 cumulative GPA and 7-year science limit, unverified on Maryville's own site, so not used. Term starts listed: Spring 2027 Jan. 11, Fall 2027 Aug. 23.
+
+### Maryville University of Saint Louis: Online MSN - Family Nurse Practitioner (BSN to DNP FNP also offered) (`maryville-fnp`)
+
+Admissions pages now say applicants below the GPA minimum submit 'one letter of recommendation'; existing record (and the degree page) say personal statement. Otherwise unchanged.
+
+### Maryville University of Saint Louis: Online MSN - Adult-Gerontology Primary Care Nurse Practitioner (BSN to DNP AGPCNP also offered) (`maryville-agpcnp`)
+
+Admissions pages now say applicants below the GPA minimum submit 'one letter of recommendation'; existing record (and the degree page) say personal statement. Otherwise unchanged.
+
+### Maryville University of Saint Louis: Online MSN - Adult-Gerontology Acute Care Nurse Practitioner (BSN to DNP AGACNP also offered) (`maryville-agacnp`)
+
+Admissions pages now say applicants below the GPA minimum submit 'one letter of recommendation'; existing record (and the degree page) say personal statement. Otherwise unchanged.
+
+### Maryville University of Saint Louis: Online MSN - Pediatric Nurse Practitioner (BSN to DNP PNP also offered) (`maryville-pnp`)
+
+Admissions pages now say applicants below the GPA minimum submit 'one letter of recommendation'; existing record (and the degree page) say personal statement. Otherwise unchanged.
+
+### Maryville University of Saint Louis: Online MSN - Psychiatric Mental Health Nurse Practitioner (BSN to DNP PMHNP also offered) (`maryville-pmhnp`)
+
+Admissions pages now say applicants below the GPA minimum submit 'one letter of recommendation'; existing record (and the degree page) say personal statement. Otherwise unchanged.
+
+### Missouri Baptist University (Mary Pillsbury School of Nursing): Bachelor of Science in Nursing (Traditional) (`mobap-bsn`)
+
+Existing record had no GPA, selection or deadline. Admission Policy PDF (rev. 8/2025) adds: 3.0 minimum (high-school unweighted GPA for direct entry; overall college GPA for open cohort seats), competitive review with waitlist, Jul 15-Nov 1 application window, up to 40 students/year, C-or-better in Intro Chemistry, Intro Biology, College Algebra and Probability & Statistics, and a one-repeat limit for the B-required sciences.
+
+### Missouri Baptist University (Mary Pillsbury School of Nursing): Accelerated BSN (`mobap-absn`)
+
+Confirms 3.2 GPA, no TEAS, March 1, 2027 deadline. New vs existing record: learnmore page explicitly says 'NO bachelor's degree required' (record said pages did not state it); policy PDF adds C-or-better in Intro Chemistry, Intro Biology, College Algebra and Probability & Statistics, one-repeat limit for B-required sciences, competitive review, waitlist, and up to 32 students per year.
+
+### Webster University: Doctor of Nurse Anesthesia Practice (DNAP) with an Emphasis in Health Administration (`webster-crna`)
+
+Program page now says approximately 60-80 applicants complete the process each year (new detail). Program page gives recency as 'within the last 5 to 6 years' for competitiveness while catalog says within the last 5 years. CCRN: program page says Adult CCRN preferred with score sheet; catalog lists only 'Upload CCRN score sheet', not a requirement.
+
+### Mercy's Southeast Missouri Hospital College of Nursing and Health Sciences: Associate of Applied Science in Nursing (`mercy-cape-adn`)
+
+sehcollege.edu still returns 403 to automated reading, so current requirements could not be verified. The only admissions documents found are 2021-era Southeast Health fact sheets on the college's old media host (res.cloudinary.com/.../southeast-health-site-362/...), which listed a 2.50 GPA and ATI TEAS 70% with 45% science; these predate the Mercy ownership and were not used. The empty prerequisites list means requirements are unknown, not that there are none.
+
+### Mercy's Southeast Missouri Hospital College of Nursing and Health Sciences: Practical Nursing Bridge Program to the Associate Degree Nursing Program (`mercy-cape-adn-lpn-bridge`)
+
+For LPNs. sehcollege.edu returns 403 to automated reading; no current requirements could be verified. The empty prerequisites list means requirements are unknown, not that there are none.
+
+### Rockhurst University – Saint Luke's College of Nursing and Health Sciences: Bachelor of Science in Nursing (BSN), Saint Luke's College of Nursing and Health Sciences (`saint-lukes-bsn`)
+
+No substantive change found. Page no longer shows (or the fetch did not return) the 'meeting minimums does not guarantee admission' sentence. Open electives (11 cr) omitted from prerequisite rows as they are not a specific course.
+
+### Rockhurst University – Saint Luke's College of Nursing and Health Sciences: Hybrid Accelerated Bachelor of Science in Nursing (ABSN) (`saint-lukes-absn`)
+
+Deadline changed: the Nov 20, 2026 deadline / Jan 11, 2027 start is no longer listed; the page now shows the next start as May 17, 2027 with no deadline date. Page now states a separate 2.7 prerequisite GPA (existing record merged it into one GPA sentence).
+
+### Rockhurst University – Saint Luke's College of Nursing and Health Sciences: Registered Nurse to Bachelor of Science in Nursing (RN-BSN) (`saint-lukes-rnbsn`)
+
+Requirements now found in the program page FAQ: minimum cumulative GPA 2.0 with no grade below C; active unencumbered license; U.S. citizenship or permanent residency; maximum 36 nursing credit hours from an associate/diploma program; up to 90 transfer credits. Existing record said requirements were not listed.
+
+### Avila University: Accelerated Bachelor of Science in Nursing (ABSN) (`avila-absn`)
+
+Prerequisite list on the current page adds General Psychology and Nutrition (not in the existing record); the existing 'Developmental Psychology' row is now worded 'Lifespan Development'.
+
+### William Jewell College: Bachelor of Science in Nursing (Traditional Four-Year BSN; Three-Year BSN option) (`william-jewell-bsn`)
+
+Pathophysiology removed from the prerequisite rows: the January 2026 curriculum guide places NUR 221 Human Pathophysiology in the first nursing semester (Junior Fall, alongside NUR 232, which requires program admission); the program page only sets rules for transferred Pathophysiology. Chemistry's B- rule comes only from the curriculum guide ('all Science prerequisites'); the program page names only Anatomy, Physiology and Microbiology for B-, so science grade minimums are see_text.
+
+### Park University: Nursing (Pre-Licensure), B.S.N. (`park-u-bsn`)
+
+No substantive change. GPA rules are recorded as two separate minimums (2.8 overall from the admissions page; 3.0 on foundation math and science from the handbook) rather than a conflict. TEAS minimum still conflicts (60 vs 58.7%).
+
+### Graceland University: Nursing: BSN-RN (Bachelor of Science in Nursing for Beginning Professional Students, Independence Campus) (`graceland-bsn`)
+
+No substantive change. Note the admissions page itself conflicts on GPA (2.5 January / 2.75 June vs 2.75 for all), so GPA fields set to see_text. Graceland course codes for stats, med term, psych, lifespan and sociology added from the catalog's Independence supporting-course list.
+
+### Graceland University: MSN: Family Nurse Practitioner (Online) (`graceland-fnp`)
+
+Adds the graduate catalog's 2.50 minimum cumulative BSN GPA (existing record had no GPA) and the 1,000-hour RN experience priority.
+
+### Graceland University: MSN: Adult & Gerontology Acute Care Nurse Practitioner (Online) (`graceland-agacnp`)
+
+Adds the graduate catalog's 2.50 minimum cumulative BSN GPA and the 1,000-hour RN experience priority.
+
+### Graceland University: MSN: Psychiatric Mental Health Nurse Practitioner (Online) (`graceland-pmhnp`)
+
+Adds the graduate catalog's 2.50 minimum cumulative BSN GPA and the 1,000-hour RN experience priority.
+
+### Western Governors University: Nursing (Prelicensure) B.S. — Missouri (`wgu-mo-bsn`)
+
+Existing record lists 10 college courses as prerequisites. Current WGU catalog and admissions pages list no admission course prerequisites: those courses (Intro to Chemistry, A&P I/II, Microbiology, Pathophysiology, Applied Healthcare Statistics, Applied Algebra, Intro Psych, Human Growth and Development, Intro Sociology) are part of the WGU pre-nursing curriculum (terms 1-4), with transfer credit possible at C or better and a 5-year limit on A&P I/II, Micro and Patho. Prerequisites set to []. Exam: catalog accepts HESI A2 or ATI TEAS within five years (admissions page names only TEAS).
+
+### Western Governors University: Master of Science in Nursing – Family Nurse Practitioner (BSN to MSN) (`wgu-mo-fnp`)
+
+Catalog FNP excluded states now: California, DC, Louisiana, Massachusetts, New York, North Dakota, Washington (program page omits Massachusetts). Missouri remains eligible.
+
+### Western Governors University: Master of Science, Nursing – Psychiatric Mental Health Nurse Practitioner (BSN to MSN) (`wgu-mo-pmhnp`)
+
+Catalog PMHNP excluded states now: Arizona, California, DC, Louisiana, Massachusetts, New York, North Dakota, Washington, Wisconsin (existing record listed CA, DC, LA, NY, ND, WA; program page still shows the shorter list). Missouri remains eligible.
+
+### Central Methodist University: Bachelor of Science, Nursing (BSN) (`central-methodist-bsn`)
+
+No substantive change. Pathophysiology moved out of the prerequisite list: it is only strongly recommended before admission (can be taken alongside first nursing courses with Program Director approval; B required to progress).
+
+### Central Methodist University: Accelerated Nursing (ABSN) (`central-methodist-absn`)
+
+No substantive change. Exam set to see_text: requirements page omits it but the application PDF still references TEAS V. (A search snippet cited a Feb 1 deadline; not found on the pages fetched.)
+
+### Missouri Valley University (formerly Missouri Valley College): Nursing (BSN) — traditional 2+2 (`missouri-valley-bsn`)
+
+No substantive change. The 2.75 GPA is specifically 'in core and prerequisite nursing classes', not an overall GPA. Catalog adds a TEAS retake limit (no more than three times in one year) not in the existing record. Catalog wording lists '7 credit hours of human anatomy and physiology' rather than naming BIOL 275/285.
+
+### Missouri Valley University (formerly Missouri Valley College): Nursing: LPN to BSN (`missouri-valley-bsn-lpn-bridge`)
+
+No substantive change. Catalog adds a TEAS retake limit (no more than three times in one year).
+
+### Columbia College: Associate of Science in Nursing (ASN), Barbara J. Bilger Family Nursing Program (`columbia-college-mo-adn`)
+
+No substantive change. The 3.0 GPA and Kaplan 60 are recommendations, not minimums. The admissions page names only the Kaplan exam (no HESI A2 mention there); the existing record's HESI A2 note from the handbook/cost page was not re-checked.
+
+### Columbia College: Bachelor of Science in Nursing (Traditional BSN) (`columbia-college-mo-bsn`)
+
+No substantive change. 3.0 GPA is a recommendation, not a minimum.
+
+### Stephens College: Nursing (B.S.N.) (`stephens-bsn`)
+
+No substantive change vs the existing record (which already used the 2026-27 handbook). The nursing-admissions FAQ page still shows older criteria (GPA 2.5, preferred ACT 22/SAT 1100, essay, Nov 1 January-transfer deadline, BIO 112/CHE 111/EDU 114/PSY 111 required courses) that conflict with the 2026-27 handbook (GPA 3.4, ACT 20/SAT 1000 minimums, essay removed).
+
+### Southwest Baptist University (Mercy College of Health Professions): Associate of Science in Nursing (ASN) (`sbu-adn`)
+
+No substantive change found. Current program page names no minimum prerequisite grade, time limit, deadline or selection method; those come only from the 2022-23 catalog PDF (the current catalog.sbuniv.edu pages are blocked with 403). The 2022-23 catalog also had a 5-year science limit and a two-attempt limit on prerequisite sciences not in the existing record. Existing record's 'August 1' spring deadline is the BSN's 2022-23 deadline, not the ASN's.
+
+### Southwest Baptist University (Mercy College of Health Professions): LPN-Paramedic to Associate of Science in Nursing (ASN) Bridge (`sbu-adn-lpn-bridge`)
+
+No substantive change. Bridge page describes it as 'a three-semester program' (summer bridge course plus semesters 3-4).
+
+### Southwest Baptist University (Mercy College of Health Professions): Bachelor of Science in Nursing (pre-licensure BSN, Bolivar) (`sbu-bsn`)
+
+No substantive change. Selection worksheet scoring is not published, so selection is competitive rather than points.
+
+### College of the Ozarks: Nursing Major, B.S.N. (`college-ozarks-bsn`)
+
+Could not re-verify the catalog-derived details in the existing record (BIO 164/174, CHE 134/144, ENG 103, PSY 103 with C-; HESI A2 76% benchmark; March 1 application / June 1 notification; one repeated D/F rule): catalog.cofo.edu returns HTTP 403 to automated fetches. The nursing web page itself confirms only the 2.75 cumulative GPA, preferred ACT 21, one year of prerequisites, assessments and an interview. Prerequisite list reduced to a single placeholder row rather than unverified courses. | Must first be admitted to College of the Ozarks (work college; separate competitive admission). Preferred (not minimum) ACT composite 21. Applicants should show integrity, a teachable spirit, positive communication skills and emotional stability. Course list, grades, exam and deadline: check the catalog or contact the nursing program director.
+
+### Hannibal-LaGrange University (Craigmiles School of Nursing): Associate of Science in Nursing (ASN) (`hannibal-lagrange-adn`)
+
+Behavioral science requirement is 6 credits with RECOMMENDED courses (PSY 113, PSY 225, SOC 113), not a fixed PSY 113 + SOC 113 pair; rows now one_of 'bs' (pick courses totaling 6 credits). Added PSY 225 option. 5-year limit applies to science prerequisites (waivable for practicing LPNs). Otherwise consistent with the existing record.
+
+### Hannibal-LaGrange University (Craigmiles School of Nursing): LPN-ADN Bridge - Associate of Science in Nursing (advanced placement) (`hannibal-lagrange-adn-lpn-bridge`)
+
+Behavioral science is 6 credits from recommended courses (PSY 113, PSY 225, SOC 113), not a fixed PSY 113 + SOC 113 pair. Only Microbiology is named as required before admission, plus 'a majority' of ASN support courses. Otherwise consistent with the existing record.
+
+### Culver-Stockton College (School of Nursing with Hannibal Regional): Bachelor of Science in Nursing - Culver-Stockton College School of Nursing with Hannibal Regional (3-year BSN) (`culver-stockton-bsn`)
+
+Added COM 115 Fundamentals of Speech (semester 1 course). PSY 101/SOC 102 and MAT 205/MAT 110 recorded as either/or pairs. Otherwise consistent with the existing record (exams still listed as currently waived).
+
