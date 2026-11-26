@@ -1588,3 +1588,43 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   (record could not be verified); WesternU lists an MSN-PMHNP the site has no record for; Pepperdine's ELM page gives
   both 3.3 and 3.0 GPA; Vanguard's BSN deadlines differ between pages; Mount St. Mary's ABSN grows to 15 months from Fall 2027.
 - **Differences per program:** docs/admissions-review/ca.md.
+
+## Structured admissions: Missouri (added 2026-11-25, two waves)
+
+- **What:** `MO.admissions` in data/schools/mo.js, same fields and tooling as the Colorado pilot
+  (docs/REFRESH_ADMISSIONS.md). 168 programs re-read on the schools' own sites in two waves (84 / 84 programs;
+  wave 2 = the private universities plus Truman, Missouri Southern and Missouri Western, 9 research agents).
+- **Filled:** 148 of 168. **"Couldn't re-check" placeholders: 20**, all because the school's site could not be read
+  (nothing bypassed): wave 1, 15 (Missouri State all 10: catalog.missouristate.edu 403; Mizzou traditional BSN: catalog
+  refused connections; UMSL RN-BSN and 68C-BSN: bulletin refused connections; St. Charles ADN and LPN bridge: catalog
+  403); wave 2, 5 (Maryville Freshman Direct Entry and Fast Track BSN: catalog.maryville.edu 403 and the program pages
+  point to it; College of the Ozarks BSN: catalog.cofo.edu 403; Mercy College Cape Girardeau ADN and LPN bridge:
+  sehcollege.edu 403, only 2021 fact sheets readable).
+- **Partly blocked in wave 2 (gaps recorded as `not_published`):** catalog.slu.edu and catalog.missouriwestern.edu
+  refused connections; catalog.sbuniv.edu, catalog.mobap.edu, catalog.rockhurst.edu and catalog.avila.edu returned 403.
+- **Orchestrator corrections (wave 2):** Southwest Baptist ASN and LPN bridge: grade, recency, selection, repeat and
+  deadline values that came only from SBU's 2022-23 catalog PDF were set to `not_published` (older cycle; the current
+  catalog is blocked). Six "repeat a course only once" rules were recorded with `counts: see_text` (the schools state an
+  attempt limit but not which grade counts). Goldfarb CRNA: PACU/ED experience "may be considered" with ventilator,
+  invasive-monitoring and vasoactive-infusion care (the agent had it as not accepted); the cohort start year is not
+  stated on the page, so it is no longer written as 2028.
+- **Spot checks:** wave 1 OTC ADN, UMKC BSN, Mizzou FNP DNP; wave 2 Hannibal-LaGrange ASN (no admission GPA or exam
+  for the generic ASN, C or better in science and behavioral science support courses, sciences within 5 years with an
+  LPN waiver, first-come first-served with a waiting list and more HLGU credits given higher consideration: match the
+  2026-27 catalog and handbook), Missouri Western BSN (2.7 cumulative GPA, TEAS 58.7% with 2 attempts per calendar year
+  valid 3 years, C in every support course, starred courses within 10 years, about 60 admitted twice a year, Jan 15 /
+  Aug 15 deadlines: match the admissions page and the 2026-27 sample plan), Goldfarb DNP nurse anesthesia (3.0
+  cumulative and science GPA, B- prerequisites with no time limit, CCRN, 12 months ICU, no GRE, 15-20 seats, July 1,
+  2026 - March 1, 2027 cycle: match; PACU wording corrected).
+- **Flagged for the owner (not removed):** wave 1 items are in docs/STATE_QUEUE.md history (Franklin Tech RN diploma
+  applications closed; UMKC BSN-to-DNP paused except CRNA until Aug 2027; several page-vs-handbook conflicts). Wave 2:
+  no closures confirmed. Maryville's Evening/Weekend BSN has its own application page but is not on the main nursing
+  page (status unclear). Goldfarb's CRNA page now requires CCRN and a 3.0 science GPA (older record said CCRN not
+  mentioned), and its NP pages now require 1 year of RN experience. WGU's BSN no longer lists courses to finish before
+  applying (they are WGU's own pre-nursing terms). SLU's NP programs moved to rolling admission. Culver-Stockton's BSN
+  is still under initial board approval. Conflicts left as `see_text`: Goldfarb A&P/micro recency (7 vs 5 years);
+  Missouri Southern handbook vs web page (chemistry and statistics options, HESI sections, notification date); Missouri
+  Western application portal (own portal vs NursingCAS link); Truman deadline (rolling from Aug 1 vs Jan 15); Stephens
+  FAQ (2.5 GPA, ACT 22) vs 2026-27 handbook (3.4 GPA, ACT 20); Park TEAS (60 vs 58.7%); Avila RN-BSN GPA (2.5 vs 2.8);
+  Graceland BSN GPA (2.5 / 2.75); Central Methodist ABSN TEAS (requirements page omits it, application PDF lists it).
+- **Differences per program:** docs/admissions-review/mo.md.
