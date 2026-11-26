@@ -1671,3 +1671,34 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   the catalog); Seattle U BSN GPA (2.0 vs 3.0 in an older guide); Walla Walla U priority deadline (March 1 vs 15);
   UW Tacoma and UW Bothell RN-BSN catalog vs program-page prerequisites; Yakima Valley deadline tables.
 - **Differences per program:** docs/admissions-review/wa.md.
+
+## Structured admissions: Oregon (added 2026-11-26)
+
+- **What:** `OR.admissions` in data/schools/or.js, same fields and tooling as the Colorado pilot
+  (docs/REFRESH_ADMISSIONS.md). 50 programs re-read on the schools' own sites in one wave (5 research agents).
+- **Filled:** 46 of 50. **"Couldn't re-check" placeholders: 4**, all because the school's site could not be read
+  (nothing bypassed): Mt. Hood CC ADN (mhcc.edu 403, catalog.mhcc.edu refused connections); Rogue CC ADN (roguecc.edu
+  403 on every page; old application PDF 404); Klamath CC ADN (catalog.klamathcc.edu 403, so the prerequisite course
+  list could not be read; the RN page says applications open January 2027 for Fall 2027); Blue Mountain CC ADN (the
+  prerequisite list and points guide are SharePoint files that need a login, catalog.bluecc.edu 403).
+- **Stale cycles:** the RN-to-BSN partner pages (Chemeketa, Linn-Benton, Klamath, COCC, TVCC, Lane) and Chemeketa's
+  LPN-RN page, Umpqua's ADN page and Walla Walla U Portland still show 2026 dates that have passed; records say so.
+  Tillamook Bay's application page already says Fall 2028 (its packet: apply by April 30, 2027 for a Sept 20, 2027 start).
+- **Spot checks:** Clatsop ADN (3.0 GPA on 28 prerequisite credits, C or above, math and sciences after Sept 1, 2020
+  (7 years), TEAS Proficient taken within 6 months, Phase 1 max 60 + Phase 2 max 40 points, Jan 4 - Feb 16, 2027
+  window: match the 2027 application instructions PDF), Linfield BSN (3.0 prerequisite and science GPA, 2.65 A&P GPA,
+  C minimum, A&P and micro within 7 years, no exam, A&P retake rule, April 1 fall / Oct 1 spring: match), OHSU DNP-FNP
+  (3.0 GPA, no course prerequisites, no GRE, Nov 1, 2026 priority and Jan 5, 2027 final deadlines: match).
+- **Flagged for the owner (not removed):** Oregon Coast CC LPN-to-RN: "will not be accepting LPN applications in 2027".
+  Klamath CC's LPN-to-RN transition is on hold for 2027 (resumes 2028; it has no separate record). OHSU nurse
+  anesthesia (Summer 2027 closed Oct 12, 2026; reopens Aug 2027) and nurse-midwifery (Fall 2027 closed) are closed for
+  this cycle. OHSU RN-to-BSN now lists course prerequisites (A&P, micro, nutrition, human development, writing; C- or
+  better) where the old record had none. SWOCC's Fall 2027 packet changed its prerequisites (CHEM 110 and PHL 102
+  dropped; BI 149 Genetics added; 28 credits to apply) and cohort (40-45). Oregon Coast ADN now says there is no time
+  limit on math/science (old record: 7 years). Conflicts left as `see_text` or noted: Clackamas (56 vs 50 Phase I points,
+  30-36 vs 30 seats, 30 vs 28 credits); Tillamook Bay prerequisite timing; Bushnell ABSN GPA (3.25 catalog vs 3.0 web)
+  and science grades; Lane packet point values; Lane bridge micro recency (7 vs 10 years); Umpqua C vs C-; TVCC LPN
+  bridge window and science recency (5 vs 5-10 years); OHSU RN-BSN GPA (3.0 vs "will still consider below 3.0"); OHSU
+  nurse-midwifery deadline (Oct 13 vs Oct 6); Walla Walla U Portland priority deadline (March 15 vs 1); George Fox BSN
+  math (MATH 180 vs 120).
+- **Differences per program:** docs/admissions-review/or.md.
