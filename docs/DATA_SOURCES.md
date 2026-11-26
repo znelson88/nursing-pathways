@@ -1628,3 +1628,46 @@ docs/ADD_A_STATE.md: every fact from the school's own site, unknowns left `null`
   FAQ (2.5 GPA, ACT 22) vs 2026-27 handbook (3.4 GPA, ACT 20); Park TEAS (60 vs 58.7%); Avila RN-BSN GPA (2.5 vs 2.8);
   Graceland BSN GPA (2.5 / 2.75); Central Methodist ABSN TEAS (requirements page omits it, application PDF lists it).
 - **Differences per program:** docs/admissions-review/mo.md.
+
+## Structured admissions: Washington (added 2026-11-26)
+
+- **What:** `WA.admissions` in data/schools/wa.js, same fields and tooling as the Colorado pilot
+  (docs/REFRESH_ADMISSIONS.md). 91 programs re-read on the schools' own sites in one wave (9 research agents).
+- **Filled:** 78 of 91. **"Couldn't re-check" placeholders: 13**, all because the school's site could not be read
+  (nothing bypassed): Washington State University BSN, RN-BSN, FNP and PMHNP (nursing.wsu.edu, healthprofessions.wsu.edu
+  and vancouver.wsu.edu 403; catalog.wsu.edu empty); Gonzaga BSN, ABSN, FNP, PMHNP and CRNA (gonzaga.edu and
+  catalog.gonzaga.edu 403); Seattle Pacific BSN (spu.edu 403, catalog refused connections); Whatcom ADN (whatcom.edu
+  403); Bellevue RN-BSN (bellevuecollege.edu 403; the readable 2025-26 handbooks defer admission rules to the catalog);
+  Walla Walla CC LPN-ADN bridge (wwcc.edu pages 403; the 2026 admission guide PDF gives no separate LPN prerequisite list).
+- **Partly blocked (gaps recorded as `not_published`):** Bellevue ADN (only the Winter 2027 criteria PDF readable; no
+  deadline); Everett ADN (application-process page empty; points PDF and catalog readable); Walla Walla CC ADN (only the
+  2026 admission guide, Fall 2026 cohort, readable; no newer guide posted); Lower Columbia (a cycle PDF failed with a
+  certificate error, Google Docs need sign-in); Whitworth (catalog.whitworth.edu refused HTTPS). Edmonds' packet and
+  rubric are hosted on Adobe/Google Drive, not the college's site, so they were not used. Renton Tech's requirements
+  come from the college's own Canvas page (rtc.instructure.com, linked from rtc.edu).
+- **Orchestrator corrections:** Seattle U's December 1 deadlines no longer name a year (the pages give none). Whitworth's
+  prerequisite courses are taken at Whitworth after first-year direct admission, so the record lists no admission
+  prerequisites and explains this in notes. Seven "repeat as often as needed / up to N times" rules (Seattle Colleges,
+  Clover Park, Highline, Renton Tech, Pierce ADN and LPN bridge, Whitworth) were recorded with `counts: see_text` (an
+  attempt rule is stated but not which grade counts). Wenatchee Valley ADN points `max` set to `not_published` (the page
+  lists category maximums but no total).
+- **Spot checks:** Skagit Valley ADN (3.0 science and cumulative prerequisite GPA, C per course, sciences within 10
+  years, no exam, 60-point sheet with GPA x 10 plus 14-20 NAC/LPN or 6-10 other certification points, science GPA breaks
+  ties, Jan 8 and June 25, 2027 packet deadlines: match the FAQ, nursing page and May 2025 score sheet), EWU BSN (3.0
+  cumulative and prerequisite GPA, C minimum, no prerequisite expiration, holistic review with interview, priority for
+  40+ EWU credits, Dec 15, 2026 - Jan 31, 2027 window: match), UW DNP-FNP (3.0 in the last 60 semester / 90 quarter
+  credits, statistics within 5 years, no GRE, Jan 15, 2027 priority and May 1, 2027 space-available deadlines: match).
+- **Flagged for the owner (not removed):** PLU traditional BSN: the transfer apply page says it is NOT accepting
+  transfer nursing applications for Spring or Fall 2027 (the nursing page still shows a passed Sept 18, 2026 deadline);
+  first-year direct admission is still open. Walla Walla CC's guide says a curriculum revision "may affect" LPN-ADN
+  admission in 2026-27 and beyond. Centralia's spring LPN entry runs every other year. Wenatchee RN-BSN Fall 2026 is
+  full (late applicants waitlisted). Renton Tech: TEAS and NA certificate are now optional points, not requirements, and
+  per-course minimums are 3.0 (2.7 for math and psychology), replacing the older unverified figures. Whitworth is a new
+  program (initial board approval, CCNE expected by spring 2029). Conflicts left as `see_text` or noted: Shoreline
+  closing dates (Jan 10 vs 11, Apr 3 vs 5, 2027); Bellingham Tech portal reopening (Jan 15 vs Apr 1, 2027); Edmonds cycle
+  year; Grays Harbor TEAS (59 vs 59.5%); Olympic NURSE 152 cutoff (2.2 vs 2.22); Pierce part-time option and LPN windows;
+  Lower Columbia LPN hours (3 vs 5 years) and statistics course; Columbia Basin LPN-BSN cohort size (16 vs 18) and
+  prerequisite timing; Green River acceptance rate (45 vs 55%); Wenatchee LPN-BSN GPA (2.0 on current pages vs 2.5 in
+  the catalog); Seattle U BSN GPA (2.0 vs 3.0 in an older guide); Walla Walla U priority deadline (March 1 vs 15);
+  UW Tacoma and UW Bothell RN-BSN catalog vs program-page prerequisites; Yakima Valley deadline tables.
+- **Differences per program:** docs/admissions-review/wa.md.
